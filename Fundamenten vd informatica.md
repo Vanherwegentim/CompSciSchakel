@@ -67,7 +67,7 @@ We kunnen dezelfde bewerkingen uitbreiden tot talen. Zij A, B ⊆ Σ*, dan is
 
 Verder definieren we 
 
-- A* = A~0~ ∪ A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · = ![image-20220216000111613](images\image-20220216000111613.png) 
+- A* = A~0~ ∪ A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · = ![image-20220216000111613](/images/image-20220216000111613.png) 
   A∗ wordt de Kleenesluiting van A genoemd
 - A+ = A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · =![image-20220216000256605](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220216000256605.png)
 
