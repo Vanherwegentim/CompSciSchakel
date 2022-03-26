@@ -1,6 +1,6 @@
 Deze tering begint pas bij hoofdstuk 3, de rest is afval.
 
-
+![Kulmomentje](C:\Users\timva\Pictures\Kulmomentje.png)
 
 # Hoofdstuk 3 Talen, automaten en berekenbaarheid
 
@@ -49,7 +49,7 @@ Indien we een alfabet Σ vast kiezen, dan kunnen we de volgende bewerkingen uitv
   In het bijzonder hebben we ook voor elke x ∈ Σ* dat
   λx = xλ = x en λλ = λ. 
   
-- Voor x ∈ Σ ∗ definieren we 
+- Voor x ∈ Σ* definieren we 
   x^0^ = λ 
   ∀n ∈ N : x^n+1^ = xx^n^
 
@@ -67,16 +67,18 @@ We kunnen dezelfde bewerkingen uitbreiden tot talen. Zij A, B ⊆ Σ*, dan is
 
 Verder definieren we 
 
-- A* = A0 ∪ A ∪ A2 ∪ A3 ∪ · · · = ![image-20220216000111613](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220216000111613.png) 
+- A* = A~0~ ∪ A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · = ![image-20220216000111613](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220216000111613.png) 
   A∗ wordt de Kleenesluiting van A genoemd
-- A+ = A ∪ A2 ∪ A3 ∪ · · · =![image-20220216000256605](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220216000256605.png)
+- A+ = A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · =![image-20220216000256605](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220216000256605.png)
 
-**Definitie 3.4 (Reguliere Taal)** Indien Σ een alfabet is, dan wordt de klasse van R van alle reguliere talen over Σ inductief als volgt gedefinieerd:
+**Definitie 3.4 (Reguliere Taal)** (kan worden gedefinieerd door een reguliere uitdrukking) Indien Σ een alfabet is, dan wordt de klasse van R van alle reguliere talen over Σ inductief als volgt gedefinieerd:
 
 1. ∅ ∈ R, {λ} ∈ R en ∀σ ∈ Σ : {σ} ∈ R.
 2. Indien A, B ∈ R, dan ook AB ∈ R, A ∪ B ∈ R en A∗ ∈ R
 
 Elke taal uit R wordt een **reguliere taal** genoemd
+
+
 
 **Voorbeeld 3.9** De taal L~3~ = {11,101,1001,10001,100001,...} op Σ = {0,1} is een reguliere taal, want
 
@@ -89,7 +91,7 @@ Elke taal uit R wordt een **reguliere taal** genoemd
 
 Ook wel regular expression genoemd voor de duidelijkheid, is dus niks nieuws. Ze proberen natuurlijk weer speciaal te doen door het te vertalen naar het nederlands. godverdommse taalpuristen.
 
-**Voorbeeld 3.10** Veronderstel dat Σ de verzameling van ASCII symbolen is, dan zijn de bolgende strings reguliere uitdrukkingen over Σ:
+**Voorbeeld 3.10** Veronderstel dat Σ de verzameling van ASCII symbolen is, dan zijn de volgende strings reguliere uitdrukkingen over Σ:
 
 - 123
 - Hallo!
@@ -97,7 +99,7 @@ Ook wel regular expression genoemd voor de duidelijkheid, is dus niks nieuws. Ze
 
 
 
-**Voorbeeld 3.11** Met de reguliere uitdrukking ab∗ c duiden we alle strings aan bestaande uit een a, eventueel gevolgd door een aantal keer het symbool b en tenslotte een c. Voorbeelden van strings die aan dit patroon voldoen, zijn ac en abbbbbbbbbbbc, maar niet abbbbbbbbb. We kunnen ook gebruik maken van haakjes om bepaalde deeluitdrukkingen nul of meerdere keren te laten voorkomen. Zo komt met de reguliere uitdrukkingen b(ab) ∗ c elke string overeen bestaande uit een b, dan een aantal keer ab en tenslotte gevolgd door een c. De strings bc en bababababababc voldoen aan dit patroon, de string bac niet. Tot slot is er ook nog een mechanisme dat alternatieven weergeeft. We kunnen namelijk in een reguliere expressie de notatie a|b gebruiken om aan te geven dat op die plaats een a of een b moet voorkomen. Ook bij | mogen we gebruik maken van haakjes.
+**Voorbeeld 3.11** Met de reguliere uitdrukking ab∗ c duiden we alle strings aan bestaande uit een a, eventueel gevolgd door een aantal keer het symbool b en tenslotte een c. Voorbeelden van strings die aan dit patroon voldoen, zijn ac en abbbbbbbbbbbc, maar niet abbbbbbbbb. We kunnen ook gebruik maken van haakjes om bepaalde deeluitdrukkingen nul of meerdere keren te laten voorkomen. Zo komt met de reguliere uitdrukkingen b(ab)*c elke string overeen bestaande uit een b, dan een aantal keer ab en tenslotte gevolgd door een c. De strings bc en bababababababc voldoen aan dit patroon, de string bac niet. Tot slot is er ook nog een mechanisme dat alternatieven weergeeft. We kunnen namelijk in een reguliere expressie de notatie a|b gebruiken om aan te geven dat op die plaats een a of een b moet voorkomen. Ook bij | mogen we gebruik maken van haakjes.
 
 Tenslotte kunnen we ∗ en | combineren. Zo komen met de reguliere uitdrukking d(a|i) ∗ t alle strings overeen bestaande uit een d gevolgd door nul of meerdere keren de letters a of i en ten slotte een t, zoals de string daiiiat.
 
@@ -115,7 +117,7 @@ Tenslotte kunnen we ∗ en | combineren. Zo komen met de reguliere uitdrukking d
 
 **Definitie 3.5 (Reguliere uitdrukking)** Indien Σ een alfabet is, dan wordt een reguliere uitdrukking over Σ op inductieve wijze als volgt gedefinieerd:
 
-1. . ∅ is een reguliere uitdrukking
+1. ∅ is een reguliere uitdrukking
 2. λ is een reguliere uitdrukking
 3. Voor elke σ ∈ Σ is σ een reguliere uitdrukking
 4. Indien A en B reguliere uitdrukkingen zijn, dan zijn ook (A), A∗ , A|B en AB reguliere uitdrukkingen.
@@ -162,7 +164,7 @@ Een eindige automaat (in het Engels a finite automaton of meer precies a finite 
 - ...
 - Als n-de en laatste stap berekent de machine tenslotte q~in~ = δ(q~in−1~ , σ~n~)
 
-Na deze n-de en laatste stap zijn er nu twee mogelijkheden: ofwel behoort qin tot de aanvaardbare eindtoestanden F, ofwel niet. In het eerste geval zeggen we dat de automaat de string x aanvaardt, in het andere geval wordt de string verworpen.
+Na deze n-de en laatste stap zijn er nu twee mogelijkheden: ofwel behoort q~i~~n~ tot de aanvaardbare eindtoestanden F, ofwel niet. In het eerste geval zeggen we dat de automaat de string x aanvaardt, in het andere geval wordt de string verworpen.
 
 ![image-20220220194243916](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220220194243916.png)
 
@@ -178,17 +180,45 @@ Een automaat aanvaardt sommige strings wel, en andere niet. De verzameling van a
 
 ### 3.2.3 Niet-deterministische eindige automaten
 
-effe uitleg hie
+effe uitleg hier, allemaal vrij logisch:
 
-De eindige automaten we tot nu toe gezien hebben zijn zogenaamde deterministische machines. Dit betekent dat de machine op elk moment slechts ´e´en (ondubbelzinnige) instructie te verwerken krijgt en deze instructie slechts op ´e´en manier kan uitvoeren. We laten nooit de instructie “of ” toe (Doe A of Doe B). Indien we echter aannemen dat we over twee onafhankelijke processoren zouden beschikken, dan zou een opdracht als Doe A of Doe B parallel kunnen uitgevoerd worden. De ene processor zou A kunnen uitvoeren, terwijl de andere B zou kunnen uitvoeren.
+De eindige automaten we tot nu toe gezien hebben zijn zogenaamde deterministische machines. Dit betekent dat de machine op elk moment slechts 1 (ondubbelzinnige) instructie te verwerken krijgt en deze instructie slechts op 1 manier kan uitvoeren. We laten nooit de instructie “of ” toe (Doe A of Doe B). Indien we echter aannemen dat we over twee onafhankelijke processoren zouden beschikken, dan zou een opdracht als Doe A of Doe B parallel kunnen uitgevoerd worden. De ene processor zou A kunnen uitvoeren, terwijl de andere B zou kunnen uitvoeren.
 
-Indien we maar over ´e´en processor beschikken, en we willen toch opdrachten met of-statements uitvoeren, dan moet de machine dus op bepaalde momenten een keuze maken welke van de twee (of meer) mogelijke opdrachten ze zal uitvoeren. Dergelijke machines noemt men niet-deterministische machines.
+Indien we maar over een processor beschikken, en we willen toch opdrachten met of-statements uitvoeren, dan moet de machine dus op bepaalde momenten een keuze maken welke van de twee (of meer) mogelijke opdrachten ze zal uitvoeren. Dergelijke machines noemt men niet-deterministische machines.
+
+**Definitie 3.8 (Niet-deterministische eindige automaat)** Een niet-deterministische eindige automaat is een 5-tal A = (Q, Σ, δ, q~0~, F) met
+
+- Q een eindige verzameling (de toestanden van de automaat A).
+
+- F ⊆ Q de verzameling van de aanvaardbare eindtoestanden.
+
+- q~0~ ∈ Q de begintoestand van de automaat.
+
+- Σ het alfabet van de automaat.
+
+- δ een afbeelding
+
+  ​	δ : Q × (Σ ∪ {λ}) → P(Q).
+
+Het eerste verschil tussen een gewone eindige automaat en een niet-deterministische ligt in het feit dat de transitieafbeelding δ geen toestanden als beelden heeft, maar verzameling van toestanden. Die verzamelingen kunnen leeg zijn.
+
+Ook niet-deterministische eindige automaten kunnen we schematisch voorstellen met cirkels en pijlen. We laten bij een niet-deterministische machine echter toe dat er vanuit een cirkel meerdere pijlen met hetzelfde label vertrekken. Het label λ mag eveneens gebruikt worden.
+
+**weer veel gezeik, kijk gewoon dit filmpje man**
+
+https://www.youtube.com/watch?v=W8Uu0inPmU8
+
+**Voorbeeld 3.19**
+
+![image-20220320141055097](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220320141055097.png)
+
+**TODO **
 
 ## 3.3 Turingmachines
 
 ### 3.3.1 Turingmachines
 
-Eindige automaten zijn een wiskundig model voor een zeer eenvoudig soort computers. Ze hebben geen geheugencapaciteit; de enige informatie die ze hebben over de string die ze recent doorlopen hebben, is de toestand waarin ze zich bevinden, en er is maar een eindig aantal verschillende toestanden. Daardoor zijn ze beperkt que berekeningen: ze kunnen enkel reguliere talen herkennen.
+Eindige automaten zijn een wiskundig model voor een zeer eenvoudig soort computers. Ze hebben geen geheugencapaciteit; de enige informatie die ze hebben over de string die ze recent doorlopen hebben, is de toestand waarin ze zich bevinden, en er is maar een eindig aantal verschillende toestanden. Daardoor zijn ze beperkt qua berekeningen: ze kunnen enkel reguliere talen herkennen.
 
 Turingmachines vormen een ander wiskundig model voor een bepaald soort computers, ditmaal wel met een grote geheugencapaciteit. Het model is niet te ingewikkeld, zodat het mogelijk is om bepaalde eigenschappen van dergelijke machines aan te tonen en te behandelen. Aan de andere kant is de klasse van Turingmachines toch krachtig genoeg om alle rekentaken te kunnen uitvoeren die een gewone computer kan uitvoeren.
 
@@ -196,7 +226,7 @@ We kunnen ons een Turingmachine voorstellen als een machine die voorzien is van 
 
 ![image-20220222140950286](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220222140950286.png)
 
-De machine heeft een lees/schrijfkop en het symbool op de magneetband juist onder de kop noemen we het huidig symbool: de operatie van lezen is daarmee impliciet. De kop kan het huidig symbool overschrijven. Net als een eindige automaat heeft een Turingmachine een eindig aantal mogelijke toestanden, en op elk moment bevindt de machine zich in ´e´en van die toestanden. Een instructie voor de machine is een voorschrift voor de machine om, in ´e´en operatie, het huidig symbool te overschrijven met een nieuw symbool, de kop (of de magneetband) ´e´en positie naar links of naar rechts te bewegen, en naar een nieuwe toestand over te gaan. Welke instructie uitgevoerd wordt, hangt enkel af van de huidige toestand van de machine en het huidige symbool onder de leeskop. Eens gestart, blijft de machine instructies uitvoeren tot zij in een toestand komt waarbij 28 er voor het huidig gelezen symbool geen instructie meer voorhanden is. Op dat moment kan men controleren of de machine al dan niet in een aanvaardbare toestand gestopt is. We schrijven nu het bovenstaande neer in een formele definitie.
+De machine heeft een lees/schrijfkop en het symbool op de magneetband juist onder de kop noemen we het huidig symbool: de operatie van lezen is daarmee impliciet. De kop kan het huidig symbool overschrijven. Net als een eindige automaat heeft een Turingmachine een eindig aantal mogelijke toestanden, en op elk moment bevindt de machine zich in 1 van die toestanden. Een instructie voor de machine is een voorschrift voor de machine om, in 1 operatie, het huidig symbool te overschrijven met een nieuw symbool, de kop (of de magneetband) 1 positie naar links of naar rechts te bewegen, en naar een nieuwe toestand over te gaan. Welke instructie uitgevoerd wordt, hangt enkel af van de huidige toestand van de machine en het huidige symbool onder de leeskop. Eens gestart, blijft de machine instructies uitvoeren tot zij in een toestand komt waarbij 28 er voor het huidig gelezen symbool geen instructie meer voorhanden is. Op dat moment kan men controleren of de machine al dan niet in een aanvaardbare toestand gestopt is. We schrijven nu het bovenstaande neer in een formele definitie.
 
 **Dit is een hele lang uitleg die ge zou kunnen begrijpen ma als ge het uzelf makkelijk wil maken, kijk dit filmpje: https://www.youtube.com/watch?v=dNRDvLACg5Q**
 
@@ -212,7 +242,7 @@ De machine heeft een lees/schrijfkop en het symbool op de magneetband juist onde
 
 - Σ het alfabet van de Turingmachine. Dit alfabet bevat, naast mogelijk andere symbolen, minstens een speciaal symbool, het blanco symbool of lege symbool, dat we noteren als #.
 
-- T ⊆ Σ\{#} is de verzameling van invoersymbolen. De elementen van Σ\(T ∪ {#}) worden hulpsymbolen genoemd.
+- T ⊆ Σ\{#} is de verzameling van invoersymbolen. De elementen van Σ\\(T ∪ {#}) worden hulpsymbolen genoemd.
 
 - P een functie (niet noodzakelijk een afbeelding)
 
@@ -222,7 +252,7 @@ P wordt het programma of de instructieset van de Turingmachine genoemd. (In de v
 
 Wanneer we de machine starten bevindt deze zich in de begintoestand q0 en staat de leeskop boven het meest linkse, niet blanco symbool van de magneetband. De machine voert dan het programma P uit en dit moet als volgt geinterpreteerd worden: Noem q de toestand waarin de Turingmachine zich op een bepaald moment bevindt en zij σ ∈ Σ het symbool dat op datzelfde moment door de kop gelezen wordt. Nu zijn er twee mogelijkheden 
 
-1. Het koppel (q, σ) behoort tot het definitiegebied van de functie P. Dit betekent dat P(q, σ) bestaat en gelijk is aan een drietal (q 0 , σ0 , X) ∈ Q × Σ × {L, R, 0}. Het effect van de uitvoering van deze instructie is dat de Turingmachine haar toestand (eventueel) zal veranderen in toestand q 0 , dat het huidig gescande symbool σ (eventueel) vervangen wordt door σ 0 en dat de kop zich beweegt zoals X aangeeft, d.w.z. indien X = L, beweegt de kop zich naar links (of de band naar rechts), indien X = R beweegt de kop naar rechts en indien tenslotte X = 0 blijft de kop ter plaatse. 
+1. Het koppel (q, σ) behoort tot het definitiegebied van de functie P. Dit betekent dat P(q, σ) bestaat en gelijk is aan een drietal (q~0~ , σ~0~ , X) ∈ Q × Σ × {L, R, 0}. Het effect van de uitvoering van deze instructie is dat de Turingmachine haar toestand (eventueel) zal veranderen in toestand q~0~ , dat het huidig gescande symbool σ (eventueel) vervangen wordt door σ~0~ en dat de kop zich beweegt zoals X aangeeft, d.w.z. indien X = L, beweegt de kop zich naar links (of de band naar rechts), indien X = R beweegt de kop naar rechts en indien tenslotte X = 0 blijft de kop ter plaatse. 
 
 2. Indien het koppel (q, σ) niet behoort tot het definitiegebied van P stopt het programma. De toestand q wordt de eindtoestand van de Turingmachine (voor die bepaalde invoer) genoemd. 
 
@@ -305,9 +335,9 @@ Een TM kan met een bepaalde invoer een bepaalde uitvoer associeren en zo functie
 
 **Definitie 3.12** Een taal L wordt Turing-herkenbaar genoemd, als er een TM bestaat die L herkent. Turing-herkenbare talen worden ook recursief opsombare talen genoemd.
 
-**Definitie 3.13** Een TM beslist een taal, als voor elk string s ∈ L de TM in een aanvaardbare toestand eindigt, en voor elke string s 6∈ L de TM in een onaanvaardbare toestand eindigt.
+**Definitie 3.13** Een TM beslist een taal, als voor elk string s ∈ L de TM in een aanvaardbare toestand eindigt, en voor elke string s \∈ L de TM in een onaanvaardbare toestand eindigt.
 
-Merk het verschil op tussen herkennen en beslissen. Als een TM de taal L herkent, dan betekent dat date de TM alle en alleen de strings in L aanvaardt. Strings buiten L kunnen verworpen worden, of onbeslist blijven (omdat de machine niet stopt)
+Merk het verschil op tussen herkennen en beslissen. Als een TM de taal L herkent, dan betekent dat dat de TM alle en alleen de strings in L aanvaardt. Strings buiten L kunnen verworpen worden, of onbeslist blijven (omdat de machine niet stopt)
 
 **Definitie 3.14** Een taal L wordt Turing-beslisbaar of kortweg beslisbaar genoemd, als er een TM bestaat die L beslist. Turing-beslisbare talen worden ook recursieve talen genoemd.
 
@@ -507,4 +537,124 @@ Bij een gewone graaf geven de bogen een symmetrische relatie aan: als v verbonde
 
 **Definitie 4.16 (Gerichte graaf)** Een gerichte graaf (Eng. directed graph of digraph) is een koppel (V, E), met V een verzameling waarvan de elementen knopen genoemd worden, en E ⊆ V^2^ een verzameling koppels
 
-**Definitie 4.17 (Gericht pad, ongericht pad)** Een gericht pad in een gerichte graaf G(V, E) is een pad (v0, v1, . . . , vn) met ∀i : (vi , vi+1) ∈ E. Een ongericht pad is een pad (v0, v1, . . . , vn) met ∀i : (vi , vi+1) ∈ E ∨ (vi+1, vi) ∈ E.
+**Definitie 4.17 (Gericht pad, ongericht pad)** Een gericht pad in een gerichte graaf G(V, E) is een pad (v~0~, v~1~, . . . , v~n~) met ∀~i~ : (v~i~ , v~i+1~) ∈ E. Een ongericht pad is een pad (v~0~, v~1~, . . . , v~n~) met ∀~i~ : (v~i~ , v~i+1~) ∈ E ∨ (v~i+1~, v~i~) ∈ E.
+
+![image-20220322144305488](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322144305488.png)
+
+## 4.3 Voorstellingen van grafen
+
+We hebben grafen tot nog toe gewoonlijk als tekeningen voorgesteld, of als koppels (V, E) met V een verzameling knopen en E een verzameling bogen. Er zijn nog andere voorstellingen mogelijk. In deze sectie bekijken we matrixvoorstellingen van grafen. Een voordeel van deze voorstellingswijze is dat allerlei nuttige berekeningen met grafen dan met behulp van matrixoperaties kunnen gebeuren.
+
+### 4.3.1 Buurmatrix
+
+**Definitie 4.18 (Buurmatrix)** Gegeven een enkelvoudige graaf G(V,E), met V = {v~1~, v~2~, . . . , v~n~}, is de buurmatrix van G een n × n-matrix A met A~ij~ = 1 <=> (v~i~,v~j~) ∈ E, en A~ij~ = 0 ⇔ (v~i~ , v~j~ ) /∈ (geen element van) E.
+
+Ik had eerst echt totaal niet door wat er met een buurmatrix bedoelt werd ma das gewoon een matrix van een graaf en als ge een 1 hebt op een plek betekent dat die 2 noden verboden zijn op de graaf. Eigenlijk niet zo moeilijk.
+
+![image-20220322144519388](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322144519388.png)
+
+**Stelling 4.7** Als A de buurmatrix van een enkelvoudige graaf G(V,E) is, geldt voor A^k^ het volgende: voor alle i en j is A^k^~ij~ gelijk aan het aantal verschillende paden van lengte k tussen v~i~ en v~j~
+
+
+
+**Bewijs:** We bewijzen dit door inductie
+
+**Basis:** Voor k = 1 is A^k^ =A. Bewijs: Er is een pad van lengte 1 tussen v~i~ en v~k~ als en slechts als er een boog tussen v~i~ en v~j~ is. Het aantal paden van lengte 1 tussen v~i~ en v~j~ is. Het aantal paden van lengte 1 tussen v~i~ en v~j~ is dus 1 als er een boog tussen die knopen is (in dit geval is A~ij~ = 1), en 0 als er geen is (dan is A~ij~ = 0). A~ij~ is dus steeds gelijk aan het aantal paden van lengte 1 tussen v~i~ en v~j~ .
+
+
+
+**Inductiestap:** als de stelling geldt voor een bepaalde k ≥ 1, dan ook voor k + 1. Bewijs: Elk pad van lengte k + 1 van vi naar vj begint met een boog van vi naar een knoop vl , en vervolgt met een pad van lengte k van v~l~ naar v~j~ . Het aantal paden van lengte k + 1 met als eerste boog (v~i~ , v~l~) is gelijk aan 0 als de boog (v~i~ , v~l~) niet bestaat (d.w.z. als A~il~ = 0), en anders (als A~il~ = 1) gelijk aan het aantal paden van lengte k van v~l~ naar v~j~ . Dat laatste is vanwege de inductieveronderstelling gelijk aan A^k^ ~lj~ . Het totaal aantal paden van lengte k + 1 is de som van al deze aantallen voor de verschillende v~l~ die gekozen kunnen worden, dus gelijk aan ![image-20220322151223540](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322151223540.png) . Dit laatste is bij definitie gelijk aan A^k+1^~ij~
+
+
+
+### 4.3.2 Booleaanse buurmatrix
+
+4.3.2 Booleaanse buurmatrix In plaats van matrices met getallen kunnen we ook booleaanse matrices definieren. Booleaanse matrices hebben booleaanse waarden in hun cellen staan. Som en product van dergelijke matrices worden op de gebruikelijke manier gedefinieerd, met dit verschil dat de som van twee getallen hier een disjunctie van twee booleaanse waarden wordt, en het product van twee getallen een conjunctie van booleaanse waarden. Dit wil zeggen dat het product van twee Booleaanse matrices A en B gedefinieerd wordt als P = A · B ⇔ ∀~i, j~ : P~ij~ = A~i1~ ∧ B~1j~ ∨ A~i2~ ∧ B~2~ ∨ · · · ∨ A~in~ ∧ B~nj~ = ![image-20220322153136114](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322153136114.png)
+
+en hun som als 
+
+​					S = A + B ⇔ ∀i, j : S~ij~ = A~ij~ ∨ B~ij~
+
+ We kunnen van de buurmatrix een booleaanse versie definieren
+
+**Stelling 4.8** Als B de booleaanse buurmatrix van G(V, E) is, geldt voor B^k^ het volgende: voor alle i en j is B^k^~ij~ equivalent met “er bestaat een pad van lengte k van v~i~ naar v~j~”.
+
+**Bewijs:** Wordt als oefening gelaten. Dit kan bewezen worden op dezelfde manier als de vorige stelling, of je kan gebruik maken van de vorige stelling en van de eigenschap dat “er bestaat een pad” overeenkomt met “het aantal paden is strikt groter dan 0”.
+
+**Stelling 4.9** Als B de booleaanse buurmatrix van G(V, E) is, geldt voor S = ![image-20220322154125827](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322154125827.png) het volgende: voor alle i en j is S~ij~ equivalent met “er bestaat een pad van lengte l of korter tussen v~i~ en v~j~”.
+
+**Bewijs:** Wordt als oefening gelaten. 
+
+### **4.3.3 Incidentiematrix**
+
+**Definitie 4.20 (Incidentiematrix) **Gegeven een enkelvoudige graaf G(V, E), met V = {v~1~, v~2~, . . . , v~n~} en E = {e~1~, e~2~, . . . , e~m~}, is de incidentiematrix van G een n × mmatrix A met A~ij~ = 1 als ej invalt op v~i~ , en A~ij~ = 0 in alle andere gevallen.
+
+![image-20220326170328823](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220326170328823.png)
+
+## 4.4 Isomorfisme
+
+**Defintie 4.21 (Graaf-isomorfisme)** Twee grafen G(V, E) en G' (V' , E') zijn isomorf als en slechts als er een bijectie h : V → V' bestaat, zo dat {h(x)|x ∈ V } = V' en {(h(x), h(y))|(x, y) ∈ E} = E'
+
+De functie h stelt een “hernoeming” van de knopen voor; ze beeldt elementen van V af op elementen van V'. Als twee grafen isomorf zijn, moeten de knopen van de eerste graaf hernoemd kunnen worden, zo dat, na toepassing van die hernoeming op V en E, V' en E' bekomen wordt
+
+**Isomorfisme** komt er eigenlijk op neer dat V en E van beide grafen gelijk zijn, op de namen van de elementen na.
+
+
+
+![image-20220326182606980](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220326182606980.png)
+
+**Al deze grafen zij isomorf!**
+
+**Stelling 4.10** Twee enkelvoudige grafen zijn isomorf als en slechts als er een ordening van de knopen bestaat zodat hun buurmatrix gelijk is.
+
+**Bewijs: =>** Beschouw twee isomorfe grafen G(V, E) en G' (V' , E') met buurmatrices A en A' ; zij h de bijectie die bij het isomorfisme hoort. Beschouw de knopen van V in de volgorde v~1~, v~2~, . . . , v~n~. Beschouw nu de knopen van V' in de volgorde h(v~1~), h(v~2~), . . . , h(v~n~). Als we voor A en A' deze volgordes aanhouden, dan hebben we A~ij~ = 1 ⇔ (v~i~ , v~j~ ) ∈ E ⇔ (h(v~i~), h(v~j~)) ∈ E' ⇔ A'~ij~ = 1 en analoog A~ij~ = 0 ⇔ (v~i~ , v~j~ ) /∈ E ⇔ (h(v~i~), h(v~j~)) /∈ E' ⇔ A'~ij~ = 0. ⇐: als de buurmatrices gelijk zijn, definieer dan h zo dat de i-de knoop in V overeenkomt met de i-de knoop in V' . A~ij~ = A'~ij~ impliceert dan dat (v~i~ , v~j~) ∈ E ⇔ (h(v~i~), h(v~j~)) ∈ E' , m.a.w. de grafen zijn isomorf. 
+
+**Stelling 4.11** Twee grafen G en G' zijn isomorf als en slechts als er een ordening van de knopen en bogen bestaat waarvoor de incidentiematrices van G en G' gelijk zijn.
+
+**Bewijs**: Het bewijs wordt als oefening gelaten.
+
+### 4.4.1 Graaf-isomorfisme testen
+
+
+
+Gegeven twee grafen G~1~(V~1~) en G~2~(V~2~, E~2~) , hoe kunnen we testen of ze isomorf zijn? Het is duidelijk dat als |V~1~| /= |V~2~|, er geen bijectie tussen de knopen bestaat, en de grafen dus zeker niet isomorf zijn. In het volgende gaan we ervan uit dat |V~1~| = |V~2~| = n. Een eenvoudig algoritme is het volgende: beschouw alle mogelijke bijecties f van V~1~ naar V~2~, en test voor elke f of E~2~ = {(f(v), f(w))|(v, w) ∈ E~1~}. Van zodra een f gevonden wordt waarvoor dit het geval is, eindigt het algoritme met “ja” als antwoord. Er zijn eindig veel bijecties; als ze allemaal geprobeerd zijn zonder een bijectie met de vermelde eigenschap te vinden, eindigt het algoritme met “nee”. Als de grafen n knopen hebben, zijn er n! bijecties uit te testen. Dit algoritme heeft dus een exponentiele complexiteit. Het nagaan of een bijectie voldoet aan de vermelde eigenschap is relatief eenvoudig, dit kan in polynomiale tijd. Dat betekent dat het probleem in NP zit. Voor dit probleem is momenteel niet bekend of het in P zit, en er is ook niet aangetoond dat NP-compleet is. In principe is het dus mogelijk dat het representatief is voor een complexiteitsklasse die “tussen” P en NPC in zit. 
+
+**P = Polynomial time**
+
+**NP = Non-deterministic polynomial time**
+
+
+
+Een verwant probleem is het beslissen van subgraaf-isomorfisme: 
+
+Gegeven twee grafen G1 en G2, bestaat er een subgraaf G ⊆ G2 zo dat G1 isomorf is met G? 
+
+Van subgraaf-isomorfisme is bekend dat het **NP**-compleet is. Hoewel graaf-isomorfisme moeilijk is, bestaan er algoritmen die gemiddeld vrij snel beslissen of twee grafen isomorf zijn. Het is vrij eenvoudig om voorwaarden te definieren waaraan twee isomorfe grafen altijd voldoen, en die snel na te gaan zijn: 
+
+- Het aantal knopen moet gelijk zijn. 
+- Het aantal bogen moet gelijk zijn. 
+- Het aantal knopen met graad i moet gelijk zijn, voor elke i ∈ N. 
+- . . . 
+
+Een algoritme kan bv. gemakkelijk een tabel opstellen met voor elke i het aantal knopen met graad i in G1, en hetzelfde voor G2, en dan nagaan of die tabellen gelijk zijn; dit kan in polynomiale tijd. Wanneer twee grafen aan alle voorwaarden voldoen, dan pas is het nodig om een algoritme met hogere complexiteit te gebruiken. Dan nog kan het aantal bijecties dat bekeken moet worden, sterk gereduceerd worden: het is bv. niet zinvol om bijecties te bekijken die een knoop met graad g afbeelden op een knoop met graad g' > g. ==Het totaal aantal bijecties wordt dan gereduceerd van n! naar n~1~!n~2~! · · · n~k~!, met n~i~ het aantal knopen met graad i. Dat is een veel kleiner getal.==
+
+effe uitleg voor het gearceerde deel, n is het aantal knopen. Dus wat ze willen zeggen is dat de faculteit van n kleiner is dan het product van de faculteiten van het aantal knopen met een bepaalde graad.
+
+
+
+## 4.5 Gewogen grafen
+
+In dit gedeelte bekijken we grafen waarvoor aan elke boog e een gewicht w(e) ∈ R + 0 toegekend is. Het gewicht van een graaf, en het gewicht van een pad, defini¨eren we als de som van de gewichten van de bogen in die graaf (op dat pad). Het kortste pad tussen a en b is bij definitie het pad tussen a en b met het kleinste gewicht. classic gps dus.
+
+
+
+### 4.5.1 Het kortste-pad-algoritme van Dijkstra
+
+We beginnen met een lichtjes vereenvoudigde versie van het **Dijkstra** algoritme. Dit algoritme berekent enkel het gewicht van het kortste pad, niet het pad zelf. Daarna zullen we het uitbreiden zodat het ook het pad zelf aanduidt.
+
+### 4.5.2 Dijkstra, versie 1
+
+Het volgende algoritme berekent het gewicht van het kortste pad van een gegeven knoop a naar een gegeven knoop z in een enkelvoudige, samenhangende, gewogen graaf G(V, E) met a, z ∈ V .
+
+![image-20220326214021018](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220326214021018.png)
+

@@ -24,3 +24,28 @@ regulier => er bestaat een eindige automaat die L herkent
 
 ![image-20220321105835538](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220321105835538.png)
 
+=> L is beslisbaar => ∃ TM M die stopt in aanvaardbare toestand als X ∈ L
+
+
+
+#### 4.1.4
+
+a) L is beslibaar => L^c^ beslisbaar
+
+![image-20220321111220220](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220321111220220.png)
+
+![image-20220321112459830](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220321112459830.png)
+
+![image-20220321112404693](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220321112404693.png)
+
+#### 4.2.1
+
+![image-20220321113619249](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220321113619249.png)
+
+#### 4.2.2
+
+![image-20220321115741448](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220321115741448.png)
+
+#### 4.2.3
+
+![image-20220321123927468](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220321123927468.png)
