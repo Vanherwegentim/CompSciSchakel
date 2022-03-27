@@ -1,6 +1,6 @@
 Deze tering begint pas bij hoofdstuk 3, de rest is afval.
 
-![Kulmomentje](C:\Users\timva\Pictures\Kulmomentje.png)
+![Kulmomentje](img/Kulmomentje.png)
 
 # Hoofdstuk 3 Talen, automaten en berekenbaarheid
 
@@ -67,9 +67,9 @@ We kunnen dezelfde bewerkingen uitbreiden tot talen. Zij A, B ⊆ Σ*, dan is
 
 Verder definieren we 
 
-- A* = A~0~ ∪ A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · = ![image-20220216000111613](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220216000111613.png) 
+- A* = A~0~ ∪ A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · = ![image-20220216000111613](img/image-20220216000111613.png) 
   A∗ wordt de Kleenesluiting van A genoemd
-- A+ = A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · =![image-20220216000256605](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220216000256605.png)
+- A+ = A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · =![image-20220216000256605](img/image-20220216000256605.png)
 
 **Definitie 3.4 (Reguliere Taal)** (kan worden gedefinieerd door een reguliere uitdrukking) Indien Σ een alfabet is, dan wordt de klasse van R van alle reguliere talen over Σ inductief als volgt gedefinieerd:
 
@@ -134,7 +134,7 @@ Deze shit is al direct kankeronduidelijk maar hopelijk zijn de 2 paginas tekst h
 
 ### 3.2.1 Eindige automaten
 
-![image-20220220190218276](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220220190218276.png)
+![image-20220220190218276](img/image-20220220190218276.png)
 
 Dit schema werkt door een serie van 0'en en 1'en af te gaan en te zien waar je belandt. Het schema zelf bepaalt een taal L. Als je belandt in de dubbele cirkel voldoet de serie aan de taal, als het er niet in belandt dan voldoet deze niet. 
 
@@ -166,7 +166,7 @@ Een eindige automaat (in het Engels a finite automaton of meer precies a finite 
 
 Na deze n-de en laatste stap zijn er nu twee mogelijkheden: ofwel behoort q~i~~n~ tot de aanvaardbare eindtoestanden F, ofwel niet. In het eerste geval zeggen we dat de automaat de string x aanvaardt, in het andere geval wordt de string verworpen.
 
-![image-20220220194243916](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220220194243916.png)
+![image-20220220194243916](img/image-20220220194243916.png)
 
 ****
 
@@ -210,7 +210,7 @@ https://www.youtube.com/watch?v=W8Uu0inPmU8
 
 **Voorbeeld 3.19**
 
-![image-20220320141055097](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220320141055097.png)
+![image-20220320141055097](img/image-20220320141055097.png)
 
 **TODO **
 
@@ -224,7 +224,7 @@ Turingmachines vormen een ander wiskundig model voor een bepaald soort computers
 
 We kunnen ons een Turingmachine voorstellen als een machine die voorzien is van een magneetband die in twee richtingen kan bewegen. In verschillende fasen van de berekening bevat de band (= het geheugen van dit computermodel!) de invoer voor de berekening, de tussenresultaten, en de uitvoer. De magneetband is een oneindig lange rij van symbolen die bestaat uit een eindige string voorafgegaan en gevolgd door oneindig veel blanco karakters (zie Figuur 3.1).
 
-![image-20220222140950286](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220222140950286.png)
+![image-20220222140950286](img/image-20220222140950286.png)
 
 De machine heeft een lees/schrijfkop en het symbool op de magneetband juist onder de kop noemen we het huidig symbool: de operatie van lezen is daarmee impliciet. De kop kan het huidig symbool overschrijven. Net als een eindige automaat heeft een Turingmachine een eindig aantal mogelijke toestanden, en op elk moment bevindt de machine zich in 1 van die toestanden. Een instructie voor de machine is een voorschrift voor de machine om, in 1 operatie, het huidig symbool te overschrijven met een nieuw symbool, de kop (of de magneetband) 1 positie naar links of naar rechts te bewegen, en naar een nieuwe toestand over te gaan. Welke instructie uitgevoerd wordt, hangt enkel af van de huidige toestand van de machine en het huidige symbool onder de leeskop. Eens gestart, blijft de machine instructies uitvoeren tot zij in een toestand komt waarbij 28 er voor het huidig gelezen symbool geen instructie meer voorhanden is. Op dat moment kan men controleren of de machine al dan niet in een aanvaardbare toestand gestopt is. We schrijven nu het bovenstaande neer in een formele definitie.
 
@@ -275,7 +275,7 @@ De werking van een dergelijke Turingmachine zou er als volgt kunnen uitzien:
 
 Hieronder zie je het hierboven gegeven voorbeeld grafisch voorgesteld.
 
-![image-20220222143946966](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220222143946966.png)
+![image-20220222143946966](img/image-20220222143946966.png)
 
 ### 3.3.2 Turingmachines en functies
 
@@ -361,11 +361,11 @@ Concreet betekent dit voor een NDTM M dat wanneer deze machine zich in een bepaa
 
 - De instructieset P bestaat uit de koppels:
 
-  ​				![image-20220301144947675](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220301144947675.png)		
+  ​				![image-20220301144947675](img/image-20220301144947675.png)		
 
 In de instructieset hierboven worden de p–toestanden gebruikt om het even of oneven zijn van het aantal a’s bij te houden, de r toestanden doen hetzelfde voor het aantal b’s. Toestand p0 (resp. r0) duidt een even aantal a’s (resp. b’s) aan, toestand p1 (resp. r1) een oneven aantal.
 
-![image-20220301150307968](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220301150307968.png)
+![image-20220301150307968](img/image-20220301150307968.png)
 
 Er zijn twee mogelijke wegen die de NDTM M kan volgen en deze zijn samen geschetst in figuur 3.3. Zoals je ziet op de figuur heeft de NDTM bij de eerste stap de keuze tussen twee opdrachten (namelijk ((q0, a),(p0, a, 0)) of ((q0, a),(r0, a, 0))). We nemen aan dat een NDTM telkens wanneer er meerdere opdrachten mogelijk zijn, elk van deze mogelijkheden apart maar tegelijkertijd (parallel) behandelt. We zeggen dat een NDTM M met succes stopt bij een bepaalde invoer of ook nog dat de NDTM M een bepaalde string aanvaardt, indien ´e´en van de gevolgde wegen (en misschien ook meer) in een aanvaardbare eindtoestand stopt. De rekentijd van de NDTM komt overeen met het aantal stappen in de kortste van al die wegen.
 
@@ -415,7 +415,7 @@ Dit is echt een cools momentje, altijd plezierig.
 
 Snel voorbeeld aan de hand van een voorbeeld dat iedereen wel kent. De boer, de wolf, de kool en de geit.
 
-![image-20220308150719811](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220308150719811.png)
+![image-20220308150719811](img/image-20220308150719811.png)
 
 Hierboven zie je de graaf die alle mogelijke opties geeft. Als je dan links vanboven begint en dan naar rechts boven probeert te gaan, is dat je oplossing. 
 
@@ -437,7 +437,7 @@ Met M~2~(V) bedoelen we de verzameling van alle multiparen die elementen uit V b
 
 **Voorbeeld 4.1** De graaf G = (V, E, φ) met V = {a, b, c, d}, E = {e~1~, e~2~, e~3~, e~4~}, en φ(e~1~) = (a, b), φ(e~2~) = (b, c), φ(e~3~) = (b, c), φ(e~4~) = (d, d) kan als volgt getekend worden:
 
-![image-20220308174521128](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220308174521128.png)
+![image-20220308174521128](img/image-20220308174521128.png)
 
 We zeggen dat een boog e invalt op een knoop v als v ∈ φ(e). Twee knopen v en w zijn buren van elkaar (of: zijn adjacent) als er een boog e bestaat zodat φ(e) = (v, w).
 
@@ -469,7 +469,7 @@ TLDR: we korten die shit gewoon af omdat we anders teveel nutteloze stuff hebben
 
 Zij V~o~ de verzameling knopen met oneven graad en V~e~ de verzameling knopen met even graad. Elke knoop in V heeft ofwel even ofwel oneven graad, dus we hebben
 
-![image-20220311143600466](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220311143600466.png)
+![image-20220311143600466](img/image-20220311143600466.png)
 
 ![image-20220311144242489](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220311144242489.png)
 
@@ -489,7 +489,7 @@ We noteren een pad (v~0~,v~1~),(v~1~,v~2~),...,(v~n-1~,v~n~) soms ook als (v~0~,
 
 **Definitie 4.11 (Hamiltoniaans pad, Hamiltoniaanse kring)** Zij gegeven een graaf G. Een Hamiltoniaans pad van G is een pad waarin elke knoop van G precies 1 keer voorkomt. Een Hamiltoniaanse kring van G is een enkelvoudige kring waarin elke knoop van G voorkomt.
 
-![image-20220311151148390](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220311151148390.png)
+![image-20220311151148390](img/image-20220311151148390.png)
 
  **Definitie 4.12 (Euleriaans pad, Euleriaanse kring)** Zij gegeven een graaf G. Een Euleriaans pad van G is een pad waarin elke knoop van G minstens 1 keer, en elke boog van G precies 1 keer voorkomt. Een Euleriaanse kring van G is een Euleriaans pad dat ook een kring is.
 
@@ -521,13 +521,13 @@ De componenten van een graaf G vormen een partitie van G, d.w.z.: elke knoop en 
 
 Als ge hier niks van begrijpt, bekijk dan eerst de afbeelding hieronder!
 
-![image-20220315153351486](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220315153351486.png)
+![image-20220315153351486](img/image-20220315153351486.png)
 
-![image-20220315153612564](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220315153612564.png)
+![image-20220315153612564](img/image-20220315153612564.png)
 
 **Hieronder vind je alles van hierboven uitgelegd in voorbeelden.**
 
-![image-20220315153733323](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220315153733323.png)
+![image-20220315153733323](img/image-20220315153733323.png)
 
 
 
@@ -539,7 +539,7 @@ Bij een gewone graaf geven de bogen een symmetrische relatie aan: als v verbonde
 
 **Definitie 4.17 (Gericht pad, ongericht pad)** Een gericht pad in een gerichte graaf G(V, E) is een pad (v~0~, v~1~, . . . , v~n~) met ∀~i~ : (v~i~ , v~i+1~) ∈ E. Een ongericht pad is een pad (v~0~, v~1~, . . . , v~n~) met ∀~i~ : (v~i~ , v~i+1~) ∈ E ∨ (v~i+1~, v~i~) ∈ E.
 
-![image-20220322144305488](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322144305488.png)
+![image-20220322144305488](img/image-20220322144305488.png)
 
 ## 4.3 Voorstellingen van grafen
 
@@ -551,7 +551,7 @@ We hebben grafen tot nog toe gewoonlijk als tekeningen voorgesteld, of als koppe
 
 Ik had eerst echt totaal niet door wat er met een buurmatrix bedoelt werd ma das gewoon een matrix van een graaf en als ge een 1 hebt op een plek betekent dat die 2 noden verboden zijn op de graaf. Eigenlijk niet zo moeilijk.
 
-![image-20220322144519388](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322144519388.png)
+![image-20220322144519388](img/image-20220322144519388.png)
 
 **Stelling 4.7** Als A de buurmatrix van een enkelvoudige graaf G(V,E) is, geldt voor A^k^ het volgende: voor alle i en j is A^k^~ij~ gelijk aan het aantal verschillende paden van lengte k tussen v~i~ en v~j~
 
@@ -589,7 +589,7 @@ en hun som als
 
 **Definitie 4.20 (Incidentiematrix) **Gegeven een enkelvoudige graaf G(V, E), met V = {v~1~, v~2~, . . . , v~n~} en E = {e~1~, e~2~, . . . , e~m~}, is de incidentiematrix van G een n × mmatrix A met A~ij~ = 1 als ej invalt op v~i~ , en A~ij~ = 0 in alle andere gevallen.
 
-![image-20220326170328823](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220326170328823.png)
+![image-20220326170328823](img/image-20220326170328823.png)
 
 ## 4.4 Isomorfisme
 
@@ -601,7 +601,7 @@ De functie h stelt een “hernoeming” van de knopen voor; ze beeldt elementen 
 
 
 
-![image-20220326182606980](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220326182606980.png)
+![image-20220326182606980](img/image-20220326182606980.png)
 
 **Al deze grafen zij isomorf!**
 
@@ -656,5 +656,79 @@ We beginnen met een lichtjes vereenvoudigde versie van het **Dijkstra** algoritm
 
 Het volgende algoritme berekent het gewicht van het kortste pad van een gegeven knoop a naar een gegeven knoop z in een enkelvoudige, samenhangende, gewogen graaf G(V, E) met a, z ∈ V .
 
-![image-20220326214021018](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220326214021018.png)
+![image-20220326214021018](img/image-20220326214021018.png)
 
+Dit algoritme heeft de volgende eigenschap: na afloop is L(z) gelijk aan het gewicht van het kortste pad van a naar z. Dat is niet zo heel gemakkelijk in te zien, en daarom zullen we het bewijzen. Alvorens we dat doen, introduceren we eerst het concept invariante eigenschap, ook wel invariante relatie of kortweg invariant genoemd. Wie reeds vertrouwd is met dit begrip, kan de volgende sectie overslaan, of enkel de cursieve paragrafen lezen.
+
+
+
+**Interludium: Invarianten**
+
+Een invariant van een algoritme is een bewering die we met een bepaald punt in het algoritme associ¨eren, en waarvan we kunnen aantonen dat die altijd waar is wanneer tijdens de uitvoering van het algoritme dat punt bereikt wordt. 
+
+Bijvoorbeeld, wanneer ergens in een algoritme y = x*x; staat, weten we zeker dat vlak na de uitvoering van die instructie geldt dat y = x 2 , en ook y ≥ 0. In het volgende stukje code:
+
+**^(1)^ if (x % 2 == 1) { ^(2)^ x++;} ^(3)^**
+
+weten we op plaats ^(1)^ niets over x. Op plaats ^(2)^ weten we dat x oneven is (anders zou de uitvoering dat punt niet bereikt hebben). Op plaats ^(3)^ weten we zeker dat x even is: ofwel was x bij ^(1)^ oneven en dan is x met 1 opgehoogd (dus even geworden), ofwel was het even en is er niets veranderd. Het vinden van een geschikte invariant is heel vaak de sleutel tot het bewijzen van de correctheid van een algoritme. Een goede invariant moet twee eigenschappen hebben:
+
+1. we moeten gemakkelijk kunnen bewijzen dat de invariant waar is, op bepaalde plaatsen in het programma;
+2. uitgaande van de invariant moeten we gemakkelijk kunnen bewijzen dat het algoritme correct is.
+
+![image-20220327104521858](img/image-20220327104521858.png)
+
+**rip voor de mensen die dit moeten kennen, ik voel uw pijn.**
+
+We beweren het volgende: Als r een rij getallen is die geordend is van klein naar groot, dan geeft zoek(r,x) als resultaat true terug als en slechts als x in r voorkomt. Hoe kunnen we dit bewijzen? De sleutel is om de juiste invariant te vinden. Meestal vinden we die door onze eigen intu¨ıtie over waarom het programma goed werkt, te analyseren. In dit geval is de redenering: het stuk van rij r waarin we x zoeken (het stuk tussen a en b), wordt steeds kleiner gemaakt, op zo’n manier dat we zeker zijn dat als x in r voorkomt, het in dat stuk moet voorkomen. De invariante eigenschap is dus: x komt voor in r ⇔ x komt voor tussen a en b; of, formeler: (∃i : r[i] = x) ⇔ (∃i, a ≤ i ≤ b : r[i] = x). Laten we deze invariant I noemen. Het bewijs van correctheid van dit algoritme gaat dan als volgt, per inductie op het aantal keer dat de lus uitgevoerd wordt (m.a.w. we bewijzen dat I geldt bij het begin van de eerste uitvoering van de lus, en dat, als I geldt bij het begin van de n-de uitvoering, dan ook bij het begin van de n + 1-de uitvoering). 
+
+**<u>Initialisatie:</u>** In het begin is a = 0 en b = r.length. I is dan triviaal waar (er zijn geen andere elementen in r dan die tussen a en b). De eerste keer dat de while-lus uitgevoerd wordt, geldt I dus op punt (1) . 
+
+**<u>Onveranderlijkheid:</u>** Stel dat I geldt op punt (1). Dan geldt I nog steeds op punt (2) en punt (3); op punt (3) geldt daarenboven a ≤ m < b (waarom?). Op punt (4) geldt I niet meer automatisch, want we hebben b nu een andere waarde gegeven. We weten wel dat x ≤ r[m] en m = b, waaruit x ≤ r[b] volgt. Omdat r geordend is, geldt ∀i > b : r[i] > x, dus als er een i is waarvoor r[i] = x, dan is i ≤ b. Hieruit volgt dat I op dit punt opnieuw geldt. Analoog kunnen we tonen dat I geldt bij punt (5). Punt (6) wordt bereikt via (4) of (5); aangezien I zowel bij (4) als (5) geldt, geldt het ook bij (6) . Bijgevolg geldt I op het einde van de lus, en dus bij het begin van de volgende uitvoering (1). Hiermee is de onveranderlijkheid van I bewezen. Wanneer de lus eindigt, gaan we van punt (1) direct naar (7); daar geldt I en a = b (anders was de lus niet gestopt). Samen levert dit op: (∃i : r[i] = x) ⇔ (r[a] = x). M.a.w., de methode geeft true terug als en slechts als x in r zit. Hiermee is bewezen dat, als het algoritme eindigt, het zeker een correct resultaat geeft. We moeten nog bewijzen dat het altijd eindigt. Op punt (3) geldt a ≤ m < b; na gelijkstellen van b aan m of a aan m + 1 geldt nog steeds a ≤ b en is b − a met minstens 1 verminderd. Omdat bij elke uitvoering van de lus b − a verkleint zonder dat b − a < 0 kan worden, moet na een eindig aantal stappen b − a = 0 gelden, dus a = b, en eindigt het algoritme.
+
+
+
+**Correctheidsbewijs voor Dijkstra's algoritme**
+
+We zullen twee invarianten invoeren voor Dijkstra’s algoritme. Alvorens we dat doen, introduceren we wat bijkomende terminologie, die helpt om de redenering intuïtief te kunnen volgen. De elementen van R zullen we rode knopen noemen (naar analogie met de illustratie van het algoritme op het bord). Een knoop aan R toevoegen is hetzelfde als een knoop rood kleuren. Een rood pad is een pad waarvan alle knopen, behalve eventueel de laatste, rood zijn. (Merk op dat een leeg pad volgens deze definitie ook 97 als rood beschouwd wordt.) We schrijven het gewicht van een pad P als w(P), en het gewicht van het kortste pad van a naar v noteren we λ(v). We moeten dus bewijzen dat na afloop van het algoritme, L(z) = λ(z). De twee invarianten die we zullen gebruiken, zijn:
+
+ **Invariant I~1~**: voor elke v ∈ V geldt: L(v) is het gewicht van het kortste rode pad van a naar v, of oneindig als er nog geen rood pad naar v bestaat. 
+
+**Invariant I~2~**: voor elke v ∈ R geldt: L(v) = λ(v). We bewijzen eerst dat beide invarianten gelden op de plaats aangeduid met (*) in het algoritme (d.w.z., op het moment dat het programma de test van de while-lus uitvoert om te controleren of het de lus nog een keer moet uitvoeren). Daarna tonen we hoe de correctheid van het programma hieruit volgt.
+
+**Lemma 4.11 De invarianten I~1~ en I~2~ gelden altijd op punt (*) in het algoritme.**
+
+ **Bewijs:** We bewijzen dit door inductie op het aantal keer dat de lus uitgevoerd wordt; m.a.w., we bewijzen dat de invarianten gelden bij de eerste uitvoering van de lus (“initialisatie”), en dat, als ze bij de n-de uitvoering gelden, dan ook bij de n+ 1-de uitvoering. 
+
+**<u>Initialisatie:</u>** Bij het begin van de uitvoering van het algoritme geldt dat L(a) = 0 en L(v) = ∞ voor alle v 6= a. Er zijn nog geen rode knopen (R is leeg), dus I~2~ is zeker waar. Omdat er nog geen rode knopen zijn, zijn er ook nog geen rode paden, behalve het lege pad van a naar a. Volgens I~1~ moet dan L(a) = 0 en voor elke v 6= a, L(v) = ∞, en dat komt overeen met de initialisatie, dus I~1~ geldt ook. 
+
+**<u>Onveranderlijkheid:</u>** We moeten nu tonen dat als I~1~ en I~2~ gelden aan het begin van een uitvoering van de lus, ze ook gelden aan het begin van de volgende uitvoering van die lus. De lus begint met het controleren of z /∈ R. Deze test verandert niets aan de geldigheid van de invariant, dus I~1~ en I~2~ gelden nog steeds. We kiezen nu de knoop v ∈ V \ R met de kleinste L van alle knopen in V \ R, m.a.w. voor elke andere knoop v' ∈ V \ R geldt: L(v' ) ≥ L(v). 
+
+Op dit moment geldt dat L(v) = λ(v). We kunnen dit als volgt bewijzen. L(v) is het gewicht van het kortste rode pad van a naar v (dat volgt direct uit I~1~), dus we moeten enkel nog aantonen dat ook elk niet-rood pad van a naar v minstens gewicht L(v) heeft. Beschouw een willekeurig niet-rood pad P van a naar v. Neem de eerste niet-rode knoop op dat pad; noem deze u. Omdat u de eerste niet-rode knoop op het pad is, is het deelpad van P dat van a naar u gaat (we noteren dit deelpad P~a→u~) een rood pad. We hebben dan: w(P) ≥ w(P~a→u~) ≥ L(u) ≥ L(v). De eerste ongelijkheid volgt uit het feit dat een deelpad van een pad geen groter gewicht kan hebben dan het pad zelf (aangezien bogen enkel positieve gewichten hebben), de tweede uit I~1~ en het feit dat P~a→u~ een rood pad is, de derde uit het feit dat v van alle niet-rode knopen de laagste L heeft. We concluderen dat elk niet-rood pad P een gewicht van minstens L(v) heeft. Samen met het feit dat het kortste rode pad gewicht L(v) heeft, volgt dan L(v) = λ(v). 
+
+ Met dit resultaat bewijzen we nu achtereenvolgens I~2~ en I~1~. I~2~: Vlak voor R := R ∪ {v} uitgevoerd wordt, geldt ∀v' ∈ R : L(v' ) = λ(v' ) (vanwege I~2~) en L(v) = λ(v) (net bewezen), dus na R := R ∪ {v} geldt nog steeds ∀v' ∈ R : L(v' ) = λ(v' ). Verder wordt aan R niets veranderd, dus op het einde van de lus (= vlak voor de lus opnieuw uitgevoerd wordt) geldt I~2~. I~1~: Nadat we v gekozen hebben, en rood gekleurd, bekijkt het algoritme alle knopen v' die verbonden zijn met v. Voor al die knopen gold bij het begin van de lus dat het kortste rode pad lengte L(v' ) had. 
+
+Nu v rood gekleurd is, zijn er nieuwe rode paden naar v' bijgekomen, namelijk de paden die v als voorlaatste knoop hebben. (Voorheen waren die niet rood, omdat v zelf niet rood was.) De lengte van het kortste pad van a naar v' dat als voorlaatste knoop v heeft en dan boog (v, v') volgt, is L(v) + w(v, v'). Ofwel is het nieuwe rode pad korter dan eender welk vroeger gevonden rood pad naar v' , dan is het gewicht van het kortste pad vanaf nu gelijk aan het gewicht van het nieuwe pad, L(v) +w(v, v'); ofwel is het nieuwe pad niet korter, en dan is het gewicht van het kortste rode pad naar v' nog altijd gelijk aan L(v'). De lengte van het kortste rode pad van a naar v' op dit moment is dus min{L(v) + w(v, v'), L(v')}, en dat is ook waaraan we L(v') nu gelijkstellen. 
+
+Omdat we dat doen voor alle v' die verbonden zijn met v, geldt hierna dus opnieuw dat voor alle v' ∈ V \ R, L(v') het gewicht van het kortste rode pad naar v' is, m.a.w., I~1~ geldt op het einde van de lus, en dus bij het begin van de volgende uitvoering van de lus. Hiermee is het bewijs van de invarianten ten einde. 
+
+We hebben bewezen voor zowel I~1~ als I~2~ dat: 
+
+(a) beide gelden voor de eerste uitvoering van de lus; 
+
+(b) als ze gelden aan het begin van een lus, gelden ze ook bij het begin van de volgende uitvoering van de lus. 
+
+
+
+**Stelling 4.12** Zij gegeven een gewogen graaf G(V, E), een knoop a ∈ V en een knoop z ∈ V , waarop het algoritme van Dijkstra uitgevoerd wordt. Wanneer het algoritme van Dijkstra eindigt, is L(z) het gewicht van het kortste pad van a naar z, d.w.z. L(z) = λ(z).
+
+**Bewijs**: Het algoritme eindigt wanneer bij het begin van de lus gedetecteerd wordt dat z ∈ R. Op dat moment geldt I~2~: ∀v ∈ R : L(v) = λ(v), en z ∈ R, waaruit direct volgt dat L(z) = λ(z).
+
+**Stelling 4.13** Voor elke eindige graaf geldt: het algoritme van Dijkstra eindigt steeds.
+
+**Bewijs:** Bij elke uitvoering van de buitenste lus wordt een nieuwe knoop v aan R toegevoegd. Als er in totaal n knopen zijn, kan de lus dus niet vaker dan n keer uitgevoerd worden. Een enkele uitvoering van de lus is ook eindig: het vinden van de knoop met laagste L in V \ R, en het overlopen van alle bogen (v, v') ∈ E, kan in eindige tijd vanwege de eindigheid van V en E. Daaruit volgt het gestelde. 
+
+**4.5.3 Dijkstra, versie 2**
+
+Zoals gezegd berekende het vorige algoritme enkel het gewicht van het kortste pad. Om het kortste pad zelf te kunnen construeren, is het voldoende om bij elke wijziging van een L(v') aan te duiden vanuit welke knoop die wijziging gebeurd is. Dat is namelijk de knoop die op het kortste rode pad de voorlaatste knoop is voor we in v' aankomen. Omdat die informatie voor alle knopen bijgehouden is, kunnen we op deze manier voor elke knoop in R het kortste pad achterwaarts reconstrueren
+
+![image-20220327122345638](img/image-20220327122345638.png)
