@@ -1,6 +1,6 @@
 Deze tering begint pas bij hoofdstuk 3, de rest is afval.
 
-![Kulmomentje](C:\Users\timva\Pictures\Kulmomentje.png)
+![Kulmomentje](img/Kulmomentje.png)
 
 # Hoofdstuk 3 Talen, automaten en berekenbaarheid
 
@@ -67,9 +67,10 @@ We kunnen dezelfde bewerkingen uitbreiden tot talen. Zij A, B ⊆ Σ*, dan is
 
 Verder definieren we 
 
-- A* = A~0~ ∪ A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · = ![image-20220216000111613](/images/image-20220216000111613.png) 
+- A* = A~0~ ∪ A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · = ![image-20220216000111613](img/image-20220216000111613.png) 
+
   A∗ wordt de Kleenesluiting van A genoemd
-- A+ = A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · =![image-20220216000256605](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220216000256605.png)
+- A+ = A~1~ ∪ A~2~ ∪ A~3~ ∪ · · · =![image-20220216000256605](img/image-20220216000256605.png)
 
 **Definitie 3.4 (Reguliere Taal)** (kan worden gedefinieerd door een reguliere uitdrukking) Indien Σ een alfabet is, dan wordt de klasse van R van alle reguliere talen over Σ inductief als volgt gedefinieerd:
 
@@ -134,7 +135,7 @@ Deze shit is al direct kankeronduidelijk maar hopelijk zijn de 2 paginas tekst h
 
 ### 3.2.1 Eindige automaten
 
-![image-20220220190218276](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220220190218276.png)
+![image-20220220190218276](img/image-20220220190218276.png)
 
 Dit schema werkt door een serie van 0'en en 1'en af te gaan en te zien waar je belandt. Het schema zelf bepaalt een taal L. Als je belandt in de dubbele cirkel voldoet de serie aan de taal, als het er niet in belandt dan voldoet deze niet. 
 
@@ -166,7 +167,7 @@ Een eindige automaat (in het Engels a finite automaton of meer precies a finite 
 
 Na deze n-de en laatste stap zijn er nu twee mogelijkheden: ofwel behoort q~i~~n~ tot de aanvaardbare eindtoestanden F, ofwel niet. In het eerste geval zeggen we dat de automaat de string x aanvaardt, in het andere geval wordt de string verworpen.
 
-![image-20220220194243916](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220220194243916.png)
+![image-20220220194243916](img/image-20220220194243916.png)
 
 ****
 
@@ -210,7 +211,7 @@ https://www.youtube.com/watch?v=W8Uu0inPmU8
 
 **Voorbeeld 3.19**
 
-![image-20220320141055097](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220320141055097.png)
+![image-20220320141055097](img/image-20220320141055097.png)
 
 **TODO **
 
@@ -224,7 +225,7 @@ Turingmachines vormen een ander wiskundig model voor een bepaald soort computers
 
 We kunnen ons een Turingmachine voorstellen als een machine die voorzien is van een magneetband die in twee richtingen kan bewegen. In verschillende fasen van de berekening bevat de band (= het geheugen van dit computermodel!) de invoer voor de berekening, de tussenresultaten, en de uitvoer. De magneetband is een oneindig lange rij van symbolen die bestaat uit een eindige string voorafgegaan en gevolgd door oneindig veel blanco karakters (zie Figuur 3.1).
 
-![image-20220222140950286](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220222140950286.png)
+![image-20220222140950286](img/image-20220222140950286.png)
 
 De machine heeft een lees/schrijfkop en het symbool op de magneetband juist onder de kop noemen we het huidig symbool: de operatie van lezen is daarmee impliciet. De kop kan het huidig symbool overschrijven. Net als een eindige automaat heeft een Turingmachine een eindig aantal mogelijke toestanden, en op elk moment bevindt de machine zich in 1 van die toestanden. Een instructie voor de machine is een voorschrift voor de machine om, in 1 operatie, het huidig symbool te overschrijven met een nieuw symbool, de kop (of de magneetband) 1 positie naar links of naar rechts te bewegen, en naar een nieuwe toestand over te gaan. Welke instructie uitgevoerd wordt, hangt enkel af van de huidige toestand van de machine en het huidige symbool onder de leeskop. Eens gestart, blijft de machine instructies uitvoeren tot zij in een toestand komt waarbij 28 er voor het huidig gelezen symbool geen instructie meer voorhanden is. Op dat moment kan men controleren of de machine al dan niet in een aanvaardbare toestand gestopt is. We schrijven nu het bovenstaande neer in een formele definitie.
 
@@ -275,7 +276,7 @@ De werking van een dergelijke Turingmachine zou er als volgt kunnen uitzien:
 
 Hieronder zie je het hierboven gegeven voorbeeld grafisch voorgesteld.
 
-![image-20220222143946966](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220222143946966.png)
+![image-20220222143946966](img/image-20220222143946966.png)
 
 ### 3.3.2 Turingmachines en functies
 
@@ -361,11 +362,11 @@ Concreet betekent dit voor een NDTM M dat wanneer deze machine zich in een bepaa
 
 - De instructieset P bestaat uit de koppels:
 
-  ​				![image-20220301144947675](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220301144947675.png)		
+  ​				![image-20220301144947675](img/image-20220301144947675.png)		
 
 In de instructieset hierboven worden de p–toestanden gebruikt om het even of oneven zijn van het aantal a’s bij te houden, de r toestanden doen hetzelfde voor het aantal b’s. Toestand p0 (resp. r0) duidt een even aantal a’s (resp. b’s) aan, toestand p1 (resp. r1) een oneven aantal.
 
-![image-20220301150307968](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220301150307968.png)
+![image-20220301150307968](img/image-20220301150307968.png)
 
 Er zijn twee mogelijke wegen die de NDTM M kan volgen en deze zijn samen geschetst in figuur 3.3. Zoals je ziet op de figuur heeft de NDTM bij de eerste stap de keuze tussen twee opdrachten (namelijk ((q0, a),(p0, a, 0)) of ((q0, a),(r0, a, 0))). We nemen aan dat een NDTM telkens wanneer er meerdere opdrachten mogelijk zijn, elk van deze mogelijkheden apart maar tegelijkertijd (parallel) behandelt. We zeggen dat een NDTM M met succes stopt bij een bepaalde invoer of ook nog dat de NDTM M een bepaalde string aanvaardt, indien ´e´en van de gevolgde wegen (en misschien ook meer) in een aanvaardbare eindtoestand stopt. De rekentijd van de NDTM komt overeen met het aantal stappen in de kortste van al die wegen.
 
@@ -415,7 +416,7 @@ Dit is echt een cools momentje, altijd plezierig.
 
 Snel voorbeeld aan de hand van een voorbeeld dat iedereen wel kent. De boer, de wolf, de kool en de geit.
 
-![image-20220308150719811](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220308150719811.png)
+![image-20220308150719811](img/image-20220308150719811.png)
 
 Hierboven zie je de graaf die alle mogelijke opties geeft. Als je dan links vanboven begint en dan naar rechts boven probeert te gaan, is dat je oplossing. 
 
@@ -437,7 +438,7 @@ Met M~2~(V) bedoelen we de verzameling van alle multiparen die elementen uit V b
 
 **Voorbeeld 4.1** De graaf G = (V, E, φ) met V = {a, b, c, d}, E = {e~1~, e~2~, e~3~, e~4~}, en φ(e~1~) = (a, b), φ(e~2~) = (b, c), φ(e~3~) = (b, c), φ(e~4~) = (d, d) kan als volgt getekend worden:
 
-![image-20220308174521128](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220308174521128.png)
+![image-20220308174521128](img/image-20220308174521128.png)
 
 We zeggen dat een boog e invalt op een knoop v als v ∈ φ(e). Twee knopen v en w zijn buren van elkaar (of: zijn adjacent) als er een boog e bestaat zodat φ(e) = (v, w).
 
@@ -469,7 +470,7 @@ TLDR: we korten die shit gewoon af omdat we anders teveel nutteloze stuff hebben
 
 Zij V~o~ de verzameling knopen met oneven graad en V~e~ de verzameling knopen met even graad. Elke knoop in V heeft ofwel even ofwel oneven graad, dus we hebben
 
-![image-20220311143600466](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220311143600466.png)
+![image-20220311143600466](img/image-20220311143600466.png)
 
 ![image-20220311144242489](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220311144242489.png)
 
@@ -489,7 +490,7 @@ We noteren een pad (v~0~,v~1~),(v~1~,v~2~),...,(v~n-1~,v~n~) soms ook als (v~0~,
 
 **Definitie 4.11 (Hamiltoniaans pad, Hamiltoniaanse kring)** Zij gegeven een graaf G. Een Hamiltoniaans pad van G is een pad waarin elke knoop van G precies 1 keer voorkomt. Een Hamiltoniaanse kring van G is een enkelvoudige kring waarin elke knoop van G voorkomt.
 
-![image-20220311151148390](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220311151148390.png)
+![image-20220311151148390](img/image-20220311151148390.png)
 
  **Definitie 4.12 (Euleriaans pad, Euleriaanse kring)** Zij gegeven een graaf G. Een Euleriaans pad van G is een pad waarin elke knoop van G minstens 1 keer, en elke boog van G precies 1 keer voorkomt. Een Euleriaanse kring van G is een Euleriaans pad dat ook een kring is.
 
@@ -521,13 +522,13 @@ De componenten van een graaf G vormen een partitie van G, d.w.z.: elke knoop en 
 
 Als ge hier niks van begrijpt, bekijk dan eerst de afbeelding hieronder!
 
-![image-20220315153351486](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220315153351486.png)
+![image-20220315153351486](img/image-20220315153351486.png)
 
-![image-20220315153612564](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220315153612564.png)
+![image-20220315153612564](img/image-20220315153612564.png)
 
 **Hieronder vind je alles van hierboven uitgelegd in voorbeelden.**
 
-![image-20220315153733323](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220315153733323.png)
+![image-20220315153733323](img/image-20220315153733323.png)
 
 
 
@@ -539,7 +540,7 @@ Bij een gewone graaf geven de bogen een symmetrische relatie aan: als v verbonde
 
 **Definitie 4.17 (Gericht pad, ongericht pad)** Een gericht pad in een gerichte graaf G(V, E) is een pad (v~0~, v~1~, . . . , v~n~) met ∀~i~ : (v~i~ , v~i+1~) ∈ E. Een ongericht pad is een pad (v~0~, v~1~, . . . , v~n~) met ∀~i~ : (v~i~ , v~i+1~) ∈ E ∨ (v~i+1~, v~i~) ∈ E.
 
-![image-20220322144305488](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322144305488.png)
+![image-20220322144305488](img/image-20220322144305488.png)
 
 ## 4.3 Voorstellingen van grafen
 
@@ -551,7 +552,7 @@ We hebben grafen tot nog toe gewoonlijk als tekeningen voorgesteld, of als koppe
 
 Ik had eerst echt totaal niet door wat er met een buurmatrix bedoelt werd ma das gewoon een matrix van een graaf en als ge een 1 hebt op een plek betekent dat die 2 noden verboden zijn op de graaf. Eigenlijk niet zo moeilijk.
 
-![image-20220322144519388](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322144519388.png)
+![image-20220322144519388](img/image-20220322144519388.png)
 
 **Stelling 4.7** Als A de buurmatrix van een enkelvoudige graaf G(V,E) is, geldt voor A^k^ het volgende: voor alle i en j is A^k^~ij~ gelijk aan het aantal verschillende paden van lengte k tussen v~i~ en v~j~
 
@@ -589,7 +590,7 @@ en hun som als
 
 **Definitie 4.20 (Incidentiematrix) **Gegeven een enkelvoudige graaf G(V, E), met V = {v~1~, v~2~, . . . , v~n~} en E = {e~1~, e~2~, . . . , e~m~}, is de incidentiematrix van G een n × mmatrix A met A~ij~ = 1 als ej invalt op v~i~ , en A~ij~ = 0 in alle andere gevallen.
 
-![image-20220326170328823](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220326170328823.png)
+![image-20220326170328823](img/image-20220326170328823.png)
 
 ## 4.4 Isomorfisme
 
@@ -601,7 +602,7 @@ De functie h stelt een “hernoeming” van de knopen voor; ze beeldt elementen 
 
 
 
-![image-20220326182606980](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220326182606980.png)
+![image-20220326182606980](img/image-20220326182606980.png)
 
 **Al deze grafen zij isomorf!**
 
@@ -656,5 +657,557 @@ We beginnen met een lichtjes vereenvoudigde versie van het **Dijkstra** algoritm
 
 Het volgende algoritme berekent het gewicht van het kortste pad van een gegeven knoop a naar een gegeven knoop z in een enkelvoudige, samenhangende, gewogen graaf G(V, E) met a, z ∈ V .
 
-![image-20220326214021018](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220326214021018.png)
+![image-20220326214021018](img/image-20220326214021018.png)
 
+Dit algoritme heeft de volgende eigenschap: na afloop is L(z) gelijk aan het gewicht van het kortste pad van a naar z. Dat is niet zo heel gemakkelijk in te zien, en daarom zullen we het bewijzen. Alvorens we dat doen, introduceren we eerst het concept invariante eigenschap, ook wel invariante relatie of kortweg invariant genoemd. Wie reeds vertrouwd is met dit begrip, kan de volgende sectie overslaan, of enkel de cursieve paragrafen lezen.
+
+
+
+**Interludium: Invarianten**
+
+Een invariant van een algoritme is een bewering die we met een bepaald punt in het algoritme associ¨eren, en waarvan we kunnen aantonen dat die altijd waar is wanneer tijdens de uitvoering van het algoritme dat punt bereikt wordt. 
+
+Bijvoorbeeld, wanneer ergens in een algoritme y = x*x; staat, weten we zeker dat vlak na de uitvoering van die instructie geldt dat y = x 2 , en ook y ≥ 0. In het volgende stukje code:
+
+**^(1)^ if (x % 2 == 1) { ^(2)^ x++;} ^(3)^**
+
+weten we op plaats ^(1)^ niets over x. Op plaats ^(2)^ weten we dat x oneven is (anders zou de uitvoering dat punt niet bereikt hebben). Op plaats ^(3)^ weten we zeker dat x even is: ofwel was x bij ^(1)^ oneven en dan is x met 1 opgehoogd (dus even geworden), ofwel was het even en is er niets veranderd. Het vinden van een geschikte invariant is heel vaak de sleutel tot het bewijzen van de correctheid van een algoritme. Een goede invariant moet twee eigenschappen hebben:
+
+1. we moeten gemakkelijk kunnen bewijzen dat de invariant waar is, op bepaalde plaatsen in het programma;
+2. uitgaande van de invariant moeten we gemakkelijk kunnen bewijzen dat het algoritme correct is.
+
+![image-20220327104521858](img/image-20220327104521858.png)
+
+**rip voor de mensen die dit moeten kennen, ik voel uw pijn.**
+
+We beweren het volgende: Als r een rij getallen is die geordend is van klein naar groot, dan geeft zoek(r,x) als resultaat true terug als en slechts als x in r voorkomt. Hoe kunnen we dit bewijzen? De sleutel is om de juiste invariant te vinden. Meestal vinden we die door onze eigen intu¨ıtie over waarom het programma goed werkt, te analyseren. In dit geval is de redenering: het stuk van rij r waarin we x zoeken (het stuk tussen a en b), wordt steeds kleiner gemaakt, op zo’n manier dat we zeker zijn dat als x in r voorkomt, het in dat stuk moet voorkomen. De invariante eigenschap is dus: x komt voor in r ⇔ x komt voor tussen a en b; of, formeler: (∃i : r[i] = x) ⇔ (∃i, a ≤ i ≤ b : r[i] = x). Laten we deze invariant I noemen. Het bewijs van correctheid van dit algoritme gaat dan als volgt, per inductie op het aantal keer dat de lus uitgevoerd wordt (m.a.w. we bewijzen dat I geldt bij het begin van de eerste uitvoering van de lus, en dat, als I geldt bij het begin van de n-de uitvoering, dan ook bij het begin van de n + 1-de uitvoering). 
+
+**<u>Initialisatie:</u>** In het begin is a = 0 en b = r.length. I is dan triviaal waar (er zijn geen andere elementen in r dan die tussen a en b). De eerste keer dat de while-lus uitgevoerd wordt, geldt I dus op punt (1) . 
+
+**<u>Onveranderlijkheid:</u>** Stel dat I geldt op punt (1). Dan geldt I nog steeds op punt (2) en punt (3); op punt (3) geldt daarenboven a ≤ m < b (waarom?). Op punt (4) geldt I niet meer automatisch, want we hebben b nu een andere waarde gegeven. We weten wel dat x ≤ r[m] en m = b, waaruit x ≤ r[b] volgt. Omdat r geordend is, geldt ∀i > b : r[i] > x, dus als er een i is waarvoor r[i] = x, dan is i ≤ b. Hieruit volgt dat I op dit punt opnieuw geldt. Analoog kunnen we tonen dat I geldt bij punt (5). Punt (6) wordt bereikt via (4) of (5); aangezien I zowel bij (4) als (5) geldt, geldt het ook bij (6) . Bijgevolg geldt I op het einde van de lus, en dus bij het begin van de volgende uitvoering (1). Hiermee is de onveranderlijkheid van I bewezen. Wanneer de lus eindigt, gaan we van punt (1) direct naar (7); daar geldt I en a = b (anders was de lus niet gestopt). Samen levert dit op: (∃i : r[i] = x) ⇔ (r[a] = x). M.a.w., de methode geeft true terug als en slechts als x in r zit. Hiermee is bewezen dat, als het algoritme eindigt, het zeker een correct resultaat geeft. We moeten nog bewijzen dat het altijd eindigt. Op punt (3) geldt a ≤ m < b; na gelijkstellen van b aan m of a aan m + 1 geldt nog steeds a ≤ b en is b − a met minstens 1 verminderd. Omdat bij elke uitvoering van de lus b − a verkleint zonder dat b − a < 0 kan worden, moet na een eindig aantal stappen b − a = 0 gelden, dus a = b, en eindigt het algoritme.
+
+
+
+**Correctheidsbewijs voor Dijkstra's algoritme**
+
+We zullen twee invarianten invoeren voor Dijkstra’s algoritme. Alvorens we dat doen, introduceren we wat bijkomende terminologie, die helpt om de redenering intuïtief te kunnen volgen. De elementen van R zullen we rode knopen noemen (naar analogie met de illustratie van het algoritme op het bord). Een knoop aan R toevoegen is hetzelfde als een knoop rood kleuren. Een rood pad is een pad waarvan alle knopen, behalve eventueel de laatste, rood zijn. (Merk op dat een leeg pad volgens deze definitie ook 97 als rood beschouwd wordt.) We schrijven het gewicht van een pad P als w(P), en het gewicht van het kortste pad van a naar v noteren we λ(v). We moeten dus bewijzen dat na afloop van het algoritme, L(z) = λ(z). De twee invarianten die we zullen gebruiken, zijn:
+
+ **Invariant I~1~**: voor elke v ∈ V geldt: L(v) is het gewicht van het kortste rode pad van a naar v, of oneindig als er nog geen rood pad naar v bestaat. 
+
+**Invariant I~2~**: voor elke v ∈ R geldt: L(v) = λ(v). We bewijzen eerst dat beide invarianten gelden op de plaats aangeduid met (*) in het algoritme (d.w.z., op het moment dat het programma de test van de while-lus uitvoert om te controleren of het de lus nog een keer moet uitvoeren). Daarna tonen we hoe de correctheid van het programma hieruit volgt.
+
+**Lemma 4.11 De invarianten I~1~ en I~2~ gelden altijd op punt (*) in het algoritme.**
+
+ **Bewijs:** We bewijzen dit door inductie op het aantal keer dat de lus uitgevoerd wordt; m.a.w., we bewijzen dat de invarianten gelden bij de eerste uitvoering van de lus (“initialisatie”), en dat, als ze bij de n-de uitvoering gelden, dan ook bij de n+ 1-de uitvoering. 
+
+**<u>Initialisatie:</u>** Bij het begin van de uitvoering van het algoritme geldt dat L(a) = 0 en L(v) = ∞ voor alle v 6= a. Er zijn nog geen rode knopen (R is leeg), dus I~2~ is zeker waar. Omdat er nog geen rode knopen zijn, zijn er ook nog geen rode paden, behalve het lege pad van a naar a. Volgens I~1~ moet dan L(a) = 0 en voor elke v 6= a, L(v) = ∞, en dat komt overeen met de initialisatie, dus I~1~ geldt ook. 
+
+**<u>Onveranderlijkheid:</u>** We moeten nu tonen dat als I~1~ en I~2~ gelden aan het begin van een uitvoering van de lus, ze ook gelden aan het begin van de volgende uitvoering van die lus. De lus begint met het controleren of z /∈ R. Deze test verandert niets aan de geldigheid van de invariant, dus I~1~ en I~2~ gelden nog steeds. We kiezen nu de knoop v ∈ V \ R met de kleinste L van alle knopen in V \ R, m.a.w. voor elke andere knoop v' ∈ V \ R geldt: L(v' ) ≥ L(v). 
+
+Op dit moment geldt dat L(v) = λ(v). We kunnen dit als volgt bewijzen. L(v) is het gewicht van het kortste rode pad van a naar v (dat volgt direct uit I~1~), dus we moeten enkel nog aantonen dat ook elk niet-rood pad van a naar v minstens gewicht L(v) heeft. Beschouw een willekeurig niet-rood pad P van a naar v. Neem de eerste niet-rode knoop op dat pad; noem deze u. Omdat u de eerste niet-rode knoop op het pad is, is het deelpad van P dat van a naar u gaat (we noteren dit deelpad P~a→u~) een rood pad. We hebben dan: w(P) ≥ w(P~a→u~) ≥ L(u) ≥ L(v). De eerste ongelijkheid volgt uit het feit dat een deelpad van een pad geen groter gewicht kan hebben dan het pad zelf (aangezien bogen enkel positieve gewichten hebben), de tweede uit I~1~ en het feit dat P~a→u~ een rood pad is, de derde uit het feit dat v van alle niet-rode knopen de laagste L heeft. We concluderen dat elk niet-rood pad P een gewicht van minstens L(v) heeft. Samen met het feit dat het kortste rode pad gewicht L(v) heeft, volgt dan L(v) = λ(v). 
+
+ Met dit resultaat bewijzen we nu achtereenvolgens I~2~ en I~1~. I~2~: Vlak voor R := R ∪ {v} uitgevoerd wordt, geldt ∀v' ∈ R : L(v' ) = λ(v' ) (vanwege I~2~) en L(v) = λ(v) (net bewezen), dus na R := R ∪ {v} geldt nog steeds ∀v' ∈ R : L(v' ) = λ(v' ). Verder wordt aan R niets veranderd, dus op het einde van de lus (= vlak voor de lus opnieuw uitgevoerd wordt) geldt I~2~. I~1~: Nadat we v gekozen hebben, en rood gekleurd, bekijkt het algoritme alle knopen v' die verbonden zijn met v. Voor al die knopen gold bij het begin van de lus dat het kortste rode pad lengte L(v' ) had. 
+
+Nu v rood gekleurd is, zijn er nieuwe rode paden naar v' bijgekomen, namelijk de paden die v als voorlaatste knoop hebben. (Voorheen waren die niet rood, omdat v zelf niet rood was.) De lengte van het kortste pad van a naar v' dat als voorlaatste knoop v heeft en dan boog (v, v') volgt, is L(v) + w(v, v'). Ofwel is het nieuwe rode pad korter dan eender welk vroeger gevonden rood pad naar v' , dan is het gewicht van het kortste pad vanaf nu gelijk aan het gewicht van het nieuwe pad, L(v) +w(v, v'); ofwel is het nieuwe pad niet korter, en dan is het gewicht van het kortste rode pad naar v' nog altijd gelijk aan L(v'). De lengte van het kortste rode pad van a naar v' op dit moment is dus min{L(v) + w(v, v'), L(v')}, en dat is ook waaraan we L(v') nu gelijkstellen. 
+
+Omdat we dat doen voor alle v' die verbonden zijn met v, geldt hierna dus opnieuw dat voor alle v' ∈ V \ R, L(v') het gewicht van het kortste rode pad naar v' is, m.a.w., I~1~ geldt op het einde van de lus, en dus bij het begin van de volgende uitvoering van de lus. Hiermee is het bewijs van de invarianten ten einde. 
+
+We hebben bewezen voor zowel I~1~ als I~2~ dat: 
+
+(a) beide gelden voor de eerste uitvoering van de lus; 
+
+(b) als ze gelden aan het begin van een lus, gelden ze ook bij het begin van de volgende uitvoering van de lus. 
+
+
+
+**Stelling 4.12** Zij gegeven een gewogen graaf G(V, E), een knoop a ∈ V en een knoop z ∈ V , waarop het algoritme van Dijkstra uitgevoerd wordt. Wanneer het algoritme van Dijkstra eindigt, is L(z) het gewicht van het kortste pad van a naar z, d.w.z. L(z) = λ(z).
+
+**Bewijs**: Het algoritme eindigt wanneer bij het begin van de lus gedetecteerd wordt dat z ∈ R. Op dat moment geldt I~2~: ∀v ∈ R : L(v) = λ(v), en z ∈ R, waaruit direct volgt dat L(z) = λ(z).
+
+**Stelling 4.13** Voor elke eindige graaf geldt: het algoritme van Dijkstra eindigt steeds.
+
+**Bewijs:** Bij elke uitvoering van de buitenste lus wordt een nieuwe knoop v aan R toegevoegd. Als er in totaal n knopen zijn, kan de lus dus niet vaker dan n keer uitgevoerd worden. Een enkele uitvoering van de lus is ook eindig: het vinden van de knoop met laagste L in V \ R, en het overlopen van alle bogen (v, v') ∈ E, kan in eindige tijd vanwege de eindigheid van V en E. Daaruit volgt het gestelde. 
+
+### **4.5.3 Dijkstra, versie 2**
+
+Zoals gezegd berekende het vorige algoritme enkel het gewicht van het kortste pad. Om het kortste pad zelf te kunnen construeren, is het voldoende om bij elke wijziging van een L(v') aan te duiden vanuit welke knoop die wijziging gebeurd is. Dat is namelijk de knoop die op het kortste rode pad de voorlaatste knoop is voor we in v' aankomen. Omdat die informatie voor alle knopen bijgehouden is, kunnen we op deze manier voor elke knoop in R het kortste pad achterwaarts reconstrueren
+
+![image-20220327122345638](img/image-20220327122345638.png)
+
+Als het kortste pad van a naar z gelijk is aan P = (v~0~ = a, v~1~, v~2~, . . . , v~l−1~, v~l~ = z), dan geldt na afloop van het algoritme dat L(z) = w(P), en p(v~i~) = v~i−1~ voor alle i ≥ 1.
+
+### 4.5.4 Complexiteit van Dijkstra's algoritme
+
+Het algoritme bevat geneste lussen. De buitenste lus wordt hoogstens zo vaak uitgevoerd als er knopen in V zijn, want in elke uitvoering wordt er een nieuwe knoop van V gekozen (een gekozen knoop verdwijnt uit V \ R en kan dus niet opnieuw gekozen worden). De keuze van v kan door het overlopen van alle elementen van V \ R, dat zijn er hoogstens n, met n het aantal knopen in V . De lus over alle bogen (v, v0 ) wordt zo vaak uitgevoerd als er bogen invallen op v; voor een enkelvoudige graaf kunnen dat er niet meer dan n−1 zijn. Dus de complexiteit is O(n^2^). We kunnen dit nog verfijnen. Merk op dat elke boog maximaal 1 keer gebruikt wordt in de hele uitvoering van het algoritme. Dat betekent dat het aantal wijzigingen van een L-waarde niet groter kan zijn dan het totaal aantal bogen in de graaf. Als je de v ∈ V \ R met minimale L(v) in minder dan lineaire tijd kan vinden (bv. doordat V \ R geordend is volgens L), kan de complexiteit beter dan O(n 2 ) zijn. Meer bepaald is het mogelijk om Dijkstra’s algoritme in tijd O(|V|log|V| + |E|) uit te voeren. Of dit veel beter is dan O(|V|^2^), hangt af van |E|.
+
+### 4.5.5 Enkele doordenkertjes
+
+oefeningen
+
+## 4.6 Bijzondere klassen van grafen
+
+Er bestaan veel speciale grafen of klassen van grafen, die grondig bestudeerd zijn omwille van bepaalde interessante eigenschappen die ze hebben. Veel van die grafen of klassen hebben ook vaste namen gekregen.
+
+Elke eigenschap die we gezien hebben definieert een klasse van grafen. bv: 
+
+spreken over de klasse van alle samenhangende grafen, alle enkelvoudige grafen, enzovoort. Maar er zijn nog veel meer klassen te bedenken. 
+
+Zo is er bijvoorbeeld de klasse van alle klieken. Een kliek (Eng. clique) is een enkelvoudige graaf waarin elke knoop rechtstreeks verbonden is met elke andere knoop. De kliek met n knopen wordt K~n~ genoemd. Figuur 4.8 toont een aantal klieken. 
+
+Een andere klasse zijn de tweeledige grafen. Een enkelvoudige graaf G(V, E) is tweeledig als en slechts als V opgedeeld kan worden in twee deelverzamelingen V~1~ en V~2~, zo dat er enkel bogen bestaan tussen V~1~ en V~2~, maar nooit binnen V~1~ of V~2~. Formeel: G(V, E) is tweeledig als en slechts als er een V~1~ en V~2~ bestaan zo dat V = V~1~ ∪ V~2~, V~1~ ∩ V~2~ = ∅, en E ⊆ {(v~1~, v~2~)|v~1~ ∈ V~1~, v~2~ ∈ V~2~}.
+
+Een tweeledige graaf wordt volledig verbonden genoemd als elke knoop uit V~1~ met elke knoop uit V~2~ verbonden is. De volledig verbonden tweeledige graaf met m knopen in V~1~ en n knopen in V~2~ wordt K~m,n~ genoemd. 
+
+Figuur 4.8 toont een aantal tweeledige grafen, waaronder enkele die volledig verbonden zijn.
+
+![image-20220327124621004](img/image-20220327124621004.png)
+
+
+
+## 4.7 Vlakke grafen
+
+Elke graaf kan getekend worden door met elke knoop een punt in het vlak te associëren, en met elke boog (x, y) een lijn die de punten voor x en y met elkaar verbindt. Sommige grafen kunnen bovendien zo getekend worden dat hun bogen elkaar niet snijden. Dergelijke grafen noemen we vlakke grafen. 
+
+**Definitie 4.22** Een vlakke graaf is een graaf die getekend kan worden zonder snijdende bogen.
+
+![image-20220327124756555](img/image-20220327124756555.png)
+
+Dit is een tamelijk informele definitie. Een formelere definitie van vlakke grafen is mogelijk, maar heeft weinig nut voor de rest van deze cursus
+
+
+
+**Eigenschap 4.1** Elke deelgraaf van een vlakke graaf is vlak.
+
+**Eigenschap 4.2** Elke kringvrije graaf is vlak en heeft 1 zijvlak.
+
+
+
+### 4.7.1 De formule van Euler
+
+Vlakke grafen hebben de eigenschap dat, eender hoe je de graaf tekent (maar zonder snijdende bogen), het aantal zijvlakken steeds hetzelfde is. Daardoor heeft "het aantal zijvlakken van een vlakke graaf" een eenduidige betekenis. Voor samenhangende vlakke grafen volgt het aantal zijvlakken zelfs direct uit het aantal knopen en bogen. Het verband tussen die drie getallen wordt de formule van Euler genoemd. Alvorens we die bewijzen, geven we eerst een hulpstelling.
+
+**Lemma 4.13** In een kringvrije graaf met minstens 1 boog bestaat er steeds een knoop met graad 1.
+
+**Bewijs:** Neem een willekeurige knoop v~0~ waarop een boog invalt. Construeer vanuit v~0~ een zo lang mogelijk pad (v~0~, v~1~, v~2~, . . .). Omdat er geen kringen zijn is v~i~ /= v~j~ voor alle i /= j. Omdat elke verlenging van het pad een nieuwe knoop vergt, kan het pad niet oneindig doorgaan (want het aantal knopen is eindig), dus ergens stopt het in een knoop v~k~. Die knoop heeft graad 1 (want als we niet meer verder kunnen, is dat omdat er geen bogen op v~k~ invallen behalve de boog uit v~k−1~).
+
+**Stelling 4.14 (Formule van Euler)** Zij G een samenhangende vlakke graaf met v ≥ 1 knopen, e bogen en f zijvlakken. Dan geldt: v - e + f = 2
+
+
+
+**Bewijs:** We bewijzen dit door inductie op het aantal bogen. **<u>Basis:</u>** e = 0. Een graaf zonder bogen kan alleen samenhangend zijn als de graaf maar 1 knoop bevat, dus v = 1. Zonder bogen kan er ook maar 1 zijvlak zijn, dus f = 1. We hebben dan v − e + f = 1 − 0 + 1 = 2. 
+
+**<u>Inductiestap:</u>** We bewijzen dat voor elke e ≥ 1 geldt: als de formule geldt voor elke samenhangende vlakke graaf met e − 1 bogen, dan ook voor elke vlakke samenhangende graaf met e bogen. Neem een willekeurige graaf G met e bogen. Ofwel bevat G minstens 1 kring, ofwel niet. We beschouwen beide mogelijkheden apart. 
+
+1. G heeft geen kringen: dan bestaat er een knoop met graad 1 (Lemma 4.13). Verwijder die knoop en de boog ernaartoe. De resulterende graaf G0 heeft 1 boog en 1 knoop minder dan G, evenveel zijvlakken als G, en is samenhangend en vlak. Uit de inductieveronderstelling volgt dan dat G0 voldoet aan v' − e' + f' = 2, en met v' = v − 1, e' = e − 1 en f' = f bekomen we v − e + f = 2. 
+2. G heeft kringen: verwijder een willekeurige boog uit een kring; de graaf blijft samenhangend, heeft 1 boog minder, evenveel knopen, en een zijvlak minder (want het zijvlak binnen de kring en dat aan de andere kant van de verwijderde boog zijn nu samengesmolten);
+    we hebben v' − e' + f' = 2 met v' = v, e' = e − 1 en f' = f − 1, waaruit v − e + f = 2 volgt.
+
+*^2^Opgelet, vanaf hier wordt het symbool v soms gebruikt voor het aantal knopen en soms om een knoop aan te duiden. De juiste betekenis blijkt steeds uit de context.*
+
+![image-20220327143200794](img/image-20220327143200794.png)
+
+We gebruiken ook in het vervolg van deze sectie de conventie dat v, e en f staan voor het aantal knopen, bogen en zijvlakken van een graaf G, en analoog gebruiken we v' , e' en f' voor G' , enzovoort.
+
+**Dit volgende stuk is echt verwarrend, ik heb dit gecopypaste dus hopelijk is het niet belangrijk**
+
+**Veelvlakken**
+
+ Er is een verband tussen vlakke grafen en veelvlakken, die meteen het gebruik van het woord “zijvlak” verklaart. Een veelvlak is een ruimtelijk lichaam dat begrensd is door een aantal zijvlakken; de grenslijnen tussen de zijvlakken worden ribben genoemd, en de punten waar de ribben samenkomen, hoeken. Als we zo’n veelvlak bekijken, is het duidelijk dat je dat veelvlak kan projecteren op het vlak door 1 zijvlak “uit te rekken” tot het zo groot is als alle andere zijvlakken samen (waarbij de andere zijvlakken ook vervormd mogen worden om dit mogelijk te maken). Die projectie in het vlak vormt dan een vlakke graaf waarbij de hoeken knopen zijn, de ribben bogen, en de zijvlakken zijvlakken; het “meest uitgerokken” zijvlak wordt voorgesteld door het buitenste zijvlak. Een regelmatig veelvlak is een veelvlak waarvan elk zijvlak door evenveel ribben omgeven is, en elke hoek evenveel ribben verbindt. Er zijn maar vijf regelmatige veelvlakken; ze worden “Platonische lichamen” genoemd. Met elk dergelijke veelvlak komt een vlakke graaf overeen, waarin elke knoop dezelfde graad heeft en elk zijvlak (ook het buitenste!) evenveel begrenzende bogen. Figuur 4.10 toont de vlakke grafen die overeenkomen met een regelmatig viervlak (of tetra¨eder), zesvlak (kubus), en achtvlak (octa¨eder). Dat er maar vijf Platonische lichamen bestaan, kan via grafen bewezen worden. Met een Platonisch lichaam komt een vlakke graaf overeen met een constante graad δ voor elke knoop (minstens 3), en een constant aantal begrenzende bogen β per veelvlak (ook minstens 3). We zagen eerder dat de som van de graden, vδ, gelijk is aan 2e. Omdat elke boog precies twee zijvlakken scheidt, geldt analoog dat fβ = 2e. Dit invullen in de formule van Euler geeft 2e/δ − e + 2e/β = 2, waaruit 1/δ − 1/2 + 1/β = 1/e (deel beide leden door 2e) en uiteindelijk 1/δ + 1/β = 1/e + 1/2 > 1/2. Met δ ≥ 3 en β ≥ 3 gehele getallen, zijn de enige oplossingen 1/3 + 1/3, 1/3 + 1/4, 1/3 + 1/5, 1/4 + 1/3,
+
+
+
+### 4.7.2 Karakterisatie van vlakke grafen
+
+We hebben vlakke grafen enkel informeel gedefinieerd. We zullen nu aantonen dat alle vlakke grafen een welbepaalde eigenschap hebben, die andere grafen niet hebben. Die eigenschap kan in principe gebruikt worden voor een alternatieve definitie van vlakke grafen. Een dergelijke alternatieve definitie wordt ook wel een “karakterisatie” genoemd.
+
+**Definitie 4.23 (β, B)** Gegeven een vlakke graaf G, noteren we het aantal bogen waardoor een zijvlak z begrensd wordt als β(z). De som van β(z) voor alle zijvlakken z wordt B genoteerd: B = P z∈Z β(z), met Z de verzameling zijvlakken van de graaf.
+
+
+
+**Eigenschap 4.3** Voor elke vlakke graaf geldt: B ≤ 2e
+
+**Eigenschap 4.4** Voor elke enkelvoudige vlakke graaf met f ≥ 2 geldt: B ≥ 3f.
+
+**Eigenschap 4.5** Voor elke enkelvoudige vlakke graaf met f ≥ 2 geldt: 2e ≥ 3f, of nog, f ≤ (2/3)e.
+
+
+
+We bewijzen nu volgende belangrijke stelling.
+
+**Stelling 4.15** K~5~ en K ~3,3~ zijn niet vlak.
+
+**Bewijs:** Beide grafen zijn samenhangend, dus als ze ook vlak zijn, moeten ze voldoen aan de formule van Euler. We bewijzen dat ze daar niet aan voldoen, en bijgevolg niet vlak kunnen zijn. 
+
+Stel dat K~5~ vlak is. K~5~ is enkelvoudig en heeft kringen, dus f ≥ 2, dus geldt (Eig. 4.5). f ≤ (2/3) e, dus v −e+f ≤ v −e+ (2/3)e. Voor K5 is v = 5 en e = 10. Invullen in het rechterlid geeft v − e + f ≤ 5/3 , in strijd met de formule van Euler. Stel dat K~3,3~ vlak is. K~3,3~ bevat kringen. Omdat K~3,3~ enkelvoudig is, bevat elke kring tenminste 3 bogen; omdat K~3,3~ tweeledig is, bevat elke kring bovendien een even aantal bogen, dus minstens 4. Elk zijvlak is dus begrensd door minstens 4 bogen 
+⇒ B ≥ 4f ⇒ 2e ≥ 4f ⇒ f ≤ e 2 ⇒ v − e + f ≤ v − e + e 2 . In K~3,3~ is v = 6 en e = 9; dan is v − e + f ≤ 3/2 , in strijd met de formule van Euler. 
+
+
+
+#### Homeomorfisme
+
+In een tekening van een graaf is een knoop met graad 2 in zekere zin overbodig: we kunnen die knoop ook weglaten en de getekende bogen ernaartoe vervangen door een enkele getekende boog; zie Figuur 4.11. We noemen dit een rijreductie. De tekening van de graaf verandert niet op essenti¨ele wijze door een rijreductie toe te passen. Wanneer een graaf omgevormd kan worden tot een andere graaf door middel van rijreducties, zeggen we dat de eerste graaf homeomorf is met de tweede.
+
+**Definitie 4.24 (Homeomorfisme)** Een graaf G(V, E) is homeomorf met een graaf G' (V' , E' ) als en slechts als G' uit G bekomen kan worden door een of meer keren een knoop v van graad 2 te kiezen, die samen met zijn invallende bogen (v, w) en (v, u) te verwijderen, en boog (u, w) toe te voegen.
+
+
+
+**Eigenschap 4.6** Als G homeomorf is met G', geldt: G is vlak ⇔ G' is vlak.
+
+**De stelling van Kuratowski**
+
+De volgende stelling geeft een karakterisatie van vlakke grafen.
+
+**Stelling 4.16 (Stelling van Kuratowski)** Een graaf is vlak als en slechts als de graaf geen deelgraaf bevat die homeomorf is met K~5~ of K~3,3~.
+
+![image-20220405154239319](img/image-20220405154239319.png)
+
+**Bewijs:** We moeten de volgende twee implicaties bewijzen: (1) G is vlak ⇒ G heeft geen deelgraaf die homeomorf is met K5 of K3,3 
+
+(2) G heeft geen deelgraaf die homeomorf is met K5 of K3,3 ⇒ G is vlak 
+
+We bewijzen hier enkel deel (1). Deel (2) is veel moeilijker; na Kuratowski’s oorspronkelijk bewijs zijn er meerdere alternatieve bewijzen voorgesteld, maar geen daarvan past binnen het bestek van deze cursus. Bewijs van deel (1): uit het ongerijmde: stel dat een vlakke graaf G een deelgraaf G0 heeft die homeomorf is met K5 of K3,3, dan is G0 niet vlak (wegens Eigenschap 4.6), en dan kan G ook niet vlak zijn (wegens Eigenschap 4.1). 
+
+
+
+### 4.7.3 Duale Grafen
+
+**Definitie 4.25 (Duale graaf)** Zij G een graaf met v knopen, e bogen, f zijvlakken. De duale graaf G' heeft 1 knoop voor elk zijvlak van G , dus v' = f knopen. Voor elke boog tussen de oorspronkelijke zijvlakken is er een boog tussen de overeenkomstige knopen in de duale graaf.
+
+Twee knopen in G' zijn dus verbonden als en slechts als de bijhorende zijvlakken aan elkaar grenzen. Als die grens uit meerdere bogen bestaat, zijn er ook meerdere parallelle bogen tussen de knopen.
+
+​	Duale grafen hebben de volgende eigenschap.
+
+ **Eigenschap 4.7** De duale graaf van een vlakke graaf is ook vlak.
+
+**Bewijs:** Intuitief bewijs: Beschouw een tekening van een vlakke graaf. Teken de duale graaf door eerst in het midden van elk zijvlak een knoop te tekenen. Voor aan elkaar grenzende zijvlakken kunnen we altijd een boog tussen hun centrumknopen tekenen zonder andere bogen te snijden. 
+
+Merk op: als z een zijvlak is, en x de overeenkomstige knoop in de duale graaf, dan geldt steeds: δ(x) = β(z).
+
+
+
+## 4.8 Kleuringen van grafen
+
+**Definitie 4.26** met een kleuring van een graaf (V,E) bedoelt men een toekenning van een kleur aan elke v ∈ V zodanig dat de kleur van v en w verschilt indien (v, w) ∈ E. Een n-kleuring is een kleuring met n of minder verschillende kleuren. Een minimale kleuring is een n-kleuring met minimale n.
+
+Er zijn heel wat praktische toepassingen van het (minimaal) kleuren van een graaf. 
+
+Als voorbeelden: 
+
+- Je moet 4 vergaderingen plannen voor 4 personen A,B,C en D. In de eerste vergadering zitten A,B; in de tweede A,C, in de derde zitten B,C,D en in de vierde C,D. Wat is het minimale aantal tijdstippen waarop een vergadering moet gepland worden? Twee vergaderingen moeten op een verschillend tijdstip doorgaan als eenzelfde persoon aan beide vergaderingen moet deelnemen. Je kan het probleem voorstellen door de graaf van Figuur 4.12: elke knoop stelt een vergadering voor en twee vergaderingen zijn verbonden als ze niet op hetzelfde tijdstip mogen doorgaan omdat er iemand in beide vergaderingen moet zijn. Je zoekt er de kleuring met het kleinste aantal kleuren voor en je hebt het antwoord (elke nieuwe kleur komt overeen met een nieuw tijdstip). 
+
+![image-20220405155734270](img/image-20220405155734270.png)
+
+- Je moet in een warenhuis een aantal goederen opstapelen in de rekken, maar je mag bepaalde goederen niet naast elkaar zetten: bijvoorbeeld benzine mag niet naast brood, porno niet naast kuisproducten enzovoort. Ook hier kan je een graaf opstellen die al die beperkingen voorstelt en waarbij een kleuring van de graaf het probleem oplost.
+
+
+
+Een probleem dat ook een praktisch aspect heeft, maar vooral historisch belangrijk is, is het “vier-kleurenprobleem”: kan elke landkaart gekleurd worden met vier verschillende kleuren zodanig dat twee aangrenzende landen nooit dezelfde kleur hebben? Beschouw de kaart als een vlakke graaf G waarvan de zijvlakken landen zijn, de bogen de grenzen, en de drielandenpunten knopen. Het inkleuren van de landen in de kaart komt overeen met het kleuren van de duale graaf van G. De duale graaf is eveneens vlak en enkelvoudig. Het probleem van het inkleuren van kaarten herleidt zich dus tot het probleem van het kleuren van knopen in een graaf. Het vierkleurenprobleem wordt dan: Heeft elke vlakke graaf een 4-kleuring?
+
+Het probleem werd voor het eerst gesteld door Francis Guthrie rond 1850. Men was overtuigd dat het kan, maar het vermoeden bleef onbewezen - ondanks verwoede pogingen van menig wiskundige - tot 1976, toen K. Appel en W. Haken bewezen dat er 110 1936 grafen bestaan waarvan er minstens 1 terug te vinden is in elke minimale niet 4-kleurbare graaf en vervolgens bewezen dat zulke grafen niet vlak zijn. Beide stappen in het bewijs werden geleverd door een computerprogramma. Er is tot nog toe geen eleganter bewijs gevonden voor de vierkleurenstelling. Dat vijf kleuren volstaan voor het inkleuren van een vlakke graaf, is wel relatief gemakkelijk te bewijzen, en dat zullen we hier aantonen. We introduceren eerst enkele hulpstellingen.
+
+**Stelling 4.17** Voor elke enkelvoudige vlakke graaf met e ≥ 2 geldt: e ≤ 3v − 6.
+
+**Bewijs:** We bewijzen dit eerst voor samenhangende grafen. We onderscheiden grafen met en zonder kringen. 
+
+1. G is kringvrij: per inductie op het aantal bogen: (basis) een enkelvoudige vlakke graaf met minstens twee bogen heeft minstens 3 knopen; (inductiestap) neem een samenhangende kringloze graaf; er is een knoop met graad 1 (Lemma 4.13); verwijder die knoop en zijn boog; het resultaat G0 heeft e' = e − 1 en v' = v − 1 en voldoet per inductieveronderstelling aan e' ≤ 3v' − 6, dus e − 1 ≤ 3(v − 1) − 6 waaruit e ≤ 3v − 8 ≤ 3v − 6. 
+2. G bevat kringen: dan geldt f ≤ (2/3) e (Eig. 4.5), en v − e + f = 2 (Euler), dus e = f + v − 2 ⇒ e ≤ (2/3) e + v − 2 ⇒ (1/3) e ≤ v − 2 ⇒ e ≤ 3v − 6. Als de graaf niet samenhangend is, zijn de componenten ervan wel samenhangend, vlak en enkelvoudig. Je kan die componenten naast elkaar tekenen zonder snijdende bogen, en vervolgens een boog tussen G~i~ en G~i+1~ tekenen voor alle i; dit kan steeds zonder snijdende bogen. De resulterende graaf G' is samenhangend, vlak, enkelvoudig, en heeft e' > e ≥ 2. Er geldt dus (vanwege het eerste punt in dit bewijs) dat e' ≤ 3v' −6. Daaruit volgt e < e' ≤ 3v' − 6 = 3v − 6. 
+
+**Stelling 4.18** In elke vlakke, enkelvoudige graaf bestaat er minstens een knoop, zeg w, zodanig dat δ(w) ≤ 5.
+
+**Bewijs:** Dit is duidelijk waar voor een graaf met hoogstens 1 boog. Als de graaf minstens 2 bogen heeft, moet gelden: e ≤ 3v − 6. Stel nu dat de stelling niet voldaan is voor zo’n graaf, d.w.z. alle knopen hebben graad 6 of meer, dan is de som van de graden van alle knopen (= 2e) minstens 6v, en bijgevolg e ≥ 3v, in tegenspraak met e ≤ 3v−6. 
+
+De volgende stelling laat zien dat het kleuren van een vlakke graaf altijd kan met vijf kleuren:
+
+**Stelling 4.19** Elke enkelvoudige, vlakke graaf G(V, E) heeft een 5-kleuring.
+
+**Bewijs:** check boek op 116, dees is te kankerlang. Echte tering. KRANK
+
+
+
+## 4.9 Bomen
+
+Bomen zijn een speciaal soort grafen. Er zijn verschillende definities van bomen te geven. De meest intuïtieve is waarschijnlijk deze: Een boom is een samenhangende graaf die geen kringen bevat. Hieronder staan een paar alternatieve definities die equivalent zijn. 
+
+1. Een boom is een enkelvoudige graaf waarin tussen elke twee knopen precies 1 pad bestaat. 
+2. Een boom is een samenhangende graaf met n knopen en n − 1 bogen. 
+3. Een boom is een kringvrije graaf met n knopen en n − 1 bogen. 
+4. In deze definities, en in de rest van dit hoofdstuk, bedoelen we met een pad steeds een enkelvoudig pad.^3^ We zullen de equivalentie van die definities aantonen. Alvorens we dat doen, geven we een paar hulpstellingen.
+
+^3^Het is duidelijk dat de eis “er bestaat precies 1 pad” enkel zinvol is als we enkelvoudige paden bedoelen, want anders bestaan er automatisch oneindig veel paden tussen twee verbonden knopen: (x,y), (x,y,x,y), (x,y,x,y,x,y), . . .
+
+**Stelling 4.20** Tussen twee verschillende knopen v en w die deel uitmaken van dezelfde kring, bestaan steeds minstens 2 verschillende paden.
+
+**Bewijs: **Beschouw een enkelvoudige kring met n knopen: (v~1~, v~2~, . . . , v~n~, v~1~), met n ≥ 2. Tussen elke v~i~ en v~j~ met i < j zijn er dan minstens twee paden, namelijk (v~i~ , v~i+1~, . . . , v~j~ ) en (v~i~ , v~i−1~, . . . , v~1~, v~n~, v~n−1~, . . . , v~j~ ). 
+
+Intuïtief is dit duidelijk: in een kring kan je linksom of rechtsom naar een andere knoop gaan.
+
+**Stelling 4.21** Als tussen twee verschillende knopen in een graaf G twee verschillende paden P~1~ en P~2~ bestaan, bevat G een kring.
+
+**Bewijs:** Stel dat er tussen knopen v en w twee verschillende paden P~1~ = (v = a~0~, a~1~, a~2~, . . . , w = a~n~) en P~2~ = (v = b~0~, b~1~, b~2~, . . . , w = b~m~) bestaan. Aangezien de paden in dezelfde knoop beginnen en niet gelijk zijn, moet er ergens een eerste knoop zijn vanaf waar ze uiteen lopen (d.w.z. a~i~ = b~i~ maar a~i+1~ /= b~i+1~). Omdat ze allebei in dezelfde knoop eindigen, moeten ze ergens weer samenkomen; zij a~j~ = b~j'~  de eerste knoop waar ze weer samenkomen (dus a~j~ = b~j'~ maar a~j−1~ /= b~j' −1~). (a~i~ , a~i+1~, . . . , a~j−1~, a~j~ = b~j'~ , b~j'−1~, . . . , b~i~ = a~i~) vormt dan een kring.
+
+**Stelling 4.22** Zij T een graaf met n knopen. Elk van de volgende condities impliceert alle andere: 
+
+1. T is enkelvoudig en tussen elke 2 knopen van T bestaat precies 1 pad. 
+2. T is samenhangend en kringvrij. 
+3. T is samenhangend en heeft n − 1 bogen. 
+4. T is kringvrij en heeft n − 1 bogen.
+
+Vergelijk dit even met de alternatieve definities van boom in het begin van deze sectie! 
+
+**Bewijs:** We bewijzen de volgende vier implicaties: (1) ⇒ (2), (2) ⇒ (3), (3) ⇒ (4), (4) ⇒ (1). Uit de transitiviteit van ⇒ volgt dan direct dat elke conditie uit elke andere conditie volgt, en dus dat ze allemaal equivalent zijn. 
+
+(1) ⇒ (2): Als T enkelvoudig is en tussen elke twee knopen van T precies 1 pad bestaat, is T samenhangend en kringvrij. Bewijs: T is samenhangend omdat er tussen elke twee knopen een pad bestaat. T is kringvrij omdat er geen lussen zijn (enkelvoudig) en ook geen kringen met minstens 2 knopen (wegens Stelling 4.20 zouden er dan immers knopen bestaan met meer dan 1 pad ertussen). 
+
+(2) ⇒ (3): Als T samenhangend en kringvrij is, heeft T n − 1 bogen. Bewijs: Als T samenhangend en kringvrij, is T ook een vlakke graaf met 1 zijvlak (Eig. 4.2) en dus geldt (Euler) v − e + f = 2. Met v = n en f = 1 geeft dit e = n − 1. 
+
+(3) ⇒ (4): Als T samenhangend en n−1 bogen heeft, is T kringvrij. Bewijs: Stel dat T niet kringvrij zou zijn. Dan kunnen we uit een willekeurige kring een boog weglaten zonder de samenhangendheid te schaden. Als we dit blijven doen tot er geen kringen meer zijn, bekomen we een samenhangende kringvrije graaf, waarvoor geldt dat het aantal bogen n − 1 is (zie vorig punt); de oorspronkelijke graaf moet dus strikt meer bogen gehad hebben. 
+
+(4) ⇒ (1): Als T kringvrij is en n − 1 bogen heeft, is T enkelvoudig en bestaat er precies 1 pad tussen elke twee knopen. Bewijs: Kringvrije grafen zijn altijd enkelvoudig (want lussen of parallelle bogen maken automatisch kringen) en hebben hoogstens 1 pad tussen elke twee knopen (Stelling 4.21). We moeten enkel nog aantonen dat er tussen elke twee knopen minstens 1 pad bestaat, m.a.w. dat T samenhangend is. Welnu, stel dat T k componenten Gi heeft, elk met ni knopen en ei bogen. Deze zijn allemaal kringvrij en samenhangend, dus ei = ni −1, dus e = Pei = P(ni −1) = n−k. Aangezien e = n−1 (gegeven), volgt k = 1: de graaf heeft maar 1 component en is dus samenhangend. De bovenstaande stelling toont een interessant verband tussen drie eigenschappen: kringvrij, samenhangend, en n−1 bogen: een graaf die aan twee van de drie eigenschappen voldoet, voldoet automatisch aan de derde. Figuur 4.16 vat dit samen.
+
+![image-20220405172223756](img/image-20220405172223756.png)
+
+
+
+### 4.9.1 Opspannende bomen
+
+Een opspannende boom van een graaf G is een deelgraaf van G die een boom is en die alle knopen van G bevat. Formeel:
+
+**Definitie 4.27** T(V~T~,E~T~) is een opspannende boom voor G(V,E) als en slechts als: T is een boom, V~T~ = V en E~T~ ⊆ E.
+
+Het is duidelijk dat enkel samenhangende grafen een opspannende boom kunnen hebben. Het bewijs wordt als oefening gelaten.
+
+**Stelling 4.23** Als G samenhangend is, dan bestaat er een opspannende boom T voor G.
+
+Bewijs: G is samenhangend. Als G daarenboven geen kringen heeft, is G zelf een boom, en dus bij definitie een opspannende boom voor zichzelf. Als G wel kringen heeft, kunnen we volgende procedure herhalen tot er geen kringen meer zijn: kies een kring, laat een willekeurige boog weg uit die kring; het resultaat T is samenhangend (want door enkel bogen uit kringen weg te laten wordt de samenhangendheid niet geschonden), en kringvrij, dus een boom; T bevat bovendien alle knopen van G en is dus een opspannende boom.
+
+Uit deze stelling en de stelling uit voorgaande oefening volgt direct:
+
+**Stelling 4.24** Een graaf heeft een opspannende boom als en slechts als de graaf samenhangend is.
+
+Bovenstaand bewijs geeft meteen een methode om een opspannende boom (afgekort OB) voor een graaf te construeren: gegeven G, herhaal “kies een kring en laat een boog uit die kring weg” tot er geen kringen meer zijn; het resultaat is een OB voor G. Dit algoritme is niet noodzakelijk erg efficiënt, als G een grote graaf met veel kringen is; bovendien is het zoeken van kringen in een graaf een tamelijk dure operatie.
+
+We kunnen opspannende bomen ook construeren door met een lege boom te beginnen en bogen toe te voegen, in plaats van met de volledige graaf te beginnen en bogen weg te laten. Onderstaande stelling geeft aan dat als we aan een kringvrije deelgraaf van G bogen toevoegen tot we niet meer kunnen zonder dat er kringen ontstaan, we eindigen met een opspannende boom
+
+**Stelling 4.25** Als T een maximale kringvrije deelgraaf is van een samenhangende graaf G, dan is T een opspannende boom van G
+
+**Dit is om te wenen man.**
+
+**Bewijs:** We moeten bewijzen dat T samenhangend is en alle knopen van G bevat (omdat T kringvrij is, volgt daaruit immers dat T een OB van G is). 
+
+1) T is samenhangend. Bewijs (uit het ongerijmde): stel dat T niet samenhangend is, dan valt T uiteen in verschillende componenten Ti . Omdat G wel samenhangend is, is er in G zeker een pad tussen willekeurige knopen v ∈ T1 en w ∈ T2. Dat pad begint in T1 en eindigt buiten T1, dus er moet ergens een boog (x, y) zijn waarlangs T1 verlaten wordt, d.w.z. x ∈ T1 en y /∈ T1. Omdat x en y niet tot dezelfde component behoren, is er geen pad in T dat ze verbindt; bijgevolg kan de boog (x, y) geen kring doen ontstaan in T, en kan de boog (x, y) toegevoegd worden aan T. Dat spreekt tegen dat T maximaal was. 
+2) T bevat alle knopen van G. Bewijs (uit het ongerijmde): Stel dat er een knoop v ∈ G bestaat waarvoor v /∈ T. Omdat G samenhangend is, kan v geen geïsoleerde knoop zijn, er bestaat dus een boog (v, w) in G. Die boog kan toegevoegd worden aan T zonder dat er een kring ontstaat: zo’n kring kan immers alleen ontstaan als er al een pad tussen v en w bestond in T, en omdat v 6∈ T kan dat niet. Een correct algoritme voor het construeren van een opspannende boom van een graaf G is dus: begin met een lege deelgraaf T; voeg aan T herhaaldelijk een boog uit G toe die geen kring introduceert in T, tot dat niet meer mogelijk is; het resultaat is een OB voor G. Uit al het voorgaande volgt direct:
+
+**Stelling 4.26** Als T een kringvrije deelgraaf is van een samenhangende graaf G, en T heeft n − 1 bogen, dan is T een opspannende boom voor G.
+
+Merk op dat we op elk moment mogen kiezen welke boog we toevoegen, zolang er maar geen kringen ontstaan. We kunnen een aantal systematische manieren bedenken om bogen toe te voegen. Twee daarvan noemen we diepte-eerst en breedte eerst. Deze termen zullen later nog terugkomen.
+
+- Diepte-eerst constructie van een OB: begin met een willekeurige knoop v~0~. Maak vervolgens een zo lang mogelijk pad vanuit v~0~. Dit wil zeggen: voeg een boeg (v~0~, v~1~) toe, vervolgens een boog (v~1~, v~2~), (v~2~, v~3~), etc., tot het pad niet meer langer gemaakt kan worden zonder een kring te maken. Op dat moment keren we terug naar de laatst toegevoegde v~i~ van waaruit een alternatieve boog toegevoegd had kunnen worden; construeer vanuit die v~i~ een pad dat begint met die alternatieve boog, opnieuw zo lang mogelijk. Herhaal dit principe van terugkeren en een alternatief pad maken tot er nergens nog een boog toegevoegd kan worden.
+- Breedte-eerst constructie van een OB: begin met een willekeurige knoop v~0~. Voeg alle bogen toe die op v~0~ invallen en geen kring maken. Zij V~1~ de eindpunten van al die bogen, m.a.w. de verzameling knopen die op die manier aan T toegevoegd worden. Voeg vervolgens zoveel mogelijk bogen (v, w) toe met v ∈ V~1~; de eindpunten van al die bogen noemen we V~2~. Zo gaan we verder tot er geen bogen meer toegevoegd kunnen worden.
+
+Figuur 4.17 illustreert het geleidelijk opbouwen van een OB voor een voorbeeldgraaf, volgens diepte-eerst of breedte-eerst.
+
+![image-20220405175638691](img/image-20220405175638691.png)
+
+![image-20220405175909606](img/image-20220405175909606.png)
+
+
+
+Figuur 4.19 laat een graaf zien en een opspannende boom, die noch met diepte-eerst, noch met breedte-eerst kan verkregen worden. Het construeren van opspannende bomen is erg belangrijk voor veel toepassingen die een zoekprobleem inhouden. Een zoekprobleem kan vaak herleid worden tot het doorlopen van een graaf op zoek naar een knoop die een oplossing voorstelt voor een gegeven probleem. We beginnen dan bij een bepaalde knoop, volgen een pad dat ons opeenvolgend bij verschillende andere knopen brengt, en als we niet meer verder kunnen keren we op onze stappen terug en volgen een ander pad. Het is niet de bedoeling dat we via dat ander pad weer op bepaalde knopen uitkomen die we al bekeken hebben: dat is tijdverlies, want we hoeven elke knoop maar 1 keer te bekijken. Als we een graaf willen doorlopen zonder dat we een knoop meerdere keren tegenkomen, maar aan de andere kant willen we zeker zijn dat we geen knopen overslaan, dan komt dat eigenlijk neer op het opstellen van een opspannende boom.
+
+
+
+![image-20220405175930143](img/image-20220405175930143.png)
+
+### 4.9.2 Minimale opspannende bomen
+
+Beschouwen we het volgende probleem: gegeven een aantal steden en stel dat de kost van het bouwen van een weg tussen de steden gegeven is; bepaal welke wegen moeten aangelegd worden om te voldoen aan (1) de totale kost is minimaal, en (2) elke stad is bereikbaar vanuit elke andere stad. Het wegennet dat daaraan voldoet moet een boom zijn, want er kunnen geen kringen zijn (anders heeft het net zeker geen minimale kost), en er is een pad tussen elke twee steden. Dit soort bomen wordt nu gedefinieerd.
+
+**Definitie 4.28** Een minimale opspannende boom van een gewogen graaf G is een opspannende boom van G waarvoor geldt dat geen andere opspannende boom een kleiner gewicht heeft.
+
+We bekijken twee verschillende algoritmen om een minimale opspannende boom (afgekort MOB) van een gewogen graaf te vinden.
+
+**Het algoritme van Prim** 
+
+Het algoritme van Prim bouwt een MOB door met een willekeurige knoop te beginnen, en van daaruit een boom op te bouwen door herhaaldelijk een boog toe te voegen aan de reeds opgebouwde boom, op zo’n manier dat opnieuw een boom bekomen wordt, en zo dat, wanneer het algoritme stopt, de gevonden boom een minimale opspannende boom is. Om dat laatste te garanderen, blijkt het voldoende om bij elke toevoeging steeds een boog te kiezen met een zo laag mogelijk gewicht.
+
+![image-20220406112501073](img/image-20220406112501073.png)
+
+Bovenstaande beschrijving van het algoritme is het eenvoudigst om te begrijpen **(Blijkbaar)**. We kunnen het herschrijven zodat het duidelijker is welke bogen er allemaal kandidaat zijn om toegevoegd te worden, we noemen die verzameling kandidaat-bogen K. We schrijven het algoritme wat formeler en compacter.
+
+![image-20220406112846858](img/image-20220406112846858.png)
+
+We gebruiken hierbij de operator "arg min". Dat betekent: gegeven een functie f met een domein S, geeft de operator arg min~x∈S~ f(x) een willekeurige x terug waarvoor geldt dat f(x) minimaal is.
+
+![image-20220406113048702](img/image-20220406113048702.png)
+
+
+
+We geven nu het correctheidsbewijs voor het algoritme van Prim
+
+**Stelling 4.27** Het algoritme van Prim construeert een MOB van G.
+
+**Bewijs: ** T is op elk moment samenhangend en kringvrij, dus een boom; dus zolang T nog geen n − 1 bogen bevat, bevat T nog geen n knopen. Neem een knoop buiten T. Er bestaat een pad van die knoop naar T (want G is samenhangend), en dus een boog (v, w) met v ∈ T en w ∈ V \ T. Dat betekent dat K nooit leeg is; in elke uitvoering van de lus wordt dus precies 1 boog aan T toegevoegd; het algoritme eindigt bijgevolg steeds, en op het einde is T een OB. Dat T op het einde een minimale OB is, tonen we aan door te bewijzen dat T op elk moment een deelboom van een MOB is. Formeel bewijzen we de volgende invariant:
+
+​		I: er bestaat een MOB T' zodat T ⊆ T' .
+
+I geldt zeker bij het begin (T = ({v~0~}, ∅)): omdat G samenhangend is bestaat er een MOB, en omdat die elke knoop bevat, bevat hij ook v~0~, en dus T. Als I geldt bij het begin van de uitvoering van de lus, dan ook bij het begin van de volgende uitvoering. Stel dat er bij het begin van de lus een MOB T' bestaat waarvoor T ⊆ T' . We voegen vervolgens een boog e aan T toe. Er zijn dan twee mogelijkheden: 
+
+(1) e ∈ T' : samen met T ⊆ T' volgt dan T ∪ {e} ⊆ T' , dus de invariant blijft gelden. 
+
+(2) e /∈ T' : in dat geval bevat T' ∪ {e} een kring. Die kring bevat naast e nog een andere boog e' die een knoop van T verbindt met een knoop buiten T. 
+Beschouw nu T" = T' ∪ {e} \ {e'}. T" is nog steeds een opspannende boom (want samenhangend en n − 1 bogen) en w(T") = w(T') + w(e) − w(e'). Omdat w(e) ≤ w(e') (we hebben e immers zo gekozen) volgt dan w(T") ≤ w(T' ). Aangezien T' een MOB was, moet T" dat dan ook zijn. Verder hebben we T ∪ {e} ⊆ T". Dus na toevoegen van e aan T blijft de invariant gelden.
+
+
+
+**Het algoritme van Kruskal**
+
+Het algoritme van Kruskal werkt op een gelijkaardige manier als dat van Prim, maar de deelgraaf S die opgebouwd wordt is niet noodzakelijk samenhangend (dus niet noodzakelijk een boom), wel altijd kringvrij.
+
+![image-20220406115105460](img/image-20220406115105460.png)
+
+
+
+Als we dit formeel schrijven dan verschilt het niet veel van Prim, afgezien van een klein verschil in de initialisatie, is het enige verschil de definitie van de verzameling van K van bogen die kandidaat zijn om toegevoegd te worden.
+
+![image-20220406115234370](img/image-20220406115234370.png)
+
+![image-20220406115325771](img/image-20220406115325771.png)
+
+We bewijzen nu dat ook het algoritme van Kruskal een minimale opspannende boom oplevert.
+
+**Stelling 4.28** Het algoritme van Kruskal construeert een MOB van G
+
+**Bewijs:** Het bewijs is bijna identiek aan het bewijs voor Prim. De delen die verschillen zijn cursief weergegeven. *Zolang S nog geen n−1 bogen bevat, is S zeker geen OB. Dan zijn er twee mogelijkheden: S bevat nog niet alle knopen van G, of S is niet samenhangend. In beide gevallen zijn er bogen in G die toegevoegd kunnen worden aan S zonder kringen te vormen (namelijk op een pad van S naar een knoop buiten S, of op een pad dat twee componenten van S verbindt, of tussen twee knopen die nog niet tot S behoren)*. 
+
+Dat betekent dat K nooit leeg is; in elke uitvoering van de lus wordt dus precies 1 boog aan S toegevoegd; het algoritme eindigt bijgevolg steeds, en op het einde is S een OB. Dat S op het einde een minimale OB is, tonen we aan door te bewijzen dat S op elk moment een deelgraaf van een MOB is. Formeel bewijzen we de volgende invariant:
+
+​		I: er bestaat een MOB T 0 zodat S ⊆ T 0 .
+
+I geldt zeker bij het begin (S = (∅, ∅)): omdat G samenhangend is bestaat er een MOB, en omdat S leeg is, omvat die MOB zeker S.
+
+Als I geldt bij het begin van de uitvoering van de lus, dan ook bij het begin van de volgende uitvoering. Stel dat er bij het begin van de lus een MOB T' bestaat waarvoor S ⊆ T' . We voegen vervolgens een boog e aan S toe. Er zijn dan twee mogelijkheden: (1) e ∈ T' : samen met S ⊆ T' volgt dan S ∪ {e} ⊆ T' , dus de invariant blijft gelden. (2) e /∈ T' : in dat geval bevat T' ∪ {e} een kring. Die kring bevat naast e nog een andere boog e' die niet in S zit (anders zou toevoeging van e aan S een kring gemaakt hebben, namelijk deze kring). Beschouw nu T" = T' ∪ {e} \ {e'}. T" is nog steeds een opspannende boom (want samenhangend en n − 1) en w(T") = w(T' ) + w(e) − w(e' ). Omdat w(e) ≤ w(e' ) (we hebben e immers zo gekozen) volgt dan w(T") ≤ w(T' ). Aangezien T' een MOB was, moet T" dat dan ook zijn. Verder hebben we S ∪ {e} ⊆ T". Dus na toevoegen van e aan T blijft de invariant gelden.
+
+
+
+## 4.10 Gewortelde bomen
+
+**Definitie 4.29** Een gewortelde boom is een boom waarin een willekeurige knoop aangeduid is als "de wortel".
+
+Formeel is een gewortelde boom een tupel (V,E,w) met T = (V,E) een boom en w ∈ V. In de praktijk schrijven we meestal gewoon T, waarbij V, E en w impliciet gedefinieerd zijn als de verzameling knopen, verzameling bogen, en wortel van de boom. In een gewortelde boom T is elke knoop v verbonden met de wortel w door een uniek pad P~v~ = (v~0~=w, v~1~,v~2~,..., v~h~=v). We definiëren dan de volgende termen:
+
+- De lengte van dit pad, h, noemen we de hoogte van v, genoteerd h(v).
+- Voor elke i, j met i < j geldt: v~i~ is een ouder van v~i+1~, v~i+1~ is een kind van v~i~ , v~i~ is een voorouder van v~j~ , v~j~ is een afstammeling van v~i~ .
+- Als v en w kinderen zijn van dezelfde ouder, noemen we ze broers of zussen. (Het Engels kent hiervoor een geslachtsneutrale term: siblings).
+- Een knoop die geen kinderen heeft, noemen we een blad. Een knoop die geen blad is, is een inwendige knoop.
+- De deelboom van T met wortel v is de gewortelde boom die v en al zijn afstammelingen bevat (en de bogen ertussen), en v als wortel heeft.
+
+De hoogte van een gewortelde boom is de maximale hoogte van zijn knopen: h(T) = max{h(v)|v ∈ T}. We tekenen gewortelde bomen gewoonlijk met de wortel bovenaan. Om die reden wordt de hoogte van een knoop ook wel de diepte van die knoop genoemd. In deze sectie bedoelen we, wanneer we over een “boom” spreken, steeds een gewortelde boom.
+
+### 4.10.1 Binaire bomen
+
+Behalve de wortel heeft elke knoop in een gewortelde boom precies 1 ouder, en behalve de bladeren heeft elke knoop minstens 1 kind. Een boom waarin elke knoop hoogstens twee kinderen heeft, wordt een binaire boom genoemd. Een boom waarin elke inwendige knoop precies twee kinderen heeft, wordt een volledige binaire boom genoemd. In een binaire boom maken we onderscheid tussen het linker- en rechterkind; m.a.w., een boom waarin x1 het linkerkind van x is en x2 het rechterkind, is niet hetzelfde als een boom waar dat omgekeerd is. (Formeel is een binaire boom een tupel (V, E, w, λ) met E ⊆ V × V, w ∈ V, λ : V × {l, r} → E, waarbij de graaf G(V, E) een boom is, en de parti¨ele functie λ voor elke inwendige knoop aangeeft welke boog naar het linker- en rechterkind leidt. Dit terzijde; we zullen verder deze formele structuur niet gebruiken.)
+
+**Stelling 4.29** Elke volledige binaire boom met i inwendige knopen heeft i+1 bladeren en 2i+1 knopen in totaal.
+
+**Bewijs:** Elke inwendinge knoop heeft 2 kinderen, die verschillen van elkaar en van alle kinderen van andere knopen. Het toaal aantal kinderen is bijgevolg 2i. Alleen de wortel is geen kind van een andere knoop; het toaal aantal knopen is dus 2i+1. Het aantal bladeren is het totaal aantal knopen min het aantal inwendige knopen, dus i+1
+
+**Toepassing** Bij een toernooi met directe uitschakeling met n deelnemers.
+
+**Stelling 4.30** In een binaire boom met t bladeren en hoogte h geldt: t ≤ 2^h^
+
+**Bewijs:** Door inductie op de hoogte h
+
+<u>Basis:</u> h=0; een boom met h = 0 heeft maar 1 knoop, die ook een blad is, dus t = 1 = 2^0^ = 2^h^.
+
+<u>Inductiestap:</u> we bewijzen dat als de formule geldt voor alle bomen van hoogte h-1, dan ook voor alle bomen van hoogte h. Neem een boom T van hoogte h > 0; T heeft 1 of 2 deelbomen (want anders zou h = 0 zijn).
+
+(1) Stel dat T 2 deelbomen heeft, T~l~ (met hoogte h~l~ , en t~l~ bladeren) en T~r~ (met h~r~, t~r~). Omdat T hoogte h heeft, is h~l~ < h, dus h~l~ ≤ h − 1, en analoog h~r~ ≤ h − 1. Uit de inductiehypothese volgt dan t~l~ ≤ 2^hl^ en t~r~ ≤ 2^hr^ . Alle bladeren van T zijn bladeren van T~l~ of van T~r~, dus t = t~l~ + t~r~ ≤ 2^hl^ + 2^hr^ ≤ 2^h−1^ + 2^h−1^ = 2^h^ , wat te bewijzen was. 
+
+(2) Als T maar 1 deelboom heeft, het maakt niet uit of het de linker- of rechterdeelboom is, dan heeft die deelboom evenveel bladeren als T, en hoogte h − 1; dan geldt t ≤ 2^h−1^ wegens de inductieveronderstelling, en dus t < 2^h^ . 
+
+We kunnen ook schrijven: h ≥ blog(t), met blog(t) de logaritme met basis 2, of binaire logaritme, van t.
+
+**Stelling 4.31** In een binaire boom met n knopen en hoogte h geldt: n+1 ≤ 2^h+1^.
+
+**Bewijs:** Zij T een binaire boom. Maak een volledige binaire boom T' door aan elk blad van T 2 kinderen toe te voegen, en aan elke inwendige knoop van T die maar 1 kind heeft, een tweede kind (alle toegevoegde knopen zijn bladeren). Voor T' geldt i' = n (elke knoop van T is een inwendige knoop van T'), dus t' = i' + 1 = n+1 (wegens stelling 4.29), en h' = h=1 (de constructie verhoogt de hoogte van de boom met precies 1). Door invullen in t' ≤ 2^h'^ (stelling 4.30) volgt dan direct n+1 ≤ 2^h+1^.
+
+
+
+![image-20220406122632262](img/image-20220406122632262.png)
+
+### 4.10.2 Zoekbomen
+
+Een binaire zoekboom is een binaire boom waarin met elke knoop v een waarde w(v) geassocieerd wordt, en die aan de volgende eigenschap voldoet: voor elke knoop v geldt dat alle waarden geassocieerd met een knoop in de linkse deelboom van v kleiner zijn dan w(v), en alle waarden geassocieerd met een knoop in de rechtse deelboom groter dan w(v).
+
+
+
+**Definitie 4.30 (Binaire zoekboom)** Een binaire zoekboom is een binaire boom waarin met elke knoop v een waarde w(v) is geassocieerd (bv. een getal) zodanig dat als l behoort tot de linker– en r tot de rechterdeelboom van v, dat dan w(l) < w(v) < w(r)
+
+
+
+![image-20220406123056510](img/image-20220406123056510.png)
+
+Het volgende algoritme zoekt of een bepaalde waarde aanwezig is in een binaire zoekboom: het algoritme is geschreven als een pseudo-Java methode die TRUE teruggeeft als de waarde gevonden is, anders FALSE; 
+
+![image-20220406133330393](img/image-20220406133330393.png)
+
+We kunnen de complexiteit van dit algoritme uitdrukken in het aantal keer dat het lichaam van de lus wordt uitgevoerd. In het slechtste geval zit de gezochte waarde niet in de boom en zoeken we langs het langste pad, vertrekkend aan de wortel; dat pad heeft een lengte die gelijk is aan de hoogte h van de boom en lus wordt dus h+1 keer uitgevoerd. Uit Stelling 4.31 weten we dat blog(n+1) ≤ h+1 en voor een vaste n kunnen we het slechtse geval dus niet beter maken dan blog(n+1).
+
+Een voorbeeld van twee binaire bomen met dezelfde knopen zie je in Figuur 4.24: de rechterboom is beter gebalanceerd dan de linkerboom en is dus minder hoog.
+
+![image-20220406133916141](img/image-20220406133916141.png)
+
+### 4.10.3 Praktische voorstelling van bomen
+
+**Voorstelling van gewortelde bomen in computerprogramma's**
+
+Bomen kunnen net als andere grafen als matrix voorgesteld worden, maar in computerprogramma's wordt vaak een andere structuur gebruikt, waarbij voor elke knoop een verwijzing naar de kinderen van die knoop opgeslagen wordt.
+
+Bijvoorbeeld, voor een binaire boom die getallen als inhoud bevat, zouden we in Java de volgende code  kunnen schrijven:
+
+![image-20220406134141074](img/image-20220406134141074.png)
+
+
+
+**Een meer compacte voorstelling voor bomen** 
+
+Dikwijls wordt een boom voorgesteld met gerichte bogen; die voorstelling benadrukt dat de functies linkerkind en rechterkind dikwijls expliciet aanwezig zijn,, maar niet de functie ouder. Daarenboven kan het ook nuttig zijn een boom als een (gerichte) graaf voor te stellen die geen boom meer hoeft te zijn; neem bijvoorbeeld de boomvoorstelling van de rekenkundige uitdrukking (i + 7)2 + i + 7 in Figuur 4.25 links; daarin zie je twee deelbomen die precies dezelfde zijn: de deelboom voor de deeluitdrukking i+ 7; de overeenkomstige gerichte graaf (die geen boom meer is) staat in Figuur 4.25 rechts. De voorstelling m.b.v. een gerichte graaf is meer compact omdat het voorkomen van de deeluitdrukking i + 7 door twee deelbomen gedeeld wordt (in het Engels: shared).
+
+![image-20220406134847688](img/image-20220406134847688.png)
+
+### 4.10.4 Het doorlopen van gewortelde bomen
+
+Met het “doorlopen van een boom” bedoelen we het 1 en voor 1 behandelen van de knopen van die boom, waarbij uiteindelijk elke knoop van de boom precies 1 keer aan bod komt. In principe komt het doorlopen van een boom G(V, E) gewoon overeen met het oplijsten van de elementen van V . In de praktijk gebruiken computerprogramma’s voor het opslaan van een gewortelde boom vaak een datastructuur zoals net besproken, die het niet zo evident maakt om alle knopen te overlopen. In dit deel gaan we ervan uit dat er voor het doorlopen van een gewortelde boom twee operaties beschikbaar zijn: 
+
+1. gegeven een boom, kunnen we de wortel van die boom opvragen; 
+
+2. gegeven een knoop in een boom, kunnen we de kinderen van die knoop opvragen. 
+
+   
+
+   
+
+Wanneer we beperkt zijn tot deze twee operaties, kunnen we bijvoorbeeld niet zomaar de ouder van een knoop opvragen.
+
+**Het volledig doorlopen van een gewortelde boom** 
+
+Volgend algoritme geeft een methode voor het doorlopen van een gewortelde boom, waarbij ervan uit gegaan wordt dat enkel bovenstaande operaties toegelaten zijn.
+
+![image-20220406135159787](img/image-20220406135159787.png)
+
+**Stelling 4.32** Bovenstaand algoritme behandelt elke knoop in de boom precies 1 keer.
+
+**Bewijs: **We bewijzen dit in zes stappen.
+
+1) Een knoop wordt niet vaker behandeld dan hij toegevoegd wordt. Op het moment dat een knoop in S gekozen wordt om behandeld te worden, wordt die knoop uit S verwijderd. De knoop kan niet opnieuw gekozen worden voor behandeling zonder eerst opnieuw toegevoegd te worden. Hij moet dus minstens evenveel keer toegevoegd worden aan S als hij behandeld wordt. 
+2) Elke knoop wordt hoogstens 1 keer toegevoegd aan S. We bewijzen dit door inductie op de diepte van de knoop. <u>Basis:</u> de wortel is de enige knoop op diepte 0. Deze knoop wordt tijdens de initialisatie aan S toegevoegd. Binnen de while-lus worden enkel nog knopen aan S toegevoegd die een kind zijn van een ander knoop; de wortel is geen kind van een andere knoop en wordt hier dus nooit toegevoegd. 
+   Besluit: alle knopen van diepte 0 worden hoogstens 1 keer toegevoegd aan S. 
+   <u>Inductiestap</u>: als alle knopen op diepte i (met i ≥ 0) hoogstens 1 keer toegevoegd worden, dan worden ook alle knopen op diepte i + 1 hoogstens 1 keer toegevoegd. Bewijs: neem een willekeurige knoop v op diepte i + 1. Die knoop heeft maar 1 ouder, en kan alleen toegevoegd worden op het moment dat die ouder behandeld wordt. De ouder heeft diepte i. Vanwege de inductieveronderstelling wordt de ouder hoogstens 1 keer toegevoegd, dus (vanwege punt 1) hoogstens 1 keer behandeld, en dus wordt v hoogstens 1 keer toegevoegd.
+3) Elke knoop wordt hoogstens 1 keer behandeld. Dit volgt direct uit 1 en 2. 
+4) Elke knoop die in S zit, wordt ooit behandeld. Bewijs: Stel dat de boom n knopen heeft. Neem nu een willekeurige knoop v die op een bepaald moment in S zit, en stel dat S op dat moment m elementen bevat. Bij elke volgende uitvoering van de lus wordt een knoop uit S gehaald. Er kunnen intussen ook knopen toegevoegd worden, maar niet meer dan n−m, want elke knoop in de boom wordt hoogstens 1 keer toegevoegd. De lus kan dus hoogstens nog n keer uitgevoerd worden alvorens S leeg wordt. Op dat moment moet v behandeld zijn. 
+5) Elke knoop wordt precies 1 keer aan S toegevoegd. Bewijs: door inductie op de diepte van de knoop. 
+   <u>Basis:</u> de wortel is de enige knoop op diepte 0. Deze knoop wordt minstens 1 keer toegevoegd, namelijk tijdens de initialisatie, en hoogstens 1 keer (vanwege punt 2), dus precies 1 keer. 
+   <u>Inductiestap:</u> als alle knopen op diepte i (voor een bepaalde i ≥ 0) precies 1 keer toegevoegd worden aan S, dan worden ook alle knopen op diepte i + 1 precies 1 keer toegevoegd aan S. Bewijs: beschouw een willekeurige knoop v op diepte i + 1. v heeft precies 1 ouder, en die heeft diepte i. Wegens de inductieveronderstelling wordt die ouder precies 1 keer toegevoegd, en dus (wegens punt 3 en 4) ook precies 1 keer behandeld. Op dat moment (en alleen dan) worden al zijn kinderen toegevoegd, dus ook v.
+6) Elke knoop wordt precies 1 keer behandeld. Dit volgt nu direct uit 3, 4 en 5.
+
+Merk op dat uit het bovenstaande ook volgt dat het algoritme altijd eindigt. Er zijn n knopen en elke knoop wordt precies 1 keer gekozen voor behandeling, dus de lus wordt precies n keer uitgevoerd. Een enkele uitvoering van de lus eindigt steeds.
