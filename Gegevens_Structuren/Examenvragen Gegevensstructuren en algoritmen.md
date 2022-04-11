@@ -10,7 +10,7 @@
 
 Het volgende kan 1 van die voorbeelden tabellen zijn:
 
-![image-20220410193741294](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220410193741294.png)
+![image-20220410193741294](img/image-20220410193741294.png)
 
 Op de moment heb ik echt geen idee, later nog op terugkomen
 
@@ -243,9 +243,6 @@ Ik denk dat gewoon hun formules mogen gebruiken
 
 ![image-20220411213556547](img/image-20220411213556547.png)
 
-![image-20220411213617597](img/image-20220411213617597.png)
+
 
 ## Les 3 & 4: Quicksort
-
-**De ideale pivot in QuickSort zou de mediaan van een verzameling zijn. De mediaan is dat element waarbij er evenveel elementen kleiner zijn dan de mediaan, dan elementen die groter zijn dan de mediaan. In dat geval splitsen we de verzameling keurig in 2.**
-**Vraag: Is het mogelijk om de mediaan te vinden in tijd sneller dan lineaire tijd? Want indien dit niet kan, dan heeft het zoeken van de mediaan natuurlijk geen zin ...**
