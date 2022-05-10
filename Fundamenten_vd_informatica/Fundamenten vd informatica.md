@@ -338,9 +338,9 @@ Een TM kan met een bepaalde invoer een bepaalde uitvoer associeren en zo functie
 
 **Definitie 3.13** Een TM beslist een taal, als voor elk string s ∈ L de TM in een aanvaardbare toestand eindigt, en voor elke string s \∈ L de TM in een onaanvaardbare toestand eindigt.
 
-Merk het verschil op tussen herkennen en beslissen. Als een TM de taal L herkent, dan betekent dat dat de TM alle en alleen de strings in L aanvaardt. Strings buiten L kunnen verworpen worden, of onbeslist blijven (omdat de machine niet stopt)
-
 **Definitie 3.14** Een taal L wordt Turing-beslisbaar of kortweg beslisbaar genoemd, als er een TM bestaat die L beslist. Turing-beslisbare talen worden ook recursieve talen genoemd.
+
+Merk het verschil op tussen herkennen en beslissen. Als een TM de taal L herkent, betekent dat dat de TM alle en alleen de strings in L aanvaardt. Strings buiten L kunnen verworpen worden, of onbeslist blijven (omdat de machine niet stopt). Als een TM L beslist, betekent dat dat de TM voor elke string beslist of de string in L zit of niet; dit is een strikt strenger criterium.
 
 
 
@@ -384,7 +384,7 @@ Hoe hangt de benodigde tijd of geheugenruimte af van de "grootte" of de moeilijk
 
 De tijd nodig om een probleem op te lossen hangt af van de "grootte" van het probleem dat moet worden opgelost. Deze grootte wordt gemeten aan de hand van de grootte van de invoer van het "specifieke geval". Ter illustratie bekijken we even het vermenigvuldigen van twee n x n matrices voor welbepaalde n.
 
-Voor de “grootte” van dit specifieke probleem kunnen we n als maat nemen. We zouden echter natuurlijk evengoed n 2 of 2n 2 kunnen voorstellen als maat voor de omvangsgrootte. Veronderstel dat we een algoritme beschouwen dat de standaardmethode voor het vermenigvuldigen van matrices gebruikt. Zo’n algoritme berekent voor alle 1 ≤ i, j ≤ n de (i, j)–de term uit het product door de i–de rij met de j-de kolom te vermenigvuldigen. Voor de berekening van deze (i, j)–de term moet de computer 2n leesoperaties, n vermenigvuldigingen en n − 1 optellingen en tenslotte nog een schrijfoperatie uitvoeren. In het totaal hebben we voor de berekening van deze term 4n bewerkingen nodig. Aangezien er n 2 termen te berekenen zijn, voert het algoritme dus 4n 3 bewerkingen uit.
+Voor de “grootte” van dit specifieke probleem kunnen we n als maat nemen. We zouden echter natuurlijk evengoed n^2^ of 2n^2^ kunnen voorstellen als maat voor de omvangsgrootte. Veronderstel dat we een algoritme beschouwen dat de standaardmethode voor het vermenigvuldigen van matrices gebruikt. Zo’n algoritme berekent voor alle 1 ≤ i, j ≤ n de (i, j)–de term uit het product door de i–de rij met de j-de kolom te vermenigvuldigen. Voor de berekening van deze (i, j)–de term moet de computer 2n leesoperaties, n vermenigvuldigingen en n − 1 optellingen en tenslotte nog een schrijfoperatie uitvoeren. In het totaal hebben we voor de berekening van deze term 4n bewerkingen nodig. Aangezien er n^2^ termen te berekenen zijn, voert het algoritme dus 4n^3^ bewerkingen uit.
 
 **Logisch toch? : )**
 
@@ -396,9 +396,9 @@ Uit de definitie volgt onmiddelijk dat tijd~A~(n) een slechtste geval maat is. H
 
 #### O-notatie
 
-**Definitie 3.17 (De O-notatie)** Indien f en g functies zijn van  R^+^, dan zeggen we "f(n) is O(g(n))" of "f is O(g)" als
+**Definitie 3.17 (De O-notatie)** Indien f en g functies zijn van $\N$ naar  $\R^+$, dan zeggen we "f(n) is O(g(n))" of "f is O(g)" als
 
-​			∃c ∈ R + 0 , ∃N ∈ N, ∀n ∈ N : n ≥ N ⇒ f(n) ≤ c g(n)
+​			$∃c ∈ \R^+_0, ∃N ∈ \N, ∀n ∈ \N : n ≥ N ⇒ f(n) ≤ c g(n)$
 
 Men zegt ook wel: f is van orde g, of f wordt asymptotisch gedomineerd door g.
 
@@ -494,9 +494,9 @@ We noteren een pad (v~0~,v~1~),(v~1~,v~2~),...,(v~n-1~,v~n~) soms ook als (v~0~,
 
  **Definitie 4.12 (Euleriaans pad, Euleriaanse kring)** Zij gegeven een graaf G. Een Euleriaans pad van G is een pad waarin elke knoop van G minstens 1 keer, en elke boog van G precies 1 keer voorkomt. Een Euleriaanse kring van G is een Euleriaans pad dat ook een kring is.
 
-  **Stelling 4.4** Een graaf G heeft een Euleriaanse kring als en slechts als de graaf samenhangend is en elke knoop een even graaf heeft.
+  **Stelling 4.4** Een graaf G heeft een Euleriaanse kring als en slechts als de graaf samenhangend is en elke knoop een even graad heeft.
 
-Okay nu komt er echt een muur van tekst gewoon om de bovenstaande stelling te bewijzen. Is het te laat om uit te schrijven?
+Okay nu komt er echt een muur van tekst gewoon om de bovenstaande stelling te bewijzen. **Is het te laat om uit te schrijven?**
 
 **Bewijs:** De bewering is van de vorm “A als en slechts als B” (wiskundig genoteerd: A ⇔ B). Dit wil zeggen dat wanneer A waar is, B ook waar moet zijn (A ⇒ B), en omgekeerd, wanneer B waar is, moet A ook waar zijn (A ⇐ B). We bewijzen beide delen afzonderlijk. ⇒: Als G een Euleriaanse kring heeft, is G samenhangend (1) en heeft elke knoop een even graad (2). Bewijs: (1) G heeft een Euleriaanse kring ⇒ er bestaat een kring die alle knopen van G bevat (bij definitie van Euleriaanse kring) ⇒ tussen elke twee knopen bestaat een pad (volg gewoon de kring) ⇒ G is samenhangend (bij definitie van “samenhangend”). (2) Neem een willekeurige knoop v, van waaruit je stap voor stap een pad construeert dat in v begint, alle bogen precies 1 keer aandoet, en in v eindigt (zo’n pad is een Euleriaanse kring). Zij w een willekeurige knoop verschillend van v. Telkens we w passeren, hebben we een boog nodig om in w aan te komen, en een andere om te vertrekken; het aantal ongebruikte bogen invallend op w vermindert dus met 2. Als w nu een oneven graad zou hebben, zullen we op een bepaald moment in w aankomen via de laatste ongebruikte boog, waarna we niet meer verder kunnen, en de Euleriaanse kring niet kunnen afmaken. Elke knoop behalve v moet dus een even graad hebben. Dat v zelf ook een even graad moet hebben, volgt uit het feit dat we in het begin 1 boog gebruiken om uit v te vertrekken, en op het einde 1 boog om er aan te komen, dus 2 in totaal, en bij elke tussentijdse passage door v precies 2 bogen opgebruiken. ⇐: Als G samenhangend is en elke knoop een even graad heeft, heeft G een Euleriaanse kring. Bewijs: Neem een willekeurige knoop in G; we duiden die knoop aan met v0. Construeer een pad vanuit v0 door een willekeurige boog te kiezen naar een andere knoop, vanuit die knoop weer een willekeurige boog te kiezen, enz. Omdat elke knoop een even graad heeft, heeft elke knoop waarin je aankomt nog een boog over om verder te gaan. De enige uitzondering is de beginknoop v0, die na vertrek een oneven aantal ongebruikte bogen overhoudt. Dus als we vanuit v0 zo’n pad construeren en blijven verdergaan tot we niet meer kunnen, eindigen we gegarandeerd weer in v0. We hebben dan een kring 82 (v0, v1, . . . , vn, v0). Er zijn nu twee mogelijkheden: ofwel zijn alle bogen opgebruikt, dan is de kring Euleriaans en zijn we klaar; ofwel niet. In dat laatste geval is er ergens een boog (x, y) die niet op het pad voorkomt. Stel dat x en y niet in de kring zitten. Omdat de graaf samenhangend is, moet er een pad bestaan tussen x en eender welke knoop op de geconstrueerde kring, en daarom moet er een knoop vi zijn in die kring van waaruit er een boog vertrekt die niet in de kring zit. Als x en/of y wel in de kring zitten, kunnen we gewoon vi = x of vi = y nemen. Vanuit vi kunnen we nu een nieuwe kring construeren met ongebruikte bogen, op dezelfde manier als daarnet. (Zij G0 de graaf G zonder de reeds gebruikte bogen; omdat in G elke knoop even graad had en de graden in G0 een veelvoud van 2 lager zijn dan die in G, heeft G0 ook enkel even graden.) De nieuw geconstrueerde kring kan tussengevoegd worden in de oorspronkelijke: (v0, v1, . . . , vi , w1, . . . , wm−1, vi , vi+1, . . . , vn, v0). Telkens er nog ongebruikte bogen over zijn, kunnen we op deze manier de kring uitbreiden. Dit blijven we doen tot er geen ongebruikte bogen meer zijn; het resultaat is een Euleriaanse kring.
 
@@ -564,7 +564,7 @@ Ik had eerst echt totaal niet door wat er met een buurmatrix bedoelt werd ma das
 
 
 
-**Inductiestap:** als de stelling geldt voor een bepaalde k ≥ 1, dan ook voor k + 1. Bewijs: Elk pad van lengte k + 1 van vi naar vj begint met een boog van vi naar een knoop vl , en vervolgt met een pad van lengte k van v~l~ naar v~j~ . Het aantal paden van lengte k + 1 met als eerste boog (v~i~ , v~l~) is gelijk aan 0 als de boog (v~i~ , v~l~) niet bestaat (d.w.z. als A~il~ = 0), en anders (als A~il~ = 1) gelijk aan het aantal paden van lengte k van v~l~ naar v~j~ . Dat laatste is vanwege de inductieveronderstelling gelijk aan A^k^ ~lj~ . Het totaal aantal paden van lengte k + 1 is de som van al deze aantallen voor de verschillende v~l~ die gekozen kunnen worden, dus gelijk aan ![image-20220322151223540](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322151223540.png) . Dit laatste is bij definitie gelijk aan A^k+1^~ij~
+**Inductiestap:** als de stelling geldt voor een bepaalde k ≥ 1, dan ook voor k + 1. Bewijs: Elk pad van lengte k + 1 van vi naar vj begint met een boog van vi naar een knoop vl , en vervolgt met een pad van lengte k van v~l~ naar v~j~ . Het aantal paden van lengte k + 1 met als eerste boog (v~i~ , v~l~) is gelijk aan 0 als de boog (v~i~ , v~l~) niet bestaat (d.w.z. als A~il~ = 0), en anders (als A~il~ = 1) gelijk aan het aantal paden van lengte k van v~l~ naar v~j~ . Dat laatste is vanwege de inductieveronderstelling gelijk aan A^k^ ~lj~ . Het totaal aantal paden van lengte k + 1 is de som van al deze aantallen voor de verschillende v~l~ die gekozen kunnen worden, dus gelijk aan ![image-20220322151223540](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220322151223540.png) . Dit laatste is bij definitie gelijk aan $A^{k+1}_{ij}$
 
 
 
@@ -588,7 +588,7 @@ en hun som als
 
 ### **4.3.3 Incidentiematrix**
 
-**Definitie 4.20 (Incidentiematrix) **Gegeven een enkelvoudige graaf G(V, E), met V = {v~1~, v~2~, . . . , v~n~} en E = {e~1~, e~2~, . . . , e~m~}, is de incidentiematrix van G een n × mmatrix A met A~ij~ = 1 als ej invalt op v~i~ , en A~ij~ = 0 in alle andere gevallen.
+**Definitie 4.20 (Incidentiematrix) **Gegeven een enkelvoudige graaf G(V, E), met V = {v~1~, v~2~, . . . , v~n~} en E = {e~1~, e~2~, . . . , e~m~}, is de incidentiematrix van G een n × m matrix A met A~ij~ = 1 als ej invalt op v~i~ , en A~ij~ = 0 in alle andere gevallen.
 
 ![image-20220326170328823](img/image-20220326170328823.png)
 
@@ -1211,3 +1211,221 @@ Volgend algoritme geeft een methode voor het doorlopen van een gewortelde boom, 
 6) Elke knoop wordt precies 1 keer behandeld. Dit volgt nu direct uit 3, 4 en 5.
 
 Merk op dat uit het bovenstaande ook volgt dat het algoritme altijd eindigt. Er zijn n knopen en elke knoop wordt precies 1 keer gekozen voor behandeling, dus de lus wordt precies n keer uitgevoerd. Een enkele uitvoering van de lus eindigt steeds.
+
+
+
+**Diepte-eerst en breedte-eerst doorlopen**
+
+Het bovenstaande algoritme kiest steeds willekeurig een knoop in S om te behandelen. Volgende algoritme doet hetzelfde als het voorgaande, maar houdt voor elke knoop in S de diepte van de knoop bij, en kiest systematisch steeds een knoop op maximale diepte. -> diepte eerst doorlopen
+
+![image-20220419143419864](img/image-20220419143419864.png)
+
+Als we steeds een knoop op minimale diepte kiezen, in plaats van maximale, verkrijgen we de breedte-eerst variant (Eng. breadth-first).
+
+
+
+**Oefening op p135 in de cursus is lezen**
+
+
+
+### 4.10.5 Spelbomen
+
+**Minimaxprocedure**
+
+Beschouwen we nim: een spel waarbij er n stapels munten zijn, en twee spelers die om beurten van 1 willekeurige stapel 1 of meer munten wegnemen.Degene die de laatste munt wegneemt verliest het spel. We analyseren nim voor twee stapels, waarbij de eerste stapel 3 munten en de tweede stapel 2 munten telt bij het begin van het spel. De spelers heten Doos en Bol en Doos begint. 5 mogelijke zetten en zou graag weten wat de gevolgen zijn van elk van die mogelijkheden. Daartoe tekent hij een boom met als wortel een doosje met daarin de beginsituatie van het spel, namelijk $\frac{3}{2}$ . Als kinderen van die wortel tekent hij die vijf mogelijkheden, maar die tekent hij in een cirkel, omdat het dan de beurt zal zijn aan Bol.  En bij elk van de vijf mogelijkheden voor zijn eerste zet, tekent Doos de mogelijke zetten van Bol enzovoort: vermits er bij elke zet minstens ´e´en munt verdwijnt, is deze boom eindig; je ziet de volledige boom die Doos tekende in Figuur 4.32.
+
+![image-20220419145425680](img/image-20220419145425680.png)
+
+Elke eindknoop heeft $\frac{0}{0}$ en een eindknoop in de vorm van een doosje, toont een overwinning van Doos: Doos wil natuurlijk het spel zo laten verlopen dat hij bij een doosje aankomt op het einde van het spel. En bol zal hem dat proberen te verhinderen. Die volledige spelboom helpt niet veel voor Doos om zijn keuze te maken bij de eerste zet. Daarom gaat hij alle eindknopen markeren met 0 of 1: 0 als hij verliest als het spel in die toestand komt, 1 als hij wint. Je krijgt de boom van Figuur 4.33.
+
+![image-20220419145556231](img/image-20220419145556231.png)
+
+Het is duidelijk dat Doos in een eindknoop wil geraken waar een 1 in staat, want dan wint hij. Maar er is nog geen aanduiding in de wortel van de spelboom over zijn eerste zet. Stel dat een spelboom maar een niveau diep is, zoals in tekening 4.31.
+
+![image-20220419145656975](img/image-20220419145656975.png)
+
+Als van de doos-knoop alle kinderen een 0 hebben, dan zal Doos verliezen, gelijk wat hij doet, en daarom kan hij de wortel van de boom als label 0 geven: een hij in die situatie verzeild is, verliest hij zeker. Daarentegen, als er minstens ´e´en kind is met label gelijk aan 1, kan Doos bij zijn zet daar naartoe gaan: daarom kan hij de doos-knoop het label 1 geven. Een doos-knoop krijgt dus het maximum van de labels van zijn kinderen. In Figuur 4.31 links krijgt de wortel dus label 1. 
+Langs de andere kant, als een bol-knoop alleen maar kinderen met een 1 heeft, dan is de situatie een win voor Doos, want gelijk wat Bol kiest, hij verliest. Maar als er minstens ´e´en kind met een label gelijk aan 0 is, kan Bol die zet kiezen en is hij dus in een situatie om Doos te doen verliezen, bijgevolg kan de bol-knoop het label 0 krijgen. Een bol-knoop krijgt dus het minimum van de labels van zijn kinderen. In Figuur 4.31 rechts krijgt de wortel dus label 0.
+
+Deze procedure van labeling berekent een label voor elke knoop waarvan de labels van zijn kinderen al bekend zijn. We passen ze toe op Figuur 4.33 en verkrijgen Figuur 4.34. Zoals aangegeven, labelt deze procedure in een pad van de bladeren naar de wortel afwisselend met het minimum en maximum van de labels van de kinderen: daarom wordt dit de minimaxprocedure genoemd.
+Figuur 4.34 laat het resultaat zien van de minimaxprocedure uitgevoerd op 4.33.
+
+![image-20220419152131529](img/image-20220419152131529.png)
+
+**Evaluatiefunctie**
+
+In principe kan je van veel andere spelen ook de hele spelboom opstellen, maar in parktijk is dat niet te doen omdat de spelboom te diep is en de vertakkingsgraad te groot. Bv schaak, 20 openingszetten waarop telkens 20 mogelijke antwoorden zijn en het aantal mogelijke zetten stijgt nadien nog. Dit eindigt uiteindelijk in een enorm groot getal. We kunnen de boom dus maar analyseren tot een bepaalde diepte d. Dit betekent dat we de bladeren niet kennen. Daarom gaan we een evalutiefunctie E gebruikenL E kent aan elke knoop diepte d een getal toe dat groter is naarmate de positie beter is voor Doos. Deze functie is niet onfeilbaar maar komt dichtbij.
+
+
+
+**α-snede en β-snede**
+
+Soms kan vermeden worden om sommige spelposities - knopen in de spelboom - te evalueren. In figuur 4.37 zie je dat als berekend is dat m waard -1 heeft, de evaluatie van de broers en zusters van m niet meer moet gebeuren: immers, het label van de ouder van m zal hoogstens -1 zijn (want we zullen het minimum van de labels van de kinderen nemen) en er is op dat niveau al een label −1, dus gelijk wat de vraagtekens opleveren, het label van de wortel w – die het maximum wordt van de labels van zijn kinderen – zal er niet door beïnvloed worden. We noemen dit een α-snede (cutoff).
+
+Analoog aan de α-snede is er ook een β-snede: een β-snede komt voor bij een bolknoop w als een kleinkind m een waarde heeft die groter of gelijk is aan de β-waarde van w; de β-waarde van w is de tot dan toe kleinste waarde van een kind van w. In die situatie mag de deelboom met wortel de ouder van m verwijderd worden uit de spelboom.
+
+![image-20220419154431909](img/image-20220419154431909.png)
+
+Als bijkomend voorbeeld van het α−β-algoritme, beschouw de figuur 4.38: de waarde van de bladeren staat eronder, maar is nog niet berekend.
+
+De spelboom wordt weer diepte-eerst doorlopen - en hier ook van links naar rechts. Vlak voor de evaluatie van knoop a gebeurt (zie Figuur 4.39) is de β-waarde van d = 6. Vermits E(a) = 8 hebben we een β-snede die mogelijk maakt om de evaluatie van de de andere kinderen van c over te slaan. De definitieve waarde van d is dan bekend en gelijk aan 6. Daardoor wordt de α-waarde van w = 6. Later is de waarde van e al bekend: 3 en 3 < α-waarde van w bijgevolg hebben we een α-snede voor w, t.t.z. de deelboom die begint bij h (de ouder van e die de snede mogelijk maakte) hoeft niet geëvalueerd te worden. Figuur 4.39 toont de niet-berekende waarden van eindknopen en lege cirkels/dozen voor knopen die weggesneden werden
+
+![image-20220419155141283](img/image-20220419155141283.png)
+
+
+
+## 4.11 Netwerkmodellen en Petri-netten
+
+Een netwerk van verbindingen, elk met hun eigen capaciteit, kan gemodelleerd worden als een gerichte, gewogen graaf. Als voorbeeld kan je denken aan een wegennetwerk, een elektrisch netwerk of aan een stel oliepijplijnen. Het belangrijkste probleem i.v.m dit soort netwerken is het optimaliseren van een stroming, zonder capaciteitsoverschreiding. We zullen dit optimalisatieprobleem oplossing in de context van grafentheorie. Ook andere problemen die op het eerste zicht niets met optimalisatie van stroming te maken hebben, kunnen gemodelleerd worden als een netwerkprobleem: personeelstoewijzing, toekenning van resources en ook het partner-keuzeprobleem (“The marriage problem”). Petrinetten modelleren gelijktijdige acties en vormen een kader om bijvoorbeeld “deadlock” problemen te bekijken.
+
+### 4.11.1 Transportnetwerk
+
+**Definitie 4.31 (Transportnetwerk)** Een transportnetwerk (of simpelweg een netwerk) is een enkelvoudige, gewogen, gerichte graaf G die voldoet aan:
+
+1. Er is juist 1 knoop in G zonder binnenkomende bogen; deze knoop wordt de **bron** genoemd (Eng.: source)
+2. Er is juist 1 knoop in G zonder buitengaande bogen; deze knoop wordt de **put** genoemd (Eng.: sink)
+3. Het gewicht van C~i,j~ van de (gerichte) boog (i,j) is positief en wordt de **capaciteit** van de boog genoemd
+4. G is samenhangend
+
+Figuur 4.40 toont een netwerk: de bron is de knoop a en de put is de knoop z; de capaciteit van elke boog is bij de boog geschreven. Het netwerk modelleert bijvoorbeeld een stel eenrichtingsstraten in een stad tussen het station (knoop a) en de markt (knoop z); de capaciteit is het aantal voertuigen dat per minuut kan passeren door elke straat.
+
+![image-20220422145133969](img/image-20220422145133969.png)
+
+
+
+**Definitie 4.32 (Stroming)** Voor een netwerk G(V,E) met capaciteiten C~i,j~, i,j ∈ V is F een stroming als F een afbeelding is van E naar $\R^+$ zodanig dat
+
+1. F(i,j) ≤ C~i,j~
+
+2. voor elke knoop j die niet de bron of de put is geldt:
+
+   $\sum_{i∈V}F(i,j) = \sum{i∈V}F(j,i)$
+
+   
+
+We noemen F(i,j) de stroming in boog (i,j). Voor een knoop j noemen we $\sum_{i∈V}F(i,j)$ de stroming naar of in j en $\sum_{i∈V}F(j,i)$ de stroming uit j.
+
+
+
+Formule 2 in definitie 4.32 drukt het behoud van stroming uit: alles wat binnenkomt in een knoop, gaat er weer buiten en alles wat buitengaat, is binnengekomen; dat verhindert dat er een ophoping of productie gebeurt in de knopen.
+
+![image-20220422150907775](img/image-20220422150907775.png)
+
+Je kan nagaan dat formule 2 in definitie 4.32 voldaan is voor elke knoop behalve de bron en de put.
+
+**Stelling 4.33** Van een stroming F in een netwerk G(V, E) is de stroming uit de bron gelijk aan de stroming in de put, of meer formeel: 
+
+$\sum_{i∈V} F(a, i) = \sum_{i∈V} F(i, z)$
+
+
+
+**Bewijs:** Het is duidelijk dat
+
+$\sum_{j∈V}(\sum_{i∈V} F(i, j)) =\sum_{i∈V}(\sum_{j∈V} F(i, j))$
+
+De omwissling van de $\sum$'s mag omdat de grafen eindig zijn. De tweede gelijkheid geldt wegens hernoeming van i en j.
+Daaruit volgt:
+
+![image-20220422151746217](img/image-20220422151746217.png)
+
+vermits F(z, i) = 0 = F(i, a) voor $\forall i ∈ V$ (door definitie 4.32) en $\sum_{i∈V} F(i, j) = \sum_{i∈V} F(j, i)$  voor ![image-20220422152248396](img/image-20220422152248396.png) (door formule 2 in definitie 4.32)
+
+Op basis van stelling 4.33, kunnen we nu definiëren:
+
+**Definitie 4.33 (Grootte van een stroming)** De grootte van een stroming F in een netwerk G(V, E) met bron a en put z is gedefineerd door $\sum_{i∈V} F(a, i)$ of $\sum_{i∈V} F(i, z)$. We noteren de grootte van F als |F|
+
+
+
+Het netwerkprobleem kan nu als volgt geformuleerd worden: voor een gegeven netwerk G, vind de maximale stroming, of m.a.w. vind de stroming met de maximale grootte.
+
+Tot slot van deze sectie, nog iets over netwerken met meer dan 1 bron of put: het netwerk in figuur 4.42 stelt de waterbevoorrading van de steden A en B voor, vanuit de bronnen X,Y en Z en over verdeelstations b,c en d.
+
+![image-20220422153018961](img/image-20220422153018961.png)
+
+![image-20220422153032684](img/image-20220422153032684.png)
+
+### 4.11.2 Maximale stroming
+
+We zullen een algoritme zien om een maximale stroming te berekenen. Het basisidee is eenvoudig: vertrek van een stroming en verbeter die totdat dat niet meer mogelijk is; je hebt nu een maximale stroming. Een intuïtieve beschrijving van hoe je een stroming verbetert, gaat als volgt:
+
+- Neem een pad P van de bron a naar de put z
+- zoek het minimum ∆ van C~b~ − F(b) over alle bogen b ∈ P
+- bepaal de nieuwe stroming langs het pad P door bij elke F(b) ∆ bij te tellen.
+
+Een paar opmerkingen bij dit voorschrift
+
+- De operatie verhoogt de stroming enkel als het pad P (toevallig) zo is dat ∆ > 0
+- De beschrijving geldt alleen voor een pad waarvan elke boog de goede richting heeft, maar
+- we mogen niet alleen paden van a naar z zoeken langs de gerichte bogen: bekijk Figuur 4.45(a); daarin zie je dat geen enkel pad van a naar z met enkel goede bogen “verbeterd” kan worden met bovenstaande methode; maar de stroming langs het pad (a, b, c, z) kan wel verbeterd worden door de stroming getoond in Figuur 4.45(b);
+  we moeten dus ook paden beschouwen waarvan bogen “omgekeerd” lopen en we moeten voor die verkeerde bogen niet iets optellen bij de stroming, maar er iets aftrekken: als een “omgekeerde” boog een stroming draagt kan het immers zijn dat er alleen maar iets rondstroomt zonder ooit de put te bereiken; we formaliseren dat als volgt:
+
+![image-20220422154339909](img/image-20220422154339909.png)
+
+**Definitie 4.34 (Goede / slechte boog)** In een gerichte graaf G(V,E) met pad (v~1~,v~2~,...,v~n~) noemen we de boog (v~i~,v~i+1~) goed (gericht) indien (v~i~, v~i+1~) ∈ E en anders slecht (gericht).
+
+
+
+
+
+In een pad P zullen we de goede bogen noteren door P~+~ en de slechte door P~-~.
+
+**Stelling 4.34 (Verbeteren van een stroming)** Zij P een pad van a naar z in een netwerk G(V, E), waarbij
+
+1. $∀(i, j) ∈ P_+: F(i, j) < C_{i,j}$
+2. $∀(i, j) ∈ P_−: 0 < F(i, j)$
+
+![image-20220422155254613](img/image-20220422155254613.png)
+
+
+
+Algoritme: Constructie van een maximale stroming![image-20220503141207389](img/image-20220503141207389.png)
+
+**Stelling 4.35** Het voorgaande algoritme eindigt steeds
+
+**Bewijs:** Punt 3 in het algoritme is cruciaal: zolang de uitgang stop niet genomen wordt, wordt punt 3 herhaaldelijk uitgevoerd. Vanuit punt 3, gaat de uitvoering ofwel naar punt 2 of punt 4. De overgang van punt 3 naar punt 2 kan maar een eindig aantal keer gebeuren, want die overgang impliceert dat de stroming verbeterd wordt met ∆ > 0; ∆ is geheel omdat alle capaciteiten geheel zijn en vermits de maximale stroming begrensd is (door de som van de capaciteiten van de bogen die vertrekken in de bron) kan de gegeven stroming dus slechts een eindig aantal keer verbeterd worden. Na een eindig aantal overgangen van punt 3 naar punt 2, wordt dus steeds opnieuw de overgang van punt 3 naar punt 4 genomen. In punt 4 wordt telkens een knoop toegevoegd aan B (die nooit meer terug op ∅ wordt gezet). Bijgevolg zal na verloop van tijd L = B en op dat moment stopt het algoritme. 
+
+
+
+**Definitie 4.35 (Snede)** Een snede van een netwerk G(V, E) met bron a en put z, is een 2-tal (P, P) zodanig dat ![image-20220503144051379](img/image-20220503144051379.png)
+
+
+
+Zie hier een netwerk in twee verdeelt door een snede 
+
+![image-20220503144335580](img/image-20220503144335580.png)
+
+**Figuur 4.46: een netwerk met een stroming en een snede**
+
+We kunnen checken hoeveel stroming er globaal loopt over de snede door de pijlen van de bogen van links naar rechts die over de snede lopen op te tellen en de pijlen van rechts naar links af te trekken.
+
+**F(c,e) + F(b,d) - F(d,c) = 2+1-1 =2**
+
+Als we dit vergelijken met de stroming in a of z dan zien we dat die ook gelijk is aan 2. Is dit toeval? find out in the next episode of dragon ball z.
+
+
+
+Als we proberen een schatting te maken van hoeveel stroming er maximaal van links naar rechts over de snede kan lopen, door optimistisch te veronderstellen dat er misschien een stroming bestaat die voor alle goede bogen over de snede maximaal is, dus gelijk aan de capaciteit van die boog en voor alle slechte bogen nul. Dit is de capaciteit.
+
+Bijvoorbeeld:
+
+**C(c,e)+C(b,c) = 3 + 2 = 5**
+
+
+
+**Definitie 4.36 (Capaciteit van een snede)** De capaciteit van een snede $(P, \bar{P})$ is $C(P,\bar{P}) = \sum_{i∈P}\sum_{j∈\bar{P}}C_{i,j}$
+
+**Stelling 4.36** De capaciteit van een snede is niet kleiner dan een stroming, m.a.w. $\sum_{i∈P}\sum_{j∈\bar{P}}C_{i,j}≥ \sum_{i∈V}F(a,i) $
+
+![image-20220503151942544](img/image-20220503151942544.png)
+
+
+
+**Stelling 4.37 (Max flow, min cut)** Voor een snede $(P,\bar{P})$ en stroming F in een net G(V, E) geldt dat als $C(P,\bar{P}) = |F| ~ (of dus als \sum_{i∈P}\sum_{j∈\bar{P}}C_{i,j}= \sum_{i∈V}F(a,i) )$
+
+dan is de stroming maximaal en de snede minimaal.
+Bovendien is die gelijkheid equivalent met
+
+1. $∀i ∈ P, j ∈ \bar{P} : F(i, j) = C_{i,j}$ en
+2. $∀i ∈ \bar{P} , j ∈ P : F(i, j) = 0$
+
+d.w.z. goede bogen over de snede hebben een stroming gelijk aan hun capaciteit en slechte bogen een nul stroming.
