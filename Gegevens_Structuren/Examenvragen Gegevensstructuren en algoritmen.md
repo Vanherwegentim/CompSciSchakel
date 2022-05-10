@@ -463,4 +463,117 @@ Hierboven zien we probleemgrootte n, max grootte van de getallen d = 3 en base =
 
 Voor Counting sort eenmaal toe te passen hebben we een complexiteit van O(n+b). Voor elke d > 1 moeten we counting sort nog is toepassen dus dat betekent dat de complexiteit verandert naar O(d(n+b)).
 
-Afhangend van bepaalde inputs kan LSD of radix sort het dus beter doen quick sort of merge sort.
+Afhangend van bepaalde inputs kan LSD of radix sort het dus beter doen dan quick sort of merge sort.
+
+
+
+## Les 6: Priority Queues & Balanced Trees
+
+### Vraag 1
+
+**Stel dat we ternaire heaps (t.t.z. een heap met 3 kinderen per knoop) zouden gebruiken voor heapsort. Op welke manier zou dit de tijdscomplexiteit beïnvloeden?**
+
+Volgens wikipedia is het moeilijker om te programmeren maar doet een constant getal minder swaps en vergelijking operaties. Dit is omdat elke sift-down step in een ternaire heap 3 vergelijkingen en 1 swap vraagt, terwijl een binaire heap 2 vergelijkingen en 1 swap vraagt. Twee levels in een ternaire heap doet 3^2^ = 9 elementen, het doet dus meer met dezelfde hoeveelheid vergelijkingen als 3 levels in een binaire heap, die maar 2^3^ = 8 elementen doet. Dit is interessant maar de toegevoegde complexiteit is de weinige toevoeging aan de efficiëntie blijkbaar niet waard. (Bottom-up heapsort doet blijkbaar beter dan beide)
+
+
+
+### Vraag 2
+
+**Gegeven de array [1,2,3,4,5,6,7,8,9]. Indien men de elementen van deze array op de overeenkomstige posities van een heap plaatst, staat het element 1 in de wortel van de heap, en het element 9 op de laatste positie van de heap. Deze heap is uiteraard niet geldig m.b.t. de plaatsing van de waarden van de elementen. Schets de structuur van de heap nadat men de heap in de juiste toestand heeft gebracht (t.t.z. net vóór de extractie van het eerste wortelelement voor de sortering begint in heapsort).**
+
+![image-20220419194000301](img/image-20220419194000301.png)
+
+(ik denk zoiets?)
+
+
+
+### Vraag 3
+
+**Becommentarieer de volgende uitspraak: “Heapsort kan gebruikt worden i.p.v. Counting Sort (key-indexed sorting), als de basis voor Least Significant Digit (LSD) sortering.”**
+
+This would not work at all because heapsort is not stable at all which breaks the functionality of LSD.
+
+
+
+### Vraag 4
+
+**(toegevoegd 4 april 2022) Wat is de tijdscomplexiteit van Heapsort indien de te sorteren array reeds gesorteerd zou zijn vooraleer men Heapsort toepast? Wat indien de array omgekeerd gesorteerd zou zijn?**
+
+De tijdscomplexiteit van heapsort van een array met lengte n dat al gesorteerd is in stijgende orde is $O(nlog(n))$ omdat zelfs al is het gesorteerd wordt de array nog steeds getransformeerd en dan gesorteerd.
+
+De tijdscomplexiteit van heapsort van een array met lengte n dat al gesorteerd is in dalende orde is $O(nlog(n))$ omdat zelfs al wordt de boom gebouwd in lineare tijd, elke keer dat het max element verwijderd wordt en de heapify methode gecalled wordt, gaat het over de hele boom gaan.
+
+In conclusie, de volgorde van de elementen in de array maakt niet veel verschil voor de tijdscomplexiteit. Daarom is het volgende het geval:
+
+![image-20220419195809377](img/image-20220419195809377.png)
+
+
+
+### Vraag 5
+
+**(toegevoegd 4 april 2022) Hier vind je de array-representatie van een heap:
+i  0  1  2  3  4  5  6  7  8  9  10  11
+a[i]  -  A  C  D  F  H  X  Y  K  G  S  R
+Vul hieronder de nieuwe toestand van de array in, na toevoeging van de waarde B:
+i  0  1  2  3  4  5  6  7  8  9  10  11  12
+a[i]  - **A C B F H D Y K G S R X
+
+Dit is wat ik ben uitgekomen en heb het proberen het te testen hier: https://www.cs.usfca.edu/~galles/JavascriptVisual/Heap.html
+
+**Vul hieronder de nieuwe toestand van de array in, na verwijdering van het minimum uit de originele heap (dus zonder de toevoeging van B te hebben uitgevoerd):
+i  0  1  2  3  4  5  6  7  8  9  10
+a[i] ** C D F H X Y K G S R
+
+
+
+### Vraag 6
+
+**(*Examen juni 2015, vraag 8 - zie vorige examens voor volledige opgave*) Bewerkingen analyseren op een binaire heap.**
+
+TODO
+
+
+
+### Vraag 7
+
+**(Examen september 2016, vraag 7 - zie vorige examens voor volledige opgave) (Young-tabel). Dit is een mooie illustratie hoe heaps niet noodzakelijk in boomstructuren moeten voorgesteld worden, maar bvb. ook een matrix-vorm mogelijk is.**
+
+TODO
+
+
+
+### Vraag 8
+
+**(*Examenvraag juni 2020*) Geef een bespreking van de insert- operaties in een 2-3 boom.**
+
+Er is heel wat te bespreken wat er zijn verschillende soorten cases bij de insert van een 2-3boom.
+
+**Case 1: insert into a 2-node**
+
+Als we een nieuw element toevoegen en we zien dat het element nog niet in de heap zit dan zoeken we naar de plek dat die zou moeten zitten. En we voegen die daar toe. Als deze plek een 2-node plek is dan maken we er een 3-node plek van en voegen het element toe op de correct plaats. zie afbeelding.
+
+![image-20220503194023583](img/image-20220503194023583.png)
+
+**Case 2: insert into a 3-node, whose parent is a 2-node**
+
+Moeilijk om uit te leggen met woorden dus zie afbeelding.
+
+![image-20220503194307966](img/image-20220503194307966.png)
+
+**Case 3: insert into a 3-node, whose parent is a 3-node**
+
+hetzelfde hier
+
+![image-20220503194331064](img/image-20220503194331064.png)
+
+
+
+
+
+## Les 7: Rood-Zwart Bomen en Tries
+
+### Vraag 1
+
+**a) Teken de Rood-Zwart boom (Left Leaning Red Black Tree, kleinere waarden links, grotere waarden rechts), die het resultaat is van de volgende elementen (in deze volgorde) in een initieel lege boom toe te voegen: 4 - 2 - 8 - 6 - 12 - 10 - 16 - 14 - 20 - 18. Geef duidelijk de waarden per knoop + de kleur van de verbindingen weer.**
+
+![image-20220510150850643](img/image-20220510150850643.png)
