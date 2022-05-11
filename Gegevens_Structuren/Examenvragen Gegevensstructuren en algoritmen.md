@@ -577,3 +577,280 @@ hetzelfde hier
 **a) Teken de Rood-Zwart boom (Left Leaning Red Black Tree, kleinere waarden links, grotere waarden rechts), die het resultaat is van de volgende elementen (in deze volgorde) in een initieel lege boom toe te voegen: 4 - 2 - 8 - 6 - 12 - 10 - 16 - 14 - 20 - 18. Geef duidelijk de waarden per knoop + de kleur van de verbindingen weer.**
 
 ![image-20220510150850643](img/image-20220510150850643.png)
+
+Ik raad aan dat je de volledige animatie bekijkt op de volgende site want het is toch niet zo simpel als het er uitziet. 
+
+https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
+
+**b) Voeg nu de waarde 19 toe aan deze boom. Teken duidelijk alle transformaties (rotaties + kleurenwisselingen) die worden uitgevoerd om de boom terug in een geldige toestand te brengen.**
+
+Stap 1:
+
+![image-20220510151545869](img/image-20220510151545869.png)
+
+![image-20220510151624431](img/image-20220510151624431.png)
+
+Stap 2:
+
+![image-20220510151637672](img/image-20220510151637672.png)
+
+![image-20220510151700003](img/image-20220510151700003.png)
+
+Stap 3:
+
+![image-20220510151723265](img/image-20220510151723265.png)
+
+Stap 4:
+
+![image-20220510151741457](img/image-20220510151741457.png)
+
+## Les 8: Stacks, Queues & Hash Tabellen
+
+### Vraag 1
+
+**Vorige examens hebben vaak een rekenoefening i.v.m. hashtabellen. Zie bvb. vraag 2 van het examen juni 2020.**
+
+TODO
+
+
+
+### Vraag 2
+
+**(*Examenvraag Juni 2021*) Bespreek linear probing om collisions in hash-tabellen op te lossen.**
+
+Collision: 2 keys hash to the same index
+
+2 ways to deal with collisions:
+
+- Separate chaining
+- Linear probing
+
+Linear probing is heel simpel. Als we een collision tegenkomen dan gaan we simpel weg opschuiven naar een hogere index waar nog geen element is. Het enige probleem hier is dat de cost van onze operatie kan stijgen door clustering. Clustering heb je wanneer er al veel elementen exact naast elkaar staan zoals hieronder.
+
+![image-20220510155819677](img/image-20220510155819677.png)
+
+Als je dan een element toevoegt en de hash mapt uit op iets in de cluster moet je helemaal naar het einde van de cluster.
+
+**Verwijderen van een element**
+
+2 opties
+
+- Zet een 'grafzerk' op de verwijderde entry "marked as deleted"
+- of rehash alle items in de cluser na de gedelete item. 
+
+
+
+### Vraag 3
+
+**(*Examenvraag Juni 2021*) Bespreek de tijdscomplexiteit voor het toevoegen van elementen aan een stack, gebruik makende van de array-implementatie, en waarbij de array telkens verdubbeld wordt in grootte als de stack vol zit.**
+
+O(n)
+
+https://stackoverflow.com/questions/23980115/time-complexity-of-dynamic-array-via-repeated-doubling
+
+Deze stackoverflow post geeft wat extra info.
+
+
+
+
+
+## Les 9: Greedy algoritmen
+
+### Vraag 1
+
+**Wat is de algemene aanpak van greedy algoritmen? Vergelijk met Dynamic Programming.**
+
+Definitie volgens google voor dynamic programming: ***Dynamic Programming (DP) is** **an algorithmic technique for solving an optimization problem by breaking it down into simpler subproblems and utilizing the fact that the optimal solution to the overall problem depends upon the optimal solution to its subproblems**.*
+
+
+
+Greedy Algoritme:
+
+***Make the choice that seems best now. We will get a solution but not necessarily the best solution. A (best) solution can be reached in making small steps; should not be dependent on future steps still to make.***
+
+
+
+Het verschil is dus duidelijk. DP  gaat ons de optimale oplossing geven door voor elk subprobleem de optimale oplossing te geven maar dit kan ten kosten gaan van andere dingen zoals tijd, geheugen, etc... Greedy Algoritme daarentegen gaat ons op een efficiënte manier een oplossing geven maar dit is niet gegarandeerd de beste.
+
+
+
+### Vraag 2
+
+**Wat bedoelen we met "optimale substructuren"? Opwelke manier kan dit ons helpen om algoritmen te ontwikkelen?**
+
+Wanneer we een probleem moet oplossen, moeten we eerst de subproblemen oplossen, dus de problemen waar het grote probleem uitbestaat. Als we dan de optimale oplossing zoeken voor het grote probleem, moeten we eerst de optimale oplossing voor de subproblemen vinden. Dit noemen we de optimale substructuren.
+
+
+
+### Vraag 3
+
+Tom scott video over huffman coding voor snelle refresher:
+
+https://www.youtube.com/watch?v=JsTptu56GM8
+
+**Gegeven één of andere string, stel de Huffman coderingsboom op voor deze string.**
+
+Nemen de string: Representation
+
+Eerst frequentie tabel opstellen
+
+| letter | frequentie |
+| ------ | ---------- |
+| r      | 2          |
+| e      | 3          |
+| p      | 1          |
+| s      | 1          |
+| t      | 2          |
+| a      | 1          |
+| i      | 1          |
+| o      | 1          |
+| n      | 2          |
+
+![image-20220510203540935](img/image-20220510203540935.png)
+
+https://www.csfieldguide.org.nz/en/interactives/huffman-tree/
+
+
+
+### Vraag 4
+
+**Hoe ziet de Huffman codering er uit indien de frequentie van characters zich verhoudt tot de Fibonnaci getallen?**
+
+![image-20220510204010951](img/image-20220510204010951.png)
+
+Als je een Huffman boom construeert met gewichten evenredig aan de Fibonacci reeksen (exclusief 0):
+
+1, 1, 2, 3, 5, 8, 13, 21, ...
+
+Dan zult u zien dat de resulterende boom maximaal unbalanced is: elk intern knooppunt heeft minstens één leaf. Bijgevolg zullen de knopen met het label "1" een zeer grote diepte hebben: als we de eerste d+1 Fibonacci termen in de boom opnemen, dan zullen de 1 knopen diepte d hebben.
+
+
+
+### Vraag 5
+
+Bewijs poep, TODO
+
+
+
+### Vraag 6
+
+**Wat is de tijdscomplexiteit om een string van lengte N, die bestaat uit R verschillende characters, te coderen met Huffman codering?**
+
+Ik vind hier nogal weinig over terug en ze spreken nooit over een distinctie met R verschillende characters. Volgens stackoverflow komt het neer op $O(nlogn)$.
+
+Pas dit aan als ge iets beters vindt : )
+
+
+
+### Vraag 7
+
+**Stel dat we een Huffman-codering gebruiken voor een string die bestaat uit de karakters {A, B, C, D}. Geef voor elk van onderstaande Huffman-coderingen aan of ze al dan niet mogelijk kunnen voorkomen. Indien ja, wat kan je afleiden i.v.m. frequenties waarbij de karakters in de string voorkomen? Indien nee, waarom niet?**
+
+- **{A, B, C, D} worden respectievelijk gecodeerd als {0, 10, 111, 110}**
+
+  Ja dit kan en de frequentie gaat er ongeveer zo uitzien: 
+  A > B > C > D
+
+- **{A, B, C, D} worden respectievelijk gecodeerd als {0, 10, 101, 111}**
+
+  Ik denk niet dat dit mogelijk is omdat dit niet voldoet aan de manier waarop de huffman tree wordt opgebouwd.
+
+- **{A, B, C, D} worden respectievelijk gecodeerd als {11, 01, 10, 00}**
+
+  Dit is mogelijk wanneer A, B, C, D allemaal dezelfde waarde hebben.
+
+
+
+### Vraag 8
+
+**(*Examenvraag Juni 2021*) Bespreek Huffman-codering: principes, constructie, ... Illustreer met voorbeelden indien nodig.**
+
+Huffman-codering is het meeste efficiënte lossless compressie algoritme als we enkel kijken naar het voorkomen van letters.
+
+Het algoritme zelf uitleggen is best wel lastig dus ik ga dat later doen maar Tom Scott zijn video bij vraag 3 legt dit perfect uit.
+
+Ik weet niet wat ik nog moet zeggen dus, TODO
+
+
+
+
+
+### Vraag 9
+
+**Leg uit: algoritme van Prim/Kruskal. Zou je dit algoritme beschouwen als een greedy algoritme (argumenteer), dan wel als een dynamisch (dynamische algoritmen komen aan bod in een volgende les) algoritme (argumenteer), beide (argumenteer), of geen van beide (argumenteer).**
+
+**Prim's algoritme:**
+
+Uitleg: https://www.youtube.com/watch?v=cplfcGZmX7I
+
+Greedy omdat het tijdens het uitvoeren altijd gaat kiezen voor het pad met het kleinste getal. 
+
+
+
+
+
+**Kruskal's Algoritme:**
+
+Uitleg: https://www.youtube.com/watch?v=71UQH7Pr9kU
+
+Greedy omdat het tijdens het uitvoeren altijd gaat kiezen voor de verbinding met het kleinste getal
+
+
+
+## Les 10: Dynamic Programming
+
+### Vraag 1
+
+**Zou je het algoritme van Dijkstra beschouwen als een dynamisch algoritme, dan wel een greedy algoritme, of beide? Verklaar? (niet relevant indien grafenalgoritmen niet gezien zijn).**
+
+Het is beide omdat je hier ook altijd kiest voor het kortste pad zoals bij greedy maar je update de afstanden ook met waarden die je eerder berekent hebt.
+
+
+
+
+
+### Vraag 2
+
+**Beschouw een schaakbord met n x n vakjes, met vakje (1,1) in de linkerbenedenhoek, en vakje (n,n) in de rechterbovenhoek. Op elk vakje liggen een aantal graankorrels (> 0). Stel dat je een pad moet volgen, startende op (0,0), en eindigend op (n,n), waarbij je telkens een vakje naar rechts of naar boven mag bewegen (niet naar links of beneden), en waarbij je ondertussen alle graankorrels verzamelt in de vakjes waar je passeert (inclusief begin- en eindvakje).**
+
+**Ontwikkel een efficiënt algoritme dat berekent wat het maximaal aantal graankorrels is dat je kan verzamelen door dergelijk pad te volgen.**
+
+**Beschrijf eerst de algemene aanpak, geef pseudocode, alsook de tijdscomplexiteit.**
+
+Ik zou gaan voor een algoritme gebaseert op dijkstra's algoritme maar ipv dat het algoritme kiest voor de laagste waarde, neemt die de grootste waarde.
+
+![image-20220511155451402](img/image-20220511155451402.png)
+
+unvisited nodes: {(0,0), (1,0), (0,1), (1,1), (2,0), (0,2), (1,2), (2,1)}
+
+Als we gaan van node (0,0) naar node (2,2) zoeken we de weg die ons het grootste getal geeft.
+
+**Pseudo code**
+
+![image-20220511164848495](img/image-20220511164848495.png)
+
+Iets gelijkaardigs aan dit maar dan voor de grootste waardes.
+
+**Tijdscomplexiteit:**
+
+Dijkstra's shortest path algorithm is `O(ElogV)` where:
+
+- `V` is the number of vertices
+- `E` is the total number of edges
+
+### Vraag 3
+
+**(*Examenvraag Juni 2021*) De Longest Repeating Subsequence (LRS) van een gegeven string is de langste subsequentie (let op: een subsequentie is niet hetzelfde als een substring) die meer dan éénmaal, en zonder overlappingen, in de gegeven string voorkomt. Voorbeeld: voor de string “BBAEACDD” is AD een subsequentie die meer dan éénmaal en zonder overlapping voorkomt: “BBAEACDD”, maar ze is niet de langste. De subsequentie BAD is de langste herhalende subsequentie: “BBAEACDD”. De 2 verschillende voorkomens van de subsequentie zijn telkens met onder- en overlijning aangegeven.**
+**Ontwikkel een efficiënt algoritme om de lengte van de LRS van een gegeven string te berekenen. Je hoeft enkel de lengte als resultaat te berekenen, niet de LRS zelf. Bespreek de algemene aanpak van je algoritme, geef pseudocode, en bespreek tevens de tijdscomplexiteit.**
+
+TODO
+
+
+
+### Vraag 4
+
+**(*Examenvraag Augustus 2021*) Leg uit wat de algemene aanpak is van “dynamic programming”. Illustreer met 2 relevante voorbeelden waarom dynamic programming voor die voorbeelden een goede aanpak is.**
+
+De algemene aanpak van dynamic programming is het aanpakken van een probleem door het op te delen in subproblemen en dan de optimale oplossing voor de subproblemen te zoeken.
+
+Voorbeelden:
