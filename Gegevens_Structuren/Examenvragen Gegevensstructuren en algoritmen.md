@@ -103,6 +103,8 @@ Als we de uitgekomen functie plotten op de calculator komen de punten ongeveer o
 
 Niet de meeste accurate maar dat komt wss door de kommagetallen.
 
+Brian: Gaat gewoon 160 zijn, ge ziet dat de tijd ong verdubbeld per 1000, met altijd een kleine afwijking.
+De 5 in't begin is toevallig geen 10, waarschijnlijk omda het eens best case geweest zal zijn :).
 
 
 ### Vraag 5
@@ -111,7 +113,8 @@ Niet de meeste accurate maar dat komt wss door de kommagetallen.
 **tijdscomplexiteit ~d.n^3. Geef twee valabele redenen waarom een programmeur toch zou kunnen kiezen voor algoritme Y i.p.v. algoritme X om het bewuste probleem op te lossen.**
 
 Op de moment niet echt een idee? Misschien voor hele kleine N?
-
+Brian: Algorithme X kan een groter geheugen nodig hebben dan Algorithme Y (zie in place sorting)
+Heel kleine N is ook een mogelijk antwoord denk ik, vooral als ge rekening houdt met lagere orde termen die hier worden weggelaten door de tilde notatie
 
 
 ## Les 2 Selection Sort, Insertion Sort, Merge Sort
@@ -193,6 +196,9 @@ slides vanaf slide 28
 
 1. **Hoeveel vergelijkingen tussen elementen heeft MergeSort maximaal nodig om een array van 6 elementen te sorteren? Hoeveel voor een array van 9 elementen? (geef enkel de aantallen)**
 
+Brian: De redenering hier onder klopt niet (denk ik) voor kleine N, ge moet het handmatig uitrekening. 
+Hij doet het eens in de les, ge kunt zoeken naar de pols.
+
 2. De slides zeggen dat mergesort nlog~2~n vergelijkingen doet. 
 
 3. Dus voor een array van 6 elementen. 
@@ -212,7 +218,6 @@ slides vanaf slide 28
    ***Opmerking: deze vraag veronderstelt ook kennis die in latere lessen aan bod zal komen ...***
 
 ### 		TODO
-
 
 
 ### Vraag 4
@@ -243,7 +248,7 @@ Ik denk dat we gewoon hun formules mogen gebruiken
 
 ![image-20220411213556547](img/image-20220411213556547.png)
 
-
+Brian: De gegeven Array is altijd partieel geordend, waardoor de formules aangepast moeten worden. Kweet het precieze antwoord ni vanbuiten.
 
 ## Les 3 & 4: Quicksort
 
@@ -325,7 +330,7 @@ Algemene opmerking: sommigen zijn misschien verontrust door het “losjes” oms
 **Indien we Quicksort zouden implementeren met 2 pivots (en 3 partities), hoe zou de tijdscomplexiteit zich gedragen? Let op: dit is niet hetzelfde als een 3-way Quicksort waarbij 1 van de partities enkel elementen bevat die gelijk zijn aan de pivot.**
 
 Heel goeie vraag. Waarschijnlijk sneller, anders zouden ze de vraag niet stellen maar vraag me niet waarom : )
-
+Brian: Er zouden meer vergelijking gemaakt moeten worden,f denk dat de tijdscomplexiteit verandert van c log2n naar dlog3n
 
 
 ### Vraag 3
@@ -431,7 +436,7 @@ Voor de negatieve integers zouden we de array, die we gebruiken om de hoeveelhei
 
 Voor decimale fracties kan je all getallen maal dezelfde bepaalde hoeveelheid doen zodat je een integer krijgt en dan op een normale manier kan sorteren.
 
-is dit juist? Philly zeg het mij, amen.
+is dit juist? Philly zeg het mij, amen. Brian: Ja juist nerd
 
 
 
@@ -443,7 +448,8 @@ BucketSort is een sort waarbij elementen van een array in verschillende buckets 
 
 Geen idee wat de kans is, Phil. TODO
 
-
+Brian:(1/Aantalbuckets)^Aantal elementen
+Also: Mad disrespect naar Phil hierboven
 
 ### Vraag 4
 
