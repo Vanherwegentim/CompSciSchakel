@@ -604,7 +604,7 @@ De functie h stelt een “hernoeming” van de knopen voor; ze beeldt elementen 
 
 ![image-20220326182606980](img/image-20220326182606980.png)
 
-**Al deze grafen zij isomorf!**
+**Al deze grafen zijn isomorf!**
 
 **Stelling 4.10** Twee enkelvoudige grafen zijn isomorf als en slechts als er een ordening van de knopen bestaat zodat hun buurmatrix gelijk is.
 
@@ -754,6 +754,8 @@ spreken over de klasse van alle samenhangende grafen, alle enkelvoudige grafen, 
 
 Zo is er bijvoorbeeld de klasse van alle klieken. Een kliek (Eng. clique) is een enkelvoudige graaf waarin elke knoop rechtstreeks verbonden is met elke andere knoop. De kliek met n knopen wordt K~n~ genoemd. Figuur 4.8 toont een aantal klieken. 
 
+Een goeie video over tweeledige grafen: https://www.youtube.com/watch?v=HqlUbSA9cEY + *Pro tip. When attempting to determine whether a graph is bipartite or not, if two vertices are connected by an edge, due to the definition of a bipartite graph, these two vertices have to be in different sets, and thus, you can colour code them differently. Continue this trend through the graph. If you find a contradiction where two vertices that are connected by an edge are of the same colour, then the graph is not a bipartite graph. Similarly, the opposite can be said to claim that a graph is bipartite.*
+
 Een andere klasse zijn de tweeledige grafen. Een enkelvoudige graaf G(V, E) is tweeledig als en slechts als V opgedeeld kan worden in twee deelverzamelingen V~1~ en V~2~, zo dat er enkel bogen bestaan tussen V~1~ en V~2~, maar nooit binnen V~1~ of V~2~. Formeel: G(V, E) is tweeledig als en slechts als er een V~1~ en V~2~ bestaan zo dat V = V~1~ ∪ V~2~, V~1~ ∩ V~2~ = ∅, en E ⊆ {(v~1~, v~2~)|v~1~ ∈ V~1~, v~2~ ∈ V~2~}.
 
 Een tweeledige graaf wordt volledig verbonden genoemd als elke knoop uit V~1~ met elke knoop uit V~2~ verbonden is. De volledig verbonden tweeledige graaf met m knopen in V~1~ en n knopen in V~2~ wordt K~m,n~ genoemd. 
@@ -845,7 +847,7 @@ Stel dat K~5~ vlak is. K~5~ is enkelvoudig en heeft kringen, dus f ≥ 2, dus ge
 
 #### Homeomorfisme
 
-In een tekening van een graaf is een knoop met graad 2 in zekere zin overbodig: we kunnen die knoop ook weglaten en de getekende bogen ernaartoe vervangen door een enkele getekende boog; zie Figuur 4.11. We noemen dit een rijreductie. De tekening van de graaf verandert niet op essenti¨ele wijze door een rijreductie toe te passen. Wanneer een graaf omgevormd kan worden tot een andere graaf door middel van rijreducties, zeggen we dat de eerste graaf homeomorf is met de tweede.
+In een tekening van een graaf is een knoop met graad 2 in zekere zin overbodig: we kunnen die knoop ook weglaten en de getekende bogen ernaartoe vervangen door een enkele getekende boog; zie Figuur 4.11. We noemen dit een rijdreductie. De tekening van de graaf verandert niet op essentiële wijze door een rijdreductie toe te passen. Wanneer een graaf omgevormd kan worden tot een andere graaf door middel van rijdreducties, zeggen we dat de eerste graaf homeomorf is met de tweede.
 
 **Definitie 4.24 (Homeomorfisme)** Een graaf G(V, E) is homeomorf met een graaf G' (V' , E' ) als en slechts als G' uit G bekomen kan worden door een of meer keren een knoop v van graad 2 te kiezen, die samen met zijn invallende bogen (v, w) en (v, u) te verwijderen, en boog (u, w) toe te voegen.
 
@@ -879,7 +881,7 @@ Twee knopen in G' zijn dus verbonden als en slechts als de bijhorende zijvlakken
 
  **Eigenschap 4.7** De duale graaf van een vlakke graaf is ook vlak.
 
-**Bewijs:** Intuitief bewijs: Beschouw een tekening van een vlakke graaf. Teken de duale graaf door eerst in het midden van elk zijvlak een knoop te tekenen. Voor aan elkaar grenzende zijvlakken kunnen we altijd een boog tussen hun centrumknopen tekenen zonder andere bogen te snijden. 
+**Bewijs:** Intuïtief bewijs: Beschouw een tekening van een vlakke graaf. Teken de duale graaf door eerst in het midden van elk zijvlak een knoop te tekenen. Voor aan elkaar grenzende zijvlakken kunnen we altijd een boog tussen hun centrumknopen tekenen zonder andere bogen te snijden. 
 
 Merk op: als z een zijvlak is, en x de overeenkomstige knoop in de duale graaf, dan geldt steeds: δ(x) = β(z).
 
@@ -1429,3 +1431,29 @@ Bovendien is die gelijkheid equivalent met
 2. $∀i ∈ \bar{P} , j ∈ P : F(i, j) = 0$
 
 d.w.z. goede bogen over de snede hebben een stroming gelijk aan hun capaciteit en slechte bogen een nul stroming.
+
+**Bewijs:** Dit volgt onmiddelijk uit de ongelijkheden van stelling 4.36 (I guess)
+
+Merk op dat we niet bewezen dat er voor elke maximale stroom een minimale snede is met die gelijkheid noch omgekeerd.
+
+![image-20220514201127686](img/image-20220514201127686.png)
+
+**Stelling 4.38** Wanneer het algoritme voor constructie van een maximale stroming eindigt, geldt dat F maximaal is.
+
+
+
+**Bewijs: zie boek op p157**
+
+
+
+### 4.11.3 Matching
+
+Als je dit snel wilt begrijpen raad ik aan om deze video te bekijken: https://www.youtube.com/watch?v=chdr2aj4FUc
+
+**Definitie 4.37 (Matching)** Voor een gerichte , tweeledige graaf $G(V∪ W, E )$ waarbij $V ∩ W = ∅$ en $E ⊆ V × W$, is M een overeenkomst of matching indien
+
+- $M ⊆ E$ en
+- $∀(x, y), (i, j) ∈ M :$ indien $(i, j) 6= (x, y)$ dan is $ i \neq x$ en $j \neq y$ (t.t.z. in elke knoop komt hoogstens 1 boog aan en er vertrekt er hoogstens 1)
+
+Een maximale matching heeft een maximaal aantal bogen in M. Een matching is volledig indien $ ∀v ∈ V, ∃w ∈ W : (v, w) ∈ M$.
+

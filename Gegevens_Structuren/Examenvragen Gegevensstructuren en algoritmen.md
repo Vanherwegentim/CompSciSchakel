@@ -20,7 +20,7 @@ Op de moment heb ik echt geen idee, later nog op terugkomen
 
 **Leg het verschil uit tussen grote-O en tilde-notatie om het stijgingsgedrag van functies te karakteriseren.**
 
-De tilde-notatie gebruiken we als we een simple approximatie willen doen van een complexe functie. De termen met een lagere orde laten we dus vallen.
+De tilde-notatie gebruiken we als we een simpele approximatie willen doen van een complexe functie. De termen met een lagere orde laten we dus vallen.
 
 Vb: $x^3 + x^2 + x$ wordt dan $x^3$
 
@@ -175,7 +175,7 @@ De slides zeggen:
 
 log~2~(n!) is eigenlijk n.log~2~(n), hebben we gezien in de vorige vraag.
 
-A sorting algorithm using at most *h* comparisons on all inputs corresponds to a tree of height at most *h*. Such a tree has at most 2^h^ leaves. On the other hand, each permutation of 1,…,N must land at a different leaf, and so there must be at least N! leaves. Putting these together, we deduce that 2^h^≥N! and so h≥log~2~N!=Ω(NlogN) (using Stirling's approximation). So every sorting algorithm must use at least log~2~N!=Ω(NlogN) comparisons in the worst case (on some inputs it can use less).
+A sorting algorithm using at most *h* comparisons on all inputs corresponds to a tree of height at most *h*. Such a tree has at most $2^h$ leaves. On the other hand, each permutation of 1,…,N must land at a different leaf, and so there must be at least N! leaves. Putting these together, we deduce that 2^h^≥N! and so h≥log~2~N!=Ω(NlogN) (using Stirling's approximation). So every sorting algorithm must use at least log~2~N!=Ω(NlogN) comparisons in the worst case (on some inputs it can use less).
 
 ![image-20220411181309011](img/image-20220411181309011.png)
 
@@ -219,7 +219,7 @@ slides vanaf slide 28
 
 **(*Examenvraag Juni 2021*) Stel dat we een array van lengte 2n hebben, die bestaat uit de eerste n even positieve gehele getallen in oplopende volgorde, gevolgd door de eerste n oneven getallen, maar in aflopende volgorde. Bijvoorbeeld voor n = 5 is de array gelijk aan [0, 2, 4, 6, 8, 9, 7, 5, 3, 1]. Hoeveel vergelijkingen i.f.v. n hebben de respectievelijke sorteeralgoritmes [Selection, Insertion, Merge, Quick] nodig om dergelijke array te sorteren? Gebruik ~notatie, en geef ook een verklaring. Let op: n is de lengte van de halve array!**
 
-Ik denk dat gewoon hun formules mogen gebruiken
+Ik denk dat we gewoon hun formules mogen gebruiken
 
 **MergeSort:** weer nlog~2~n dus
 
@@ -377,7 +377,7 @@ n/3 * 2*3 + n/9 * 2*9 + ... 1 * 2*n = 2 * n * log3n
 
 Het is maal 2 omdat het minimum vinden van 3 elementen bestaat uit 2 operaties.
 
-Asymptotische zijn deze beide Θ(nlogn) maar eenmaal naar de grootte getallen gaat dit wel een verschil geeven.
+Asymptotische zijn deze beide Θ(nlogn) maar eenmaal naar de grootte getallen gaat dit wel een verschil geven.
 
 
 
@@ -419,7 +419,7 @@ Het antwoord op deze vraag is te vinden op p341 in het boek.
 
 - **Kan een niet-stabiel sorteeralgoritme steeds stabiel gemaakt worden?**
 
-  Ja maar niet zonder een serieuze extra hoeveelheid tijd of ruimte. Dit betekent dat de meeste programmers dus voor algoritmes gaan gaan die uit zichzelf stabiliteit garanderen.
+  Ja maar niet zonder een serieuze extra hoeveelheid tijd of ruimte. Dit betekent dat de meeste programmers dus voor algoritmes gaan die uit zichzelf stabiliteit garanderen.
 
 
 
@@ -854,3 +854,30 @@ TODO
 De algemene aanpak van dynamic programming is het aanpakken van een probleem door het op te delen in subproblemen en dan de optimale oplossing voor de subproblemen te zoeken.
 
 Voorbeelden:
+
+
+
+
+
+## Les 11: String matching
+
+### Vraag 1
+
+**Gegeven een string, stel de bijhorende Knuth-Morris-Pratt toestandsmachine op. Zie ook enkele voorbeelden in examenopgaven van vorige jaren.**
+
+String: ABCABAB ABABABAABAC
+
+Pattern: ABABAABA
+
+Toestandsmachine: 00123123
+
+
+
+String: ACAT ACGACACAGT
+
+Pattern: ACACAGT
+
+Toestandsmachine: 0012300
+
+
+
