@@ -13,7 +13,7 @@ Het volgende kan 1 van die voorbeelden tabellen zijn:
 ![image-20220410193741294](img/image-20220410193741294.png)
 
 Op de moment heb ik echt geen idee, later nog op terugkomen
-
+Brian: Dit specifieke algoritme zal zich kwadratisch gedragen en is dus niet ideaal voor grote problemen.
 
 
 ### Vraag 2
