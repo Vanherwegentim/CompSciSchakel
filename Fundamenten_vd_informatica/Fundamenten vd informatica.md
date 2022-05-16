@@ -408,7 +408,7 @@ Merk op dat het mogelijk is dat “f is O(g)” en “g is O(f)” allebei gelde
 
 # Hoofdstuk 4 Grafentheorie
 
-Dit is echt een cools momentje, altijd plezierig.
+Dit is echt een cools momentje, altijd plezierig. (tim hier, 4 maanden later. Het is niet meer plezierig :smile: :gun:)
 
 ## 4.1 Inleiding
 
@@ -1457,3 +1457,241 @@ Als je dit snel wilt begrijpen raad ik aan om deze video te bekijken: https://ww
 
 Een maximale matching heeft een maximaal aantal bogen in M. Een matching is volledig indien $ ∀v ∈ V, ∃w ∈ W : (v, w) ∈ M$.
 
+
+
+Een gerichte, tweeledige graaf G(V ∪ W, E) waaraan een bron en put wordt toegevoegd, bogen van de bron naar de knopen in V en bogen van de knopen in W naar de put, en waar aan elke boog de capaciteit ´e´en wordt toegekend, noemen we het matching netwerk dat van G is afgeleid.
+
+De volgende stelling formaliseert de overeenkomst tussen een maximale stroming in een matching netwerk en een maximale matching. Een gehele stroming F is zodanig dat F enkel gehele groottes heeft.
+
+
+
+**Stelling 4.39** Voor een gerichte, tweeledige graaf $G(V ∪ W, E) $ waarbij $V ∩ W = ∅$ en $E ⊆ V × W$ geldt dat
+
+- Een gehele stroming F in het overeenkomstige matching netwerk, geeft een matching in $G: v ∈ V$ komt overeen met $w ∈ W$ als en slechts als $F(v, w) = 1$
+- Een maximale gehele stroming komt overeen met een maximale matching.
+- Een gehele stroming met grootte #V komt overeen met een volledige matching.
+
+Bewijs van de stelling mag je zelf uitwerken (Jij denkt lol)
+
+Er is een manier om snel te kunnen zien of er volledige matching is in een graaf of niet. Als je n knopen hebt maar samen hebben deze knopen minder dan n verschillende bogen dan gaat die niet volledig matching zijn.
+
+Veralgemeend dus:
+
+- Definieer de afbeelding *($P(S)$ stelt de machtsverzameling van S voor)*
+
+  $R:P(V) \xrightarrow {} P(W)$
+  $S \xrightarrow{} \{w ∈ W | ∃v ∈ S met (v, w) ∈ E\}$
+
+- Indien G een volledige matching heeft, dan moet $ \#S \le \#R(S),∀S ⊆ V$
+
+
+
+**Stelling 4.40 (De trouwstelling van Hall)** Voor een gerichte, tweeledige graaf $G(V ∪ W, E) $ waarbij $V ∩ W = ∅$ en $E ⊆ V × W$, heeft een volledige matching als en slechts als $\# S \le \#R(S),∀S ⊆ V $
+
+Bewijs zie boek
+
+
+
+### 4.11.4 Petrinetten
+
+Een voorbeeld van een Petrinet zie je in Figuur 4.56; het is de voorstelling van het stukje programma
+
+![image-20220515145908397](img/image-20220515145908397.png)
+
+![image-20220515145939473](img/image-20220515145939473.png)
+
+Een petrinet is een gerichte tweeledige graaf met twee soorten knopen, een cirkel dat we plaatsen noemen en een transitie dat we staafjes noemen. De plaatsen komen overeen met programmapunten tussen instructies(states); de transities komen overeen met de instructies in het programma. De gerichte bogen lopen steeds van een plaats naar een transitie en van een transitie naar een plaats. De plaatsen zijn leeg, behalve p~1~, waarin een zwart bolletje is getekend: een token. Een plaats met een token symboliseert het feit dat een preconditie voor het mogen uitvoeren van een instructie verbonden met de plaats is voldaan. Eenzelfde preconditie kan gelden voor meer dan 1 instructie, doch 1 token geeft aanleiding tot het uitvoeren van maar 1 instructie. Als een transitie is gebeurd - de instructie is uitgevoerd - dan verschijnt er een token op elke plaats verbonden met de transitie. De idee achter deze voorstelling van het programma is dat door de aanwezigheid van het token in p~1~, het programma “gestart” wordt: de eerste twee instructies i = 1 en j = 2 mogen worden uitgevoerd en zijn zelfs niet afhankelijk van elkaar en daarom is het beëindigen van de ene geen voorwaarde voor het begin van de andere.  Hier wordt o.a. gemodelleerd dat die twee instructies in parallel mogen worden uitgevoerd. De instructie k = i + j is afhankelijk van het beëindigen van de eerste twee instructies en zal pas mogen uitgevoerd worden - de terminologie is “de transitie vuurt” - indien er een token zit zowel in p~4~ als in p~5~. Als die transitie gevuurd heeft, dan is er al een preconditie voldaan voor de uitvoering van de laatste toekenning en daarom zal er al een token verschijnen in p~11~. Doch p~10~ heeft nog geen token en daarom moet de instructie nog wachten.
+
+
+
+**Definitie 4.38 (Petrinet)** Een petrinet is een enkelvoudige gerichte graaf $G(V,E)$ waarbij $V = P ∪ T, P ∩ T$ en $E ⊆ P × T ∪ T × P;$ P noemen we  plaatsen en T transities.
+
+In het algemeen hoeft een Petrinet niet enkelvoudig te zijn, maar voor de eenvoud zullen we altijd onderstellen dat er geen parallelle bogen zijn
+
+**Definitie 4.39 (Markering van een Petrinet)** Een markering van een Petrinet is een toekenning van een natuurlijk getal aan elke plaats van het Petrinet.
+
+
+
+Plaatsen modelleren voorwaarden, terwijl transities gebeurtenissen voorstellen. Op zijn minste 1 token in een plaats betekent dat de voorwaarde voldaan is.
+
+
+
+**Definitie 4.40 (Bereikbare markering)** Een markering M' is bereikbaar vanuit een markering M, indien er vertrekkend van M een salvo is dat M' als resultaat heeft.
+
+Vanuit een bepaalde markering is soms meer dan 1 markering bereikbaar met slechts 1 vurende transitie. Zie bijvoorbeeld Figuur 4.57.
+
+![image-20220515171121736](img/image-20220515171121736.png)
+
+Wat uitleg bij deze figuur. Om het algoritme te kunnen doen beginnen hebben we in elke startplaats een token nodig. Dit is het geval bij M~1~. Als we dan naar staat M~2~ gaan zien we dat de 2 tokens 'geconsumeerd' zijn en we vast zitten omdat er niet genoeg tokens meer zijn om verder te gaan. Dit noemen we een deadlock. Hieronder een concreet voorbeeld voor nog wat verduidelijking. Twee personen willen iets eten maar hebben daar een mes en vork voor nodig terwijl we maar 1 mes en 1 vork hebben. Indien de eerste persoon het mes neemt en de tweede neemt de vork, dan kunnen geen van beide beginnen eten en zitten beide te wachten op het andere stuk bestek.
+
+![image-20220515171838509](img/image-20220515171838509.png)
+
+Dit betekent natuurlijk niet dat als er geen deadlock kan voorkomen dat alle transities in een petrinet aan bod gaan komen. Het petrinet kan er bijvoorbeeld voor zorgen dat 1 persoon nooit iets kan eten, zelfs als ze iets zouden "afspreken". Daarom is er de notie van een levend markering voor een Petrinet.
+
+![image-20220515172315148](img/image-20220515172315148.png)
+
+Zie hier een voorbeeld van een deadlock en sta verstelt.
+
+
+
+**Definitie 4.41 (Levende markering)** Een markering M van een Petrinet is levend, indien na elk salvo te beginnen bij M, er voor elke transitie t een salvo bestaat zodanig dat na dat salvo t actief wordt.
+
+De definitie zegt niet dat de transitie *t* ook vuurt, enkel dat alle precondities voor *t* voldaan zijn. Als een markering levend is, dan is het duidelijk dat die markering geen aanleiding kan zijn tot deadlock.
+Een andere eigenschap die belangrijk is bij Petrinetten, is de hoeveelheid tokens die een bepaalde plaats ooit kan bevatten: je kan de plaatsen zien als een register met een teller die aangeeft hoeveel tokens er zijn en je wil graag weten dat een bepaalde capaciteit van dat register nooit overschreden kan worden. 
+
+**Definitie 4.42 (Begrensde markering)** Een markering M is begrensd indien er een eindige n bestaat zodanig dat bij gelijk welk salvo, geen enkel plaats ooit meer dan n tokens bevat. Een begrensde markering waarvoor n = 1 wordt een velige markering genoemd.
+
+
+
+
+
+# Hoofdstuk 5 Vastepuntstheorie
+
+## 5.1 Inleiding
+
+deze inleiding is cools certified
+
+Ik vind deze inleiding volledig waardeloos dus als ge het zou willen gaan lezen dan moet ge naar de cursus : ).
+
+
+
+## 5.2 Orderelaties
+
+### 5.2.1 Basisbegrippen
+
+Van cruciaal belang in de theorie van de vaste punten is het begrip orderelatie. Ter herinnering: een relatie R op een verzameling S is niets anders dan een deelverzameling van de productverzameling $S\times S$. Een relatie bestaat dus uit koppels $(x,y)$ met $x, y ∈ S$. We noteren zowel $ (x, y) ∈ R$ als $xRy$ om aan te geven dat het koppel $(x,y)$ behoort tot de relatie R.
+
+**Definitie 5.1 (Partiële orderelatie)**
+Een relatie R op een verzameling S is een **(partiële) orde(relatie)** als en slechts als voldaan is aan de volgende drie voorwaarden:
+
+1. R is reflexief $∀x ∈ S : x R x$
+2. R is antisymmetrisch: $∀x, y ∈ S : x R y en y R x ⇒ x = y$
+3. R is transitief: $∀x, y, z ∈ S : x R y en y R z ⇒ x R z.$
+
+Effe opfrisser voor mensen die vergeten zijn wat deze termen betekenen (zoals ik (: )
+
+![image-20220515184130347](img/image-20220515184130347.png)
+
+![image-20220515184149985](img/image-20220515184149985.png)
+
+![image-20220515184209956](img/image-20220515184209956.png)
+
+In het volgende voorbeeld, en ook verder in de cursus, stelt $P(S)$ de machtsverzameling van een verzameling S voor, m.a.w. de verzameling van alle deelverzamelingen van S.
+
+Voorbeeld is de relatie "$\le$"
+
+
+
+**Definitie 5.2 (Boven- en ondergrens)**
+Zij S een verzameling met een partiele orde $\le$.
+
+1. $a ∈ S$ is een bovengrens (of majorant) voor een deel $X ⊆ S ⇔ ∀x ∈ X : x ≤ a.$
+2. $b ∈ S$ is een ondergrens (of minorant) voor een deel $X ⊆ S ⇔ ∀x ∈ X : b ≤ x$
+
+**Opmerking** Met de notatie S, ≤ duiden we in het vervolg aan dat S een verzameling is, voorzien van een partiële orderelatie “≤” (bv. N, ≤ en N, |). Indien S, ≤ een partieel geordende verzameling is en x, y ∈ S dan noteren we ook x ≥ y wanneer we y ≤ x bedoelen
+
+![image-20220515190702914](img/image-20220515190702914.png)
+
+
+
+**Definitie 5.3 (Sup en inf)**
+Zij $S,\le$ een geordende verzameling en $X\subseteq S $.
+
+1. $a ∈ S$ is een kleinste bovengrens van $X$ of een supremum van $X$, notatie a = sup($X$) als en slechts als a een bovengrens is voor X en voor elke bovengrens a' van $X$ geldt dat a $\le$ a'
+2. $b ∈ S$ is een grootste ondergrens van $X$ of een infimum van $X$, notatie b = inf($X$) als en slechts als b een ondergrens is voor $X$ en voor elke ondergrens b' van $X$ geldt dat b$\ge$b'
+
+![image-20220515213705172](img/image-20220515213705172.png)
+
+
+
+**Definitie 5.4 (Complete tralie)**
+Een partieel geordende verzameling L, $\le$ is een complete tralie als sup($X$) en inf($X$) bestaan voor elke niet lege deelverzameling $X \subseteq L$.
+
+![image-20220515213900310](img/image-20220515213900310.png)
+
+Aangezien in een complete tralie L, $\le$ het supremum en het infimum bestaat voor elke $X \subseteq L$, kunnen we ook X = L beschouwen.
+
+**Definitie 5.5 (Top- en bodemelement)**
+
+In een complete tralie L, $\le$ noemen we
+
+![image-20220515214503771](img/image-20220515214503771.png)
+
+
+
+**Voorbeeld 5.5**
+
+![image-20220515214542991](img/image-20220515214542991.png)
+
+
+
+### 5.2.2 Monotone en continue afbeeldingen
+
+**Definitie 5.6 (Monotone afbeelding)**
+Zij L,$\le$ een geordende verzameling. Een afbeelding T: L $\xrightarrow{}$ L noemen we monotoon als uit x $\le$ y volgt dat $T(x)\le T(y)$
+
+![image-20220515215022506](img/image-20220515215022506.png)
+
+
+
+**Definitie 5.7 (Gerichte verzameling)**
+Beschouw een willekeurige deelverzameling $X$ van een complete tralie L, $\le$. $X$ is gericht $⇔$ elke eindige deelverzameling van $X$ heeft een bovengrens in $X$.
+
+![image-20220516111357650](img/image-20220516111357650.png)
+
+
+
+**Definitie 5.8 (Continue afbeelding)**
+een afbeelding T: $L \xrightarrow {} L$ op een complete tralie $L,\le$ wordt een continue afbeelding genoemd, indien
+
+​									$T(sup(X))=sup(T(X))$
+
+voor elke gerichte deelverzameling $X$ van $L$. $(T(X)) = \{T(x)|x ∈ X \})$
+
+![image-20220516112501179](img/image-20220516112501179.png)
+
+
+
+**Eigenschap 5.1** Voor een afbeelding $T: L \xrightarrow{}L$ op een complete tralie $L,\le$ geldt
+
+​						T is continu $⇒$ T is monotoon
+
+![image-20220516112858641](img/image-20220516112858641.png)
+
+![image-20220516112935640](img/image-20220516112935640.png)
+
+
+
+**Eigenschap 5.2** Zij $T:L \xrightarrow{} L$ een monotone afbeelding op een complete tralie $L,\le$, dan geldt voor elke deelverzameling $X \subseteq L$ dat
+
+​					$sup(T(X)) \le T(sup(X))$
+
+**Bewijs:**
+
+​				
+$$
+&∀x ∈ X : x ≤ sup(X)\newline
+&⇒ ∀x ∈ X : T(x) ≤ T(sup(X))\newline
+&⇒ sup(T(X)) ≤ T(sup(X))
+$$
+
+
+## 5.3 De stellingen van Tarski en Kleene
+
+### 5.3.1 De stelling van Tarski
+
+**Definitie 5.9 (Vaste punten)**
+Zij $L,\le$ een complete tralie en beschouw een afbeelding $T:L\xrightarrow{}L$
+
+1. We noemen $ a ∈ L$ een vast punt voor $T$ als $T(a) = a$
+2. Een kleinste vast punt voor $T$ is een vast punt a voor $T$ zodat voor elk ander vast punt b voor $T$ geldt dat a $\ge$b.
+3. Een grootste vast punt voor $T$ is een vast punt a voor $T$ zodat voor elk ander vast punt b voor $T$ geldt a$\ge$b.
+
+![image-20220516115144494](img/image-20220516115144494.png)
+
+
+
+**Stelling 5.1 (Stelling van Tarsky)** Zij $T:L\xrightarrow{}L$ een monotone afbeelding op een complete tralie $L,\le$, dan heeft $T$ een kleinste vast punt a en een grootste vast punt b.
+Bovendien geldt:
+								$a=inf\{x|T(x)=x\} = inf\{x|T(x)\le x\}$
+							$b = sup\{x|~T(x)=x\}=sup\{x|~T(x)\ge x\}$
