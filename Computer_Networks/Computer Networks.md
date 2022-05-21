@@ -703,7 +703,7 @@ We will look at four critical elements of transport layer protocols
 
 #### Addressing
 
-##### Transport Service Access Points
+##### Transport Service Access Points i.e PORTS
 
 - Transport Service Access Points (TSAPs) define an end-point for transport layer traffic.
 - IP addresses are not enough because multiple processes running on the same host may concurrently exchange data.
@@ -711,9 +711,674 @@ We will look at four critical elements of transport layer protocols
 
 ##### 
 
-##### Network Service Access Points
+##### Network Service Access Points i.e IP-addresses
 
-- Network Service Acces Points (NSAPs) define an end-point for network layer traffic
+##### Network Service Access Points (NSAPs) define an end-point for network layer traffic
+
 - IP addresses are an example of NSAP
 - Transport Service Access Points (TSAPs) define an end-point for transport layer traffic.
 
+##### ![image-20220520154240995](img/image-20220520154240995.png)
+
+The explanations for this is quite simple. Across our network we identify routers and clients by their IP-address but once we reach the destination of the IP we are still left wondering for which application the message is. Then we use the port to identify where the message has to go next as can be seen on the image.
+
+
+
+##### TSAP Address Assignment
+
+- Some ports are well known and permanently assigned:
+  - HTTP, SMTP, Telnet, SSH
+
+##### Initial Connection Protocol  
+
+Some servers may only operate sporadically. So why run them all the time?
+
+$\xrightarrow{}$ Initial Connection Protocol (ICP) conserves resources:
+
+- Process Server listens for connections on well known TSAP addresses
+- When a connection is received, the server process is started and passed the TSAP address.
+
+![image-20220520155320008](img/image-20220520155320008.png)
+
+Basically, why keep servers constantly running if they're not constantly needed. That's why we use the Initial Connection Protocol. We only have one server running that receives the message and then wakes up the correct server to handle the message. (I think)
+
+##### Multiplexing Using TSAPs 
+
+![image-20220520160555805](img/image-20220520160555805.png)
+
+
+
+#### Connection Management
+
+##### Problems of Connection Management
+
+- Transport Layer protocols operate over a network with significant storage potential.
+- Some packets may travel slower or longer routes than others
+
+##### Out of Order Packets
+
+![image-20220520160857358](img/image-20220520160857358.png)
+
+![image-20220520160906087](img/image-20220520160906087.png)
+
+![image-20220520160914104](img/image-20220520160914104.png)
+
+All the things above can cause the packets to arrive out of order, be lost entirely or duplicated.
+
+$\xrightarrow{}$ A big problem - consider a bank transfer
+
+We send a deposit to an un-trusted party. The packets take the scenic route and we assume they are lost. We resend the packets. The slow packets then arrive resulting in two transfers.
+
+We can solve this by adding a life-time to the packet so that we can reject delayed or duplicated packets. This is now widely used in TCP.
+
+Each packet carries a **sequence number** that will not be re-used within **T** seconds (in reality some multiple of packet lifetime)
+
+The standard Internet packet lifetime is 120s. Sequence numbers wrap around to 0. If a machine should crash it would lose the sequence numbers. We solve this by using a real time lock to provide initial sequence numbers during connection. Thus after a crash, hosts continue with a higher sequence number than before.
+
+
+
+##### The Two Generals Problem
+
+The two 
+
+We have a partial solution. This problem cannot be cleanly solved by the transport layer alone. Higher-level protocols must be designed in such a way that they can tolerate abrupt disconnection. Where this is unacceptable, we must explore probabilistic approaches.
+
+
+
+#### Error Control
+
+##### End-to-End Checksums
+
+checksums are fixed-size codes generated from larger data using simple hash functions. a consistent hash function is used that will generate the same checksum given the same data. Errors are detected by re-computing segment check-sum and comparing it to the provided value. It is highly unlikely that a packet could be corrupted and still match the provided checksum.
+
+Each individual link is secure, so why isn't our end-to-end connection secure? Because packets can be corrupted within a malfunctioning router.
+
+
+
+#### Acknowledgements
+
+Reliable packets require an acknowledgement so we must retransmit packets until an acknowledgement **(ACK)** is received.
+
+If the receiver loses a sequence number, they may negatively acknowledge **(NACK)**, requesting resend.
+
+This requires that the sender stores old messages until they have all been acknowledged
+
+### 
+
+#### Flow Control
+
+##### Sliding Windows !Important!
+
+- Sliding window protocols tackle both error and flow control
+- Senders and receivers each maintain a window of messages for which no ACKs have been received.
+- The window is a sequence of message IDs, with a lower and upper bound.
+- By configuring the window size we can control the flow of packets into the network.
+
+
+
+### Sliding Window Protocol
+
+#### Window Size
+
+- Sliding window protocols may use a fixed window size, or adapt a window size.
+- The simplest approach is window of fixed size 1, or **'stop and wait'**
+  - Send one segment and wait until it is acknowledged
+  - A one-bit sequence number is used to detect duplicates
+
+##### Stop-and-Wait Operation
+
+- Sender keeps last segment until it receives ACK
+- Both data and ACKs are numbered alternately 0 and 1
+- Sender stores (**S**) with number of the last segment sent
+- Receiver stores (**R**) with number of next segment expected
+- Sender starts timer on segment send. If an ACK is not received before expiry, send assumes loss or damage and resends.
+- Receiver sends ACK with number of next segment when segment is intact.
+
+**In the following images frame should be segment because we are in the transport layer**
+
+![image-20220520204844896](img/image-20220520204844896.png)
+
+![image-20220520204937753](img/image-20220520204937753.png)
+
+![image-20220520205037062](img/image-20220520205037062.png)
+
+![image-20220521102315946](img/image-20220521102315946.png)
+
+#### Summary of Stop-and-Wait
+
+- The simplest sliding window protocol to implement
+- Uses very few resources (i,e buffer space is 1 on sender, 0 on receiver)
+- But it is inefficient if we have high RTT compared to speed
+
+
+
+### Go-Back-N
+
+#### Principles
+
+- Segments have a larger range of sequence numbers, that wrap around to 0
+- We send **W** segments before requiring an **ACK**
+- Keep a copy of the segments until **ACKs** arrive
+- This requires extended data structures and more variables than stop-and-wait
+
+#### Sender Window
+
+![image-20220521102910719](img/image-20220521102910719.png)
+
+#### Receiver Window
+
+![image-20220521104122302](img/image-20220521104122302.png)
+
+#### Acknowledgement
+
+![image-20220521104237456](img/image-20220521104237456.png)
+
+#### Normal Operation
+
+![image-20220521105451763](img/image-20220521105451763.png)
+
+#### Segment Loss
+
+![https://www.youtube.com/watch?v=9BuaeEjIeQI](img/image-20220521105601612.png)
+
+quick vid:https://www.youtube.com/watch?v=9BuaeEjIeQI
+
+So how does it actually work? Our sender can send an amount of segments indicated by the N in Go-Back-N. It will transmit that amount of segments before waiting for an **ACK** from the receiver. The receiver will only send one ACK at the time. Should a segment be lost or the ACK be lost then our sender will wait till a time-out and then resend all the segments in the current sliding window. If the sender receives an ACK for a segment it will slide the window to the right.
+
+
+
+### Selective Repeat
+
+#### Principles
+
+- **Go-Back-N** is bandwidth inefficient and slows down the transmission due to the repeated transmission of received packets
+- **Selective Repeat** eliminates wasted retransmission of received packets. This is bandwidth efficient but
+  -  Requires buffers at both send and receiver
+  - Requires new variables and book-keeping
+- A **Negative ACK (NAK)** reports the sequence number of a damaged or out-of-order segment.
+
+#### Sender and Receiver Windows
+
+![image-20220521110534829](img/image-20220521110534829.png)
+
+#### Lost Segments
+
+![image-20220521113810033](img/image-20220521113810033.png)
+
+#### Lost ACKs
+
+- If an ACK is lost then the segment timer will time out
+- This causes the segment to be individually retransmitted
+
+
+
+#### Window Size Restriction
+
+![image-20220521113902651](img/image-20220521113902651.png)
+
+- **Note:** window size must be equal to or less than half the size of our sequence numbers. If it is larger, then the receiver could erroneously accept duplicate segments. 
+
+### 
+
+### Congestion Control
+
+#### What is Congestion?
+
+If we send too many packets too quickly into the network it becomes congested. Controlling congestion is the combined responsibility of the **Transport Layer** and **Network Layer**.
+
+- Congestion occurs at routers, so the Network Layer should signal it, yet Transport Layer controls dispatching of packets.
+
+#### Desirable Bandwidth Allocation
+
+- What is the optimal state we are aiming for?
+  - We should use all available bandwidth
+  - We should avoid congestion
+  - We should be fair across Transport entities
+  - We should respond quickly to changing usage
+
+$\xrightarrow{}$ Use all available bandwidth
+
+- Two refinements:
+  - Use a little less than all of the **bandwidth** due to 'bursty' traffic
+  - We should worry about '**goodput**' not **throughput**
+
+As we approach our **bandwidth limits**, bursts of higher traffic cause losses in network buffers. These losses cause more retransmissions initiating congestion collapse.
+
+As the network approaches congestion, delay rises at an **increasing** rate (due to buffering). Packets are **lost** after the **maximum** **buffering** **delay** is exceeded.
+
+
+
+#### Min-Max Fairness
+
+- Definition: an allocation of bandwidth is **min-max fair** if the bandwidth given to one flow cannot be increased without decreasing bandwidth for another flow
+- Fairness is complicated but precise fairness is less important than preventing **starvation and congestion**
+
+
+
+#### Convergence
+
+Connections are not static. They come and go. Any approach to fair allocation must converge quickly to the ideal operating point.
+
+**Ideal Convergence**
+
+![image-20220521120032610](img/image-20220521120032610.png)
+
+#### Types of Congestion
+
+![image-20220521120105977](img/image-20220521120105977.png)
+
+We have 2 two types of congestion:
+
+1. We are dealing with a low capacity receiver which cannot follow the stream of data
+2. We are dealing with a congested router in-between
+
+#### Managing Send Rate
+
+In the case of a low capacity receiver, we need to resize our flow control buffer - **Transport Layer Solution**
+
+In the case of a network congestion, we need to lower our send rate in the Transport layer based upon a signal from the **Network Layer**
+
+**TCP** does both!
+
+
+
+#### AIMD (Additive Increase, Multiple Decrease)
+
+By increasing in additive fashion, but decreasing by multiples, we converge in saw-tooth fashion around the optimal.
+
+![image-20220521120913977](img/image-20220521120913977.png)
+
+- It's easy to drive the network into congestion and difficult to recover. So our increase in rate should be gentle and our decrease should be aggressive.
+
+Quick recap of things you should know:
+
+- **TCP** will start by using the slow start algorithm. This means that it will start by sending one packet, should you receive an ACK then you will **double** the amount of packets send. This will keep on doubling until you reach the **threshold**.
+- If you reach the threshold, TCP will use the the  **AIMD** algorithm. This means it will keep on adding an extra packet to the max of the packets it can send out instead of doubling it as long as the **ACKs** keep on being received.
+- If the ACK is lost or timed out then that **Multiple decrease** will kick in and divide the amount of packets the sender can send at one time in half. Reducing the **amount** **of packets** on the network by a lot and probably solve the **congestion** at the router.
+
+
+
+### User Datagram Protocol (UDP)
+
+- Connectionless protocol
+- Allows for the sending of segments between host with no connection overhead
+- Provides no: flow control, ordering, congestion control
+- Does provide: ports and checksum
+
+#### Structure
+
+![image-20220521132740218](img/image-20220521132740218.png)
+
+- UDP gives us **TSAP addresses** and a simple checksum service for end-to-end error checking.
+
+#### Checksum
+
+![image-20220521133416007](img/image-20220521133416007.png)
+
+- The UDP checksum is calculated based upon a simple hash of the UDP header and the IP pseudo-header.
+
+#### Benefits
+
+1. Connectionless, so works well with **anycast (e.g. DNS)**, **broadcast(e.g. DHCP, Wake on LAN)** and multicast.
+2. Low overhead in comparison to TCP, so it can be implemented on **tiny devices**
+
+
+
+### Real Time Protocol (RTP)
+
+- Multimedia applications tend to need the same kinds of services.
+- Real-time Transport Protocol (RTP) is common approach to addressing these concerns
+
+ Real time data consists of several related data stream: meta-data, video, audio, These must be sychronized.
+
+
+
+#### RTP in the stack
+
+![image-20220521134617585](img/image-20220521134617585.png)
+
+#### How does it work?
+
+- The sending RTP library takes in multimedia stream (audio, text, video) and multiplexes them.
+- Data is encoded in **RTP** packets and transmitted over **UDP**.
+- Receiving RTP library receives, decodes and plays multimedia
+
+#### Why use UDP for RTP
+
+We don't need every bit of data of a stream, our eyes most of the time can't see the missing frames in a video. We can also interpolate (i.e guess at the contents based upon the previous and following frames.)
+
+Multicast is a critical tool for efficient media distribution.
+
+#### Features
+
+- We still need to know if packets went missing, but the action we take could be different: **interpolate**, **ignore**, etc.
+
+- RTP packets carry linearly increasing sequence number 1 higher than its predecessor. 
+- RTP also supports extension headers for more advanced functionality.
+
+
+
+### Real Time Control Protocol (RTCP)
+
+- Real Time Control Protocol (RTCP) controls RTP streams.
+- Providing feedback and control on delay, variation in delay, jitter, bandwidth and congestion
+- Provides synchronization of streams.
+
+
+
+#### Jitter
+
+Packets take a variable amount of time to travel between hosts. This causes out of order arrival and thus results in variable delay between sender and receiver. This variability in delay is knows as **jitter**. 
+
+![image-20220521162204041](img/image-20220521162204041.png)
+
+![image-20220521162503413](img/image-20220521162503413.png)
+
+#### Modifying Playback Point
+
+- The playback point determines how long to wait at the receiver before playing incoming RTP packets
+- We must select it correctly, or end up with either (a.) unnecessary delay or (b.) high loss.
+
+
+
+
+
+### Transmission Control Protocol (TCP)
+
+- TCP provides a reliable end-to-end byte-stream over an unreliable internetwork
+- More than 90% of Internet traffic is TCP
+
+
+
+**The TCP Transport Entity**
+
+- The Transport Entity is the software process that **implements** the **TCP** protocol.
+- The transport entity is responsible for:
+  - Splitting byte streams into segments
+  - Reliable transmission
+  - Reconstructing byte streams
+  - Efficiently using bandwidth and avoiding congestion
+
+**Addressing by Ports**
+
+- TCP implements TSAP using ports
+- Ports below 1024 are reserved for well known applications
+
+
+
+**TCP Connections**
+
+- TCP connections are full duplex, support simultaneous bi-directional communication
+- TCP connections map to exactly two sockets
+- The writing of data to TCP element is decoupled from reading of that data
+  - Imagine you write four 512KB blocks. They may be divided into eight 256KB blocks or two 1024KB blocks. The transport entity is responsible. 
+
+
+
+**Sequence Numbers and Segmentation**
+
+- Every byet has it own 32-bit sequence number.
+- TCP packets have limited size:
+  - Header limits packet size to **64K**
+
+#### The TCP Header
+
+![image-20220521165052584](img/image-20220521165052584.png)
+
+
+
+##### Source and Destination Ports
+
+- Source port = **TSAP** address from which segment was sent
+- Destination port = **TSAP** address to which the segment is sent
+- **Note**: a connection is implicitly identified by source TSAP + source NASP + dest. TSAP + dest NSAP + procotol
+
+##### TCP Header Length
+
+- TCP headers are variable length due to the use of **option fields**
+
+
+
+##### One-Bit Flags
+
+![image-20220521165740692](img/image-20220521165740692.png)
+
+![image-20220521170024890](img/image-20220521170024890.png)
+
+
+
+##### Window size
+
+![image-20220521170056379](img/image-20220521170056379.png)
+
+- TCP implements a variable-sized sliding window
+- Specifies how many bytes may be sent starting at the byte acknowledged
+- Window size of 0 indicates that bytes up to ACK number have been received, but the receiver requires time to process them.
+
+
+
+##### Checksum
+
+- Identical to UDP, calculated from the TCP header and the IP pseudo-header. **Compulsory**
+
+**Urgent pointer**
+
+-  if urgent flag is set, this pointer gives the byte offset where urgent data is located.
+
+##### Options
+
+- Just a place for optional headers.
+
+##### Data
+
+- The remainder of our packet is used for data. 
+  - Max payload = 65535 – IP Header – TCP Header. 
+  - Max payload = 65535 – 20 – 20 = 65495. 
+
+THIS IS OPTIONAL
+
+
+
+#### 3-Way Handshake
+
+- Connections are established and released using the 3-way handshake
+- One or both sides passively listen for incoming connections **SYN(SEQ=X).**
+- If no application handler, they respond with **RST**
+- If they are willing to accept, they respond with **SYN(SEQ=Y,ACK=X+1)**.
+- If not willing to accept, no ACK is sent.
+
+![image-20220521171459213](img/image-20220521171459213.png)
+
+- Disconnecting is best thought of as operating on two simplex connections.
+  - Either party sends a FIN segment.
+  - When FIN is ACK'd, connection is shut down for new data. It may still flow in other direction.
+- To avoid the **two-generals problem**, timers start on FIN transmission (twice packet lifetime) and connections are closed after this time.
+
+#### TCP as a State Machine
+
+- TCP can be represented as a state machine with **11 states**
+- In each state, legal events cause a transition to a new state.
+
+
+
+![image-20220521171906775](img/image-20220521171906775.png)
+
+#### Receiver Control of Transmission
+
+When receiver window is 0, no transmission can occur with two exceptions
+
+1. **Urgent traffic**
+2. **Window probe**
+
+
+
+#### Tinygram Syndrome
+
+This is basically, TCP can be such a waste of resources because it's possible we send several segments with headers and such for just one byte of data.
+
+![image-20220521204738436](img/image-20220521204738436.png)
+
+$\xrightarrow{}$ Solution: Delayed acknowledgements are a simple approach to addressing Tinygram Syndrome
+
+- Until timeout, wait for data to be transmitted. 
+  - If data is transmitted before time-out, piggyback acknowledgement in data. 
+  - If timeout occurs, send acknowledgement
+
+
+
+#### Nagle's Algorithm
+
+Nagle's algorithm, while there is a sent segment with no ACK, buffer output until we have a full segment, then send at once.
+
+This would not work well for real time systems, computer games,...
+
+
+
+#### Silly Window Syndrome
+
+Silly Window Syndrome occurs when the sending entity receives data in large blocks however the receiving application only reads data 1-byte at a time.
+
+![image-20220521210206712](img/image-20220521210206712.png)
+
+#### Clarke's Algorithm
+
+Delay window updates until the window can receive the maximum segment size, or until the buffer is half empty.
+
+
+
+#### Retransmission Time Out
+
+- Retransmission Time Out (RTO) in TCP determines how long to wait for an ACK before retransmitting a segment.
+  - If an ACK is not received, we retransmit and restart the timer.
+- How to select an RTO period:
+  - What happens if it is too long?
+  - What happens if it is too short?
+- TCP **dynamically adapts** the RTO period
+
+
+
+#### Estimating Round Trip Time
+
+For each connection maintain Smoothed Round Trip Time (SRTT), the best estimate for current round-trip time.
+
+
+
+#### Estimating Variance in Delay
+
+The first approaches to setting RTO used a fixed multiplier of RTT, but this has a problem: 
+
+- Recall that when load approaches capacity, delay becomes large and highly variable.
+
+#### Putting it All Together
+
+We combine our measurement of RTT and RTTVAR in a simple weighted sum to calculate RTO
+
+![image-20220521211355082](img/image-20220521211355082.png)
+
+
+
+#### The 'Persistence' Timer
+
+- This timer is used to determine when to send window probes
+  - The timer starts when a window of size 0 is reported
+  - If a non-zero window size update is received, the persistence time is cancelled.
+  - If the timer expires, a window probe is issued.
+
+#### The 'Keep Alive' Timer
+
+- The Keep Alive Timer is restarted whenever a message is received from a remote host.
+- If the timer expires, the remote host is probed to ensure that it has not crashed.
+- If no response is received, the connection is terminated
+- This is optional
+
+
+
+#### Congestion Control
+
+Congestion Control is a key feature of TCP
+
+The network layer detects congestion and takes action (e.g. dropping packets).
+
+- Congestion notification is explicit or implicit
+- Notifications may be precise or imprecise.
+
+TCP packet loss is not explicit or precise
+
+#### TCP and AIMD
+
+- The same as was previously explained.
+
+
+
+#### The Congestion Window
+
+Congestion Window defines the bytes a sender may have in transmission at any time.
+
+**Note**: the congestion window is maintained separately to the flow control window.
+
+We now have **two windows** that limit how fast we can transmit packets into the network. 
+
+1. The flow control window matches **host capacity**. 
+2. The congestion window matches network capacity
+
+TCP uses **whichever window size is smaller** at any given time. This ensures that neither hosts nor routers are overwhelmed.
+
+
+
+#### Packet loss as Congestion Signal
+
+Is packet loss is a good signal of congestion? 
+
+- Wired routers will always drop packets when congested and seldom otherwise. 
+- Wireless devices may drop packets unpredictably, so here it is a poor signal (more later).
+
+
+
+If we base our congestion control on loss, we need a good retransmission timer.
+
+$\xrightarrow{}$ Even if we can infer congestion from loss, we cannot send packets into the network in large bursts.
+
+![image-20220521213658699](img/image-20220521213658699.png)
+
+We must match the timing of segment transmission to match the speed at which they are transmitted across the slowest link. Otherwise our bursty traffic periodically blocks these low-bandwidth links. We can discover this rate by sending a small bursts of traffic.
+
+![image-20220521213849946](img/image-20220521213849946.png)
+
+We inject new traffic into the network only as fast as we can receive ACKs. This smoothes out our traffic flow and eliminates bursts that could cause congestion. Thus we avoid overwhelming slow links with bursts of traffic.
+
+
+
+#### A Short coming of AIMD
+
+The additive increase of AIMD can be slow for high capacity connections, so first we use the TCP 'slow start' algorithm as mentioned earlier.
+
+![image-20220521214138003](img/image-20220521214138003.png)
+
+If we keep up Slow Start without stopping, congestion will occur soon so we need a threshold to keep slow-start in check. What would be a good initial value for the threshold? Flow Control Window Size. When the threshold is breached, it is re-set to half of the congestion window. TCP then switches to additive increase until packet loss occurs, when slow start re-starts.
+
+![image-20220521214415269](img/image-20220521214415269.png)
+
+#### Fast recovery
+
+So instead of completely restarting the amount of packets we're sending, We wait until the number of packets in the network falls to the new threshold (about 1/2 RTT). Once we have fallen below the thresh, we begin AIMD again.
+
+![image-20220521214851803](img/image-20220521214851803.png)
+
+**Note:** We can only recover from one packet loss.
+
+#### Selective ACK
+
+Selective Acknowledgements (**SACK**) allows fast recovery after multiple loss, this is achieved by providing extra information within acknowledgements. SACKs allow a **receiver** to acknowledge **non-consecutive** data, so that the sender can **retransmit** only what is **missing** at the receivers end. This is particularly helpful on paths with a large bandwidth-delay product.
+
+**Note**: SACK is now widely deployed.
+
+
+
+#### Explicit Congestion Notification (ECN)
+
+ECN allows end-to-end notification of [network congestion](https://en.wikipedia.org/wiki/Network_congestion) without dropping packets. Both the sending and receiving host must support ECN. 
+
+- A **flag** in the IP header specifies if the encapsulated TCP segment uses **ECN**
+- When congestion is approaching, routers will set the ECN congestion flag in transit.
+
+Unfortunately not very widely deployed.
