@@ -1382,3 +1382,764 @@ ECN allows end-to-end notification of [network congestion](https://en.wikipedia.
 - When congestion is approaching, routers will set the ECN congestion flag in transit.
 
 Unfortunately not very widely deployed.
+
+
+
+## Chapter 3 The Network Layer
+
+#### **Terminology**
+
+- Autonomous Systems (AS): operated by different organizations – a collection of prefixes identified by a 32-bit ASN.
+- Intra-domain routing: within an AS, using an interior gateway protocol
+- Inter-domain: between AS, using an exterior gateway protocol.
+- Internet eXchange Points (IXPs) connect autonomous systems.
+
+### Role of the Network Layer
+
+The network layer is the lowest layer concerned with end-to-end delivery.
+
+End-to-end transmission requires many individual hops: 
+
+- Network offers alternative routes 
+- select to minimize overloading and idle routers.
+
+The Transport Layer should be shielded from this complexity
+
+
+
+#### Store and Forward Packet Switching
+
+Very basic
+
+Routers store a packet until it is fully transmitted and verified by checksum. It is then relayed to the next router on the path to the destination.
+
+
+
+#### Services to Transport Layer
+
+Common goals:
+
+- Service should be independent of router technolgoies
+- Transport Layer should be shielded from number, type and topology of routers
+- A uniform addressing scheme should be exposed to the Transport Layer
+
+
+
+**Connectionless Protocols:**
+
+- Argues that the network is inherently unreliable
+- Transport Layer handles reliability, no ordering, error-detection or correction.
+
+**Connection-oriented Protocols:**
+
+- Argues that end-to-end **QoS (Quality of service)** is needed at Layer 3
+- Network Layer provides specific quality of service support for transport-layer flows
+
+
+
+### Connectionless
+
+#### Principles
+
+- Packets are injected into the network individually:
+  - Each packet is routed independently
+  - No connection setup is necessary
+  - Each packet carries the end address
+- We refer to units of transmission at the Network layer as 'Datagrams'.
+
+#### **Example**
+
+![image-20220522122652398](img/image-20220522122652398.png)
+
+![image-20220522122924503](img/image-20220522122924503.png)
+
+Packets 1,2 and 3 are routed from H1 to H2 via {A,C,E,F}. Packet 4 is routed via {A,B,D,E,F}
+
+**IP** is the best example of a connectionless Network Layer protocol
+
+
+
+### Connection-oriented
+
+#### Principles
+
+Based upon "Virtual Circuits":
+
+- Circuits are calculated at connection setup.
+- Packets follow the same circuit
+- Circuits terminate along with connections
+
+Each packet carries its circuit identifier rather than its end address
+
+#### Example
+
+![image-20220522123422771](img/image-20220522123422771.png)
+
+$\xrightarrow{}$ **Label Switching**
+
+**MPLS** is a good example of a connection-oriented protocol used on the Internet.
+
+
+
+### Connection-oriented vs Connectionless
+
+![image-20220522123654123](img/image-20220522123654123.png)
+
+
+
+### Routing Algorithms
+
+Routing Algorithms choose routes through the network, determining how a packet should be forwarded. In Virtual Circuit approaches this occurs once, is an ongoing process in Datagram networks.
+
+#### Desirable Properties
+
+- **Correctness**: algorithm finds routes to all destinations.
+- **Simplicity**: algorithm executes quickly enough for Internet-scale routing.
+- **Robustness**: must be resilient to lower-level hardware and software faults.
+- **Stability**: should converge towards a common set of optimal paths
+- **Fairness**: all parties using the network for communication should receive a 'fair' bandwidth allocation
+- **Efficiency**: The routing algorithm should optimally exploit network resources.
+
+#### 2 Kinds of Algorithms
+
+- **Non-adaptive Algorithms**: Do not consider current network topology or traffic
+- **Adaptive Algorithms**: Change their routing decision to reflect changing topology and current traffic conditions.
+
+
+
+#### The Sink Tree
+
+The set of optimal routes from all sources to destination (D) form a sink tree routed at (D). Routing algorithms aim to discover and use the sink tree for all routers.
+
+![image-20220522154903016](img/image-20220522154903016.png)
+
+
+
+#### Shortest Path Definitions
+
+Two common definitions:
+
+- **Fewest Hop:** minimize the number of hops traveled between all pairs.
+- **Lowest Cost:** minimize other cost factors on each path (distance, delay)
+
+
+
+#### Dijkstra's Algorithm
+
+Not gonna explain this one, should know it by now
+
+
+
+#### Bellman-Ford Algorithm
+
+- Used in ARPANET and in the Internet as RIP
+- Each router measures distance to each neighbor which is measured using special ECHO datagrams.
+- Each router periodically exchanges its routing tables with all neighbors
+- Upon receiving routing tables, current tables are discarded and new entries are created for each router based upon:
+  - The lowest distance estimate received
+  - The distance to the router providing that estimate
+
+##### Example
+
+![image-20220522163149388](img/image-20220522163149388.png)
+
+![image-20220522163210821](img/image-20220522163210821.png)
+
+The yellow table is made by using the previous table and the information given in the question.
+
+##### Count to Infinity problem
+
+- Bellman-Ford uses only local knowledge. **Good news travel fast:**![image-20220522163553832](img/image-20220522163553832.png)
+
+- Imagine A is down. B-E have distances for A of infinity. A then comes online. After 4 exchanges, everyone has the new path to A.
+
+
+
+- **Bad new travels slowly**. What if A goes down?
+
+  ![image-20220522163743863](img/image-20220522163743863.png)
+
+![image-20220522163941251](img/image-20220522163941251.png)
+
+- **Note:** path length can only increase by 1 each round
+- **Core problem** no router is aware if **itself** is included in a path
+
+
+
+#### Link State Routing
+
+TODO
+
+
+
+
+
+#### Hierarchical Routing
+
+##### Principles
+
+- Larger routing tables consume more resources
+- At Internet scales it is not feasible for every router to have an entry for every other.
+- The Hierarchy Solution:
+  - Each router is assigned a region, it knows the internal structure of its own region
+  - but only the entry point for remote regions
+
+##### Example
+
+![image-20220523193515208](img/image-20220523193515208.png)
+
+**TODO**
+
+
+
+
+
+### Delivery Models
+
+- **Unicast**: from a single address to a single address (common case considered previously)
+
+- **Multicast**: one device on the network to many, but not all, devices on the network
+
+- **Broadcast**: from one device on the network to all devices on the network
+
+- **Unicast**: all messages from the sender to every receiver.
+
+  - Very wasteful of bandwidth as routers often see the same packet twice.
+  - Requires the sender to know the addresses of all end-points
+
+  
+
+#### Multi-destination Broadcast Routing
+
+- Send a single message that contains a list of all destinations
+- Each router checks the list of destinations and determines the output lines needed, generating a new copy on each line based on its routing tables.
+
+- Lost of works for the routers
+- Requires the sender to know the addresses of end-points
+
+
+
+#### Flooding Broadcast
+
+- Send a single message that should be re-transmitted by all routers
+- Message contains a **Time-to-Live(TTL)** which is decremented at each host and a **sequence number ID**.
+- Hosts forward all incoming messages on all links except the one they arrived one, discarding where TTL=0 or sequence number is in the cache.
+- Still not the most efficient bandwidth use
+
+
+
+#### Reverse Path Broadcast
+
+- Exploits the sink tree seen previously
+- If a router receives a datagram on the link used to route to the send, it probably followed the shortest path and is first to arrive.
+- • If the datagram arrives on any other link, discard it as a duplicate
+
+![image-20220523195320768](img/image-20220523195320768.png)
+
+![image-20220523195332849](img/image-20220523195332849.png)
+
+![image-20220523195344321](img/image-20220523195344321.png)
+
+
+
+#### Spanning Tree Broadcast
+
+- A spanning tree is a subset of the network that includes all routers and no loops, as with the sink tree.
+- Each router knows if it is in the spanning tree and will forward the packet on all spanning tree lines except the one it arrived on.
+- Generates the minimum possible number of packets but is only possible where router have global knowledge, e.g. not possible with Distance Vector Routing approaches.
+
+
+
+### Open Shortest Path First (OSPF)
+
+extension to Link State Routing
+
+1. Discover its neighbours network addresses. 
+
+2. Set the distance to all neighbors. 
+3. Construct a packet with all learned. 
+4. Send this packet to all other routers.
+5. Compute shortest path to all other routers using Dijkstra’s Algorithm
+
+![image-20220524101041891](img/image-20220524101041891.png)
+
+**Note**: every link is represented twice, once for each direction as costs may be asymmetric
+
+#### Load Balancing
+
+- **Equal Cost MultiPath (ECMP)** routing:
+  - Remembers sets of all equal length paths
+  - Splits packets across them
+- This allows for a simple kind of load balancing
+
+
+
+#### OSPF Packets
+
+![image-20220524101811873](img/image-20220524101811873.png)
+
+- All OSPF messages are sent as standard IP packets.
+
+
+
+### **Border Gateway Protocol (BGP)**
+
+- Border Gateway Protocol focuses on supporting flexible routing policies
+- AS care about more than shortest path
+  - Do not carry commercial traffic on EDU network.
+  - Never send Pentagon traffic through China.
+  - Do not use AT&T due to bad performance.
+
+#### Operation of BGP
+
+- BGP is a form of distance vector protocol. However, it operates on paths not routers
+- A path consists of the destination, the first hop router and then the sequence of AS
+- Internal details of AS are obfuscated. They may use different routing protocols.
+
+
+
+#### Internal BGP
+
+- BGP routes are **not** propagated across AS using OSPF or other internal protocols
+- Internal BGP (**IBGP**) requires boundary routers to learn routes of all other boundary routers
+- Prefixes for external AS are stored at each boundary router and discovered internally using OSPF.
+
+![image-20220524104827243](img/image-20220524104827243.png)
+
+
+
+### Mobile Connectivity
+
+- The problem of keeping mobile hosts connected as they change location:
+  - Truly mobile devices, e.g. cell phone
+  - Nomadic devices, e.g. laptop computer
+- We tackle this problem by providing a fixed home address for mobile devices
+- This is better than re-computing routes, which at large scale ties too many care resources
+
+
+
+### Client Mobility
+
+- Whenever you got to a new location, DHCP acquires you an address and DNS allows you to reach remote services
+
+$\xrightarrow{}$ This does not allow remote clients to remain connected to you
+
+#### 
+
+#### Why Network-level Mobility
+
+- While application-level mobility is a neat solution, not everything uses domain names.
+- If we want to be a full part of the Internet on a mobile host we need **network-layer mobility**
+
+#### Network-Layer Mobility
+
+- The home agent provides a single consistent address for mobile nodes.
+- When a host acquires a new local address **(care-of-address)**, it report this to the home agent.
+- When the home agent receives a datagram for the mobile host it is **encapsulated** with a new header and tunnelled to the care-of address
+- Upon receiving a message from it home agent, the mobile host de-encapsulates it and responds directly
+- Subsequent datagrams may be **tunnelled directly** between the remote host and the mobile host
+- We refer to this as triangle routing. **Lets take a look at why..**
+
+ ![image-20220524113211481](img/image-20220524113211481.png)
+
+- Security if a big problem for this approach:
+  - If I can imitate your mobile host, all of your traffic will be directed to me.
+
+
+
+### Ad-Hoc Networks
+
+Ad-hoc networks are infrastructure-less. All nodes are both routers and hosts. This frequently occurs in V**ehicular Ad-hoc Networks (VANETs)** and **multi-hop Internet of Things Networks (IoT)**
+
+All elements of the network may move at any time this static reasoning over topology is meaningless
+
+#### IoT Concerns
+
+- **Resource** **constrained**: tiny memory, tiny storage
+- **Energy conservation**: motes must run on a single charge for long periods
+- **Unreliable**: mote failure due to damage, power failure, etc. is common
+
+#### Ad-hoc On Demand Vector Routing
+
+- **Ad-Hoc On Demand Vector Routing (AODV)** is closely related to distance vector routing.
+- Routes are only discovered when someone wants to send a datagram -> **better for highly dynamic networks**
+
+##### AODV: Route discovery
+
+- Our network medium is broadcast. Each node has a range
+- Neighbours determined by range + location. We assume an ideal circular range (unlikely)
+- When **AODV** is asked to route a message to an unknown destination, it floods **ROUTE_REQUEST** message
+- A **ROUTE_REQUEST** message contains a SEQ. Number and TTL to control flooding.
+- Discovered node sends **ROUTE_REPLY** back along the path of incoming **ROUTE_REQUEST**
+- A hop counter in ROUTE_REPLY is incremented at each intermediate hop and intermediate nodes add the route to their tables
+
+![image-20220524115019499](img/image-20220524115019499.png)
+
+As route discovery leads to high broadcast overhead. To minimize this… **ROUTE_REQUESTS** are initially sent with TTL=1 if this fails after a **time-out**, it this is incrementally increased until the route is found. 
+
+
+
+
+
+### Internet Control and Message Protocol (ICMP)
+
+#### Packets
+
+![image-20220524115328153](img/image-20220524115328153.png)
+
+#### Traceroute
+
+Traceroute provides a map of how data on the internet travels from its source to is destination.
+
+
+
+### Address Resolution Protocol (ARP)
+
+- Recall that we separate logical **IP addresses** and physical **MAC addresses.**
+- Physical media routes by MAC address at each hop we need to resolve a IP to MAC addresses
+
+- ARP maps IP addresses onto MAC addresses
+
+#### ARP in Action
+
+Hosts 1 checks it ARP cache for IP address of Host 2, if it has a matching MAC address it sends to this address.
+
+If MAC not in cache, Host 1 sends a broadcast message asking who owns the target IP address
+
+Hosts2 reponds by sending it MAC address to Host 1. Host 1 may now route to Host 2.
+
+**Note**: this is within the same subnet. What entry would you expect for hosts on remote links?
+
+![image-20220524121550122](img/image-20220524121550122.png)
+
+
+
+### Throttling
+
+- Recall: throttling occurs at the Transport Layer.
+  - Implemented using a congestion window in TCP
+- But it must be initiated by the Network Layer via implicit or explicit signals.
+- We use three mechanisms: **Choke packets, Explicit Congestion Notification (ECN)** flags and **Random Early Detection (RED)**
+
+
+
+#### Estimating Load
+
+Load can be estimated based upon three metrics:
+
+- **Link utilization**: rapid feedback, but hard to account for burst traffic.
+- **Packet loss:** accounts for all traffic but usually comes too late
+- **Queuing delay**: rapid feedback including burstiness
+
+### Choke Packets
+
+Choke packets are explicit notifications provided by congested routers.
+
+- A datagram is sent to the sender
+- The packet is marked so that no further choke packets will be generated later on
+
+Choke packet causes sending entity to throttle the rate it sends segments into the network
+
+### Explicit Congestion Notification (ECN)
+
+ECN is used to tag packets as they travel through routers. ECN-tagged packets reach **destination host**, which messages the sender to throttle send rate.
+
+-> In comparison to Choke Packet, ECN has **lower overhead**, but takes **longer** to enact **change**. 
+
+### Random Early Detection
+
+We randomly discard packets as delay is detected.
+
+This is counter-intuitive, but has advantages:
+
+- It makes packet loss a more reliable congestion signal.
+- It reduces the delay between congestion starting and transport-layer throttling.
+- Random Early Detected (RED) will drop random packets as congestion approaches.
+
+**Question:**
+
+- Why is randomly dropping packets a good way to signal fast senders?
+
+  A: Because fast senders tend to have many more packets in the queue… – …so randomly dropping packets tends to affect them more. – This also reduces book-keeping overhead.
+
+
+
+
+
+## Chapter 4: Data Link Layer
+
+### MAC layer principles (Medium Access Control)
+
+#### The Channel Allocation Problem
+
+- Medium Access Control (MAC) is about sharing a single broadcast channel
+- This may be part of the wireless spectrum, a cable or optical fiber
+- There are two basic options: static allocation and dynamic allocation
+
+#### Static Channel Allocation
+
+- Traditional approach to sharing network media between multiple nodes. 
+
+- For example, FM radio channels are statically allocate to radio stations.
+
+#### Dividing Network Media
+
+- **Different media**: n wires from N in a cable
+- **Time slicing**: n time-slots from N in a given time period.
+- **Frequency division**: n channels from N in a given time period
+
+#### Dynamic Assignment Assumptions
+
+1. **Independent traffic** - multiple nodes generating constant traffic levels.
+2. **Single channel or not** - do all nodes send and receive on the same channel?
+3. **Observable collisions** - when two nodes transmit at once, the result is garbage
+4. **Continuous or slotted** - are transmissions constrained to periods or free?
+5. **Carrier sense or not** - can we tell if the channel is in use before sending?
+
+
+
+
+
+### Case studies Important TakeAways
+
+#### Slotted
+
+![image-20220524203857739](img/image-20220524203857739.png)
+
+As you can see on the image, a lot of times collision happen because hosts are arbitrarily sending frames. If we now use timeframes in which only certain hosts can transmit, we can reduce the amount of collisions and thus performance and can be seen below. 
+
+![image-20220524204118208](img/image-20220524204118208.png)
+
+#### Carrier Sense Multiple Access (CSMA)
+
+In essence, just listen on the network and check if anyone is transmitting. If yes, do nothing. Listening all of the time is known as **persistent** CSMA.
+
+
+
+#### non-Persistent Carrier Sense Multiple Access (CSMA)
+
+This type of CSMA does not sample continuously. When a node has data ready, it samples the channel. If the channel is idle it transmits directly. If it is busy, it waits a random period and tries again. If a collision occurs, the node waits a random time and retransmits.
+
+#### 1-Persistent Carrier Sense Multiple Access (CSMA)
+
+Same thing as before but now we transmit with a probability of 1 when channel is idle.
+
+
+
+#### p-Persistent Carrier Sense Multiple Access (CSMA)
+
+Same thing as before but now we transmit with a probability of p when the channel is idle. If no acknowledgement it retransmits with probability Q = 1-p, and so on until transmit
+
+**Performance Comparison**
+
+![image-20220524204745107](img/image-20220524204745107.png)
+
+
+
+
+
+#### Hidden and Exposed Terminals
+
+![image-20220524204312186](img/image-20220524204312186.png)
+
+#### IoT Challenges
+
+RF Interference and occlusion:
+
+- Only small chinks of the spectrum may be used without a license and are therefore highly congested
+- Sporadic interference must be anticipated
+
+Power constraints:
+
+- The radio uses more power than any other component, so we must minimize its use (while providing ad-hoc routing)
+- Remember it uses power while transmitting and listening
+
+Node Loss:
+
+- We may lose nodes at any time, monitoring, flood prediction, volcano monitoring.
+- Or just simple dead batteries
+
+$\xrightarrow{}$ Solution: Berkeley MAC (BMAC)
+
+##### Berkeley MAC
+
+- Target requirements:
+  - Low-power, simple implementation, configurable, scalable, decentralized.
+  - Suitable for diverse applications
+
+Based upon a simple Carrier Sense Medium Access scheme.
+
+As we do not know when our neighbours may transmit, we must listen continuously. How can we reduce the power cost of this?
+
+As transmissions are infrequent, it is better to spend a little more energy when transmitting than while listening. This is the idea behind *Low Power Listening*
+
+Nodes only turn on their radios for short sampling periods. If traffic is detected, the radio remains active and listening to receive a packet. As transmissions may occur at any time, we add a long preamble to messages to ensure that the radio detects the incoming message and is active by the time the data arrives.
+
+![image-20220524210125493](img/image-20220524210125493.png)
+
+#### Time Synchronized Mesh Protocol
+
+TSMP is a MAC and Network layer protocol for WSAN.
+
+Target requirements: 
+
+- Reliable, low power and secure, self-organizing, self-healing, minimal management. 
+- It should ‘just work’.
+
+TSMP (Time Synchronized Mesh Protocol) is a networking protocol that forms the foundation of reliable, ultra low-power wireless sensor networking. Wireless sensor networks (WSNs) are self-organizing, multi-hop networks of wireless sensor nodes used to monitor and control physical phenomena. Typical WSN applications include industrial process automation, commercial building climate control and security alarming.
+
+TSMP provides redundancy and fail-over in time, frequency and space to ensure very high reliability even in the most challenging radio environments. TSMP also provides the intelligence required for self-organizing, self-healing mesh routing. The result is a network that installs easily with no specialized wireless expertise, automatically adapts to unforeseen challenges, and can be extended as needed without sophisticated planning.
+
+There are five key components of TSMP that contribute to end-to-end network reliability, simple installation and power efficiency.
+
+- Time synchronized communication
+- Frequency hopping
+- Automatic node joining and network formation
+- Fully-redundant mesh routing
+- Secure message transfer
+
+### Ethernet
+
+#### Frame Formats
+
+![image-20220524153306155](img/image-20220524153306155.png)
+
+#### DIX v IEEE 802.3
+
+- DIX uses a length field, while 802.3 uses a type field. As can be seen above.
+- Without the type field you cannot dispatch to higher layers, so an 8 byte logical link control header is added.
+- Fortunately all of the type fields had values over 1500:
+  - Ethernet max frame is 1500
+  - <= 1500 denotes size. > 1500 denotes type
+
+#### Min. / Max. Frame Length
+
+Transceiver must have enough RAM for MAX frame size. RAM was expensive, so 1500 bytes was selected.
+
+Why a minimum frame size?
+
+- A minimum frame size of 64bytes makes it easy to distinguish valid packets from failed chunks
+- On collision, Ethernet generates a 48 bit noise burst to warn other stations
+- On a long cable, a small packet may be transmitted before collision is detected.
+
+![image-20220524161159153](img/image-20220524161159153.png)
+
+#### Ethernet applies 1-p CSMA-CD (Carrier Sense Medium Access with Collision avoidance)
+
+- Ethernet uses 1-persistant CSMA-CD:
+  - Sample channel continuously
+  - If busy, wait until idle and transmit with probability 1
+  - If a collision occurs wait a random time and retransmit
+- Ethernet uses binary exponential back-off rather than waiting a random time.
+
+##### Exponential Back-off
+
+Back-off is slotted. After collision, each station waits a random number chosen in the range 0 to 2^i^-1, where i is the number of collisions. We try: 0-1, 0-3, 0-7
+
+Range is upper bounded to 1023 slots: after 16 collisions higher layers are signaled.
+
+Algorithm ensures lowest delay when collisions are rare and adapt to increasing collisions.
+
+#### Security Issues
+
+With persistent channel sampling, an Ethernet interface sees frame for all hosts on its link. Normally these frames would be thrown away. But the host is free to keep them and analyse them.
+
+#### From a single Cable to Hubs
+
+#### 
+
+#### ![image-20220524162436380](img/image-20220524162436380.png)
+
+#### Motivation for Switch Ethernet
+
+- Hubs do not increase capacity and eventually the LAN will saturate.
+- Switched Ethernet uses a high-speed backplane to connect hosts on a single line
+
+![image-20220524162617710](img/image-20220524162617710.png)
+
+![image-20220524162652253](img/image-20220524162652253.png)
+
+#### Switched Ethernet
+
+- Switches only output frames to ports for which they are destined
+- Each cable is usually full duplex, so the switch and host can talk at the same time
+- Each port is thus a single collision domain that only needs to run the CSMA/CD protocol if: 
+  - it has multiple hosts connected via a hub
+  - the cable is half-duplex.
+- Switches improve performance as all hosts can send packets at the same time, **without** **CSMA/CD**
+- Capacity is improved as frames are only deliverd to hosts that they are intended for
+- The impact of promiscuous mode is limited.
+- As two input ports may try to deliver frames to the same output port, the switch needs buffers, making it more expensive.
+
+#### Fast Ethernet
+
+- IEEE reconvened the 802.3 group in 1992 to create a faster 100mbps standard.
+
+- Two competing proposals
+
+  - Keep the protocol the same, but run it faster
+  - Add lots of features
+
+  -> The first proposal won
+
+- Requires twisted pair wiring
+
+#### 1-Gigabit Ethernet
+
+- Gigabit Ethernet was standardized in 1999:
+  - Goal 1: 10 fold increase in speed
+  - Goal 2: backwards compatibility
+- Gigabit Ethernet does not allow interconnection by hubs
+- In the case of connection to a switch on a duplex cable CSMA is not used, thus cable lengths are only limited by signal strength
+- Half duplex operation requires CSMA, limiting cable lengths to 25m - this proved problematic
+- Two hardware features were added:
+  - Carrier extension, which pads all packets to 512 bytes
+  - Frame bursting, which concatenates small frames into a single > 512 byte transmission.
+
+#### 10-Gigabit Ethernet
+
+- Follows the same approach as 1 gigabit Ethernet: increase speeds using the same approach.
+- To eliminate length restrictions, only full-duplex operation is allowed and hubs are not used.
+- Transmission over copper is difficult (4 pairs of UTP). Transmission over optical fibre is preferred.
+
+
+
+### IEEE 802.11
+
+Two modes of operation:
+
+- **Infrastructure** **mode**: used by wired access points to provide access to wireless hosts.
+- **Ad-hoc mode**: used to create a network on-the-fly between wireless hosts
+
+**802.11 Architecture**
+
+![image-20220524172749036](img/image-20220524172749036.png)
+
+
+
+### Wireless Challenges
+
+RF Interference:
+
+- Only small chunks of the spectrum may be used without a license and are therefore highly congested
+- Sporadic interference must be anticipated
+
+Blocked Paths:
+
+- 2.4GHz signals are blocked by metal, absorbed by water and scattered foliage.
+- Optical signals are blocked by any opaque object.
+
+Bandwidth Limitations:
+
+- Low-power networking typically has an order of magnitude lower bandwidth than standard WiFi
+- Maximum packet sizes may be incompatible with other communication media
+
+Mobility:
+
+- Nodes may move; necessitating protocols that can cope with a dynamic network topology.
+
+Power constraints:
+
+- Yes, even on your laptop we must conserve power.
+
+**TODO**
