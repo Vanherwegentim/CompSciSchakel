@@ -684,7 +684,7 @@ The Transport Layer provides many similar services to the Data Link Layer such a
 The key difference is:
 
 - The Data Link Layer provides communication between two hosts on the same physical link, while...
-- hosts at the Transport Layer may be separated by a whole network
+- Hosts at the Transport Layer may be separated by a whole network
 
 ![image-20220520142148797](img/image-20220520142148797.png)
 
@@ -709,7 +709,7 @@ We will look at four critical elements of transport layer protocols
 - IP addresses are not enough because multiple processes running on the same host may concurrently exchange data.
 - Ports are an example of a TSAP
 
-##### 
+
 
 ##### Network Service Access Points i.e IP-addresses
 
@@ -746,7 +746,9 @@ Basically, why keep servers constantly running if they're not constantly needed.
 
 ![image-20220520160555805](img/image-20220520160555805.png)
 
+Multiplexing is actually just taking signals from a lot of different cables and then going to one single cable and transmitting over that, as can be see below.
 
+![What is multiplexing and how does it work?](https://cdn.ttgtmedia.com/rms/onlineimages/multiplexing_and_demultiplexing-f_mobile.png)
 
 #### Connection Management
 
