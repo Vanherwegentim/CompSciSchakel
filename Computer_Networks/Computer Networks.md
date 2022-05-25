@@ -2142,4 +2142,108 @@ Power constraints:
 
 - Yes, even on your laptop we must conserve power.
 
-**TODO**
+### Virtual Channel Sensing
+
+In virtual channel sensing, we use higher level information to infer if we need to check the channel again. We do this by using **Network Allocation Vectors (NAV)**. Each frame carries a **NAV** **field** that say how long the transmission sequence will take to complete. 
+
+$\xrightarrow{}$Now everyone will wait for this sequence to finish before trying to transmit
+
+#### Power Saving
+
+**First way**
+
+- First approach is based on **periodic broadcasts** from the AP (beacon frames)
+- Used to advertise to the client that the AP has data ready for them
+- In-between beacon frames the client sleeps
+
+
+
+**Second way**
+
+- This approach uses client transmissions for timing
+- The AP buffers traffic for a client until the client transmits, then sends it immediately after the ACK
+- The client can sleep until it needs to transmit
+
+![image-20220525102306853](img/image-20220525102306853.png)
+
+### The Data Link Layer
+
+- Provides a well-defined software service interface to the physical media
+- Handles transmission error
+- Regulates the flow of data so that slow receivers are not swamped by fast senders
+- Contains the Medium Access Control sub-layer.
+
+#### Packets and Frames
+
+![image-20220525102618814](img/image-20220525102618814.png)
+
+#### Types of Data Link Layer
+
+- **Unacknowledged connectionless service.** 
+  - E.g. Ethernet, appropriate for media with inherently low error rates or when collisions are detectable.
+- **Acknowledged connectionless service.** 
+  - E.g. 802.11, appropriate for unreliable channels and when collisions are undetectable.
+- **Acknowledged connection-oriented service.** 
+  - E.g., Telephone or serial line, provides a reliable bit stream.
+
+
+
+### Framing
+
+When the datalink layer receives data from the **physical** layer it may contains **errors**. Some bits may have different values and the number of bits received may be less than, equal to, or more than the number of bits transmitted. It is up to the data link layer to detect and, if necessary, **correct** errors. The data link layer usually does this by **breaking the bit stream up into discrete frame** and compute the checksum. But this is **harder** then it seems.
+
+4 Methods:
+
+1. **Byte count**: appends a field to the start of the frame giving its length but it doesn't help as we don't know where the next frame starts.
+2. **Flag bytes with byte stuffing**: Flag bytes are special values used to mark the start and end of each frame
+   - What if the flag byte occurs in the data? We just add an escape byte just before each "accidental" flag byte in the data.
+3. **Flag bits with bit stuffing**: Same thing as before, just add a a special bit pattern. What if the escape bit occurs in the data?Imagine a flag byte of 01111110. Whenever the sender detects a sequence of five ones. It stuffs a zero in to make 011111010.
+4. **Physical layer coding violations**
+
+
+
+## Select Physical Layer Topics
+
+### Twisted Pairs
+
+![image-20220525110159091](img/image-20220525110159091.png)
+
+Cables must be twisted, as a single cable is essentially an antenna: radiating power and absorbing interference.
+
+#### Category 5 Wiring (Cat5)
+
+Category 5 wiring is an example of twisted pair. Each cable contains **fours pairs of wires** **gently twisted together**.
+
+Full duplex links require a separate upstream and downstream wire, half duplex links do not
+
+Offers limited bandwidth. Cat 6 and 7 add extra shielding and performance.
+
+### Coaxial cable
+
+![image-20220525110541635](img/image-20220525110541635.png)
+
+Better shielding but lower bandwidth
+
+### Optical Fiber
+
+Three Part System: light source, transmission medium and detector.
+
+Because of a media as thin as a few light wave-lengths act as a wave-guide allowing light to move in only one direction.
+
+Can transmit at 100mbps over  100km without amplification.
+
+
+
+### Wireless Communication
+
+![image-20220525111020798](img/image-20220525111020798.png)
+
+
+
+#### Microwave communication
+
+Not very important
+
+Compared to lower frequency EM radiation, they are high bandwidth, but do not travel through solid objects well. Using an omni. antenna microwaves can evenly cover an area, or coverage can made asymmetric using a directional antenna.
+
+Microwaves are absorbed by water molecules. So practically anything standing in between ruins it. All microwave transmitters are to some extent also serving as a microwave oven for all water containing objects in-between.
