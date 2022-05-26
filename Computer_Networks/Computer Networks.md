@@ -1,11 +1,5 @@
 # Computer Networks
 
-
-
-[TOC]
-
-------
-
 Quick refresher
 
 ![Day 51: Understanding the OSI Model | by Anonymous | Medium](https://miro.medium.com/max/1024/1*17Zz6v0HWIzgiOzQYmO6lA.jpeg)
