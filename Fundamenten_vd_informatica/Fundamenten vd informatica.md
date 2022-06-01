@@ -100,12 +100,6 @@ Ook wel regular expression genoemd voor de duidelijkheid, is dus niks nieuws. Ze
 
 
 
-**Voorbeeld 3.11** Met de reguliere uitdrukking ab∗ c duiden we alle strings aan bestaande uit een a, eventueel gevolgd door een aantal keer het symbool b en tenslotte een c. Voorbeelden van strings die aan dit patroon voldoen, zijn ac en abbbbbbbbbbbc, maar niet abbbbbbbbb. We kunnen ook gebruik maken van haakjes om bepaalde deeluitdrukkingen nul of meerdere keren te laten voorkomen. Zo komt met de reguliere uitdrukkingen b(ab)*c elke string overeen bestaande uit een b, dan een aantal keer ab en tenslotte gevolgd door een c. De strings bc en bababababababc voldoen aan dit patroon, de string bac niet. Tot slot is er ook nog een mechanisme dat alternatieven weergeeft. We kunnen namelijk in een reguliere expressie de notatie a|b gebruiken om aan te geven dat op die plaats een a of een b moet voorkomen. Ook bij | mogen we gebruik maken van haakjes.
-
-Tenslotte kunnen we ∗ en | combineren. Zo komen met de reguliere uitdrukking d(a|i) ∗ t alle strings overeen bestaande uit een d gevolgd door nul of meerdere keren de letters a of i en ten slotte een t, zoals de string daiiiat.
-
-
-
 **Voorbeeld 3.13**
 
 | Reguliere uitdrukking |                                                              |
@@ -143,7 +137,7 @@ Dit schema werkt door een serie van 0'en en 1'en af te gaan en te zien waar je b
 
 Een eindige automaat is een computermodel dat door zo een schema kan worden voorgesteld. De basis-ingredienten van een eindige automaat zijn een eindig aantal toestanden (in het schema voorgesteld door cirkels) waarin de machine zich kan bevinden en vanuit elke toestand "overgangen" afhankelijk van de invoer op dat moment.
 
-**Definitie 3.6 (Eindige automaat)** Een eindige automaat is een 5-tal A = (Q, Σ, δ, q0, F) met
+**Definitie 3.6 (Eindige automaat)** Een eindige automaat is een 5-tal A = (Q, Σ, δ, q~0~, F) met
 
 - Q een eindige verzameling; we noemen de elementen van Q de toestanden van de automaat A.
 
@@ -153,15 +147,15 @@ Een eindige automaat is een computermodel dat door zo een schema kan worden voor
 
 - Σ een alfabet
 
-- • δ een afbeelding, de transitieafbeelding genoemd, 
+- δ een afbeelding, de transitieafbeelding genoemd, 
 
   ​									δ : Q × Σ → Q.
 
 Een eindige automaat (in het Engels a finite automaton of meer precies a finite state automaton, afgekort FSA) werkt als volgt: 
 
-- Bij de start bevindt de machine zich in de begintoestand q~o~ . Op het moment dat we zullen starten zal er ook steeds een invoerstring x = σ~1~σ~2~ . . . σ~n~ gegeven zijn. (het is mogelijk dat x de lege string λ is).
-- Per tijdseenheid voert de machine 1 instructie uit. Om de eerste instructie uit te voeren berekent de automaat de waarde van n δ(q~0~, σ~1~). Deze waarde is opnieuw een toestand, zeg q~i1~ 
-- Als tweede stap bepaalt de automaat dan q~i2~
+- Bij de start bevindt de machine zich in de begintoestand q~o~ . Op het moment dat we starten zal er ook steeds een invoerstring x = σ~1~σ~2~ . . . σ~n~ gegeven zijn. (het is mogelijk dat x de lege string λ is).
+- Per tijdseenheid voert de machine 1 instructie uit. Om de eerste instructie uit te voeren berekent de automaat de waarde van  δ(q~0~, σ~1~). Deze waarde is opnieuw een toestand, zeg q~i1~ 
+- Als tweede stap bepaalt de automaat dan q~i2~== δ(q~i1~ , σ~2~).
 - ...
 - Als n-de en laatste stap berekent de machine tenslotte q~in~ = δ(q~in−1~ , σ~n~)
 
@@ -169,15 +163,31 @@ Na deze n-de en laatste stap zijn er nu twee mogelijkheden: ofwel behoort q~i~~n
 
 ![image-20220220194243916](img/image-20220220194243916.png)
 
-****
+Deze automaat kan ook zo voorgesteld worden:
 
-**WTF IS DIT MAN, IK HEB HIER WAT UITEG NODIG**
-
-Misschien aanvullen als ge het wat beter begrijpt 
+![image-20220528132556669](img/image-20220528132556669.png)
 
 ### 3.2.2 Eindige automaten en reguliere talen
 
 Een automaat aanvaardt sommige strings wel, en andere niet. De verzameling van alle strings die aanvaard worden, vormt een taal. We noemen dit de taal bepaald door een automaat; we zeggen ook dat die taal herkend wordt door de automaat.
+
+**Definitie 3.7** Als A = = (Q, Σ, δ, q~0~, F) een eindige automaat is, noemen we 
+						L(A) = {x ∈ Σ^*^| δ^*^ (q~0~, x) ∈ F}
+
+de taal bepaald door de eindige automaat A. Voor een gegeven taal L ⊆ Σ^*^ zeggen we dat A de taal herkent als L = L(A)
+
+**Stelling 3.2** De klasse van talen die herkend worden door een eindige automaat valt precies samen met de klasse van de reguliere talen.
+
+
+
+**Stelling 3.3 (Pompstelling)** Voor elke reguliere taal L bestaat er een n, zodat voor elke string s  ∈ L met |s| ≥ n, het volgende geldt: er bestaan strings x,y,z zodat s = xyz met |y| > 0, |xy|≤ n, en 
+∀k ∈ N : xy^k^z ∈ L.
+
+
+
+Deze stelling wordt in het Engels het “pumping lemma” genoemd. Ze beschrijft een belangrijke basiseigenschap van reguliere talen: Reguliere talen kunnen willekeurig lange strings bevatten, maar vanaf een zekere lengte zijn die strings noodzakelijkerwijs opgebouwd uit een beperkt aantal “bouwstenen” die eventueel meerdere keren herhaald worden. Het bovenstaande voorbeeld toont aan dat, alhoewel eindige automaten in staat zijn om reguliere talen te herkennen (d.w.z., voor elke reguliere taal bestaat er een automaat die die taal herkent), ze toch beperkt zijn: er bestaan relatief eenvoudige talen die ze niet kunnen herkennen. Ze zijn bijgevolg niet geschikt als realistisch computermodel. In een volgend onderdeel zullen we kennismaken met een krachtiger model: de Turingmachine. Maar eerst kijken we nog even naar een ander soort automaten: de niet-deterministische eindige automaten.
+
+
 
 ### 3.2.3 Niet-deterministische eindige automaten
 
@@ -199,7 +209,7 @@ Indien we maar over een processor beschikken, en we willen toch opdrachten met o
 
 - δ een afbeelding
 
-  ​	δ : Q × (Σ ∪ {λ}) → P(Q).
+  ​	$δ : Q × (Σ ∪ \left\{λ\right\}) → P(Q).$
 
 Het eerste verschil tussen een gewone eindige automaat en een niet-deterministische ligt in het feit dat de transitieafbeelding δ geen toestanden als beelden heeft, maar verzameling van toestanden. Die verzamelingen kunnen leeg zijn.
 
@@ -213,7 +223,27 @@ https://www.youtube.com/watch?v=W8Uu0inPmU8
 
 ![image-20220320141055097](img/image-20220320141055097.png)
 
-**TODO **
+Voor de NFA (non-deterministic finite state automaton) zijn er 3 mogelijkheden voor de string abb.
+
+1. De machine eindigt in toestand q~0~ omdat er steeds voor de loop gekozen wordt
+2. De machine eindigt in toestand q~1~ omdat er na 2 loops gekozen wordt om naar q~1~ te gaan.
+3. De machine eindigt in toestand q~2~.
+
+We zeggen dat een string aanvaard wordt door een niet-deterministische eindige automaat indien er minstens 1 opeenvolging van keuzes gemaakt kan worden, zo dat de automaat eindigt in een aanvaardbare toestand na het verwerken van de string.
+
+
+
+**Definitie 3.9 (Taal bepaald door een niet-deterministische automaat)** Indien A = (Q, Σ, δ, q~0~, F) een niet-deterministische eindige automaat is, noemen we
+						$L(A) = \{x ∈ Σ ∗ | δ ∗ (q_0, x) ∩ F \ne ∅\}$
+
+de **taal bepaald door** A
+Voor een gegeven taal L ⊆ Σ^*^ zeggen we "A herkent L" als L = L(A)
+
+
+
+**Stelling 3.4 **Voor elke niet-deterministische eindige automaat bestaat er een deterministische die dezelfde taal herkent.
+
+Het omgekeerde geldt natuurlijk ook, daar elke deterministische eindige automaat kan aanzien worden als een niet-deterministische automaat. Niet-deterministische eindige automaten kunnen dus niet meer talen herkennen dan deterministische; ze zijn evengoed beperkt tot de klasse van de reguliere talen. Het nut van een niet-deterministische eindige automaat ligt in het feit dat het veel eenvoudiger is om een niet-deterministische eindige automaat te ontwikkelen die een gegeven taal herkent, dan om een deterministische te vinden
 
 ## 3.3 Turingmachines
 
@@ -243,17 +273,17 @@ De machine heeft een lees/schrijfkop en het symbool op de magneetband juist onde
 
 - Σ het alfabet van de Turingmachine. Dit alfabet bevat, naast mogelijk andere symbolen, minstens een speciaal symbool, het blanco symbool of lege symbool, dat we noteren als #.
 
-- T ⊆ Σ\{#} is de verzameling van invoersymbolen. De elementen van Σ\\(T ∪ {#}) worden hulpsymbolen genoemd.
+- T ⊆ Σ\\{#} is de verzameling van invoersymbolen. De elementen van Σ\\(T ∪ {#}) worden hulpsymbolen genoemd.
 
 - P een functie (niet noodzakelijk een afbeelding)
 
-  ​			 P : (Q\F) × Σ → Q × Σ × {L, R, 0}
+  ​			 $P : (Q\textbackslash F) × Σ → Q × Σ × {L, R, 0}$
 
 P wordt het programma of de instructieset van de Turingmachine genoemd. (In de verzameling {L, R, 0} staat L voor “Links”, R voor “Rechts” en 0 voor “Blijf staan”, waarmee de beweging van de schrijfkop aangegeven wordt.)
 
-Wanneer we de machine starten bevindt deze zich in de begintoestand q0 en staat de leeskop boven het meest linkse, niet blanco symbool van de magneetband. De machine voert dan het programma P uit en dit moet als volgt geinterpreteerd worden: Noem q de toestand waarin de Turingmachine zich op een bepaald moment bevindt en zij σ ∈ Σ het symbool dat op datzelfde moment door de kop gelezen wordt. Nu zijn er twee mogelijkheden 
+Wanneer we de machine starten bevindt deze zich in de begintoestand q~0~ en staat de leeskop boven het meest linkse, niet blanco symbool van de magneetband. De machine voert dan het programma P uit en dit moet als volgt geïnterpreteerd worden: Noem q de toestand waarin de Turingmachine zich op een bepaald moment bevindt en zij σ ∈ Σ het symbool dat op datzelfde moment door de kop gelezen wordt. Nu zijn er twee mogelijkheden 
 
-1. Het koppel (q, σ) behoort tot het definitiegebied van de functie P. Dit betekent dat P(q, σ) bestaat en gelijk is aan een drietal (q~0~ , σ~0~ , X) ∈ Q × Σ × {L, R, 0}. Het effect van de uitvoering van deze instructie is dat de Turingmachine haar toestand (eventueel) zal veranderen in toestand q~0~ , dat het huidig gescande symbool σ (eventueel) vervangen wordt door σ~0~ en dat de kop zich beweegt zoals X aangeeft, d.w.z. indien X = L, beweegt de kop zich naar links (of de band naar rechts), indien X = R beweegt de kop naar rechts en indien tenslotte X = 0 blijft de kop ter plaatse. 
+1. Het koppel (q, σ) behoort tot het definitiegebied van de functie P. Dit betekent dat P(q, σ) bestaat en gelijk is aan een drietal $(q' , σ' , X) ∈ Q × Σ × \{L, R, 0\}$. Het effect van de uitvoering van deze instructie is dat de Turingmachine haar toestand (eventueel) zal veranderen in toestand q' , dat het huidig gescande symbool σ (eventueel) vervangen wordt door σ~0~ en dat de kop zich beweegt zoals X aangeeft, d.w.z. indien X = L, beweegt de kop zich naar links (of de band naar rechts), indien X = R beweegt de kop naar rechts en indien tenslotte X = 0 blijft de kop ter plaatse. 
 
 2. Indien het koppel (q, σ) niet behoort tot het definitiegebied van P stopt het programma. De toestand q wordt de eindtoestand van de Turingmachine (voor die bepaalde invoer) genoemd. 
 
@@ -270,8 +300,8 @@ We illustreren deze begrippen aan de hand van een Turingmachine die als invoer e
 De werking van een dergelijke Turingmachine zou er als volgt kunnen uitzien: 
 
 - Bij het begin staat de leeskop op het meest linkse symbool van de string (toestand q0) 
-- Daarna zoekt de machine het meest rechtse symbool van de string door de leeskop telkens een positie naar rechts te verschuiven (toestand q1). 
-- Op het moment dat de leeskop het blanco symbool # leest, bevindt de kop zich ´e´en positie rechts van de string (toestand q2) en moet de kop weer een positie naar links bewegen. 
+- Daarna zoekt de machine het meest rechtse symbool van de string door de leeskop telkens een positie naar rechts te verschuiven (toestand q~1~). 
+- Op het moment dat de leeskop het blanco symbool # leest, bevindt de kop zich 1 positie rechts van de string (toestand q~2~) en moet de kop weer een positie naar links bewegen. 
 - Nu moet het ingescande symbool vervangen worden door het blanco symbool # en mag de machine stoppen (toestand h).
 
 Hieronder zie je het hierboven gegeven voorbeeld grafisch voorgesteld.
@@ -284,7 +314,7 @@ Computers worden vaak gebruikt om berekeningen uit te voeren. Je kan denken dat 
 
 **Stelling 3.5 (These van Church)** Een functie is effectief berekenbaar als en slechts als die functie Turing-berekenbaar is.
 
-Vanaf nu zullen we ons concentreren op functies (met 1 of meerdere veranderlijken) gedefinieerd op de natuurlijke getallen. Nu willen we dit zo simpel mogelijk gaan voorstellen. WE zouden de decimale voorstellingswijze kunnen gebruiken maar dan hebben we minstens 11 symbolen nodig (0,1,2...,#) nodig in onze TM. 
+Vanaf nu zullen we ons concentreren op functies (met 1 of meerdere veranderlijken) gedefinieerd op de natuurlijke getallen. Nu willen we dit zo simpel mogelijk gaan voorstellen. We zouden de decimale voorstellingswijze kunnen gebruiken maar dan hebben we minstens 11 symbolen nodig (0,1,2...,#) nodig in onze TM. 
 
 Daarom gaan we gebruiken maken van de binaire of zelfs unaire notatie. In de unaire notatie stellen we getal 0 voor door 1, het getal 1 door 11, het getal 2 door 111, . . . , het getal n door 111 · · · 111 | {z } n+1 enen . Bij deze laatste voorstellingswijze hebben we dus slechts 1 symbool nodig om de getallen zelf voor te stellen.
 
@@ -298,13 +328,15 @@ Een formele beschrijving van deze TM M = (Q, Σ, T, P, q~0~, F) wordt als volgt 
 
 - Q = {q0, q1, h}, F = {h} 
 - Σ = {1, #}, T = {1} 
-- P wordt gegeven door:   P(q0, 1) = (q1, #, R) 
-  										                                             P(q1, 1) = (q1, #, R) 
-                                                                										  P(q1, #) = (h, 1, 0)
+- P wordt gegeven door:   
+     - P(q~0~, 1) = (q~1~, #, R) 
+     - P(q~1~, 1) = (q~1~, #, R) 
+     -  P(q~1~, #) = (h, 1, 0)
 
 
 
-**Opmerking** We merken hier op dat de bovenstaande TM niet minimaal is (in het aantal toestanden). Je hoeft namelijk niet meteen van toestand q0 over te gaan naar een nieuwe toestand. (We illustreren dit in het voorbeeld hieronder.)
+
+**Opmerking** We merken hier op dat de bovenstaande TM niet minimaal is (in het aantal toestanden). Je hoeft namelijk niet meteen van toestand q~0~ over te gaan naar een nieuwe toestand. (We illustreren dit in het voorbeeld hieronder.)
 
 **Voorbeeld 3.24** Het heeft geen zin om dit over te schrijven dus bekijk gewoon het boek op pagina 32.
 
@@ -312,9 +344,9 @@ Een formele beschrijving van deze TM M = (Q, Σ, T, P, q~0~, F) wordt als volgt 
 
 
 
-**Stelling 3.6** Er bestaat een functie f: N → N diet niet Turing-berekenbaar is.
+**Stelling 3.6** Er bestaat een functie f: N → N die niet Turing-berekenbaar is.
 
-**Bewijs:** We zullen aant eonen dat er een manier bestaat om een oneindige rij Turingmachines te construeren, op zo'n manier dat elke denkbare Turingmachine ergens in die rij staat. Vervolgends zullen we aantonen dat er een functie bestaat waarvoor geldt dat geen enkele TM in die rij precies dezelfde functie berekent. Omdat de rij alle Turingmachines bevat, is de stelling dan bewezen.
+**Bewijs:** We zullen aantonen dat er een manier bestaat om een oneindige rij Turingmachines te construeren, op zo'n manier dat elke denkbare Turingmachine ergens in die rij staat. Vervolgens zullen we aantonen dat er een functie bestaat waarvoor geldt dat geen enkele TM in die rij precies dezelfde functie berekent. Omdat de rij alle Turingmachines bevat, is de stelling dan bewezen.
 
 Vooreerst stellen we nog dat we twee Turingmachines die precies hetzelfde zijn op de naamgeving van toestanden of symbolen na, als gelijk beschouwen. Het maakt immers niet uit of we de toestanden nu q~0~, q~1~, . . . noemen of p~0~, p~1~, etc., en hetzelfde geldt voor de symbolen.
 
@@ -330,7 +362,7 @@ Vooreerst stellen we nog dat we twee Turingmachines die precies hetzelfde zijn o
 
 ### 3.3.3 Turingmachines en talen
 
-Een TM kan met een bepaalde invoer een bepaalde uitvoer associeren en zo functies berekenen. Maar we kunnen een TM ook gebruiken om talen te herkennen. Als de machine eindigt in een aanvaardbare toestand dan is de invoerstring aanvaard. De taal bepaald door de TM is dan de verzameling van alle strings die aanvaard worden.
+Een TM kan met een bepaalde invoer een bepaalde uitvoer associëren en zo functies berekenen. Maar we kunnen een TM ook gebruiken om talen te herkennen. Als de machine eindigt in een aanvaardbare toestand dan is de invoerstring aanvaard. De taal bepaald door de TM is dan de verzameling van alle strings die aanvaard worden.
 
 **Definitie 3.11** De taal bepaald door een Turingmachine M, genoteerd L(M), is de verzameling van alle invoerstrings waarvoor M in een aanvaardbare toestand eindigt. Gegeven een taal L, zeggen we dat L herkend wordt door M als L(M) = L.
 
@@ -341,6 +373,10 @@ Een TM kan met een bepaalde invoer een bepaalde uitvoer associeren en zo functie
 **Definitie 3.14** Een taal L wordt Turing-beslisbaar of kortweg beslisbaar genoemd, als er een TM bestaat die L beslist. Turing-beslisbare talen worden ook recursieve talen genoemd.
 
 Merk het verschil op tussen herkennen en beslissen. Als een TM de taal L herkent, betekent dat dat de TM alle en alleen de strings in L aanvaardt. Strings buiten L kunnen verworpen worden, of onbeslist blijven (omdat de machine niet stopt). Als een TM L beslist, betekent dat dat de TM voor elke string beslist of de string in L zit of niet; dit is een strikt strenger criterium.
+
+
+
+![image-20220528163109616](img/image-20220528163109616.png)
 
 
 
@@ -366,15 +402,17 @@ Concreet betekent dit voor een NDTM M dat wanneer deze machine zich in een bepaa
 
 In de instructieset hierboven worden de p–toestanden gebruikt om het even of oneven zijn van het aantal a’s bij te houden, de r toestanden doen hetzelfde voor het aantal b’s. Toestand p0 (resp. r0) duidt een even aantal a’s (resp. b’s) aan, toestand p1 (resp. r1) een oneven aantal.
 
-![image-20220301150307968](img/image-20220301150307968.png)
+
 
 Er zijn twee mogelijke wegen die de NDTM M kan volgen en deze zijn samen geschetst in figuur 3.3. Zoals je ziet op de figuur heeft de NDTM bij de eerste stap de keuze tussen twee opdrachten (namelijk ((q0, a),(p0, a, 0)) of ((q0, a),(r0, a, 0))). We nemen aan dat een NDTM telkens wanneer er meerdere opdrachten mogelijk zijn, elk van deze mogelijkheden apart maar tegelijkertijd (parallel) behandelt. We zeggen dat een NDTM M met succes stopt bij een bepaalde invoer of ook nog dat de NDTM M een bepaalde string aanvaardt, indien ´e´en van de gevolgde wegen (en misschien ook meer) in een aanvaardbare eindtoestand stopt. De rekentijd van de NDTM komt overeen met het aantal stappen in de kortste van al die wegen.
+
+![image-20220528164138790](img/image-20220528164138790.png)
 
 
 
 ## 3.4 Analyse van algoritmen
 
-Hoeveel berekeningsstappen heeft een algoritme nodig om de uitkomst te berekenen, hoeveel geheugenruimte is er nodig? Het analyseren van een algoritme om deze vragen te beantwoorden noemen we "complexiteitsanalyse". Dergelijke vragen zijn van velang als we de keuze hebben tussen verschillende algoritmen voor het oplossen van een probleem. 
+Hoeveel berekeningsstappen heeft een algoritme nodig om de uitkomst te berekenen, hoeveel geheugenruimte is er nodig? Het analyseren van een algoritme om deze vragen te beantwoorden noemen we "complexiteitsanalyse". Dergelijke vragen zijn van belang als we de keuze hebben tussen verschillende algoritmen voor het oplossen van een probleem. 
 
 Hoe hangt de benodigde tijd of geheugenruimte af van de "grootte" of de moeilijkheidsgraad van de invoer? Om dat te beantwoorden, moeten we eerst die grootte kwantitatief kunnen uitdrukken met een of andere paramter. Het verband tussen die parameter en de benodigde rekentijd en geheugenruimte noemen we de respectievelijk de tijdscomplexiteit en de ruimtecomplexiteit van het algoritme.
 
@@ -382,15 +420,17 @@ Hoe hangt de benodigde tijd of geheugenruimte af van de "grootte" of de moeilijk
 
 ### 3.4.1 tijdscomplexiteit van algoritmen
 
-De tijd nodig om een probleem op te lossen hangt af van de "grootte" van het probleem dat moet worden opgelost. Deze grootte wordt gemeten aan de hand van de grootte van de invoer van het "specifieke geval". Ter illustratie bekijken we even het vermenigvuldigen van twee n x n matrices voor welbepaalde n.
+De tijd nodig om een probleem op te lossen hangt af van de "grootte" van het probleem dat moet worden opgelost. Deze grootte wordt gemeten aan de hand van de grootte van de invoer van het "specifieke geval". Ter illustratie bekijken we even het vermenigvuldigen van twee $n \times n$ matrices voor welbepaalde n.
 
 Voor de “grootte” van dit specifieke probleem kunnen we n als maat nemen. We zouden echter natuurlijk evengoed n^2^ of 2n^2^ kunnen voorstellen als maat voor de omvangsgrootte. Veronderstel dat we een algoritme beschouwen dat de standaardmethode voor het vermenigvuldigen van matrices gebruikt. Zo’n algoritme berekent voor alle 1 ≤ i, j ≤ n de (i, j)–de term uit het product door de i–de rij met de j-de kolom te vermenigvuldigen. Voor de berekening van deze (i, j)–de term moet de computer 2n leesoperaties, n vermenigvuldigingen en n − 1 optellingen en tenslotte nog een schrijfoperatie uitvoeren. In het totaal hebben we voor de berekening van deze term 4n bewerkingen nodig. Aangezien er n^2^ termen te berekenen zijn, voert het algoritme dus 4n^3^ bewerkingen uit.
 
-**Logisch toch? : )**
+**Logisch toch? : )** (nu dat ik er iets van begrijp, best wel logisch)
 
 **Als ge hierna geen zenuwinzinking hebt dan zijt ge een echte winees**
 
 **Definitie 3.16 (Tijdscomplexiteit)** De tijdscomplexiteit van een bepaald algoritme A is een functie tijd~A~(n):  N → N die voor een gegeven invoeromvang n het maximum aantal elementaire bewerkingen aangeeft, die door het algoritme A bij een invoeromvang van grootte n zullen worden uitgevoerd.
+
+
 
 Uit de definitie volgt onmiddelijk dat tijd~A~(n) een slechtste geval maat is. Het kan goed zijn dat het in de meeste gevallen veel minder dan tijd~A~(n) elementaire bewerkingen moet uitvoeren om tot een resultaat te komen. Dus maakt men vaak analyses van algoritmen met betrekking tot de gemiddelde complexiteit. Dit is wel wat moeilijker dus beperken wij ons tot het slechtste geval.
 
@@ -404,7 +444,110 @@ Men zegt ook wel: f is van orde g, of f wordt asymptotisch gedomineerd door g.
 
 Merk op dat het mogelijk is dat “f is O(g)” en “g is O(f)” allebei gelden.
 
+De O(...) is eigenlijk een upper bound. Dit betekent dus voor het geval hierboven dat f(n) geupperbound is door g(n).
 
+**Definitie 3.18 (Asymptotische equivalentie)** Twee functies f,g: $\N \xrightarrow{} \R^+$ worden asymptotische equivalent genoemd indien
+								$f$ is $O(g)$ en $g$ is $O(f)$.
+
+We noteren deze situatie door $f$ is $Θ(g)$ (en dus ook $g$ is $Θ(f)$).
+
+
+
+**Definitie 3.9** We schrijven f(n) ~ g(n), of f~g als geldt dat
+
+​							$∀ ∈ \R^+_0 , ∃N ∈ \N, ∀n ≥ N : |f(n)/g(n) − 1| < \epsilon$
+
+of, als limit^a^ geschreven, $\lim_{n \to \infty } \frac{f(n)}{g(n)} = 1$
+
+Het komt neer op het feit dat f(n) en g(n) nauwelijks verschillen. De betekenis van f~g is dat, voor grote n, de verhouding tussen f(n) en g(n) heel dicht bij 1 komt te liggen. Niet te verwarren met Θ. f is Θ(g) betekent dat voor grote nm f even snel is als g, op een constante factor na.
+
+**Voorbeeld 3.29** Voor de functies f(n) = 3n en g(n) = 4n geldt f is Θ(g) maar niet f~g. Voor de functies f(n) = 3n en g(n) = 3n + 2 geldt f  is Θ(g) en f~g
+
+
+
+**Polynomiaal versus exponentieel**
+
+In bepaalde gevallen is het nuttig om een grovere opdeling van complexiteit te hebben. In dat kader wordt vooral verschil gemaakt tussen algoritmen met polynomiale tijdscomplexiteit en algoritmen met exponentiële tijdscomplexiteit.
+
+**Definitie 3.20 (Polynomiale tijd)** We noemen een algoritme van polynomiale tijd als en slechts als zijn tijdscomplexiteit $O(n^k)$ is voor een $k\in\N$
+
+**Definitie 3.21 (Exponentiële tijd)** We noemen een algoritme van exponentiële tijd indien zijn complexiteitsfunctie $O$(exp($n^k$)) is, voor een natuurlijk getal k.
+
+
+
+![image-20220528184210086](img/image-20220528184210086.png)
+
+**Beheersbare en onbeheersbare problemen**
+
+Als we een bepaald probleem hebben kan het zijn dat als we hier een algoritme voor schrijven dat het ons niet lukt om dit polynomiale tijd te doen. Dit kan aan ons liggen maar het kan dat er geen polynomiaal algoritme bestaat voor dit probleem. Dergelijke problemen noemen we in het engels **intractable**;dat betekent zoveel als “onbeheersbaar” of “onhandelbaar”.
+
+Een voorbeeld waarvan men vermoedt dat het onbeheersbaar is.  Het probleem heet het Handelreizigersprobleem en wordt als volgt geformuleerd:
+
+**Gegeven**: n steden c~1~, c~2~, . . . , c~n~. Tussen elk paar steden c~i~ en c~j~ kent men ook de afstand d~i,j~ . Probleem: De handelsreiziger vertrekt in ´e´en welbepaalde stad (zeg c~1~) en wil een rondreis maken zodat hij elk van de steden c~2~, c~3`, . . . , c~n~ precies 1 keer bezoekt en vervolgens naar zijn beginpunt c~1~ terugkeert (zonder nog andere steden te bezoeken). De vraag is nu: welke weg moet de handelsreiziger volgen om een zo klein mogelijke afstand af te leggen.
+
+De huidige oplossing is niet efficiënt  want we voeren zeker meer dan een veelvoud van (n-1)! stappen in dit algoritme uit.
+
+
+
+### 3.4.2 Het bepalen van de complexiteit in enkel concrete voorbeelden
+
+**Voorbeeld 3.30** Wat is de tijdscomplexiteit van volgend algoritme, dat de som berekent van alle elementen van een n × n matrix a (in functie van n = a.length)?
+
+![image-20220528214047908](img/image-20220528214047908.png)
+
+## 3.5 Complexiteitsklassen van beslissingsproblemen
+
+### 3.5.1 de klassen P en NP
+
+**Turingmachines en de klasse P**
+
+We hebben eerder gesteld dat er een essentieel verschil is tussen **polynomiale** algoritmen, die we beheersbaar (“**tractable**”) noemen, en algoritmen waarvan de tijdscomplexiteit niet door eender welke polynoom **gedomineerd** wordt (onbeheersbaar, of “**intractable**”). Het lijkt dan logisch om die lijn door te trekken naar de complexiteit van problemen. Dat leidt tot de definitie van de klasse **P** .
+
+
+
+**Definitie 3.22 (Polynomiale beslisbaarheid)** Een taal L wordt in polynomiale tijd beslist door een TM M, indien er een $k ∈ \N$ bestaat zodat M voor elke invoerstring $s$ beslist $s ∈ L$, in een aantal stappen dat $O(n^k)$ is, met n = |s| de lengte van de invoerstring. Een taal $L$ is **polynomiaal beslisbaar** als er een TM bestaat die de taal in polynomiale tijd belist.
+
+**Definitie 3.23 (De klasse P)** Men duidt met $P$ de klasse aan van alle talen waarvoor geldt dat er een TM bestaat die die taal in polynomiale tijd beslist.
+
+
+
+**Niet-deterministische Turingmachines en de klasse NP**
+
+We hebben eerder niet-deterministische Turingmachines gezien. Analoog aan de klasse **P** van talen die polynomiaal beslist kunnen worden door een **Turingmachine**, kunnen we ook een klasse **NP** definiëren van talen die polynomiaal beslist kunnen worden door een **NDTM**
+
+**Definitie 3.24** *Tijdscomplexiteit van een **NDTM***
+De tijdscomplexiteit tijd~M~: $\N\xrightarrow{}\R^+$ voor een NDTM M wordt gedefinieerd als
+
+![image-20220528220252374](img/image-20220528220252374.png)
+
+
+
+**Definitie 3.25 (NDTM van polynomiale tijd)** Een niet-deterministische Turingmachine M heet van polynomiale tijd als en slechts als tijd~M~(n) $O(n^k)$ is, voor een $k∈ \N$
+
+
+
+**Definitie 3.26 (Niet-deterministisch polynomiaal herkenbaar)** Een taal L wordt herkend in polynomiale tijd door een NDTM M, indien M L herkent en M van polynomiale tijd is. Een taal L is niet-deterministisch polynomiaal herkenbaar als er een NDTM bestaat die L herkent in polynomiale tijd.
+
+**definitie 3.27 (De klasse NP)** Men duidt met **NP** de klasse aan van alle talen die beslisbaar en niet-deterministisch polynomiaal herkenbaar zijn.
+
+Aangezien elke deterministische TM ook kan aanzien worden als een niet-deterministische TM (maar dan een die toevallig telkens maar 1 mogelijkheid openlaat voor de volgende stap) hebben we onmiddelijk dat
+
+​											$P ⊆ NP$
+
+
+
+### 3.5.2 De klasse NP-Compleet
+
+Naast **P** en **NP** is nog een derde klasse erg belangrijk: de klasse van "**NP-complete**" problemen. Ruwweg kunnen we zeggen dat we de ene taal als "niet moeilijker te beslissen" beschouwen dan een andere, als er een polynomiaal algoritme bestaat om eender welk woord uit de eerste taal te vertalen in een woord uit de tweede taal. 
+
+**Definitie 3.30 (Polynomiale transformatie van een taal)** Zij gegeven twee talen $ L_1 ⊆ T_1^*$ (op een alfabet T~1~) en $ L_2 ⊆ T_2^*$ (op een alfabet T~2~). We zeggen dat L~1~ **polynomiaal transformeert** in L~2~ indien er afbeelding $f:T^*_1\xrightarrow{} T^*_2$ bestaat waarvoor de volgende twee zaken gelden:
+
+1. $∀x ∈ T^∗_1 : x ∈ L_1 ⇔ f(x) ∈ L_2$
+2. Er bestaat een (deterministische) TM die *f* in polynomiale tijd berekent
+
+We noteren deze situatie door $L1 ∝ L2$
+
+TODO
 
 # Hoofdstuk 4 Grafentheorie
 
@@ -512,7 +655,7 @@ Ik kan echt niet eens de moeite doen om hier een tl;dr van te schrijven.
 
 **Definitie 4.13 (Deelgraaf)** Een graaf G'(V' , E' ) is een deelgraaf van een graaf G(V, E), genoteerd G'' ⊆ G, als en slechts als V' ⊆ V en E' ⊆ E.
 
-**Definitie 4.14** (Geinduceerde deelgraaf) Gegeven een graaf G(V, E) en een deelverzameling V' ⊆ V noemen we G' (V' , E' ) de deelgraaf van G geinduceerd door V' als en slechts E' = {(v, w) ∈ E|v, w ∈ V'}.
+**Definitie 4.14** **(Geinduceerde deelgraaf)** Gegeven een graaf G(V, E) en een deelverzameling V' ⊆ V noemen we G' (V' , E' ) de deelgraaf van G geinduceerd door V' als en slechts E' = {(v, w) ∈ E|v, w ∈ V'}.
 
 **Definitie 4.15 (Component)** Een graaf G(V, E) is een component van een graaf G' (V' , E' ) als en slechts als G ⊆ G' , G is niet leeg, G is samenhangend, en er bestaat geen samenhangende graaf G'' waarvoor G ⊂ G'' ⊆ G' .
 
@@ -618,7 +761,7 @@ De functie h stelt een “hernoeming” van de knopen voor; ze beeldt elementen 
 
 
 
-Gegeven twee grafen G~1~(V~1~) en G~2~(V~2~, E~2~) , hoe kunnen we testen of ze isomorf zijn? Het is duidelijk dat als |V~1~| /= |V~2~|, er geen bijectie tussen de knopen bestaat, en de grafen dus zeker niet isomorf zijn. In het volgende gaan we ervan uit dat |V~1~| = |V~2~| = n. Een eenvoudig algoritme is het volgende: beschouw alle mogelijke bijecties f van V~1~ naar V~2~, en test voor elke f of E~2~ = {(f(v), f(w))|(v, w) ∈ E~1~}. Van zodra een f gevonden wordt waarvoor dit het geval is, eindigt het algoritme met “ja” als antwoord. Er zijn eindig veel bijecties; als ze allemaal geprobeerd zijn zonder een bijectie met de vermelde eigenschap te vinden, eindigt het algoritme met “nee”. Als de grafen n knopen hebben, zijn er n! bijecties uit te testen. Dit algoritme heeft dus een exponentiele complexiteit. Het nagaan of een bijectie voldoet aan de vermelde eigenschap is relatief eenvoudig, dit kan in polynomiale tijd. Dat betekent dat het probleem in NP zit. Voor dit probleem is momenteel niet bekend of het in P zit, en er is ook niet aangetoond dat NP-compleet is. In principe is het dus mogelijk dat het representatief is voor een complexiteitsklasse die “tussen” P en NPC in zit. 
+Gegeven twee grafen G~1~(V~1~) en G~2~(V~2~, E~2~) , hoe kunnen we testen of ze isomorf zijn? Het is duidelijk dat als |V~1~| $\neq$ |V~2~|, er geen bijectie tussen de knopen bestaat, en de grafen dus zeker niet isomorf zijn. In het volgende gaan we ervan uit dat |V~1~| = |V~2~| = n. Een eenvoudig algoritme is het volgende: beschouw alle mogelijke bijecties f van V~1~ naar V~2~, en test voor elke f of E~2~ = {(f(v), f(w))|(v, w) ∈ E~1~}. Van zodra een f gevonden wordt waarvoor dit het geval is, eindigt het algoritme met “ja” als antwoord. Er zijn eindig veel bijecties; als ze allemaal geprobeerd zijn zonder een bijectie met de vermelde eigenschap te vinden, eindigt het algoritme met “nee”. Als de grafen n knopen hebben, zijn er n! bijecties uit te testen. Dit algoritme heeft dus een exponentiele complexiteit. Het nagaan of een bijectie voldoet aan de vermelde eigenschap is relatief eenvoudig, dit kan in polynomiale tijd. Dat betekent dat het probleem in NP zit. Voor dit probleem is momenteel niet bekend of het in P zit, en er is ook niet aangetoond dat NP-compleet is. In principe is het dus mogelijk dat het representatief is voor een complexiteitsklasse die “tussen” P en NPC in zit. 
 
 **P = Polynomial time**
 
@@ -1637,7 +1780,11 @@ Zij L,$\le$ een geordende verzameling. Een afbeelding T: L $\xrightarrow{}$ L no
 **Definitie 5.7 (Gerichte verzameling)**
 Beschouw een willekeurige deelverzameling $X$ van een complete tralie L, $\le$. $X$ is gericht $⇔$ elke eindige deelverzameling van $X$ heeft een bovengrens in $X$.
 
-![image-20220516111357650](img/image-20220516111357650.png)
+![image-20220531104750468](img/image-20220531104750468.png)
+
+
+
+
 
 
 
@@ -1694,4 +1841,47 @@ Zij $L,\le$ een complete tralie en beschouw een afbeelding $T:L\xrightarrow{}L$
 **Stelling 5.1 (Stelling van Tarsky)** Zij $T:L\xrightarrow{}L$ een monotone afbeelding op een complete tralie $L,\le$, dan heeft $T$ een kleinste vast punt a en een grootste vast punt b.
 Bovendien geldt:
 								$a=inf\{x|T(x)=x\} = inf\{x|T(x)\le x\}$
-							$b = sup\{x|~T(x)=x\}=sup\{x|~T(x)\ge x\}$
+							    $b = sup\{x|~T(x)=x\}=sup\{x|~T(x)\ge x\}$
+
+
+
+**Gevolg 5.1** Zij $T:L\xrightarrow{}L$ een monotone afbeelding op een complete tralie. 
+Veronderstel dat $a\in L$ en $a \geq T(a)$, dan bestaat er een vast punt $a'$ zodat $a \geq a'$.
+Veronderstel dat $b\in L$ en $b \leq T(b)$, dan bestaat er een vast punt $b'$ zodat $b \leq b'$.
+
+
+
+### 5.3.2 De stelling van Kleene
+
+**Notatie: **Zij $T:L\xrightarrow{}L$ een monotone afbeelding op een complete tralie $L$. Dan noteren we
+
+- $T\uparrow 0 =⊥$
+- $T ↑ (n + 1) = T(T ↑ n),$ voor elke $n ∈ \N$
+- $T ↑ ω$ = sup$\{T ↑ n ~|~ n ∈ \N\}$
+
+
+
+**Stelling 5.3 De stelling van Kleene**
+
+Zij $T:L\xrightarrow{} L$ een continue afbeelding op een complete tralie L,$\leq$, dan is $T \uparrow ω$ = het kleinste vast punt van $T$.
+
+
+
+**5.3.3 Voorbeeld: de transitieve sluiting van een relatie**
+
+**Definitie 5.10** Zij  $R ⊆ A × A $ een relatie op een verzameling A. De transitieve sluiting van $R$ is de kleinste relatie op $S$ op $A$ zodat $R ⊆ S ⊆ A × A$ en $S$ is transitief
+
+
+
+**Eigenschap 5.3 ** De transitieve sluiting van een relatie $R$ op een verzameling $A$ bestaat altijd en is gelijk aan
+					$S_0 = \bigcap_{S∈τ}S, $ met $τ = \{S ⊆ A × A | R ⊆ S$ en $S$ is transitief$\}$ 
+
+
+
+**Definitie 5.11** Op $L,\leq$ beschouwen we vanaf nu de afbeelding
+
+​								$T:L\xrightarrow{}L:S\mapsto T(S)$
+
+![image-20220531142226617](img/image-20220531142226617.png)
+
+**Eigenschap 5.5** De transitieve sluiting van de relatie $R$ is precies het kleinste vast punt van $T$.
