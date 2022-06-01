@@ -37,7 +37,7 @@ Used two TCP port:
 
 Control port uses Telnet protocol to negotiate session
 
-![image-20220519130408042](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220519130408042.png)
+![image-20220519130408042](img/image-20220519130408042.png)
 
 ![image-20220519134613195](img/image-20220519134613195.png)
 
@@ -60,7 +60,7 @@ Most popular form of a **URI** is the **Uniform Resource Locator (URL):**
 
 ![image-20220519131700988](img/image-20220519131700988.png)
 
-### HyperText Markup Language (HTML)
+### Hypertext Markup Language (HTML)
 
 - HyperText Markup Language is a subset of Standardized General Markup Language (SGML)
 - Documents use elements to “mark up” or identify sections of text for different purposes or display characteristics.
@@ -722,8 +722,6 @@ We will look at four critical elements of transport layer protocols
 
 The explanations for this is quite simple. Across our network we identify routers and clients by their IP-address but once we reach the destination of the IP we are still left wondering for which application the message is. Then we use the port to identify where the message has to go next as can be seen on the image.
 
-
-
 ##### TSAP Address Assignment
 
 - Some ports are well known and permanently assigned:
@@ -740,13 +738,15 @@ $\xrightarrow{}$ Initial Connection Protocol (ICP) conserves resources:
 
 ![image-20220520155320008](img/image-20220520155320008.png)
 
-Basically, why keep servers constantly running if they're not constantly needed. That's why we use the Initial Connection Protocol. We only have one server running that receives the message and then wakes up the correct server to handle the message. (I think)
+Basically, why keep servers constantly running if they're not constantly needed. That's why we use the Initial Connection Protocol. 
+
+So if a host has the ICP service enabled and it receives a connection for a well known port, then the host wakes up the correct service and passes the connection to the now running correct service. 
 
 ##### Multiplexing Using TSAPs 
 
 ![image-20220520160555805](img/image-20220520160555805.png)
 
-Multiplexing is actually just taking signals from a lot of different cables and then going to one single cable and transmitting over that, as can be see below.
+Multiplexing is actually just taking signals from a lot of different cables and then going to one single cable and transmitting over that, as can be seen below.
 
 ![What is multiplexing and how does it work?](https://cdn.ttgtmedia.com/rms/onlineimages/multiplexing_and_demultiplexing-f_mobile.png)
 
@@ -773,6 +773,8 @@ We send a deposit to an un-trusted party. The packets take the scenic route and 
 
 We can solve this by adding a life-time to the packet so that we can reject delayed or duplicated packets. This is now widely used in TCP.
 
+- Bounded Packet Lifetime
+
 Each packet carries a **sequence number** that will not be re-used within **T** seconds (in reality some multiple of packet lifetime)
 
 The standard Internet packet lifetime is 120s. Sequence numbers wrap around to 0. If a machine should crash it would lose the sequence numbers. We solve this by using a real time lock to provide initial sequence numbers during connection. Thus after a crash, hosts continue with a higher sequence number than before.
@@ -780,8 +782,6 @@ The standard Internet packet lifetime is 120s. Sequence numbers wrap around to 0
 
 
 ##### The Two Generals Problem
-
-The two 
 
 We have a partial solution. This problem cannot be cleanly solved by the transport layer alone. Higher-level protocols must be designed in such a way that they can tolerate abrupt disconnection. Where this is unacceptable, we must explore probabilistic approaches.
 
@@ -791,13 +791,13 @@ We have a partial solution. This problem cannot be cleanly solved by the transpo
 
 ##### End-to-End Checksums
 
-checksums are fixed-size codes generated from larger data using simple hash functions. a consistent hash function is used that will generate the same checksum given the same data. Errors are detected by re-computing segment check-sum and comparing it to the provided value. It is highly unlikely that a packet could be corrupted and still match the provided checksum.
+Checksums are fixed-size codes generated from larger data using simple hash functions. a consistent hash function is used that will generate the same checksum given the same data. Errors are detected by re-computing segment check-sum and comparing it to the provided value. It is highly unlikely that a packet could be corrupted and still match the provided checksum.
 
 Each individual link is secure, so why isn't our end-to-end connection secure? Because packets can be corrupted within a malfunctioning router.
 
 
 
-#### Acknowledgements
+##### Acknowledgements
 
 Reliable packets require an acknowledgement so we must retransmit packets until an acknowledgement **(ACK)** is received.
 
@@ -827,14 +827,14 @@ This requires that the sender stores old messages until they have all been ackno
   - Send one segment and wait until it is acknowledged
   - A one-bit sequence number is used to detect duplicates
 
-##### Stop-and-Wait Operation
+#### Stop-and-Wait Operation
 
 - Sender keeps last segment until it receives ACK
 - Both data and ACKs are numbered alternately 0 and 1
 - Sender stores (**S**) with number of the last segment sent
 - Receiver stores (**R**) with number of next segment expected
 - Sender starts timer on segment send. If an ACK is not received before expiry, send assumes loss or damage and resends.
-- Receiver sends ACK with number of next segment when segment is intact.
+- Receiver sends ACK with number of next segment when segment is intact. 
 
 **In the following images frame should be segment because we are in the transport layer**
 
@@ -846,7 +846,7 @@ This requires that the sender stores old messages until they have all been ackno
 
 ![image-20220521102315946](img/image-20220521102315946.png)
 
-#### Summary of Stop-and-Wait
+##### Summary of Stop-and-Wait
 
 - The simplest sliding window protocol to implement
 - Uses very few resources (i,e buffer space is 1 on sender, 0 on receiver)
@@ -854,32 +854,34 @@ This requires that the sender stores old messages until they have all been ackno
 
 
 
-### Go-Back-N
+#### Go-Back-N
 
-#### Principles
+##### Principles
 
 - Segments have a larger range of sequence numbers, that wrap around to 0
 - We send **W** segments before requiring an **ACK**
 - Keep a copy of the segments until **ACKs** arrive
 - This requires extended data structures and more variables than stop-and-wait
 
-#### Sender Window
+##### Sender Window
 
 ![image-20220521102910719](img/image-20220521102910719.png)
 
-#### Receiver Window
+##### Receiver Window
 
 ![image-20220521104122302](img/image-20220521104122302.png)
 
-#### Acknowledgement
+##### Acknowledgement
 
 ![image-20220521104237456](img/image-20220521104237456.png)
 
-#### Normal Operation
+##### Normal Operation
 
 ![image-20220521105451763](img/image-20220521105451763.png)
 
-#### Segment Loss
+
+
+##### Segment Loss
 
 ![https://www.youtube.com/watch?v=9BuaeEjIeQI](img/image-20220521105601612.png)
 
@@ -889,9 +891,9 @@ So how does it actually work? Our sender can send an amount of segments indicate
 
 
 
-### Selective Repeat
+#### Selective Repeat
 
-#### Principles
+##### Principles
 
 - **Go-Back-N** is bandwidth inefficient and slows down the transmission due to the repeated transmission of received packets
 - **Selective Repeat** eliminates wasted retransmission of received packets. This is bandwidth efficient but
@@ -899,28 +901,26 @@ So how does it actually work? Our sender can send an amount of segments indicate
   - Requires new variables and book-keeping
 - A **Negative ACK (NAK)** reports the sequence number of a damaged or out-of-order segment.
 
-#### Sender and Receiver Windows
+##### Sender and Receiver Windows
 
 ![image-20220521110534829](img/image-20220521110534829.png)
 
-#### Lost Segments
+##### Lost Segments
 
 ![image-20220521113810033](img/image-20220521113810033.png)
 
-#### Lost ACKs
+##### Lost ACKs
 
 - If an ACK is lost then the segment timer will time out
 - This causes the segment to be individually retransmitted
 
 
 
-#### Window Size Restriction
+##### Window Size Restriction
 
 ![image-20220521113902651](img/image-20220521113902651.png)
 
 - **Note:** window size must be equal to or less than half the size of our sequence numbers. If it is larger, then the receiver could erroneously accept duplicate segments. 
-
-### 
 
 ### Congestion Control
 
