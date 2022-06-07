@@ -374,9 +374,21 @@ Een TM kan met een bepaalde invoer een bepaalde uitvoer associëren en zo functi
 
 Merk het verschil op tussen herkennen en beslissen. Als een TM de taal L herkent, betekent dat dat de TM alle en alleen de strings in L aanvaardt. Strings buiten L kunnen verworpen worden, of onbeslist blijven (omdat de machine niet stopt). Als een TM L beslist, betekent dat dat de TM voor elke string beslist of de string in L zit of niet; dit is een strikt strenger criterium.
 
+Ik heb dit een lange tijd niet goed begrepen maar heb eindelijk een goeie definitie gevonden.
+
+Een machine is "**Turing-herkenbaar**" als en slechts als er een Turing Machine bestaat die
+
+1. Wnr die een string tegenkomt in die taal, die deze string aanvaard
+2. Wnr die een string tegenkomt in die taal, die deze string rejects  en stopt of gewoon weg niet stopt.
+
+Een machine is "Turing-beslisbaar" als en slechts als er een Turing Machine bestaat die 
+
+1. Wnr die een string tegenkomt in die taal, die deze string aanvaard
+2. Wnr die een string tegenkomt niet in die taal, de machine deze string reject en gewoon stopt.
 
 
-![image-20220528163109616](img/image-20220528163109616.png)
+
+
 
 
 
@@ -505,7 +517,7 @@ We hebben eerder gesteld dat er een essentieel verschil is tussen **polynomiale*
 
 
 
-**Definitie 3.22 (Polynomiale beslisbaarheid)** Een taal L wordt in polynomiale tijd beslist door een TM M, indien er een $k ∈ \N$ bestaat zodat M voor elke invoerstring $s$ beslist $s ∈ L$, in een aantal stappen dat $O(n^k)$ is, met n = |s| de lengte van de invoerstring. Een taal $L$ is **polynomiaal beslisbaar** als er een TM bestaat die de taal in polynomiale tijd belist.
+**Definitie 3.22 (Polynomiale beslisbaarheid)** Een taal L wordt in polynomiale tijd beslist door een TM M, indien er een $k ∈ \N$ bestaat zodat M voor elke invoerstring $s$ beslist $s ∈ L$, in een aantal stappen dat $O(n^k)$ is, met n = |s| de lengte van de invoerstring. Een taal $L$ is **polynomiaal beslisbaar** als er een TM bestaat die de taal in polynomiale tijd beslist.
 
 **Definitie 3.23 (De klasse P)** Men duidt met $P$ de klasse aan van alle talen waarvoor geldt dat er een TM bestaat die die taal in polynomiale tijd beslist.
 
@@ -693,7 +705,7 @@ We hebben grafen tot nog toe gewoonlijk als tekeningen voorgesteld, of als koppe
 
 **Definitie 4.18 (Buurmatrix)** Gegeven een enkelvoudige graaf G(V,E), met V = {v~1~, v~2~, . . . , v~n~}, is de buurmatrix van G een n × n-matrix A met A~ij~ = 1 <=> (v~i~,v~j~) ∈ E, en A~ij~ = 0 ⇔ (v~i~ , v~j~ ) /∈ (geen element van) E.
 
-Ik had eerst echt totaal niet door wat er met een buurmatrix bedoelt werd ma das gewoon een matrix van een graaf en als ge een 1 hebt op een plek betekent dat die 2 noden verboden zijn op de graaf. Eigenlijk niet zo moeilijk.
+Ik had eerst echt totaal niet door wat er met een buurmatrix bedoelt werd ma das gewoon een matrix van een graaf en als ge een 1 hebt op een plek betekent dat die 2 noden verbonden zijn op de graaf. Eigenlijk niet zo moeilijk.
 
 ![image-20220322144519388](img/image-20220322144519388.png)
 
