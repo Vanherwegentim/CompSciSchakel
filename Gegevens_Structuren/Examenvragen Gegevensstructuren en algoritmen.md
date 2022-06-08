@@ -436,7 +436,7 @@ Voor de negatieve integers zouden we de array, die we gebruiken om de hoeveelhei
 
 Voor decimale fracties kan je all getallen maal dezelfde bepaalde hoeveelheid doen zodat je een integer krijgt en dan op een normale manier kan sorteren.
 
-is dit juist? Philly zeg het mij, amen. Brian: Ja juist nerd
+is dit juist? Philly zeg het mij, amen. **Brian**: Ja juist nerd
 
 
 
