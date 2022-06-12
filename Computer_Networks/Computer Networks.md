@@ -1,8 +1,52 @@
 # Computer Networks
 
-Quick refresher
+## Quick refresher
 
 ![Day 51: Understanding the OSI Model | by Anonymous | Medium](https://miro.medium.com/max/1024/1*17Zz6v0HWIzgiOzQYmO6lA.jpeg)
+
+All People Seem To Need Data Processing
+
+but we will use the **Tanenbaum Model**
+
+![image-20220609111420963](img/image-20220609111420963.png)
+
+### Layer 1: The Physical Layer
+
+- Data unit is **bits**
+- Controls transmission mode: simplex, half-duplex, & full duplex
+- Determines how bits are represented
+- 
+
+### Layer 2: The Data Link Layer
+
+- Data unit is **frames**, a structure of bits sent across the physical network
+- Provides connection for upper layer protocols
+- Provides **Medium Access Control (MAC)** for shared communication medium
+- Based on flat and fixed physical address space (e.g. MAC addresses)
+
+
+
+### Layer 3: The Network Layer
+
+- The data unit is **packets** - frames containing extra information that is required for routing.
+- Creates logicals paths and determines how pockets are routed end-to-end
+- Higher layers are shielded from medium-specific complexities through the network layer
+- Provides a hierarchical, logical address space (e.g. IPv4 or IPv6 addresses)
+
+### Layer 4: The Transport Layer
+
+- The data unit is the **segment**, which contains reliability flow and state data.
+- Provides '**ports**', allowing multiple services to interact on the same machines
+- May be connection-oriented or connectionsless
+  - Connectionless sessions rely on the upper layer protocols for error control (e.g. **UDP**).
+  - – Connection-oriented sessions use acknowledgement and retransmission to achieve reliable connections (e.g. **TCP**).
+
+### Layer 7: The Application Layer
+
+- Data unit: **custom data formats**
+- Provides communication services for specific applications
+- Unlike lower layers these are not generic
+- 
 
 ## Chapter 1 Application Layer
 
@@ -22,9 +66,13 @@ Telnet can be used to
 - Manage and configure network devices such a routers and switches
 - Check if ports are open and closed on a server.
 
-Telnet is sent in clear text so there is no encryption, if would use it today anyone could grab your data your sending. It should not be used over the public internet. Telnet itself runs on port 23
+Telnet is sent in clear text so there is no encryption, if you would use it today anyone could grab your data your sending. It should not be used over the public internet. Telnet itself runs on port 23
 
+Telnet is een command line interface om te connecteren met servers, routers, etc. Als je connecteert met telnet met 1 van deze machines is het alsof je voor de machine zou zitten en rechtstreeks commands ingeeft. Telnet gebruikt TCP maar er is helaas geen security dus dit over het internet gebruiken is gevaarlijk. Telnet runt op port 23. 
 
+**NVT (network virtual terminal)** is een virtuele terminal in TELNET dat een fundamentele structuure deelt met veel verschillende andere echte terminals. Dit is hoe het werkt
+
+De telnet client converteert de characters van de locale terminal naar NVT formaat en verstuurt deze over het netwerk. De telnet server converteert de data naar een formaat dat de remote computer can verstaan.
 
 ### File Transfer Protocol (FTP)
 
@@ -41,7 +89,7 @@ Control port uses Telnet protocol to negotiate session
 
 ![image-20220519134613195](img/image-20220519134613195.png)
 
-
+FTP (File transfer protocol) is het protocol dat gebruikt wordt om files te downloaden of uploaden, je kan dit ook gebruiken om over directories te gaan. FTP werkt met 2 ports, 21 voor controle en 20 voor data transfer. De control port gebruikt Telnet om sessies te maken.
 
 ### Architectural View of the WWW
 
@@ -102,7 +150,7 @@ POST -> update existing resource
 
 
 
-
+**HTTP(Hypertext Transfer Protocol)** is een protocol dat resources zoals HTML documenten ophaalt bij servers door middel van **URLs(uniform resource locators)**. Deze werkt met TCP op port 80. Het probleem van TCP is dat het voor elke resource op een webpagina een nieuw TCP connection gaat openen, dus voor elke image, video, etc.. Dit kan snel oplopen en zorgen voor congestion. Dit is enkel een probleem bij HTTP1.0 want vanaf HTTP 1.1 zorgen we voor persistentie in de connectie. Er gaat dus niet voor elk request een nieuwe TCP connection geopend worden. Er wordt ook pipelining toegevoegd. Wat in essentie betekent dat meerdere resources tegelijk kunnen opgehaalt worden. Dus je gaat een nieuwe request sturen voor dat er een response is gekomen voor de vorige. Een probleem dat kan opduiken bij persistentie is. Wanneer sluiten we de connectie? We hebben gekozen voor een idle tijd van 60 seconden.
 
 ### Simple Mail Transfer Protocol (SMTP)
 
@@ -112,6 +160,8 @@ Email as we know it today separates email exchange into two parts:
 - **Mail transfer protocol** which allows mail servers to communicate
 
 $\xrightarrow{}$ This specialization allows us flexible access to email, while ensuring standard communication
+
+**SMTP of Simple Mail Transfer Protocol** is het protocol dat tussen mail servers werkt. Het werkt in 3 fases. 1. Handshaking 2. versturen van messages. 3. afsluiten van de connectie
 
 #### The Architecture Of Email
 
@@ -134,7 +184,7 @@ $\xrightarrow{}$ This specialization allows us flexible access to email, while e
 - A mechanism used by mail clients to talk to mail servers
 - A simple **unsynchronized** protocol, difficult to manage on multiple machines.
 
-
+**POP of Post Office Protocol** is een protocol dat de mails ophaalt bij de mail server. Het nadeel van dit protocol is dat het niet gesychronizeerd is. Dus veranderingen die je maakt op je client worden niet gedaan op de server.
 
 ### Internet Message Access Protocol (IMAP)
 
@@ -142,7 +192,7 @@ $\xrightarrow{}$ This specialization allows us flexible access to email, while e
 - All folders (inbox, outbox, drafts, etc...) are **synchronized** on the client and the server.
 - Better suited because we use a lot of different devices but higher overhead.
 
-
+**IMAP of internet message protocol** is ook een protocol dat mails ophaalt maar deze is wel gesychronizeerd. Dit betekent dat wnr er mails worden gedelete of andere bewerkingen, dat dit ook wordt gedaan op de server. Het is ook meer secure dan POP.
 
 ### Web-mail Over HTTP
 
@@ -152,7 +202,7 @@ $\xrightarrow{}$ This specialization allows us flexible access to email, while e
 
 
 
-
+**Web-mail Over HTTP** is eigenlijk wat wij nu gebruiken, de mail client wordt geaccessed via een browser. Er moet geen synchronisatie gedaan worden want het is een rechtstreekse verbinding met de mail server.
 
 ### Dynamic Host Configuration Protocol (DHCP)
 
@@ -223,7 +273,7 @@ $\xrightarrow{}$ if the clients detects a duplicate address, it refuses the offe
 
 We use **ARP** for this.
 
-
+**DHCP of Dynamic Host Configuration Protocol** is eigenlijk heel simpel. Je hebt een client die een IP-adres wil en een **DHCP**-server die je er eentje kan geven. Wanneer een client verbindt met het netwerk gaat deze een **DHCPDISCOVER** message sturen over het netwerk, dit is een broadcast over UDP. De DHCP-server gaat dan een **DHCPOFFER** terugsturen met een IP-adres in. De DHCP-server weet waar die het packet naartoe moet sturen door het **ethernet-adres** van de client dat in het DHCPDISCOVER packet zit. Omwille van het feit dat dit IP-adres een lease en dus moet worden teruggeven na een verloop van tijd gaat de client wanneer er 50% van de TTL expired is, een **DHCPREQUEST** sturen naar de server en deze stuurt dan een **DHCPACK** terug. Als de server antwoordt met een **DHCPNACK** dan is de lease niet gerenewed. Nadat een client een IP-adres heeft gekregen gaat deze over ARP checken of er geen andere hosts zijn met hetzelfde IP-adres. Als dit het geval gaat de host een **DHCPDECLINE** message sturen naar de server.
 
 
 
@@ -308,7 +358,9 @@ Each zone's administrator is responsible for drawing the boundaries of internal 
 
 ![image-20220519165125215](img/image-20220519165125215.png)
 
+Anycast is used to provide redundancy and protection from attacks. Wat is nu Anycast? Wel anycast heb je wanneer er meerdere servers op verschillende plekkenhetzelfde ip-adres delen. Routers gaat dan packetjes naar de dichstbijzijnde server met dat ip-adres sturen ipv naar de andere kant van de wereld.
 
+**DNS of Domain Name System** werkt dus door middel van verschillende servers in een hierachy nl. De root server, de TLD-servers en de authoritative servers. Whenever you enter a certain website in your search bar, your computer sends a request for the ip-address to your local dns server. If the ip-address is not in the cache a request will be made to the root server who knows where the TLD-servers are who know where the authoritative servers who have the ip-address of your requested site.
 
 ### Discovery Protocols (Napster, Gnutella)
 
@@ -334,6 +386,14 @@ Steps in **Napster**
 4. File delivery
 5. Index update
 
+**Napster** is een P2P applicatie voor de distributie van muziek. Napster werkte in 5 stappen.
+
+1. Host vraagt de locatie van client met de file die de host wilt.
+2. Server geeft een lijst met de locaties van peers met de gewilde file
+3. Een request voor de file wordt gestuurd naar een peer
+4. De file wordt geleverd
+5. De index wordt geupdate op de server
+
 
 
 #### The P2P Application Pattern
@@ -355,7 +415,9 @@ Peer to peer is nice because it barely requires any servers. The incentive is th
 
 While application-level networks provide a conceptual routing substrate, each application-level hop may map to several hops at the network layer. Thus it is critical that we keep the amount of application-level hops to a minimum.
 
+**Belangrijke opmerking:**
 
+Applicatie levels protocollen geven ons een netwerk substraat zoals de afbeeldingen hier een beetje boven. Het kans goed zijn dat op netwerk niveau 1 hop op applicatie level kan gelijk staan aan meerdere hops. Dus moeten we dit zoveel mogelijk vermijden.
 
 #### Gnutella 0.4
 
@@ -413,7 +475,9 @@ Broadcast messages are tagged with a TTL. Peers decrement the TTL, discarding wh
 
 Incoming peers will establish eight connections.
 
+**Connecteren aan een gnutella 0.4 netwerk:**
 
+De host die wilt deelnemen aan het netwerk connecteert via TCP aan een wel bekende node. De host gaat dan een PING message sturen naar deze peer, deze peer gaat dan op zijn beurt deze PING doorsturen en we gaan zo verder tot de TTL op 0 staat. Alle beschikbare peers die de PING message hebben gekregen gaan dan een PONG terugsturen met hun informatie. Onze host gaat dan 8 connecties aangaan met peers die een pong hebben teruggestuurd.
 
 ##### Searching for a file
 
@@ -434,6 +498,10 @@ Peers listen for incoming QUERY messages, and contribute to their broadcast acro
 If a peer has the requested file from the QUERY, it responds by sending a QUERYHIT message back along the path of the incoming QUERY.
 
 QUERYHIT messages contain the network address and port on which the responding peer is listening for HTTP file-transfer connections.
+
+**Een file zoeken in Gnutella 0.4:**
+
+Onze initiele peer gaat een QUERY sturen naar zijn peers en deze peers gaan weer op hun beurt deze query doorsturen tot er een queryhit is of tot de TTL op 0 staat. Als een peer een queryhit heeft dan gaat deze zijn verbindingsinformatie sturen met een QUERYHIT message via de weg van de query. De initiele peer gaat dan een directe verbinding proberen aan te gaan. Als dit niet lukt omdat de 2de peer achter een firewall zit dan stuurt de initiele peer een PUSH message met de verbindingsinformatie zodat de 2de peer de connectie kan starten. 
 
 ##### File Transfer from peer to peer
 
@@ -458,6 +526,8 @@ On receiving a PUSH, the target peer establishes the HTTP connection and pushes 
 - The flat network structure of Gnutella results in high load due to broadcast.
 - Nodes are heterogeneous. Should my phone do the same share of work as my server?
 
+**Gnutella** heeft een paar problemen, namelijk the search horizon. Broadcast search scaled niet wat er dus voor zorgt dat wnr elke peer een message stuurt naar elke peer enzo verder dat er enorm veel data verstuurd wordt in totaal. Daarom hebben hebben we een TTL toegevoegd zodat het niet te ver gaat. Dan hebben we ook nog last van het feit dat alle nodes heterogenous zijn. Elke node wordt dus gelijk behandelt maar moet een gsm even veel werk doen als een server. Lijkt niet helemaal fair.
+
 #### Gnutella 0.6
 
 ##### Upgrade of Gnutella 0.6
@@ -480,7 +550,14 @@ Gnutella 0.6 improves on the scalability of Gnutella 0.4
 - By exploiting the resources available on strong nodes
 - conserving the resources available on weak nodes
 
+**Gnutella 0.6** lost de problemen van zijn voorganger op doormiddel van ultra-peers en leaf-nodes. Leaf nodes verbinden altijd met ultra peers en sturen een lijst door van alle files die ze hebben. Om een ultra-peer te zijn moet je voldoen aan een paar voorwaarden nl:
 
+- voldoende optijd
+- voldoende ram en CPU
+- geen firewall
+- voldoende bandbreedte
+
+Er is ook een verschil tussen gnutella en FTP's zoals bittorents namelijk dat gnutella een resource discovery app is en bittorent een content distribution app
 
 ### File Transfer Protocols (Bittorrent)
 
@@ -526,6 +603,8 @@ BitTorrent tackles the problem of Free-riding by implementing a 'tit-for-tat' tr
 
 ![image-20220520104717660](img/image-20220520104717660.png)
 
+**SSH of Secure Shell** is ter vervanging van Telnet omdat telnet geen authenticatie gebruikt en user credentials niet encrypteert. SSH maakt een TCP connectie(Het moet geen TCP zijn maar wel reliable). Er wordt een packet gemaakt en dan geencrypteerd buiten de packetlength en de message authentication code.
+
 #### Public Key Cryptography
 
 ![image-20220520110006847](img/image-20220520110006847.png)
@@ -565,13 +644,13 @@ TOR client picks a random path through the TOR network, terminating at an exit n
 
 When the client downloads a different file, they create a whole new path.
 
+**TOR of The Onion Router** is protocol dat zorgt voor een anoniem P2P systeem. Het werkt dus zo. Een TOR client vraagt aan de directory server een lijst van alle TOR routers. De TOR-client kiest een random pad door het TOR netwerk, eindigend aan de bestemming. Elke router op de weg doet een laag encryptie weg om de volgende hop te weten en stuurt deze dan verder naar de juiste volgende TOR router. Intermediare nodes weten de start, de bestemming noch de inhoud van het packet, enkel de volgende hop.
+
 #### Security
 
 - Cannot prevent a **Sybil attack**, but is designed to make this difficult. 
 
 A **Sybil attack** is one where an attacker pretends to be so many people at the same time. It is one of the biggest issues when connecting to a P2P network. It manipulates the network and controls the whole network by creating multiple fake identities. To a single view, these different identities look like regular users, but behind the scenes, a single entity is called an unknown attacker who controls all these fake entities at once. 
-
-
 
 - An adversary can:
   - Generate, modify, delay and delete traffic
@@ -652,7 +731,9 @@ Connectionless transport just wants to be fast and simple, no extra stuff and th
 - **Data Transfer** (application interaction)
 - **Release** (connection tear-down)
 
+**Connection oriented vs Connectionless**
 
+Connectionless focust gewoon op snel en simpele communicatie. Er is geen setup nodig. Er is geen error control of flow control. Enkel een simpele checksum. Connection oriented daarentegen heeft wel een setup, behandelt errors en focust op vertrouwbare communicatie
 
 #### Segment Encapsulation
 
@@ -667,7 +748,7 @@ Connectionless transport just wants to be fast and simple, no extra stuff and th
 
 ### Berkeley Sockets (BS)
 
-Just a normal socket uwu
+Socket is 1 kant van 2-zijdige communicatie link tussen 2 programmas op het netwerk. Een socket is gebonden aan een port zodat de TCP laag the applicatie kan herkennen waarvoor de data bestemt is.
 
 
 
@@ -688,7 +769,9 @@ The key difference is:
 
 ![image-20220520142148797](img/image-20220520142148797.png)
 
+#### Transport vs Data Link Layer
 
+De transport laag zorgt voor veel gelijkaardige dingen als de data link laag. Zoals error control, flow control etc.. Het grote verschil tussen de twee is dat bij de transport laag er nog heel netwerk kan liggen tussen 2 hosts terwijl de data link laag zorgt voor de communicatie tussen 2 hosts die fysiek verbonden zijn.
 
 ### Elements of Transport Layer Protocols
 
@@ -740,13 +823,15 @@ $\xrightarrow{}$ Initial Connection Protocol (ICP) conserves resources:
 
 Basically, why keep servers constantly running if they're not constantly needed. That's why we use the Initial Connection Protocol. 
 
-So if a host has the ICP service enabled and it receives a connection for a well known port, then the host wakes up the correct service and passes the connection to the now running correct service. 
+So if a host has the ICP service enabled and it receives a connection for a well known port, then the host wakes up the correct server process and passes the connection to the now running correct server process. 
+
+**ICP of Initial Connection Protocol** is een heel handig protocol om resources te besparen. We starten met een Process server die voor alle andere servers staat. Wanneer er een dan een connectie binnenkomt voor een bepaalde server process gaat deze Process server het juiste process opstarten en de connectie het juiste TSAP address geven.
 
 ##### Multiplexing Using TSAPs 
 
 ![image-20220520160555805](img/image-20220520160555805.png)
 
-Multiplexing is actually just taking signals from a lot of different cables and then going to one single cable and transmitting over that, as can be seen below.
+Multiplexing using TSAPs is very simple. We are going to bundle all of our TSAPs(ports) together and send them to where they have go under the same NSAP(IP-address).
 
 ![What is multiplexing and how does it work?](https://cdn.ttgtmedia.com/rms/onlineimages/multiplexing_and_demultiplexing-f_mobile.png)
 
@@ -783,6 +868,8 @@ The standard Internet packet lifetime is 120s. Sequence numbers wrap around to 0
 
 ##### The Two Generals Problem
 
+We have two allied armies on two different hill tops and one enemy army in the valley in between. If only 1 allied army attacks, it will lose. So the general from one of the armies sends a message to the general on the other hill letting him know when he will attack. The problem is that the only to that army is through the valley which is dangerous and the messenger might be captured. This would cause the 1st army to attack without the second and lose. So the second army sends a confirmation of the first message. But this one also may not arrive. So now we have our problem, we can never be 100% the other general got the message. How many messengers and confirmation messengers we might send.
+
 We have a partial solution. This problem cannot be cleanly solved by the transport layer alone. Higher-level protocols must be designed in such a way that they can tolerate abrupt disconnection. Where this is unacceptable, we must explore probabilistic approaches.
 
 
@@ -791,7 +878,9 @@ We have a partial solution. This problem cannot be cleanly solved by the transpo
 
 ##### End-to-End Checksums
 
-Checksums are fixed-size codes generated from larger data using simple hash functions. a consistent hash function is used that will generate the same checksum given the same data. Errors are detected by re-computing segment check-sum and comparing it to the provided value. It is highly unlikely that a packet could be corrupted and still match the provided checksum.
+Checksums are fixed-size code created by a hash function. These hash function will always give us the same output if input the same thing. This allows use to check if after receiving the data our data hasn't been changed in transit. We do this by re-computing the hash and checking if it is the same. It is highly unlikely that a packet could be corrupted and still match the provided checksum.
+
+These checksum are also used by the datalink layer after each hop. protecting all hops between routers.
 
 Each individual link is secure, so why isn't our end-to-end connection secure? Because packets can be corrupted within a malfunctioning router.
 
@@ -854,6 +943,8 @@ This requires that the sender stores old messages until they have all been ackno
 
 
 
+**Stop-and-wait sliding window protocol** is heel simpel. Onze window van hoeveelheid messages dat we kunnen sturen zonder ACK is exact 1. We sturen ons segment en als deze aankomt krijgen we een ACK terug van de andere host. Als we geen ACK krijgen dan sturen we na een bepaalde tijd opnieuw onze frame. Als de andere host de message wel had gekregen maar het de ACK was die verloren was gegaan, in andere woorden het nummer van het verwachte segment kwam niet overeen met wat we kregen dan sturen we opnieuw een ACK. We hebben ook nog een simpele toevoeging om de optimalisatie te verbeteren namelijk, piggyback optimization. Dit houdt in dat we onze ACK samen sturen met een segment dat ook naar die host moest. Helaas is dit heel traag als onze **RTT(Round Trip Time)** hoog is.
+
 #### Go-Back-N
 
 ##### Principles
@@ -889,7 +980,7 @@ quick vid:https://www.youtube.com/watch?v=9BuaeEjIeQI
 
 So how does it actually work? Our sender can send an amount of segments indicated by the N in Go-Back-N. It will transmit that amount of segments before waiting for an **ACK** from the receiver. The receiver will only send one ACK at the time. Should a segment be lost or the ACK be lost then our sender will wait till a time-out and then resend all the segments in the current sliding window. If the sender receives an ACK for a segment it will slide the window to the right.
 
-
+**Go-Back-N sliding window protocol** werkt gelijkaardig aan **stop and wait** maar er zijn een paar verschillen. De window van onze sender heeft nu grootte N. Onze sender gaat nu die hoeveelheid segments kunnen versturen voor dat die moet op wachten op een ACK van onze receiver. Als de sender een ack krijgt voor de segment dan gaat deze eentje opschuiven. De sender gaat onthouden welke segments al zijn aangekomen. Als de receiver een out-of-order of corrupted segment krijgt dan gaat die deze gewoon weggooien. De sender gaat dan al de segment in de window opnieuw versturen. Het nadeel van dit protocol is duidelijk dat er veel bandbreedte gebruikt wordt waarvan weinig uiteindelijk nuttig gebruikt wordt.
 
 #### Selective Repeat
 
@@ -922,6 +1013,8 @@ So how does it actually work? Our sender can send an amount of segments indicate
 
 - **Note:** window size must be equal to or less than half the size of our sequence numbers. If it is larger, then the receiver could erroneously accept duplicate segments. 
 
+**Selective repeat sliding window protocol** lijkt weer best hard op de voorgaande protocollen maar met 1 grote verschil. Nu heeft onze receiver ook een window dat groter is dan 1. We hebben ook een NACK toegevoegd. Onze sender gaat weer zonder te moeten wachten op een ACK een N hoeveelheid segments kunnen sturen. De receiver gaat deze aannemen en antwoorden met een ACK maar het voordeel nu is dat de receiver segments die out-of-orde zijn niet gaat weggooien maar gaat aanvaarden (zolang hun sequence nummer in zijn window ligt). Onze receiver gaat ook segments blijven accepteren na een error en gaat het segment met het laagste nummer dat die nog niet heeft gekregen onthouden en stuurt dan een NACK met die nummer. Als een segment een time out krijgt langs de kant van sender dan wordt deze individueel teruggestuurd ipv heel de window. Het is ook belangrijk dat de window van de receiver gelijk is aan of minder is dan helft van de grootte van onze sequence numbers. Als dit groter is dan zou receiver segments kunnen accepteren als terwijl dat niet de juiste versie is van dat segment.
+
 ### Congestion Control
 
 #### What is Congestion?
@@ -948,7 +1041,9 @@ As we approach our **bandwidth limits**, bursts of higher traffic cause losses i
 
 As the network approaches congestion, delay rises at an **increasing** rate (due to buffering). Packets are **lost** after the **maximum** **buffering** **delay** is exceeded.
 
+**Avoid Congestion Collapse**
 
+![image-20220609225403212](img/image-20220609225403212.png)
 
 #### Min-Max Fairness
 
@@ -1205,6 +1300,12 @@ THIS IS OPTIONAL
 
 ![image-20220521171906775](img/image-20220521171906775.png)
 
+#### TCP Sliding Window
+
+![image-20220610131209571](img/image-20220610131209571.png)
+
+**Sliding window TCP** gaat volledig voer hoeveel data we kunnen sturen. Onze sender verstuurt wat data naar onze receiver, onze receiver bevestigd dit en gaat meegeven hoeveel plek er nog is in onze buffer. De sender gaat opnieuw een data sturen en onze receiver gaat die opnieuw bevestigen maar gaat deze keer zeggen dat de buffer vol is. Als de buffer vol is gaat de sender wachten tot deze een message krijgt van de receiver dat er terug plek. Als we deze message dat er terug plek is zouden verliezen dan komen we in een deadlock terecht. Gelukkig is er een oplossing, namelijk een probing timer die begint bij de sender wnr deze een WIN = 0 krijgt. Als deze timer gedaan is gaat deze zelf checken over terug plek is.
+
 #### Receiver Control of Transmission
 
 When receiver window is 0, no transmission can occur with two exceptions
@@ -1220,13 +1321,17 @@ This is basically, TCP can be such a waste of resources because it's possible we
 
 ![image-20220521204738436](img/image-20220521204738436.png)
 
-$\xrightarrow{}$ Solution: Delayed acknowledgements are a simple approach to addressing Tinygram Syndrome
+$\xrightarrow{}$ Solution: **Delayed acknowledgements** are a simple approach to addressing Tinygram Syndrome
 
 - Until timeout, wait for data to be transmitted. 
   - If data is transmitted before time-out, piggyback acknowledgement in data. 
   - If timeout occurs, send acknowledgement
 
+**Tinygram syndrome** is het probleem dat TCP veel overhead heeft om iets te kunnen versturen. Als onze payload dan bijvoorbeeld 1 character groot, dus 1 byte dan hebben 120bytes verstuurt voor 1byte aan werkelijke data. Dat is een enorme verspilling. Als oplossing hebben we ons **Nagle's Algoritme en Delayed Acknowledgements**
 
+#### Delayed Acknowledgements
+
+Delayed Acknowledgements is kleine aanpassing voor wat extra efficientie. Onze sender gaat wachten met zijn ACK tot net voor de timeout om te zien of er geen data verstuurt wordt waarmee de ACK kan meegestuurd worden.
 
 #### Nagle's Algorithm
 
@@ -1234,7 +1339,7 @@ Nagle's algorithm, while there is a sent segment with no ACK, buffer output unti
 
 This would not work well for real time systems, computer games,...
 
-
+**Nagle's algoritme** is nog een simpele aanpassing om **Tinygram syndrome** te vermijden. Terwijl we wachten op een ACK van onze eerste message gaan we alle data die we willen sturen bufferen tot we een vol segment hebben en gaan dan pas sturen.
 
 #### Silly Window Syndrome
 
@@ -1246,7 +1351,7 @@ Silly Window Syndrome occurs when the sending entity receives data in large bloc
 
 Delay window updates until the window can receive the maximum segment size, or until the buffer is half empty.
 
-
+**Silly window syndrome** is wanneer onze receiver maar 1 byte aan data kan accepteren om 1 moment en onze sender dus telkens maar 1 byte aan data gaat sturen. Dit is enorm inefficient. **Clarke's Algorithm** lost dit op door te wachten met window updates voor de receiver tot er genoeg plek is voor een max size segment of de buffer tenminste voor de helft leeg is.
 
 #### Retransmission Time Out
 
@@ -1257,7 +1362,7 @@ Delay window updates until the window can receive the maximum segment size, or u
   - What happens if it is too short?
 - TCP **dynamically adapts** the RTO period
 
-
+**Retransmission Time Out** is gewoon hoelang we wachten op een **ACK** voor we opnieuw onze segment sturen. Maar hoe kiezen we deze?
 
 #### Estimating Round Trip Time
 
@@ -1276,6 +1381,8 @@ The first approaches to setting RTO used a fixed multiplier of RTT, but this has
 We combine our measurement of RTT and RTTVAR in a simple weighted sum to calculate RTO
 
 ![image-20220521211355082](img/image-20220521211355082.png)
+
+Om nu alles samen te zetten, we vroegen ons af hoelang dat we onze **retransmission time out **nu moeste maken. We kunnen dit doen door een SRTT, een smoothed round trip time wat kan werken maar vanaf we wat congestion krijgen kan deze delay enorm groot en zeer variabel dus doen we er nog een schatting van de variatie van delay bij. Dit geeft onze een mooie retransmission time out.
 
 
 
@@ -1325,7 +1432,7 @@ We now have **two windows** that limit how fast we can transmit packets into the
 
 TCP uses **whichever window size is smaller** at any given time. This ensures that neither hosts nor routers are overwhelmed.
 
-
+**Het congestion window** is een nieuwe toevoeging, deze definieert hoeveel bytes de sender in transmissie mag hebben op een punt in de tijd. De flow control window wordt apart behouden. flow control window gaat over the capaciteit van de host terwijl de congestion window gaat over de capaciteit van het netwerk. Maar naar welke kijken we nu? Die met de kleinste window volgen we.
 
 #### Packet loss as Congestion Signal
 
@@ -1360,6 +1467,10 @@ If we keep up Slow Start without stopping, congestion will occur soon so we need
 
 ![image-20220521214415269](img/image-20220521214415269.png)
 
+
+
+**TCP slow start** werkt door middel van thresholds en AIMD(Additive increase, multiplicative decrease). Wanneer onze sender begint de sender begint te sturen gaan we beginnen met 1 segments. Als we dan een ACK terugkrijgen gaan we 2 segments sturen en gaan zo expontentieel verder tot we de threshold bereiken, deze threshhold is de grootte van de flow control window. Dan switchen we naar additive increase tot er een packetloss gebeurt. We kunnen wel maar 1 packet loss goedmaken. Wanneer er packetloss gebeurt veranderen we de threshold naar de helft van de grootte van de congestion window en starten we terug van 1 met hoeveel packets we doorsturen.
+
 #### Fast recovery
 
 So instead of completely restarting the amount of packets we're sending, We wait until the number of packets in the network falls to the new threshold (about 1/2 RTT). Once we have fallen below the thresh, we begin AIMD again.
@@ -1367,6 +1478,8 @@ So instead of completely restarting the amount of packets we're sending, We wait
 ![image-20220521214851803](img/image-20220521214851803.png)
 
 **Note:** We can only recover from one packet loss.
+
+**Fast recovery** gaat onze **slow start TCP** nog iets sneller doen recoveren omdat ipv terug van 1 packet door te sturen gaan we nu maar gaan tot de grootte van de congestion window. En gaan vandaar verder met AIMD.
 
 #### Selective ACK
 
@@ -1421,7 +1534,7 @@ Routers store a packet until it is fully transmitted and verified by checksum. I
 
 Common goals:
 
-- Service should be independent of router technolgoies
+- Service should be independent of router technologies
 - Transport Layer should be shielded from number, type and topology of routers
 - A uniform addressing scheme should be exposed to the Transport Layer
 
@@ -1479,9 +1592,9 @@ Each packet carries its circuit identifier rather than its end address
 
 $\xrightarrow{}$ **Label Switching**
 
-**MPLS** is a good example of a connection-oriented protocol used on the Internet.
+**MPLS** is a good example of a connection-oriented protocol used on the Internet. 
 
-
+**Multiprotocol Label Switching of MPLS:** is een netwerktechniek waarmee data via een optimale pad verstuurd wordt dat op voorhand wordt vastgelegd. De route van het packet wordt dus niet bepaald door tussenliggende hops. Elke packetje heeft de identifier van zijn virtual circuit en dus geen eind adres.
 
 ### Connection-oriented vs Connectionless
 
@@ -1530,7 +1643,13 @@ Two common definitions:
 
 Not gonna explain this one, should know it by now
 
+http://www.youtube.com/watch?v=8Ls1RqHCOPw
 
+#### Distance Vector Routing
+
+Distance vector routing is a routing algorithm used to always find the shortest path in a networks with a changing topology. Each router holds a table with an entry for each destination and the best link to get us there. Tables are exchanged with neighbours so that every node gradually learns the best route.
+
+**Distance vector routing** is een routing algoritme dat we gebruiken om het kortste pad te vinden in een netwerk met een constant veranderende topologie. Elke router heeft een table met een entry voor elke bestemming en de beste link om ons daar te krijgen. Elke router stuurt om de zoveel tijd zijn tabel door naar alle andere nodes zodat na verloop van tijd iedereen de beste route leert voor alles.
 
 #### Bellman-Ford Algorithm
 
@@ -1566,15 +1685,54 @@ The yellow table is made by using the previous table and the information given i
 - **Note:** path length can only increase by 1 each round
 - **Core problem** no router is aware if **itself** is included in a path
 
-
+**Bellman Ford Algorithm** is een distance vector routing algoritme. Deze heeft alle voordelen hiervan. Elke router meet de afstand tot elke neighbour wat gemeten wordt in speciale **ECHO** datagrams. Elke router gaat om de zoveel tijd de routing tables exchangen met zijn buren. Wanneer deze de nieuwe routing tables krijgt gaat die zijn eigen tables yeeten en er nieuwe maken op basis van de nieuwe tables. Het enige nadeel van dit algoritme en ook de reden waarom het niet meer gebruikt wordt is omdat het heel lang duurt voor dat het duidelijk wordt aan alle nodes dat een bepaalde link niet meer bestaat. Voorbeeld: We hebben een node A,B en C. A is verbonden met B en B is verbonden met C. De tabellen zijn ook al aware van elkaar. Wanneer A dan zou wegvallen dan gaat B niet kunnen sturen naar A dus gaat B sturen naar C voor A omdat deze niet weet dat de route van C door B gaat. Na elke exchange gaat de hoeveelheid stappen dat er nodig zijn voor naar A te geraken telkens omhoog gaan met 1 maar dit is dus heel traag voor dat het duidelijk wordt dat A niet meer available is. 
 
 #### Link State Routing
 
-TODO
+**Link State Routing is the replacement of Distance Vector Routing**
 
+##### Link state routing has 5 steps:
 
+1. Discover its neighbours network addresses
+2. Setting Link Cost
+3. Construct a packet with all learned
+4. Send this packet to all other routers
+5. Compute shortest path to all other routers using **Dijkstra's Algorithm**
 
+**Step 1: Learn About Neighbours**
 
+1. On boot, each **router** sends a **HELLO** packet on each point-to-point line.
+2. All routers receiving a **HELLO** respond with a datagram containing its address.
+3. Broadcast media (e.g. Ethernet) provides connectivity between all connected routers.
+
+**Step 2: Setting Link Cost**
+
+We can use many link costs: **distance, financial cost or signal strength**. For internet most common choice is to use a measure inversely proportional to bandwidth or delay.
+
+**Step 3: Constructing Datagrams**
+
+![image-20220610204150424](img/image-20220610204150424.png)
+
+A packet is built containing:
+
+- address of sender
+- sequence number
+- age
+- a vector of all costs to each neighbour
+
+**Step 4: Distributing Datagrams**
+
+Datagrams are distributed using flooding. The problem with flooding is huge amount of overhead, without any limitations packets could go on infinitely. So we use 32bit Seq. numbers to allow routers to identify already seen packets and discard them. To recover from crashes, age of packets is also included. Packets older than some threshold are discarded **(TTL)**.
+
+**Step 5: Computing New Routers**
+
+Once all link state packets have been received the router can reconstruct the whole graph. Dijkstra's algorithm is run on the graph to find the shortest path to each remote router
+
+##### Comparison to Distance Vector
+
+Link state routing avoids the count-to-infinity problem but requires routers to do much more computation and store more data. It thus becomes critical to limit the size of our routing tables. How could we do this?
+
+**-> Hierarchical Routing**
 
 #### Hierarchical Routing
 
@@ -1590,43 +1748,49 @@ TODO
 
 ![image-20220523193515208](img/image-20220523193515208.png)
 
-**TODO**
+**Hierarchical routing** is very nice because it reduces the size of our table. The only disadvantages we have is that it can increase path length because your packet might not be sent to the most optimal router for a certain destination. But those are manageable. Hierachical routing also has several different delivery models e.g. unicast, broadcast, multicast.
 
-
-
-
+### 
 
 ### Delivery Models
 
 - **Unicast**: from a single address to a single address (common case considered previously)
 
-- **Multicast**: one device on the network to many, but not all, devices on the network
+- **Multicast**: one device on the network to many, but not all devices on the network
 
 - **Broadcast**: from one device on the network to all devices on the network
 
-- **Unicast**: all messages from the sender to every receiver.
-
-  - Very wasteful of bandwidth as routers often see the same packet twice.
-  - Requires the sender to know the addresses of all end-points
+  
 
   
 
+  
+
+#### Naïve broadcast
+
+Unicast all messages from the sender to every receiver
+
+- Very wasteful of bandwidth as router often see the same packet twice
+- Requires the sender to know the addresses of all end-points
+
+**Naive broadcast** stuurt een message van de sender naar elke receiver met unicast. Het probleem is dat dit heel veel bandbreedte vraagt en dat je alle end-addresses kent.
+
 #### Multi-destination Broadcast Routing
 
-- Send a single message that contains a list of all destinations
-- Each router checks the list of destinations and determines the output lines needed, generating a new copy on each line based on its routing tables.
+Sends a single message that contains a list of all destinations. Each router checks the list of destinations and determines the output lines needed, generating a new copy on each line based on its routing tables.
 
-- Lost of works for the routers
+- Lots of work for the routers
 - Requires the sender to know the addresses of end-points
 
-
+**Multi-destination Broadcast Routing** gaat 1 packetje maken waarin alle adressen staan. De router gaat dit packetje krijgen en deze dan copieren en op de juiste links zetten. Dit vraagt veel werk van de router en dat je alle end-addressen kent.
 
 #### Flooding Broadcast
 
-- Send a single message that should be re-transmitted by all routers
-- Message contains a **Time-to-Live(TTL)** which is decremented at each host and a **sequence number ID**.
-- Hosts forward all incoming messages on all links except the one they arrived one, discarding where TTL=0 or sequence number is in the cache.
-- Still not the most efficient bandwidth use
+Send a single message that should be re-transmitted by all routers. Message contains a **Time-to-Live(TTL)** which is decremented at each host and a **sequence number ID**. Hosts forward all incoming messages on all links except the one they arrived on, discarding where TTL=0 or sequence number is in the cache
+
+- Still not the most efficient bandwidth use.
+
+**Flooding Broadcast** gaat een packetje een 32bit sequence number geven en een TTL. Het packetje gaat dan doorgestuurd worden door de router maar gaat deze discarden als hij de seq number als is tegengekomen of als de TTL = 0.
 
 
 
@@ -1634,13 +1798,15 @@ TODO
 
 - Exploits the sink tree seen previously
 - If a router receives a datagram on the link used to route to the send, it probably followed the shortest path and is first to arrive.
-- • If the datagram arrives on any other link, discard it as a duplicate
+- If the datagram arrives on any other link, discard it as a duplicate
 
 ![image-20220523195320768](img/image-20220523195320768.png)
 
 ![image-20220523195332849](img/image-20220523195332849.png)
 
 ![image-20220523195344321](img/image-20220523195344321.png)
+
+**Reverse path broadcast** is best simpel. Je gebruikt de **sink tree**. Als de router een packetje krijgt dan gaat deze kijken wat het source address is. Als het korste pad naar dit source address via de link is van waar het packetje komt dan heeft deze wss het korste pad gevolgt en is dit het eerste packetje dat aankomt. De router gaat deze message dan verder de sink tree sturen. Als er een packetje komt van een andere plek ga je deze discarden.
 
 
 
@@ -1650,7 +1816,7 @@ TODO
 - Each router knows if it is in the spanning tree and will forward the packet on all spanning tree lines except the one it arrived on.
 - Generates the minimum possible number of packets but is only possible where router have global knowledge, e.g. not possible with Distance Vector Routing approaches.
 
-
+**Spanning Tree Broadcast** gebruikt een spanning tree om de packetjes door te geven. De router weet dat deze in een spanning tree zit. Dit zorgt ervoor dat er exact 1 actief pad is dus 2 nodes van het netwerk. Wanneer er dan een message wordt gebroadcast is het niet mogelijk dat die van ergens anders kan aankomen.
 
 ### Open Shortest Path First (OSPF)
 
@@ -1658,7 +1824,7 @@ extension to Link State Routing
 
 1. Discover its neighbours network addresses. 
 
-2. Set the distance to all neighbors. 
+2. Set the distance to all neighbours. 
 3. Construct a packet with all learned. 
 4. Send this packet to all other routers.
 5. Compute shortest path to all other routers using Dijkstra’s Algorithm
@@ -1674,7 +1840,7 @@ extension to Link State Routing
   - Splits packets across them
 - This allows for a simple kind of load balancing
 
-
+**Equal Cost Multipath** is niet zo moeilijk. Het is gewoon een protocol dat packetjes gaat verdelen over de paden die dezelfde kost hebben zodat er niet altijd 1 gebruikt wordt en er dus minder congestie kan zijn.
 
 #### OSPF Packets
 
@@ -1708,7 +1874,7 @@ extension to Link State Routing
 
 ![image-20220524104827243](img/image-20220524104827243.png)
 
-
+**BGP of border gateway protocol**
 
 ### Mobile Connectivity
 
@@ -1726,7 +1892,7 @@ extension to Link State Routing
 
 $\xrightarrow{}$ This does not allow remote clients to remain connected to you
 
-#### 
+
 
 #### Why Network-level Mobility
 
@@ -1747,7 +1913,7 @@ $\xrightarrow{}$ This does not allow remote clients to remain connected to you
 - Security if a big problem for this approach:
   - If I can imitate your mobile host, all of your traffic will be directed to me.
 
-
+**Mobile connectivity works in a very cool way. ** Because its hard to keep mobile hosts connected as they change location and it would be wasteful to recalculate the routes every time it moves so we use a **home agent with a home address**. We someone wants to reach our mobile user it will first be sent to the home agent who will tunnel it through to the **mobile host at the care of address** user with information of the sender. The mobile user will then respond directly to the sender and communication will go between the two from then on.
 
 ### Ad-Hoc Networks
 
@@ -1779,25 +1945,169 @@ All elements of the network may move at any time this static reasoning over topo
 
 As route discovery leads to high broadcast overhead. To minimize this… **ROUTE_REQUESTS** are initially sent with TTL=1 if this fails after a **time-out**, it this is incrementally increased until the route is found. 
 
+**AODV of Ad-hoc on demand vector routing** is bedoelt voor IoT devices met een kleine batterylife dus moet het protocol lightweight zijn en weinig energie gebruiken. Ons netwerk medium is flooding. Een node gaat een message willen sturen naar een dus nog onbekende bestemming en gaat die doen door een ROUTE_REQUESTS te sturen naar de nodes in zijn buurt. Deze nodes gaan een ROUTE_REPLY terugsturen en elke node die een ROUTE_REPLY ontvangen gaan deze incrementeren en gaan de route toevoegen aan hun tabellen. Onze eerste node gaat een ROUTE_REQUEST sturen met een TTL=1 om te beginnen en gaat telkens met 1 meer beginnen als er een time-out is op de vorige en dit gaat doorgaan tot er een route is gevonden. Bij deze vector routing gaat het infinity problem niet voorkomen maar NO_ROUTE exceptions hebben een zeer lange time-out waardoor het serieus kan vertraagt worden. Als een node detecteert dat een actieve neighbour heeft gefailed. Alle entries met deze node worden gepurged en laat dit weten aan zijn buren.
+
+### Structure of the internet
+
+- **Tier-1:** provide the backbone, pays no transit fees
+- **Tier-2:** ISPs and regional networks are attached tot his backbone. These networks peer with other Tier-2 networks or pay transit fees.
+- **Tier-3:** Edge networks are connected to Tier-2 networks. **Purchase all transit** from other networks.
+
+![image-20220611153927186](img/image-20220611153927186.png)
+
+#### The Internet Protocol (IP):
+
+#### IPv4 Overview
+
+![image-20220611154104435](img/image-20220611154104435.png)
+
+- **Version** of the IP protocol
+  - IPv4 is dominant today
+  - IPv6 is being used but not dominant
+  - IPv5 was an experimental streaming protocol
+- **IHL - IP Header Length**
+- **Differentiated services:** used to mark a packets priority and discard class.
+  - Four priority classes: gold, silver, bronze, normal.
+  - Three discard classes: low, medium, high.
+- **Total Length**: header + body = max 64kb
+- **Identification:**
+  - Provides a unique packet ID for each fragment to aid in re-assembly
+- **DF/MF and Fragment Offset**
+  - **DF**= don't fragment, used in MTU discovery.
+  - **MF** = more fragments, used to indicate that more fragments of a packet are on their way
+- **Fragment offset:**
+  - Where in the current fragment this packet belongs
+- **TTL**
+- **Protocol**
+  - Used to indicate transport layer protocol (UDP,TCP,RTP,..)
+- **Header Checksum:** verifies that the header is transmitted correctly. recalculated every hop
+- **Source address: 32bit IPv4 address**
+- **Destination address: 32bit IPv4 address**
+- **Optional Headers**
+
+#### Expedited Forwarding
+
+There are two classis of traffic: **regular** and **expedited**. Most of it is regular. A lot of hosts this to mark VoIP traffic. Ingress router can police expedited volumes
+
+![image-20220612142623088](img/image-20220612142623088.png)
+
+#### Network Service Access Point (NSAP)
+
+A NSAP provides a network layer address, IP addresses are an example
+
+#### CIDR
+
+CIDR is a set of Internet Protocol standards that is used to create unique identifies for networks and individual services. 
+
+**CIDR** is een manier om IP-adressen te verdelen en noteren om een netwerk en een specifieke host  te kunnen herkennen. **Voorbeeld:** 192.24.16.1/24. 
+
+De 24 zegt dat het netwerk adres gaat tot de 24ste bits. De 24ste bit is de laatste bit waarmee we de 16 uitdrukken. Daarna beginnen de nummers waarmee we de hosts identificeren. In dit geval dus een simpele 1. 
 
 
 
+We hebben helaas niet veel IPv4 addressen dus we gebruiken iets dat we eerder hebben gezien om het aantal in gebruik te verminderen nl. DHCP. Helaas is nog niet genoeg. We gaan dus elke huis of netwerk 1 IP-address geven terwijl er dan intern een ander IP-address gebruikt wordt. Dit doen we door middel van **NAT**.
 
-### Internet Control and Message Protocol (ICMP)
+
+
+#### Network Address Translation (NAT)
+
+A NAT box has one externally routable IP. **Internal private addresses** appear to be sent from the **public** IP of the NAT box. Incoming messages are **translated** to the private address - their ' real' destination
+
+![image-20220611161703390](img/image-20220611161703390.png)
+
+##### Nat Use of TSAPs
+
+- On **exit**, a packet has:
+  - Its private source address replaced with the public address
+  - Its source TSAP address replaced with an index in the lookup tables of the NAT box
+- On **entry**, a packet has:
+  - The fake TSAP is used to look up the hosts details
+  - The IP address and source port are modified based on the table entry.
+
+**NAT of Network Address Translation** is doos die tussen jou en je router zit. Omwille van het feit dat we IPv4 adressen willen sparen gaan we in prive netwerken andere IP-adressen gebruiken dan jou publiek IP. Je router heeft 1 IP-adres terwijl je in je netwerk meerdere devices met andere IP's kan hebben. Dus hoe werkt NAT, Als je een packet stuurt gaat uw prive IP omgezet worden naar het public IP en gaat je TSAP adres in een table gezet worden met een index. Deze index wordt dan meegeven met het packet. Wnr er dan een packetje terugkomt wordt de fake TSAP(de index) opgezocht in de tabel en vinden we daar ons origineel IP en TSAP. Dan wordt verder gestuurd.
+
+#### IPv6 Overview
+
+##### Features
+
+- 128bits address space: 64bit hierarchical routing, 64 bits for addressing
+- Simple fixed-length headers:
+  - 40 bytes in each IPv6 packet
+  - Extra information is placed in extension headers.
+- **Stateless auto-configuration**: allows nodes to obtain an IP address and routing information
+- **End-to-end security** at the network layer
+- **Quality of Service** support by traffic class and data flow
+- Simplified fragmentation of messages
+- Support for mobility through mobile IPv6
+- Mandatory support for **multicast** messages that replace broadcast
+- Support for **anycast** messages that allow for load balancing
+
+
+
+##### Writing IPv6 Addresses
+
+How to represent IPv6 addresses:
+
+- Make groups of 4 bits
+- For each group assign a hexadecimal digit
+- Use ":" to separate group of four hex digits:
+  - • From: “0010 0000 0000 0001 0000 1101 1011 1000 0000 0000 0000 0000 0000 0000 0000 0000 0011 1110 0000 0111 0101 0100 1111 1111 1111 1110 0111 0100 1010 1011 1100 1101”
+  - To: “2001:0db8:0000:0000:3e07:54ff:fe74:abcd”
+
+We can shorten these address with two rules
+
+1. Remove consecutive groups of all 0's and replace with a doube colon:
+   - – 2001:db8::3e07:54ff:fe74:abcd
+2. Remove leading 0's of each 4 digit group
+   - 2001:db8:0:0:3e07:54ff:fe74:abcd
+
+**Step 1 can only be done once**
+
+##### Address Types
+
+1. Unicast: Each address identifies an unique interface
+2. Multicast: 
+   - Each address identifies multiple interfaces
+   - Information reaches every interface.
+3. Anycast:
+   - Each address identifies multiple interfaces
+   - Information reaches one interface
+
+##### Unicast Addresses
+
+Three types of uncast addresses:
+
+1. Global Unicast Addresses
+   - For servers that need to accept direct inbound connections
+   - For some clients that need direct inbound connections
+2. Unique Local Unicast Address
+   - Provides limited routing across your private network
+   - Choosing a random global prevents conflicts if the networks are later linked together
+3. Link Local Unicast Address
+   - Every IPv6 host must have one for each inferface
+   - This address is not routable and only used locally
+
+##### Security and Addresses
+
+**NAT** is not used anymore because we have enough IP's and thus a firewall is needed on every node.
+
+### Internet Control Message Protocol (ICMP)
 
 #### Packets
 
 ![image-20220524115328153](img/image-20220524115328153.png)
 
+**ICMP** is een protocol dat gebruikt wordt om error communicatie en reporting door te geven tussen computers, hosts en routers.
+
 #### Traceroute
 
-Traceroute provides a map of how data on the internet travels from its source to is destination.
+Allows a host to discover details of the full route to another IP address
 
 
 
 ### Address Resolution Protocol (ARP)
 
-- Recall that we separate logical **IP addresses** and physical **MAC addresses.**
+- Recall that we separate logical **IP addresses** and physical **MAC (Media Access Control) addresses.**
 - Physical media routes by MAC address at each hop we need to resolve a IP to MAC addresses
 
 - ARP maps IP addresses onto MAC addresses
@@ -1814,7 +2124,7 @@ Hosts2 reponds by sending it MAC address to Host 1. Host 1 may now route to Host
 
 ![image-20220524121550122](img/image-20220524121550122.png)
 
-
+**ARP of Address Resolution Protocol** is een protocol dat zorgt voor het ontdekken van machines hun MAC (media access control) adres via IP. Een computer gaat een broadcast doen over een netwerk met de vraag wie heeft dit IP? De computer met die IP gaat antwoorden en zijn MAC adres doorsturen. Als dit bedoelde host op een ander netwerk zit gaat de sender een packet doorsturen met het IP van de gewilde host maar met het MAC adres van de router. De router gaat zorgen dat deze uiteindelijk bij de receiver eindigt en deze gaat dan zijn MAC address sturen.
 
 ### Throttling
 
@@ -1842,11 +2152,15 @@ Choke packets are explicit notifications provided by congested routers.
 
 Choke packet causes sending entity to throttle the rate it sends segments into the network
 
+**Choke packets** zijn specifieke packetjes die naar de zender worden gestuurd om te zeggen dat die wat minder moet sturen.
+
 ### Explicit Congestion Notification (ECN)
 
 ECN is used to tag packets as they travel through routers. ECN-tagged packets reach **destination host**, which messages the sender to throttle send rate.
 
 -> In comparison to Choke Packet, ECN has **lower overhead**, but takes **longer** to enact **change**. 
+
+**ECN of Explicit Congestion Notification** wordt gebruikt om packetjes te taggen die dan naar de receiver gaan zodat deze kan laten weten aan de sender dat die wat minder moet sturen.
 
 ### Random Early Detection
 
@@ -1857,6 +2171,8 @@ This is counter-intuitive, but has advantages:
 - It makes packet loss a more reliable congestion signal.
 - It reduces the delay between congestion starting and transport-layer throttling.
 - Random Early Detected (RED) will drop random packets as congestion approaches.
+
+**RED of Random Early Detection** is dat we gaan kijken naar packets die gedropt worden en afhankelijk daarvan gaan we minder sturen. Onze routers enzo gaat packetjes beginnen droppen wnr we richting de congestion gaan.
 
 **Question:**
 
@@ -1948,7 +2264,7 @@ Same thing as before but now we transmit with a probability of p when the channe
 
 RF Interference and occlusion:
 
-- Only small chinks of the spectrum may be used without a license and are therefore highly congested
+- Only small chunks of the spectrum may be used without a license and are therefore highly congested
 - Sporadic interference must be anticipated
 
 Power constraints:
@@ -1979,7 +2295,9 @@ Nodes only turn on their radios for short sampling periods. If traffic is detect
 
 ![image-20220524210125493](img/image-20220524210125493.png)
 
-#### Time Synchronized Mesh Protocol
+**Berkeley MAC** is ontwikkelt omdat kleine IoT devices niet veel energie mogen gebruiken omwille van hun kleine batterij. Dus wat gaan we doen. Onze receiver gaat om de zoveel tijd zijn radio even aanzetten om te samplen of er iets wordt doorgestuurd. Onze sender gaat zorgen voor een lange preamble zodat de tegen de eigenlijke message aankomt dat de receiver klaar is om deze aan te nemen. Dus moeten we er voor zorgen dat onze preamble langer is dan de sampling period zodat onze receiver de message dus zeker niet mist.
+
+##### Time Synchronized Mesh Protocol
 
 TSMP is a MAC and Network layer protocol for WSAN.
 
@@ -2000,15 +2318,27 @@ There are five key components of TSMP that contribute to end-to-end network reli
 - Fully-redundant mesh routing
 - Secure message transfer
 
+**Time Synchronized Mesh Protocol of TSMP**. Al node-to-node communicatie in een TSMP network in gedaan in een specifiek time-window. Wat we noemen een **Time Division Multiple Access (TDMA)**. Time Synchronization in een TDMA is heel belangrijk omdat de nodes exact moeten weten wnr ze mogen praten, luisteren of slapen. Nodes moeten dit sychronizeren met andere nodes dus moeten ze allemaal dezelfde tijd hebben. Dit houden ze bij voor hunzelf en ze wisselen offset informatie uit met buren. Deze offset values rijden mee in de standaard ACK message en vragen dus niets extra.
+
+ Door deze tijd sychronizatie kunnen we bandbreedte preallocaten om zeer betrouwebaar transmission te verzerkeren en zodat we geen interference hebben. Transmitting nodes kunnen hun frequency elke transmissie veranderen en de andere node kan dat volgen. Wanneer een node (C) een TSMP network joint dan gaat deze de available buren ontdekken en gaat communicatie establishen met tenminste 2 nodes, we gaan deze ouders A en B noemen. Tijdens dit proces gaat node C de sychronizatie informatie en een frequency hopping sequence krijgen van zijn ouders. Dit zijn standaard 16 distincte frequencies. The hopping sequence is een pseudo-random sequence van alle beschikbare channels. Node C gaat van elke ouder een distincte start plaats krijgen van elke ouder. Op deze manier gaat elke gepaarde connecie zeker op een andere channel zijn tijdens elk timeslot.
+
 ### Ethernet
 
 #### Frame Formats
 
 ![image-20220524153306155](img/image-20220524153306155.png)
 
+- **Preamble**: 8 bytes containing an alternating bit pattern allows sender and receiver clocks to synchronize
+- **SoF**: Start of frame use '11' but pattern to signal the frame data is about to start.
+- **Destination and Source address: 48bit IEEE MAC addresses**
+- **Type:** field tells higher layers what the packets contains: e.g. IPv4
+- **Length: **how much data is in the frame
+- **Padding** to ensure collision detection for short frames
+- **Checksum:** check consistency of packet
+
 #### DIX v IEEE 802.3
 
-- DIX uses a length field, while 802.3 uses a type field. As can be seen above.
+- DIX uses a type field, while 802.3 uses a length field. As can be seen above.
 - Without the type field you cannot dispatch to higher layers, so an 8 byte logical link control header is added.
 - Fortunately all of the type fields had values over 1500:
   - Ethernet max frame is 1500
@@ -2144,11 +2474,15 @@ Power constraints:
 
 - Yes, even on your laptop we must conserve power.
 
+802.11 heeft CSMA/CA. Zoals bij ethernet doen we aan channel sensing met een exponentieel back off omdat het collisions meer kosten via wifi. Voor als een sender een frame heeft dat die wilt versturen gaat die sws een random back-off wachten in een kleine range(e.g. 0-15)
+
 ### Virtual Channel Sensing
 
 In virtual channel sensing, we use higher level information to infer if we need to check the channel again. We do this by using **Network Allocation Vectors (NAV)**. Each frame carries a **NAV** **field** that say how long the transmission sequence will take to complete. 
 
 $\xrightarrow{}$Now everyone will wait for this sequence to finish before trying to transmit
+
+**Virtual Channel Sensing** is een manier om af te leiden van de hogere level informatie of we de channel nog is moeten checken. Elke frame heeft een **NAV Network Allocation Vector** field dat zegt hoe lang de transmission sequence gaat duren. iedereen gaat dan wachten op deze sequence om te finishen.
 
 #### Power Saving
 
