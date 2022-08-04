@@ -29,7 +29,7 @@ but we will use the **Tanenbaum Model**
 ### Layer 3: The Network Layer
 
 - The data unit is **packets** - frames containing extra information that is required for routing.
-- Creates logicals paths and determines how pockets are routed end-to-end
+- Creates logicals paths and determines how packets are routed end-to-end
 - Higher layers are shielded from medium-specific complexities through the network layer
 - Provides a hierarchical, logical address space (e.g. IPv4 or IPv6 addresses)
 
@@ -66,7 +66,7 @@ Telnet can be used to
 - Manage and configure network devices such a routers and switches
 - Check if ports are open and closed on a server.
 
-Telnet is sent in clear text so there is no encryption, if you would use it today anyone could grab your data your sending. It should not be used over the public internet. Telnet itself runs on port 23
+Telnet is sent in clear text so there is no encryption, if you would use it today anyone could grab the data you're sending. It should not be used over the public internet. Telnet itself runs on port 23
 
 Telnet is een command line interface om te connecteren met servers, routers, etc. Als je connecteert met telnet met 1 van deze machines is het alsof je voor de machine zou zitten en rechtstreeks commands ingeeft. Telnet gebruikt TCP maar er is helaas geen security dus dit over het internet gebruiken is gevaarlijk. Telnet runt op port 23. 
 
@@ -1304,7 +1304,7 @@ THIS IS OPTIONAL
 
 ![image-20220610131209571](img/image-20220610131209571.png)
 
-**Sliding window TCP** gaat volledig voer hoeveel data we kunnen sturen. Onze sender verstuurt wat data naar onze receiver, onze receiver bevestigd dit en gaat meegeven hoeveel plek er nog is in onze buffer. De sender gaat opnieuw een data sturen en onze receiver gaat die opnieuw bevestigen maar gaat deze keer zeggen dat de buffer vol is. Als de buffer vol is gaat de sender wachten tot deze een message krijgt van de receiver dat er terug plek. Als we deze message dat er terug plek is zouden verliezen dan komen we in een deadlock terecht. Gelukkig is er een oplossing, namelijk een probing timer die begint bij de sender wnr deze een WIN = 0 krijgt. Als deze timer gedaan is gaat deze zelf checken over terug plek is.
+**Sliding window TCP** gaat volledig over hoeveel data we kunnen sturen. Onze sender verstuurt wat data naar onze receiver, onze receiver bevestigd dit en gaat meegeven hoeveel plek er nog is in onze buffer. De sender gaat opnieuw een data sturen en onze receiver gaat die opnieuw bevestigen maar gaat deze keer zeggen dat de buffer vol is. Als de buffer vol is gaat de sender wachten tot deze een message krijgt van de receiver dat er terug plek. Als we deze message dat er terug plek is zouden verliezen dan komen we in een deadlock terecht. Gelukkig is er een oplossing, namelijk een probing timer die begint bij de sender wnr deze een WIN = 0 krijgt. Als deze timer gedaan is gaat deze zelf checken over terug plek is.
 
 #### Receiver Control of Transmission
 
@@ -1876,6 +1876,8 @@ extension to Link State Routing
 
 **BGP of border gateway protocol**
 
+Internal BGP is used by the boundary routers of an AS to get to know each the routes of the other boundary routers. 
+
 ### Mobile Connectivity
 
 - The problem of keeping mobile hosts connected as they change location:
@@ -1945,7 +1947,7 @@ All elements of the network may move at any time this static reasoning over topo
 
 As route discovery leads to high broadcast overhead. To minimize this… **ROUTE_REQUESTS** are initially sent with TTL=1 if this fails after a **time-out**, it this is incrementally increased until the route is found. 
 
-**AODV of Ad-hoc on demand vector routing** is bedoelt voor IoT devices met een kleine batterylife dus moet het protocol lightweight zijn en weinig energie gebruiken. Ons netwerk medium is flooding. Een node gaat een message willen sturen naar een dus nog onbekende bestemming en gaat die doen door een ROUTE_REQUESTS te sturen naar de nodes in zijn buurt. Deze nodes gaan een ROUTE_REPLY terugsturen en elke node die een ROUTE_REPLY ontvangen gaan deze incrementeren en gaan de route toevoegen aan hun tabellen. Onze eerste node gaat een ROUTE_REQUEST sturen met een TTL=1 om te beginnen en gaat telkens met 1 meer beginnen als er een time-out is op de vorige en dit gaat doorgaan tot er een route is gevonden. Bij deze vector routing gaat het infinity problem niet voorkomen maar NO_ROUTE exceptions hebben een zeer lange time-out waardoor het serieus kan vertraagt worden. Als een node detecteert dat een actieve neighbour heeft gefailed. Alle entries met deze node worden gepurged en laat dit weten aan zijn buren.
+**AODV of Ad-hoc on demand vector routing** is bedoelt voor IoT devices met een kleine batterylife dus moet het protocol lightweight zijn en weinig energie gebruiken. Ons netwerk medium is flooding. Een node gaat een message willen sturen naar een dus nog onbekende bestemming en gaat die doen door een ROUTE_REQUESTS te sturen naar de nodes in zijn buurt. Deze nodes gaan een ROUTE_REPLY terugsturen en elke node die een ROUTE_REPLY ontvangen gaan deze incrementeren en gaan de route toevoegen aan hun tabellen. Onze eerste node gaat een ROUTE_REQUEST sturen met een TTL=1 om te beginnen en gaat telkens met 1 meer beginnen als er een time-out is op de vorige en dit gaat doorgaan tot er een route is gevonden. Bij deze vector routing gaat het infinity problem niet voorkomen maar NO_ROUTE exceptions hebben een zeer lange time-out waardoor het serieus kan vertraagt worden. Als een node detecteert dat een actieve neighbour heeft gefailed. Om de zoveel tijd gaat elke node een HELLO message broadcasten. Als er een neighbour niet op antwoord dan wordt er vanuit gegaan dat deze node niet meer beschikbaar is en gaan we deze uit de tabel schrappen.
 
 ### Structure of the internet
 
@@ -1984,6 +1986,10 @@ As route discovery leads to high broadcast overhead. To minimize this… **ROUTE
 - **Source address: 32bit IPv4 address**
 - **Destination address: 32bit IPv4 address**
 - **Optional Headers**
+
+Fragmentatie is wanneer een packet te groot is voor een bepaald netwerk en we dus de router gaan toelaten om elke packetje op te delen in fragmenten om dan zo te versturen. Al is een zo een packet dan opnieuw opbouwen heel lastig. Dit kunnen we doen op 2 manieren, transparant of non transparant. Transparant is wanneer we 1 router het packetje laten opdelen in fragmenten en deze zijn dan allemaal geadresseerd op dezelfde exit router wie deze allemaal terug in mekaar gaat steken. De non transparante manier is dat we terug een router gaan hebben die deze opdeelt in fragmenten maar nu gaan wachten tot de final destination voor dat we deze gaan reassemblen. Het voordeel hier is dat de router veel minder werk gaat moeten doen. IPv4 werkt op de non-transparante manier als gaat er wel nog iets toegevoegd worden.
+
+**Path MTU discovery** is een strategy dat we nu gebruiken. Het werkt zo. Elke IP packet wordt gestuurd met een een paar header bits (**DF**) dat fragmentatie niet toegelaten is. Als een router dit packet krijgt en het is te groot dat gaat deze een error packet terugsturen en het originele packet droppen. Wanneer de bron het error packetje krijgt, gaat het deze informatie gebruiken om het packetje refragementeren in kleine stukken dat de router wel aankan. Als deze dan later een router tegenkomt met nog een kleinere MTU dat gaat dit opnieuw gebeuren. Het nadeel van MTU discovery is dat er een startup delay is om simpelweg een packet te sturen.
 
 #### Expedited Forwarding
 

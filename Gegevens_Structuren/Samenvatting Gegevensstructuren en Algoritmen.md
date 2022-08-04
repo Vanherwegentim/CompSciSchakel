@@ -187,7 +187,7 @@ En dus:
 
 ​					$=nlog_2(n) - 1.443n + 1.443$
 
-=> $log_2(n!)~n.log_2(n)$
+=> $log_2(n!)\sim n.log_2(n)$
 
 
 
@@ -217,6 +217,34 @@ Like MergeSort, QuickSort is a Divide and conquer algorithm. It picks an element
 
 
 
+#### Normal variant of Quicksort
+
+Take a pivot and create 2 arrays, left and right. All elements smaller than or equal to we will put in the array left, all elements greather than we will put in the right array. Then we concatenate left + pivot + right. 
+
+![image-20220615153831615](img/image-20220615153831615.png)
+
+=> pretty bad performance
+
+
+
+#### Hoare Variant
+
+We shuffle the starting array and then take the first element as the pivot. This variant is inplace which means we do not create extra arrays.
+
+We go through the array with 2 indexes one starting from the left and the other starting from the right. The left index will start going through the array until it finds an element bigger than the pivot. After that our right index will start to move to the left until it finds an element smaller than the pivot. When both have found an element we switch the 2 elements. We keep this going until both pivots meet. We stop here because the array is now sorted for this pivot, we switch the last element of the smaller elements with the pivot to get the pivot in the correct position. We then restart the algorithm on everything that was smaller than the pivot and everything that was greater than the pivot, continuing until the array is sorted.
+
+
+
+#### Lomunto Variant
+
+We shuffle the starting array and this time pick the last element. This variant is also inplace.
+
+Again we will have two indexes but this time our first index will be the index of the last element smaller than our pivot while our second index is the index going through the array from left to right.
+
+![image-20220615160830467](img/image-20220615160830467.png)
+
+When an element is bigger than the pivot we will just leave it, if it is smaller than the pivot we switch it with the first index + 1 so a[i+1]. We continue this until our j index hits the end of the array. Where out pivot is then switched with first element of the subarray with the bigger elements.
+
 #### **Performance**
 
 **Best Case:**
@@ -238,7 +266,7 @@ Like MergeSort, QuickSort is a Divide and conquer algorithm. It picks an element
 As long as Quicksort splits in proportions of n, behavior is \~𝑐nlog~2~.
 c is determined by splitting fraction
 
-=> \~1.39nlog~2~n element compares
+**=> \~1.39nlog~2~n element compares**
 
 
 
@@ -542,7 +570,7 @@ De hoeveelheid van de karakters die bekeken worden voor de sort hangen van de ke
 
 #### How does it work?
 
-Vervang couting sort met quicksort, die doet de afhankelijkheid op R, dus de grote van de set van tekens gebruikt, verdwijnen.
+Vervang counting sort met quicksort, die doet de afhankelijkheid op R, dus de grote van de set van tekens gebruikt, verdwijnen.
 
 1. partition info <,=, and > compared to pivot
 2. Recursively sort same character on < and > partitions
@@ -592,6 +620,8 @@ Vervang couting sort met quicksort, die doet de afhankelijkheid op R, dus de gro
 ## Les 6: Priority Queues & Balanced Trees
 
 ### Priority Queues
+
+In essentie zijn dit ordered arrays, grootste of kleinste item eerst -> Priority Queue
 
 ![image-20220608174503621](img/image-20220608174503621.png)
 
@@ -717,3 +747,924 @@ Ik vind hier geen informatie over TODO
 #### How does it work?
 
 We plaatsen alle elementen in een heap. Omdat we een heap hebben gaat het kleinste of grootste getal (afhankelijk van of het een min/max heap is) in de root staan. Haal het element in de root eruit en plaats deze in een array. Als we alle elementen van de heap hebben behandeld hebben we nu een een gesorteerde array.
+
+![image-20220614105945335](img/image-20220614105945335.png)
+
+#### Performance
+
+2 Steps
+
+1. build the heap
+2. extract all elements 1-by-1
+
+=> $\sim 2nlog_2(n) $
+
+
+
+### Binary Search Trees (BST)
+
+Een BST is een binaire boom in **symmetrische volgorde **(order), een binaire boom is of:
+
+- Leeg
+- Twee disjoint(onsamenhangend) binaire bomen (links en rechts)
+
+
+
+![image-20220614110849491](img/image-20220614110849491.png)
+
+#### **Symmetrische volgorde** (Order)
+
+Elke node heeft een key en deze key is:
+
+- Groter dan alle keys in zijn linkse subtree
+- kleiner dan alle keys in zijn rechtse subtree
+
+![image-20220614111353807](img/image-20220614111353807.png)
+
+
+
+#### BST Search
+
+Return de value die overeenkomt met de gezochte key of null als er zo geen key aanwezig is in de BST.
+
+![image-20220614111643069](img/image-20220614111643069.png)
+
+Deze search is heel simpel eigenlijk, is de key die je zoekt groter dan de root, ga naar rechts. Is de key kleiner ga naar links. Is er geen element meer dan bevat de boom de gezochte key niet. Is de linkse boom niet kleiner en de rechtse niet groter dan heb je de plek gevonden.
+
+
+
+#### BST Insert
+
+Als je zoekt naar een key, kan je twee gevallen hebben:
+
+1. Key is in de tree => reset value (Als er geen duplicates worden toegelaten en een update van de current value is nodig) Geen idee waarom dit zou nodig zijn.
+2. Key is niet in de tree => voeg toe als nieuwe node
+
+![image-20220614113021586](img/image-20220614113021586.png)
+
+- #compares = 1+depth of node
+
+
+
+#### BST Analysis
+
+- Je kan veel verschillende BSTs krijgen voor de zelfde set van keys
+- De vorm hangt af van de orde van de insertions
+
+![image-20220614113212586](img/image-20220614113212586.png)
+
+Een leuk experiment bewijst dat als we random keys gebruiken dat onze boom relatief 'flagt' gaat blijven.
+
+![image-20220614122841225](img/image-20220614122841225.png)
+
+
+
+#### **Performance**
+
+zoek hits in een BST require $\sim 1.39log_2n$ compares, on average.
+
+![image-20220614122951927](img/image-20220614122951927.png)
+
+#### Ordered Operations
+
+**Vind de minimum key in een BST?**
+
+-> Move zover mogelijk naar links
+
+**Vind de maximum key in een BST?**
+
+-> Move zover mogelijk naar rechts
+
+**Floor**
+
+-> vind de grootste key die kleiner of gelijk aan de gegeven key is
+
+**3 gevallen**
+
+1. key == root: floor is the root
+2. key < root: floor moet dus in de linker subtree zitten
+3. key > root: floor zou in de rechter subtree kunnen zitten als er een key <= onze key is in de subtree, anders is het de root
+
+![image-20220614124442333](img/image-20220614124442333.png)
+
+**Ceiling**
+
+-> vind de kleinste key die groter of gelijk aan de gegeven key is.
+
+**3 gevallen:**
+
+1. root == key: root is ceiling
+2. key > root: ceiling zit in de rechter subtree
+3. key < root: ceiling kan in de linker subtree als er een key inzit die >= onze key, anders is de root onze ceiling
+
+
+
+#### BST Delete
+
+Op een simpele manier, verwijder de node niet echt maar markeer de node met een "tombstone" zodat deze zelf niet kan gevonden worden maar wel future searches en insert kan guiden.
+
+##### BST Delete: minimum
+
+Om de minimum key te verwijderen ga je links blijven gaan tot je een node vindt met de null left link. Vervang deze node door zijn rechtse node. als er geen rechtse node is mag je de node gewoon verwijderen.
+
+![image-20220614125756259](img/image-20220614125756259.png)
+
+##### BST Delete: normal
+
+- **Case 0: key heeft 0 children**
+  - Verwijder de key gewoon
+
+![image-20220614125906404](img/image-20220614125906404.png)
+
+- **Case 1: key heeft 1 child**
+  - Vervang de node met zijn child node
+
+![image-20220614130152966](img/image-20220614130152966.png)
+
+- **Case 2: key (node t) heeft 2 children**
+  - Vind de successor *x* van node *t* met key *k*
+  - Verwijder de minimum in *t*'s rechter subtree
+  - Zet x op de plek van t
+
+![image-20220614131029722](img/image-20220614131029722.png)
+
+
+
+#### BST Summary
+
+![image-20220614131228916](img/image-20220614131228916.png)
+
+#### Probleem met BSTs
+
+BST heeft zeer slechte worst case performance. Het zou ideaal zijn om een perfecte gebalanceerde BST te hebben maar dit is zeer expensive.
+
+**Oplossing:**
+
+- 2-3 tree (aka B-tree)
+- red-black tree
+
+
+
+### 2-3 Trees
+
+**BST** maar
+
+Laat 1 of 2 keys per node toe
+
+- 2-node: 1 key met 2 children
+- 3-node: 2 keys met 3 children
+
+-> Perfect balance
+
+Elk path van de root naar de null link heeft dezelfde lengte
+
+![image-20220614131930402](img/image-20220614131930402.png)
+
+#### Search
+
+![image-20220614132137143](img/image-20220614132137143.png)
+
+Simpel weg de boom afgaan, is het kleiner dan de root ga naar links, is het groter ga naar rechts. Als de root 2 keys heeft dan moet ge nog is checken of die er niet tussenin ligt.
+
+
+
+#### Insert
+
+**Case 1: insert into a 2-node**
+
+![image-20220614151229951](img/image-20220614151229951.png)
+
+**Case 2: insert into a 3-node, whose parent is a 2-node**
+
+![image-20220614151256330](img/image-20220614151256330.png)
+
+**Case 3: insert into a 3-node, whose poarent is a 3-node **
+
+![image-20220614151339081](img/image-20220614151339081.png)
+
+
+
+#### Analysis
+
+Elke pad van de root naar de null-link heeft dezelfde lengte
+
+-> **Worst case: $log_2N$ [all 2-nodes]**
+
+-> **Best case:** $log_3N \approx 0.631log_2N $ **[all 3-nodes**
+
+Gegarandeerde logaritmische performance for search and insert
+
+![image-20220614153312279](img/image-20220614153312279.png)
+
+
+
+## Les 7: Red-Black Trees; Tries
+
+### Red-Black Trees
+
+Represent 2-3 tree as BST
+
+![image-20220614153833014](img/image-20220614153833014.png)
+
+#### **Rules:**
+
+1. No node has 2 red links connectied to it
+2. Every path from root to null link has the same number of black links
+3. **Red** links go left
+
+![image-20220614154032892](img/image-20220614154032892.png)
+
+1-1 correspondence between a RB-Tree and 2-3 Tree
+
+![image-20220614154100320](img/image-20220614154100320.png)
+
+#### Insertion
+
+Basic strategy: Maintain 1-1 correspondence with 2-3 trees by applying elementary red-black tree operations.
+
+![image-20220614154321060](img/image-20220614154321060.png)
+
+#### Rotations
+
+Left rotation: orient a (temp) right red link to the left
+
+![image-20220614154614069](img/image-20220614154614069.png)
+
+Right rotation: orent a left red link (temp) to the right
+
+![image-20220614154642198](img/image-20220614154642198.png)
+
+#### Color Flip
+
+![image-20220614155013458](img/image-20220614155013458.png)
+
+#### Insertion
+
+**Case 1: insert into 2-node at bottom**
+
+- Doe de standaard BST insert en kleur de nieuwe link rood
+- Als de nieuwe link rechts is, roteer links
+
+![image-20220614155226142](img/image-20220614155226142.png)
+
+**Warmup Case 2: insert in tree with exactly 2 nodes**
+
+![image-20220614155427219](img/image-20220614155427219.png)
+
+
+
+**Case 2: insert in 3-node**
+
+![image-20220614165008814](img/image-20220614165008814.png)
+
+Height with N nodes is <= $2log_2N$
+
+#### Analysis
+
+![image-20220614165144746](img/image-20220614165144746.png)
+
+
+
+### Tries
+
+Hoe organiseer je strings in search trees?
+
+-> Tries (single characters ipv string)
+
+#### Structure
+
+Store characters in nodes. Each node has R children, one for each possible character
+
+![image-20220614165455914](img/image-20220614165455914.png)
+
+#### Search
+
+Follow links corresponding to each character in key. 
+**Search hit**: node where search ends has non-null value.
+
+![image-20220614165808109](img/image-20220614165808109.png)
+
+![image-20220614165839492](img/image-20220614165839492.png)
+
+**Search miss:** reach null link or node where search ends has null value
+
+![image-20220614170232779](img/image-20220614170232779.png)
+
+![image-20220614170240421](img/image-20220614170240421.png)
+
+#### Insertion
+
+Volg de overkomstige links naar elk character in de key
+
+-> Als je een null link tegekomt, maak nieuwe node
+
+-> Als je het laatste character van de key tegekomt, zet een value in die node
+
+![image-20220614170559603](img/image-20220614170559603.png)
+
+
+
+#### Deletion 
+
+Find the node corresponding to key and set value to null
+
+If node has null value and null links, remove that node (and recur)
+
+![image-20220614171240472](img/image-20220614171240472.png)
+
+![image-20220614171300926](img/image-20220614171300926.png)
+
+
+
+#### Performance
+
+**Search hit:**
+
+- Need to examine all *L* characters for equality
+
+**Search miss:**
+
+- Could have mismatch on first character
+- Typical case: examine only a few characters
+- Average for *N* random keys: $log_RN$
+  - R = amount of links possible (for alphabet = 26)
+
+**Bottom line:**
+
+- Fast search hit and even faster search miss, but wasted space
+
+
+
+#### Space:
+
+- R null links at each leaf
+  - Total number of links between RN and RNw (w = average key length)
+
+
+
+### Ternary Search Tries (TST)
+
+Store characters and values in nodes. Each node has 3 children: smaller(left), equal(middle), large(right)
+
+![image-20220614172509858](img/image-20220614172509858.png)
+
+![image-20220614172722461](img/image-20220614172722461.png)
+
+#### Properties of TSTs
+
+Total number of links between 3N and 3Nw (w average key length)
+
+**Search hit:**
+
+- $\sim L +lnN$ character compares (quicksort)
+
+**Search miss:**
+
+- $\sim lnN $ character compares (quicksort)
+
+
+
+### Hybrid Trie - TST
+
+Trie for first characters, TST for subsequent characters
+
+
+
+
+
+## Stacks, Queues & Hash Tables
+
+### Stack
+
+![image-20220614173829035](img/image-20220614173829035.png)
+
+#### Linked list implementation
+
+![image-20220614173859115](img/image-20220614173859115.png)
+
+
+
+#### Stack: Linked list performance
+
+**Pop:**
+
+- Constant time
+
+**Push:**
+
+- Constant time
+
+**Pusing/popping N items:**
+
+- Time grows linear with N
+
+**Stack with N items:**
+
+- Memory grows linear with N
+
+
+
+#### Array Implementation
+
+Use array s[ ] to store N items on stack.
+
+**push():** add new item at s[N]
+
+**pop():** remove item from s[N-1]
+
+![image-20220614174640256](img/image-20220614174640256.png)
+
+#### Stack: Resizing Arrays
+
+When array is full:
+
+- Make new bigger array
+- copy all elements to new array
+- New size must not be too big but also not too small
+
+
+
+**Option 1:**
+
+Push() on full array: increase size of array by 1
+Pop() on full array: decrease size of array by 1
+
+
+
+![image-20220614204252800](img/image-20220614204252800.png)
+
+
+
+**Option 2:**
+
+Push() on full array: double the size
+
+![image-20220614204531513](img/image-20220614204531513.png)
+
+How to shrink they array?
+
+pop(): half-size the array when array is $\frac{1}2$ full
+
+BUT consider push-pop-pusp-pop... sequence when array is full... each operation would take time proportional to N
+
+-> BETTER: half-size the array when array $\frac{1}4$ full
+
+- Array will be between 25% and 100% full
+
+
+
+#### Stack: Array vs Linked List
+
+**Linked-list implementation**
+
+- Every operation takes constant time in the worst case
+- Uses extra time and space to deal with the links
+
+**Resizing array implementation**
+
+- Every operation takes constant amortized time
+- Less wasted space
+
+**amortized time:** Time complexity when an algorithm has the very bad time complexity only once in a while besides the time complexity that happens most of the time.
+
+
+
+### Queue
+
+#### Queue: Linked list implementation
+
+**Dequeue:**
+
+![image-20220614205712846](img/image-20220614205712846.png)
+
+**Enqueue:**
+
+![image-20220614205926704](img/image-20220614205926704.png)
+
+### Hash Tables
+
+We want to store & search **key & value** pairs
+
+**Ordinary arrays**
+
+-> Store value with key k in position a[k]
+
+**Hash table**
+
+- More possible key values than available positions in array
+- Hash-function: Mapping of key values to positions in table
+
+![image-20220614210507996](img/image-20220614210507996.png)
+
+How to compute the hash-function?
+
+How to handle collisions?
+
+
+
+#### Hash function
+
+Transform key k to an integer between [0, M-1]
+
+- M = size of array / hash-table
+
+Requirements:
+
+- Easy to compute
+- Uniform distribution of keys
+  - (avoid collisions as much as possible)
+- Same keys must produce the same hash value
+  - (so we can search or find a previous stored entry..)
+
+
+
+Example: phone numbers
+
+- Bad: hash = first 3 digits
+- Better: hash = last 3 digits
+
+
+
+#### Hash function, modular hashing
+
+**M** = prime number
+
+**key** = positive integer
+
+hash value = **key % M**
+
+
+
+Even distribution of keys between 0 and M-1
+
+**What if M is not prime?**
+
+- e.g. keys = base 10
+- M = 10^k^ -> only k least significant digits are used
+
+
+
+#### Collision
+
+Collision:
+
+- Two keys hash to the same index
+- Unless M is very,very,very,very large, collisions will happen
+
+
+
+How to deal with collisions efficiently? 2 strategies:
+
+- Separate chaining
+- linear probing
+
+#### Separate chaining
+
+In our hashtable we have a space for a key and a value, with separate chaining we are replacing this value with a linked list. Now when when our hash tables calculates the same hash for a key twice we just add it to the linked list.
+
+![image-20220614212411339](img/image-20220614212411339.png)
+
+##### 
+
+Expectation each list has $\alpha=N/M$ elements
+
+M = size of table
+
+N = amount of key value pairs
+
+Typical choice: $\alpha=N/M$ = 4 or 5
+
+=> constant-time operations
+
+##### Resizing?
+
+Goal: average length of list $\alpha=N/M$=constant
+
+Need to rehash all keys when resizing
+
+![image-20220614213524889](img/image-20220614213524889.png)
+
+##### Deleting a key?
+
+![image-20220614213549920](img/image-20220614213549920.png)
+
+
+
+#### Linear probing
+
+Store N key-value pairs in a table of size M, M>N
+
+Use empty slots to resovle collisions
+
+- If slot is taken, use next available slot
+
+![image-20220614213836855](img/image-20220614213836855.png)
+
+Linear probing is heel simpel. Als we een collision tegenkomen dan gaan we simpel weg opschuiven naar een hogere index waar nog geen element is. Het enige probleem hier is dat de cost van onze operatie kan stijgen door clustering. Clustering heb je wanneer er al veel elementen exact naast elkaar staan zoals hieronder.
+
+![image-20220510155819677](img/image-20220510155819677.png)
+
+Als je dan een element toevoegt en de hash mapt uit op iets in de cluster moet je helemaal naar het einde van de cluster.
+
+##### Resizing
+
+Goal: load factor $\alpha = N/M <= \frac{1}2$
+
+Double or half the array when needed
+
+**All keys need to be rehashed**
+
+![image-20220614214155319](img/image-20220614214155319.png)
+
+
+
+##### Deleting
+
+Simply deleting array entry: does not work
+
+- Put a "tombstone" on deleted entry "marked as deleted"
+- Or... rehash all items in cluster after deleted item
+
+![image-20220614214310231](img/image-20220614214310231.png)
+
+#### 
+
+#### Chaining vs Probing
+
+- Separate chaining
+  - performance degrades gracefully
+  - Clustering is less sensitive to badly-designed hash function
+- Linear probing
+  - Less wasted space
+  - Clustering can be a problem
+
+
+
+## Les 9: Greedy Algoritmen
+
+### Greedy Algorithm
+
+**General strategy:** Make the choice that seems best now!
+
+
+
+**Issues:**
+
+- Is a solution possible by greedily making the best choice?
+- Is the generated solution the best possible solution?
+  - (perhaps we only need a solution, not necessarily the best solution)
+
+**Needed:**
+
+- Heuristic to decide what the best choice is.
+- Detection of when we have reached a solution
+- Proof that the greedy algorithm produces an optimal solution
+
+**General notion:**
+
+- A best solution can be reach in making small steps; should not be dependent on future steps still to make
+
+**On a graph**
+
+Finding the maximum of a function by making a step with the steepest gradient
+
+
+
+![image-20220615101041790](img/image-20220615101041790.png)
+
+#### Example: Coin Exchange
+
+Suppose you want to count out a certain amount of money, using the fewest possible bills and coins.
+
+A greedy algorithm to do this would be:
+At each step, take the largest possible bill or coin that does not overshoot the remaining value
+
+Example: To make 6.39EUR you can choose:
+
+- a 5euro note
+- a 1euro coin
+- a 20cent coint
+- a 10cent coint
+- a 5 cent coint
+- 4 1cent coins
+
+For most coins and bills systems, the greedy algorithm always gives the optimum solution
+
+
+
+**Counterexample:**
+
+Fictional monetary system, "quatloos":
+1-quatloo, 7-quatloo, and 10-quatloo coins
+
+Using a greedy algorith, to count 15 quatloos, you would get:
+
+- a 10-quatloo piece
+- 5 1-quatloo pieces
+- -> this requires 6 coins
+
+Better solution: 2 7-quatloo pieces and 1 1-quatloo piece
+
+-> This only requires three coins
+
+=> The greedy algorithm for this problem results in a solution, but not the best solution.
+
+
+
+#### Optimal substructure
+
+**Optimal solution to the problem contains optimal solutions to subproblems.**
+
+How to discover optimal substructures?
+
+- Solution consist of making a choice, that choice leads to subproblems
+- Assumption: choice to be made leads to optimal solution
+- Show that optimal solution to subproblems leads to optimal solution to problem
+
+-> Greedy Algorithm: make a greedy choice, then solve resulting subproblem
+
+- We can assembly a global optimal solution by making a locally optimal (greedy) choice
+
+
+
+#### Run-Length Encoding
+
+![image-20220615103858480](img/image-20220615103858480.png)
+
+Use 4-bit counts to represent alternating runs of 0s and 1s
+
+- 15 0s, then 7 1s, then 7 0s, then 11 1s
+- ![image-20220615103949033](img/image-20220615103949033.png)
+
+
+
+#### Variable length coding
+
+all the different kinds of way to encode characters a bit
+
+- ASCIIl 7bits per character (127 characters)
+- ISO-8859-1: 8bits per character (256 characters)
+- Unicode: 16bits per character (64k characters)
+- But: most documents contain fewer than 64k distinct characters
+
+**UTF-8** use fewer bits to represent common characters
+
+
+
+
+
+#### Huffman Coding
+
+Huffman coding is eigenlijk gewoon dat we characters gaan coderen afhankelijk van de tekst die we moeten compresseren. Als een character vaak voorkomt gaan deze een kleinere hoeveel bits gebruiken.
+
+Tree representation voor prefix-free codes:
+
+![image-20220615104711688](img/image-20220615104711688.png)
+
+Prefix-free codes: Geen enkele code is een prefix van een andere code.
+E.g. if **E=101, no other character's code can start with 101**
+
+
+
+
+
+#### Graphs
+
+Graph: set of certices connected pairwise by edges
+
+
+
+
+
+## Les 10: Dynamic Programming
+
+**Optimal substructure**
+
+- Optimal solution to the problem contains optimal solutions to subproblems.
+
+**Dynamic Progamming**
+
+- Solve subproblems first, combine their optimal solutions into bigger optimal solution
+- Usually starts from recursive relations
+
+
+
+### Dynamic Programming: basic idea
+
+Problem can be subdivided in subproblems
+
+- Optimal solution to subproblems results in optimal solution for the problem
+
+**Optimization**
+
+Many subproblems share the same subsubproblems thus we store the results of the sub...subproblems in a look-up table, and re-use the results.
+
+By re-using those solutions, the complexity for finding a solution can significantly reduced.
+
+
+
+### Longest Common Subsequence (LCS)
+
+**Example application:**
+
+Human genes are coded by 4 bases:
+
+Adenine (A), Thymine (T), Guanine (G), Cytosine (C)
+
+Suppose we isolate a gene in a new organism:
+
+ A A C A G T T A C C
+
+**Predict function by comparing to genes in a known organism:**
+
+T A A G G T C A
+
+How similar are  A A C A G T T A C C and T A A G G T C A?
+
+
+
+**Definition subsequence **
+
+A subsequence of a string is **a sequence that can be derived from the given string by deleting zero or more elements without changing the order of the remaining elements**.
+
+
+
+### Optimal binary search trees?
+
+
+
+
+
+## Les 11: String Matching
+
+### Substring Search
+
+GOAL: Find pattern of length M in a text of length N
+
+- Usually M << N
+
+![image-20220615134521793](img/image-20220615134521793.png)
+
+#### Applications
+
+Look for certain phrases in email traffic .. electronic surveillance / spam filters
+
+- Page Scraping
+- Computer Forensics
+
+
+
+#### Brute force
+
+![image-20220615134655456](img/image-20220615134655456.png)
+
+##### Worst case
+
+Brute-force algorithm can be slow if text and pattern are repetitive
+
+![image-20220615134729951](img/image-20220615134729951.png)
+
+**Worst case:** $\sim M*N$ character comparisons
+
+### 
+
+### Knuth-Morris-Pratt (KMP)
+
+
+
+#### Analysis
+
+**KMP** accesses no more than M + N chars
+
+- M for constructing DFA
+- N for actuals search
+
+**KMP** constructs dfa[][] in time and space proportional to R*M
+
+- R = size of alphabet
+
+
+
+#### 
+
+### Boyer-Moore
+
+**Intuition:**
+
+- Scan characters in pattern from right to left
+- Can skip M text chars when finding char not in the pattern
+- Can skill les than M when finding char which belong to the pattern
+
+
+
+#### Analysis
+
+$\sim N/M$ character compares
+
+- (characters in pattern < characters in alphabet)
+
+Worst-case: $\sim M*N$
+
+![image-20220615143610501](img/image-20220615143610501.png)
+
+### Rabin-Karp

@@ -16,13 +16,13 @@
 8. Indirection
 9. Protected Variations
 
-I Can Cum in Her Legendary Pussy Pie, Indirectly Poggers
+I Can Cum (in) Her Legendary Pussy Pie, Indirectly Poggers
 
 -> Mnemonic (ezelsbruggetje)
 
 ### Information Expert
 
-Assign a responsibility to the information expert - the class that has the information necessary to fulfill the responsibility.
+Assign a responsibility to the information expert - the class that has the information necessary to fulfil the responsibility.
 
 
 
@@ -101,9 +101,56 @@ Identify points of predicted variation or instability; assign responsibilities t
 
 
 
+1. information expert
+
+   - Assign responsibility to the class that has the information to fulfil that responsibility
+
+2. controller
+
+   - Assign responsibility of dealing with a system event to a class that the represents the system or a use case scenario.
+
+3. creator
+
+   - Assign responsibility of creation to a class if
+     - B contains A
+     - B aggregates A
+     - B has the initializing data for A
+     - B records A
+     - B closely uses A
+
+   
+
+4. high cohesion
+
+   - Assign responsibility so that cohesion remains high and thus reduces complexity
+
+5. low coupling
+
+   - Assign responsibility so that coupling remains low and thus support low dependency and increased reuse
+
+6. polymorphism
+
+   - When behaviours vary by type, assign responsibility to types for which the behaviour varies
+
+7. pure fabrication
+
+   - Assign a cohesive set of responsibilities to a made-up class to support low coupling, high cohesion and reuse
+
+8. protected variations
+
+   - Identify points of predicted instability, assign responsibilities to create a stable "interface" around them
+
+9. Indirection
+
+   - If we want to avoid direct coupling, assign responsibility to an intermediate object to media between components so they are not coupled
 
 
-## Design Patters
+
+## Design Patterns
+
+![image-20220620102241679](img/image-20220620102241679.png)
+
+![image-20220620102252732](img/image-20220620102252732.png)
 
 ### Observer
 
@@ -186,7 +233,7 @@ https://refactoring.guru/design-patterns/factory-method
 
 
 
-### AbstractFactory
+### Abstract Factory
 
 **The purpose of the Abstract Factory is **to provide an interface for creating families of related objects, without specifying concrete classes**.**
 
@@ -195,3 +242,210 @@ https://refactoring.guru/design-patterns/factory-method
 ![image-20220601194401530](img/image-20220601194401530.png)
 
 https://sourcemaking.com/design_patterns/abstract_factory/java/1
+
+### Factory Method-Pattern
+
+![image-20220620111744092](img/image-20220620111744092.png)
+
+**Doel:** Een interface aanbieden om een object te creeren, zonder de concrete klasse te moeten aangeven
+
+### Strategy-Pattern
+
+![image-20220620102803217](img/image-20220620102803217.png)
+
+**Strategy** is behavioural design pattern that lets you define a family of algorithms, put each of them into a separate class, and make their object interchangeable
+
+
+
+### Decorator
+
+![image-20220620103139483](img/image-20220620103139483.png)
+
+**Goal:** The ability to dynamically add responsibility to individual objects
+
+
+
+### Command-Pattern
+
+![image-20220620112158536](img/image-20220620112158536.png)
+
+**Goal:** Make operations first-order-objects.
+
+
+
+### Visitor-Pattern
+
+![image-20220620114303264](img/image-20220620114303264.png)
+
+**Goal:** Define operations who have to be executed on components of the structure but not bound to this structure
+
+
+
+### Builder-Pattern
+
+![image-20220620114530641](img/image-20220620114530641.png)
+
+**Goal:** Remove the building process of complex objects from its representation to be able to reuse it for other representations
+
+
+
+### Prototype-Pattern
+
+![image-20220620142427266](img/image-20220620142427266.png)
+
+**Goal:** Create objects by cloning prototypes
+
+
+
+### Singleton-Pattern
+
+![image-20220620142544839](img/image-20220620142544839.png)
+
+**Goal:** Guarantee that there is only one instance of a certain class
+
+
+
+### Chain of responsibility-Pattern
+
+**Goal:** The chain of responsibility, we use when we want to pass a message through several "handlers" who will each to a different kind of check on it, this can be security, encryption, etc... These handlers can also choose not to pass the message on should it not be necessary. All these handlers inherit from the same interface so they all have the same structure.
+
+![image-20220620161556077](img/image-20220620161556077.png)
+
+
+
+### Mediator-Patroon
+
+**Goal:** Avoid high coupling between a group of objects who closely work together by adding a mediator object.
+
+![image-20220620161759659](img/image-20220620161759659.png)
+
+### Memento-Pattern
+
+**Goal:** Save the state of an object in a point in time so that object can restored to that state.
+
+![image-20220620162158407](img/image-20220620162158407.png)
+
+
+
+### State-Pattern
+
+**Goal:** modelling state dependent behaviour
+
+![image-20220620162407498](img/image-20220620162407498.png)
+
+## Powerpoint Stuff
+
+### Pattern: Domain Layer-Presentation Layer
+
+Domeinlaag is verantwoordelijk voor zijn eigen consistency, we moeten de presentatielaag zoveel mogelijk afschermen van de interne details van de domainlaag. Domeinkennis moet ook zoveel mogelijk in de domeinlaag blijven.
+
+
+
+De presentatielaag vertaal de ui-input die je krijgt tijdens het runnen van het programma en geeft de gebeurtenis door aan de domeinlaag in de vorm van een functie die deze oproept.
+
+
+
+### UML
+
+![image-20220619212915913](img/image-20220619212915913.png)
+
+
+
+### Question
+
+There is a big difference between a domainmodel and a classdiagram (designmodel). 
+
+**The domain model:** class boxes represent problem domain concepts. Does not have methods nor arrows on the lines.
+
+![image-20220619230129363](img/image-20220619230129363.png)
+
+**The design model:** Class diagram show methods and visibility (arrowhead on association).
+
+![image-20220619213311032](img/image-20220619213311032.png)
+
+### Generalization/Inheritance
+
+**UML notation**
+
+- Generalization
+  - Solid line with open arrow
+
+![image-20220619214444591](img/image-20220619214444591.png)
+
+to indicate abstract, use italics
+
+### Dependency relations
+
+**Dependency**
+
+- When a client has knowledge of a provider
+- Changes in provider affect client
+- Client and provider are "coupled"
+
+-> **NOT** a good thing, leads to brittle design.
+
+![image-20220619214856901](img/image-20220619214856901.png)
+
+
+
+### Composition Associations
+
+Composition means: a part instance (Square) can only be part of one composite (Board) at a time
+
+![image-20220619215333212](img/image-20220619215333212.png)
+
+Composition indicates an existential dependency
+
+
+
+### Association Classes
+
+Association class simplifies many-to-many multiplicity
+
+![image-20220619215813674](img/image-20220619215813674.png)
+
+
+
+### Relationship between class & sequence diagrams
+
+![image-20220619220134695](img/image-20220619220134695.png)
+
+**MODELS MUST BE CONSISTENT WITH EACH OTHER**
+
+
+
+### Types of requirements
+
+Categorisatie volgens FURPS+ model
+
+- Functional
+- Usability
+- Reliability
+- Performance
+- Supportability
+- \+ (implementation e.g. progamming language, interface,...)
+
+![image-20220619220603619](img/image-20220619220603619.png)
+
+
+
+### Use cases
+
+Use cases zijn geschreven verhalen over het gebruik van het systeem om een bepaald doel te verwezenlijken. 
+
+**Black box aanpak:** Interne werking van het systeem niet beschrijven, systeem heeft verantwoordelijkheden.
+
+Use case scenario is een specifieke opeenvolging van acties tussen actoren en het systeem.
+
+
+
+**Actor**
+
+- Altijd extern aan het systeem
+- Bijna altijd een initiator voor een use case
+
+
+
+### Classificatie volgens doel (Patterns)
+
+![image-20220619231951278](img/image-20220619231951278.png)

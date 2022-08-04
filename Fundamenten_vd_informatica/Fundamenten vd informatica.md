@@ -20,7 +20,7 @@ Wanneer het er niet toe doet wat het gebruikte alfabet precies is, gebruiken we 
 
 **Definitie 3.2** Een string s over een alfabet  Σ is een eindige rij symbolen uit Σ. Het aantal symbolen in die rij noemen we de lengte van de string, genoteerd |s|. De string die uit nul symbolen bestaat, noemen we de lege string, en noteren we λ. Elke andere string kan genoteerd worden door de symbolen waaruit de string bestaat achter elkaar op te schrijven. De verzameling van alle strings over een alfabet Σ noteren we Σ*.
 
-**Voorbeeld 3.2** Met een alfabet Σ = {0,1} zijn 001101,1111,1101, en λ allemaal strings, met lengte 6,4,4 en 0. Met Σ = {A,B,C,...,Z,a,b,c,...,z} zijn goedemiddag en Leuven String over Σ, maar 120 niet.
+**Voorbeeld 3.2** Met een alfabet Σ = {0,1} zijn 001101,1111,1101, en λ allemaal strings, met lengte 6,4,4 en 0. Met Σ = {A,B,C,...,Z,a,b,c,...,z} zijn goedemiddag en Leuven strings over Σ, maar 120 niet.
 
 Een string heeft steeds een eindige lengte (zie de definitie). Een string met oneindig veel symbolen bestaat dus niet. De verzameling van alle strings is dan wel oneindig, omdat er geen maximale lengte aan de strings opgelegd wordt.  Bijvoorbeeld: de verzameling van alle strings over het alfabet Σ = {a} is de verzameling {λ, a, aa, aaa, aaaa, aaaaa, . . .}.
 
@@ -74,7 +74,7 @@ Verder definieren we
 
 **Definitie 3.4 (Reguliere Taal)** (kan worden gedefinieerd door een reguliere uitdrukking) Indien Σ een alfabet is, dan wordt de klasse van R van alle reguliere talen over Σ inductief als volgt gedefinieerd:
 
-1. ∅ ∈ R, {λ} ∈ R en ∀σ ∈ Σ : {σ} ∈ R.
+1. $∅ ∈ R, {λ} ∈ R$ en $∀σ ∈ Σ : {σ} ∈ R.$
 2. Indien A, B ∈ R, dan ook AB ∈ R, A ∪ B ∈ R en A∗ ∈ R
 
 Elke taal uit R wordt een **reguliere taal** genoemd
@@ -125,7 +125,7 @@ Zoals hierboven aangegeven bepaalt elke reguliere uitdrukking ω een verzameling
 
 ## 3.2 Eindige automaten
 
-Deze shit is al direct kankeronduidelijk maar hopelijk zijn de 2 paginas tekst het waard.
+Deze shit is al direct kankeronduidelijk maar hopelijk zijn de 2 paginas tekst het waard. (Het is duidelijk geworden)
 
 ### 3.2.1 Eindige automaten
 
@@ -379,12 +379,12 @@ Ik heb dit een lange tijd niet goed begrepen maar heb eindelijk een goeie defini
 Een machine is "**Turing-herkenbaar**" als en slechts als er een Turing Machine bestaat die
 
 1. Wnr die een string tegenkomt in die taal, die deze string aanvaard
-2. Wnr die een string tegenkomt in die taal, die deze string rejects  en stopt of gewoon weg niet stopt.
+2. Wnr die een string tegenkomt in die taal, die deze string rejects  **en stopt of gewoon weg niet stopt.**
 
 Een machine is "Turing-beslisbaar" als en slechts als er een Turing Machine bestaat die 
 
 1. Wnr die een string tegenkomt in die taal, die deze string aanvaard
-2. Wnr die een string tegenkomt niet in die taal, de machine deze string reject en gewoon stopt.
+2. Wnr die een string tegenkomt niet in die taal, de machine deze string reject **en gewoon stopt.**
 
 
 
@@ -471,7 +471,7 @@ We noteren deze situatie door $f$ is $Θ(g)$ (en dus ook $g$ is $Θ(f)$).
 
 of, als limit^a^ geschreven, $\lim_{n \to \infty } \frac{f(n)}{g(n)} = 1$
 
-Het komt neer op het feit dat f(n) en g(n) nauwelijks verschillen. De betekenis van f~g is dat, voor grote n, de verhouding tussen f(n) en g(n) heel dicht bij 1 komt te liggen. Niet te verwarren met Θ. f is Θ(g) betekent dat voor grote nm f even snel is als g, op een constante factor na.
+Het komt neer op het feit dat f(n) en g(n) nauwelijks verschillen. De betekenis van f~g is dat, voor grote n, de verhouding tussen f(n) en g(n) heel dicht bij 1 komt te liggen. Niet te verwarren met Θ. f is Θ(g) betekent dat voor grote n  f even snel is als g, op een constante factor na.
 
 **Voorbeeld 3.29** Voor de functies f(n) = 3n en g(n) = 4n geldt f is Θ(g) maar niet f~g. Voor de functies f(n) = 3n en g(n) = 3n + 2 geldt f  is Θ(g) en f~g
 
@@ -495,7 +495,7 @@ Als we een bepaald probleem hebben kan het zijn dat als we hier een algoritme vo
 
 Een voorbeeld waarvan men vermoedt dat het onbeheersbaar is.  Het probleem heet het Handelreizigersprobleem en wordt als volgt geformuleerd:
 
-**Gegeven**: n steden c~1~, c~2~, . . . , c~n~. Tussen elk paar steden c~i~ en c~j~ kent men ook de afstand d~i,j~ . Probleem: De handelsreiziger vertrekt in ´e´en welbepaalde stad (zeg c~1~) en wil een rondreis maken zodat hij elk van de steden c~2~, c~3`, . . . , c~n~ precies 1 keer bezoekt en vervolgens naar zijn beginpunt c~1~ terugkeert (zonder nog andere steden te bezoeken). De vraag is nu: welke weg moet de handelsreiziger volgen om een zo klein mogelijke afstand af te leggen.
+**Gegeven**: n steden c~1~, c~2~, . . . , c~n~. Tussen elk paar steden c~i~ en c~j~ kent men ook de afstand d~i,j~ . Probleem: De handelsreiziger vertrekt in 1 welbepaalde stad (zeg c~1~) en wil een rondreis maken zodat hij elk van de steden c~2~, c~3~, . . . , c~n~ precies 1 keer bezoekt en vervolgens naar zijn beginpunt c~1~ terugkeert (zonder nog andere steden te bezoeken). De vraag is nu: welke weg moet de handelsreiziger volgen om een zo klein mogelijke afstand af te leggen.
 
 De huidige oplossing is niet efficiënt  want we voeren zeker meer dan een veelvoud van (n-1)! stappen in dit algoritme uit.
 
@@ -506,6 +506,31 @@ De huidige oplossing is niet efficiënt  want we voeren zeker meer dan een veelv
 **Voorbeeld 3.30** Wat is de tijdscomplexiteit van volgend algoritme, dat de som berekent van alle elementen van een n × n matrix a (in functie van n = a.length)?
 
 ![image-20220528214047908](img/image-20220528214047908.png)
+
+Tijdens de uitvoering van dit programma wordt eenmaal de bewerking “som=0”, uitgevoerd. Aan de variable i wordt n (met n = a.length) keer een waarde toegekend, aan de variable j wordt n 2 keer een waarde toegekend (voor elke keer dat aan i een waarde wordt toegekend, wordt aan j na elkaar de waarden 1,2,. . . ,n toegekend. Het is ook duidelijk dat de bewerking “som+=a[i][j]”, n 2 keer zal uitgevoerd worden. Hieruit kunnen we besluiten dat de tijdscomplexiteit van dit algoritme O(n 2 ) is (op voorwaarde dat de tijdscomplexiteit van de bewerking in de lus constant is).
+
+Het voorbeeld toont ook aan dat bij het bepalen van de tijdscomplexiteit van een geneste lus, het nodig en voldoende is om na te gaan hoe vaak de meest inwendige opdracht (of opdrachten) wordt (worden) uitgevoerd.
+
+
+
+**Voorbeeld 3.31** Wat is de complexiteit van volgende programma-onderdeel (in functie van n)?
+
+![image-20220624182457010](img/image-20220624182457010.png)
+
+Het volstaat ook hier te berekenen hoeveel keer de bewerking "som++" moet uitgevoerd worden. Noem dit aan tal $T(n)$. In de praktijk blijkt het vaak handig om een verband op te stellen tussen $T(n)$ en $T(n+1)$ om zodoende meer informatie te bekomen over de functie $T(n)$ zelf.
+
+Indien we $n$ vervangen door $n+1$ en het algoritme terug uitvoeren, dan doen we een hele tijd precies hetzelfde totdat $i$ de waarde $n+1$ aanneemt. Bij $i=n+1$ wordt de bewerking "som++", nog $(n+1)^2$ keer uitgevoerd (eenmaal voor elke waarde van j tussen 1 en $(n+1)^2$). We vinden dus dat.
+						$T(n+1)=T(n)+(n+1)^2$(bovendien geldt $T(1)=1$) 
+
+Een dergelijk verband van de vorm $T(n+1)=T(n)+f(n)$ (met $f(n)$ een willekeurige functie) wordt een recursie betrekking genoemd.
+
+
+
+**Eigenschap 3.1** Indien een afbeelding $T:\N \rightarrow{} \R$ voldoet aan recursiebetrekking
+
+​					$∀n ∈ \N : T(n + 1) = T(n) + f(n)$
+
+voor een veelterm $f(n)$ van graad $k \ge 0$, dan is $T(n)$ zelf een veelterm van graad $k+1$
 
 ## 3.5 Complexiteitsklassen van beslissingsproblemen
 
@@ -820,7 +845,7 @@ Dit algoritme heeft de volgende eigenschap: na afloop is L(z) gelijk aan het gew
 
 **Interludium: Invarianten**
 
-Een invariant van een algoritme is een bewering die we met een bepaald punt in het algoritme associ¨eren, en waarvan we kunnen aantonen dat die altijd waar is wanneer tijdens de uitvoering van het algoritme dat punt bereikt wordt. 
+Een invariant van een algoritme is een bewering die we met een bepaald punt in het algoritme associëren, en waarvan we kunnen aantonen dat die altijd waar is wanneer tijdens de uitvoering van het algoritme dat punt bereikt wordt. 
 
 Bijvoorbeeld, wanneer ergens in een algoritme y = x*x; staat, weten we zeker dat vlak na de uitvoering van die instructie geldt dat y = x 2 , en ook y ≥ 0. In het volgende stukje code:
 
@@ -893,7 +918,7 @@ Als het kortste pad van a naar z gelijk is aan P = (v~0~ = a, v~1~, v~2~, . . . 
 
 ### 4.5.4 Complexiteit van Dijkstra's algoritme
 
-Het algoritme bevat geneste lussen. De buitenste lus wordt hoogstens zo vaak uitgevoerd als er knopen in V zijn, want in elke uitvoering wordt er een nieuwe knoop van V gekozen (een gekozen knoop verdwijnt uit V \ R en kan dus niet opnieuw gekozen worden). De keuze van v kan door het overlopen van alle elementen van V \ R, dat zijn er hoogstens n, met n het aantal knopen in V . De lus over alle bogen (v, v0 ) wordt zo vaak uitgevoerd als er bogen invallen op v; voor een enkelvoudige graaf kunnen dat er niet meer dan n−1 zijn. Dus de complexiteit is O(n^2^). We kunnen dit nog verfijnen. Merk op dat elke boog maximaal 1 keer gebruikt wordt in de hele uitvoering van het algoritme. Dat betekent dat het aantal wijzigingen van een L-waarde niet groter kan zijn dan het totaal aantal bogen in de graaf. Als je de v ∈ V \ R met minimale L(v) in minder dan lineaire tijd kan vinden (bv. doordat V \ R geordend is volgens L), kan de complexiteit beter dan O(n 2 ) zijn. Meer bepaald is het mogelijk om Dijkstra’s algoritme in tijd O(|V|log|V| + |E|) uit te voeren. Of dit veel beter is dan O(|V|^2^), hangt af van |E|.
+Het algoritme bevat geneste lussen. De buitenste lus wordt hoogstens zo vaak uitgevoerd als er knopen in V zijn, want in elke uitvoering wordt er een nieuwe knoop van V gekozen (een gekozen knoop verdwijnt uit V \ R en kan dus niet opnieuw gekozen worden). De keuze van v kan door het overlopen van alle elementen van V \ R, dat zijn er hoogstens n, met n het aantal knopen in V . De lus over alle bogen (v, v0 ) wordt zo vaak uitgevoerd als er bogen invallen op v; voor een enkelvoudige graaf kunnen dat er niet meer dan n−1 zijn. Dus de complexiteit is O(n^2^). We kunnen dit nog verfijnen. Merk op dat elke boog maximaal 1 keer gebruikt wordt in de hele uitvoering van het algoritme. Dat betekent dat het aantal wijzigingen van een L-waarde niet groter kan zijn dan het totaal aantal bogen in de graaf. Als je de v ∈ V \ R met minimale L(v) in minder dan lineaire tijd kan vinden (bv. doordat V \ R geordend is volgens L), kan de complexiteit beter dan O(n^2^ ) zijn. Meer bepaald is het mogelijk om Dijkstra’s algoritme in tijd O(|V|log|V| + |E|) uit te voeren. Of dit veel beter is dan O(|V|^2^), hangt af van |E|.
 
 ### 4.5.5 Enkele doordenkertjes
 
@@ -1041,6 +1066,10 @@ Twee knopen in G' zijn dus verbonden als en slechts als de bijhorende zijvlakken
 Merk op: als z een zijvlak is, en x de overeenkomstige knoop in de duale graaf, dan geldt steeds: δ(x) = β(z).
 
 
+
+Een duale graaf is een graaf die gemaakt worden wanneer je in elk zijvlak een knoop zet en deze dan verbindt door telkens 1 van de bogen. Zie afbeelding voor betere uitleg.
+
+![img](https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Duals_graphs.svg/290px-Duals_graphs.svg.png)
 
 ## 4.8 Kleuringen van grafen
 
@@ -1266,7 +1295,7 @@ Behalve de wortel heeft elke knoop in een gewortelde boom precies 1 ouder, en be
 
 **Stelling 4.29** Elke volledige binaire boom met i inwendige knopen heeft i+1 bladeren en 2i+1 knopen in totaal.
 
-**Bewijs:** Elke inwendinge knoop heeft 2 kinderen, die verschillen van elkaar en van alle kinderen van andere knopen. Het toaal aantal kinderen is bijgevolg 2i. Alleen de wortel is geen kind van een andere knoop; het toaal aantal knopen is dus 2i+1. Het aantal bladeren is het totaal aantal knopen min het aantal inwendige knopen, dus i+1
+**Bewijs:** Elke inwendinge knoop heeft 2 kinderen, die verschillen van elkaar en van alle kinderen van andere knopen. Het totaal aantal kinderen is bijgevolg 2i. Alleen de wortel is geen kind van een andere knoop; het toaal aantal knopen is dus 2i+1. Het aantal bladeren is het totaal aantal knopen min het aantal inwendige knopen, dus i+1
 
 **Toepassing** Bij een toernooi met directe uitschakeling met n deelnemers.
 
@@ -1389,7 +1418,7 @@ Als we steeds een knoop op minimale diepte kiezen, in plaats van maximale, verkr
 
 **Minimaxprocedure**
 
-Beschouwen we nim: een spel waarbij er n stapels munten zijn, en twee spelers die om beurten van 1 willekeurige stapel 1 of meer munten wegnemen.Degene die de laatste munt wegneemt verliest het spel. We analyseren nim voor twee stapels, waarbij de eerste stapel 3 munten en de tweede stapel 2 munten telt bij het begin van het spel. De spelers heten Doos en Bol en Doos begint. 5 mogelijke zetten en zou graag weten wat de gevolgen zijn van elk van die mogelijkheden. Daartoe tekent hij een boom met als wortel een doosje met daarin de beginsituatie van het spel, namelijk $\frac{3}{2}$ . Als kinderen van die wortel tekent hij die vijf mogelijkheden, maar die tekent hij in een cirkel, omdat het dan de beurt zal zijn aan Bol.  En bij elk van de vijf mogelijkheden voor zijn eerste zet, tekent Doos de mogelijke zetten van Bol enzovoort: vermits er bij elke zet minstens ´e´en munt verdwijnt, is deze boom eindig; je ziet de volledige boom die Doos tekende in Figuur 4.32.
+Beschouwen we nim: een spel waarbij er n stapels munten zijn, en twee spelers die om beurten van 1 willekeurige stapel 1 of meer munten wegnemen. Degene die de laatste munt wegneemt verliest het spel. We analyseren nim voor twee stapels, waarbij de eerste stapel 3 munten en de tweede stapel 2 munten telt bij het begin van het spel. De spelers heten Doos en Bol en Doos begint. 5 mogelijke zetten en zou graag weten wat de gevolgen zijn van elk van die mogelijkheden. Daartoe tekent hij een boom met als wortel een doosje met daarin de beginsituatie van het spel, namelijk $\frac{3}{2}$ . Als kinderen van die wortel tekent hij die vijf mogelijkheden, maar die tekent hij in een cirkel, omdat het dan de beurt zal zijn aan Bol.  En bij elk van de vijf mogelijkheden voor zijn eerste zet, tekent Doos de mogelijke zetten van Bol enzovoort: vermits er bij elke zet minstens een munt verdwijnt, is deze boom eindig; je ziet de volledige boom die Doos tekende in Figuur 4.32.
 
 ![image-20220419145425680](img/image-20220419145425680.png)
 
@@ -1401,8 +1430,8 @@ Het is duidelijk dat Doos in een eindknoop wil geraken waar een 1 in staat, want
 
 ![image-20220419145656975](img/image-20220419145656975.png)
 
-Als van de doos-knoop alle kinderen een 0 hebben, dan zal Doos verliezen, gelijk wat hij doet, en daarom kan hij de wortel van de boom als label 0 geven: een hij in die situatie verzeild is, verliest hij zeker. Daarentegen, als er minstens ´e´en kind is met label gelijk aan 1, kan Doos bij zijn zet daar naartoe gaan: daarom kan hij de doos-knoop het label 1 geven. Een doos-knoop krijgt dus het maximum van de labels van zijn kinderen. In Figuur 4.31 links krijgt de wortel dus label 1. 
-Langs de andere kant, als een bol-knoop alleen maar kinderen met een 1 heeft, dan is de situatie een win voor Doos, want gelijk wat Bol kiest, hij verliest. Maar als er minstens ´e´en kind met een label gelijk aan 0 is, kan Bol die zet kiezen en is hij dus in een situatie om Doos te doen verliezen, bijgevolg kan de bol-knoop het label 0 krijgen. Een bol-knoop krijgt dus het minimum van de labels van zijn kinderen. In Figuur 4.31 rechts krijgt de wortel dus label 0.
+Als van de doos-knoop alle kinderen een 0 hebben, dan zal Doos verliezen, gelijk wat hij doet, en daarom kan hij de wortel van de boom als label 0 geven: een hij in die situatie verzeild is, verliest hij zeker. Daarentegen, als er minstens 1 kind is met label gelijk aan 1, kan Doos bij zijn zet daar naartoe gaan: daarom kan hij de doos-knoop het label 1 geven. Een doos-knoop krijgt dus het maximum van de labels van zijn kinderen. In Figuur 4.31 links krijgt de wortel dus label 1. 
+Langs de andere kant, als een bol-knoop alleen maar kinderen met een 1 heeft, dan is de situatie een win voor Doos, want gelijk wat Bol kiest, hij verliest. Maar als er minstens 1 kind met een label gelijk aan 0 is, kan Bol die zet kiezen en is hij dus in een situatie om Doos te doen verliezen, bijgevolg kan de bol-knoop het label 0 krijgen. Een bol-knoop krijgt dus het minimum van de labels van zijn kinderen. In Figuur 4.31 rechts krijgt de wortel dus label 0.
 
 Deze procedure van labeling berekent een label voor elke knoop waarvan de labels van zijn kinderen al bekend zijn. We passen ze toe op Figuur 4.33 en verkrijgen Figuur 4.34. Zoals aangegeven, labelt deze procedure in een pad van de bladeren naar de wortel afwisselend met het minimum en maximum van de labels van de kinderen: daarom wordt dit de minimaxprocedure genoemd.
 Figuur 4.34 laat het resultaat zien van de minimaxprocedure uitgevoerd op 4.33.
@@ -1694,7 +1723,7 @@ Zie hier een voorbeeld van een deadlock en sta verstelt.
 De definitie zegt niet dat de transitie *t* ook vuurt, enkel dat alle precondities voor *t* voldaan zijn. Als een markering levend is, dan is het duidelijk dat die markering geen aanleiding kan zijn tot deadlock.
 Een andere eigenschap die belangrijk is bij Petrinetten, is de hoeveelheid tokens die een bepaalde plaats ooit kan bevatten: je kan de plaatsen zien als een register met een teller die aangeeft hoeveel tokens er zijn en je wil graag weten dat een bepaalde capaciteit van dat register nooit overschreden kan worden. 
 
-**Definitie 4.42 (Begrensde markering)** Een markering M is begrensd indien er een eindige n bestaat zodanig dat bij gelijk welk salvo, geen enkel plaats ooit meer dan n tokens bevat. Een begrensde markering waarvoor n = 1 wordt een velige markering genoemd.
+**Definitie 4.42 (Begrensde markering)** Een markering M is begrensd indien er een eindige n bestaat zodanig dat bij gelijk welk salvo, geen enkel plaats ooit meer dan n tokens bevat. Een begrensde markering waarvoor n = 1 wordt een veilige markering genoemd.
 
 
 
@@ -1719,9 +1748,9 @@ Van cruciaal belang in de theorie van de vaste punten is het begrip orderelatie.
 **Definitie 5.1 (Partiële orderelatie)**
 Een relatie R op een verzameling S is een **(partiële) orde(relatie)** als en slechts als voldaan is aan de volgende drie voorwaarden:
 
-1. R is reflexief $∀x ∈ S : x R x$
-2. R is antisymmetrisch: $∀x, y ∈ S : x R y en y R x ⇒ x = y$
-3. R is transitief: $∀x, y, z ∈ S : x R y en y R z ⇒ x R z.$
+1. R is reflexief $∀x ∈ S : x ~R~ x$
+2. R is antisymmetrisch: $∀x, y ∈ S : x ~R~ y$ en $y ~R~ x ⇒ x = y$
+3. R is transitief: $∀x, y, z ∈ S : x~ R~ y$ en $y ~R~ z ⇒ x ~R~ z.$
 
 Effe opfrisser voor mensen die vergeten zijn wat deze termen betekenen (zoals ik (: )
 
@@ -1781,6 +1810,8 @@ In een complete tralie L, $\le$ noemen we
 
 
 ### 5.2.2 Monotone en continue afbeeldingen
+
+![image-20220623101640891](img/image-20220623101640891.png)
 
 **Definitie 5.6 (Monotone afbeelding)**
 Zij L,$\le$ een geordende verzameling. Een afbeelding T: L $\xrightarrow{}$ L noemen we monotoon als uit x $\le$ y volgt dat $T(x)\le T(y)$
@@ -1843,14 +1874,14 @@ $$
 Zij $L,\le$ een complete tralie en beschouw een afbeelding $T:L\xrightarrow{}L$
 
 1. We noemen $ a ∈ L$ een vast punt voor $T$ als $T(a) = a$
-2. Een kleinste vast punt voor $T$ is een vast punt a voor $T$ zodat voor elk ander vast punt b voor $T$ geldt dat a $\ge$b.
+2. Een kleinste vast punt voor $T$ is een vast punt a voor $T$ zodat voor elk ander vast punt b voor $T$ geldt dat a $\le$b.
 3. Een grootste vast punt voor $T$ is een vast punt a voor $T$ zodat voor elk ander vast punt b voor $T$ geldt a$\ge$b.
 
 ![image-20220516115144494](img/image-20220516115144494.png)
 
 
 
-**Stelling 5.1 (Stelling van Tarsky)** Zij $T:L\xrightarrow{}L$ een monotone afbeelding op een complete tralie $L,\le$, dan heeft $T$ een kleinste vast punt a en een grootste vast punt b.
+**Stelling 5.1 (Stelling van Tarski)** Zij $T:L\xrightarrow{}L$ een monotone afbeelding op een complete tralie $L,\le$, dan heeft $T$ een kleinste vast punt a en een grootste vast punt b.
 Bovendien geldt:
 								$a=inf\{x|T(x)=x\} = inf\{x|T(x)\le x\}$
 							    $b = sup\{x|~T(x)=x\}=sup\{x|~T(x)\ge x\}$
