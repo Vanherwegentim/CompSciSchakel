@@ -813,7 +813,7 @@ Als je zoekt naar een key, kan je twee gevallen hebben:
 
 ![image-20220614113212586](img/image-20220614113212586.png)
 
-Een leuk experiment bewijst dat als we random keys gebruiken dat onze boom relatief 'flagt' gaat blijven.
+Een leuk experiment bewijst dat als we random keys gebruiken dat onze boom relatief 'flat' gaat blijven.
 
 ![image-20220614122841225](img/image-20220614122841225.png)
 
@@ -938,7 +938,7 @@ Simpel weg de boom afgaan, is het kleiner dan de root ga naar links, is het grot
 
 ![image-20220614151256330](img/image-20220614151256330.png)
 
-**Case 3: insert into a 3-node, whose poarent is a 3-node **
+**Case 3: insert into a 3-node, whose parent is a 3-node **
 
 ![image-20220614151339081](img/image-20220614151339081.png)
 
@@ -990,7 +990,7 @@ Left rotation: orient a (temp) right red link to the left
 
 ![image-20220614154614069](img/image-20220614154614069.png)
 
-Right rotation: orent a left red link (temp) to the right
+Right rotation: orient a left red link (temp) to the right
 
 ![image-20220614154642198](img/image-20220614154642198.png)
 
@@ -1422,7 +1422,7 @@ Simply deleting array entry: does not work
 
 **General notion:**
 
-- A best solution can be reach in making small steps; should not be dependent on future steps still to make
+- A best solution can be reached in making small steps; should not be dependent on future steps still to make
 
 **On a graph**
 

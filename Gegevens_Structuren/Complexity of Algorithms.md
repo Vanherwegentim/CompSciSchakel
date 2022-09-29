@@ -130,11 +130,11 @@ max: $1$
 
 $\sim2*n*log_2(n)$
 
-Best case: $O(n*log(2))$
+Best case: $O(n*log_2(n))$
 
-Average case: $O(n*log(2))$
+Average case: $O(n*log_2(n))$
 
-Worst case :$O(n*log(2))$
+Worst case :$O(n*log_2(n))$
 
 
 

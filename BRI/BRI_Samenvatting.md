@@ -138,6 +138,8 @@ Volgorden van bewerkingen:
 
 ![image-20220803105740925](img/image-20220803105740925.png)
 
+![image-20220814114249945](img/image-20220814114249945.png)
+
 #### 1.6.8 De wetten van de Morgan
 
 Het complement van de unie is de doorsnede van de complementen:
@@ -408,7 +410,7 @@ Het concept "relatie" wordt gebruikt om een verband tussen twee of meer dingen a
 - Een fiets heeft twee wielen -> Relatie: "... heeft ... wielen"
 - (fiets,2),(auto,4),...
 
-**Defintie 5.6** Een relatie tussen A en B is een deelverzameling van $A\timesB$
+**Defintie 5.6** Een relatie tussen A en B is een deelverzameling van $A\times B$
 
 #### 5.3.2 Grafisch
 
@@ -452,7 +454,7 @@ Dan is hun samengestelde relatie
 
 #### Samenvatting
 
-![image-20220803173029881](img/image-20220803173029881.png)
+![image-20220813134415766](img/image-20220813134415766.png)
 
 **Definitie 6.7** Een functie f:A -> A is een transformatie als en slechts als elke $x \in A$ een beeld heeft onder f.
 

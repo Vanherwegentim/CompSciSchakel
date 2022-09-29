@@ -125,7 +125,7 @@ Zoals hierboven aangegeven bepaalt elke reguliere uitdrukking ω een verzameling
 
 ## 3.2 Eindige automaten
 
-Deze shit is al direct kankeronduidelijk maar hopelijk zijn de 2 paginas tekst het waard. (Het is duidelijk geworden)
+Deze shit is al direct kankeronduidelijk maar hopelijk zijn de 2 paginas tekst het waard. (Review: 3 maanden later, het is het wel waard.)
 
 ### 3.2.1 Eindige automaten
 
@@ -390,7 +390,7 @@ Een machine is "Turing-beslisbaar" als en slechts als er een Turing Machine best
 
 
 
-
+e
 
 ### 3.3.4 Niet-deterministische Turingmachines
 
@@ -416,7 +416,7 @@ In de instructieset hierboven worden de p–toestanden gebruikt om het even of o
 
 
 
-Er zijn twee mogelijke wegen die de NDTM M kan volgen en deze zijn samen geschetst in figuur 3.3. Zoals je ziet op de figuur heeft de NDTM bij de eerste stap de keuze tussen twee opdrachten (namelijk ((q0, a),(p0, a, 0)) of ((q0, a),(r0, a, 0))). We nemen aan dat een NDTM telkens wanneer er meerdere opdrachten mogelijk zijn, elk van deze mogelijkheden apart maar tegelijkertijd (parallel) behandelt. We zeggen dat een NDTM M met succes stopt bij een bepaalde invoer of ook nog dat de NDTM M een bepaalde string aanvaardt, indien ´e´en van de gevolgde wegen (en misschien ook meer) in een aanvaardbare eindtoestand stopt. De rekentijd van de NDTM komt overeen met het aantal stappen in de kortste van al die wegen.
+Er zijn twee mogelijke wegen die de NDTM M kan volgen en deze zijn samen geschetst in figuur 3.3. Zoals je ziet op de figuur heeft de NDTM bij de eerste stap de keuze tussen twee opdrachten (namelijk ((q0, a),(p0, a, 0)) of ((q0, a),(r0, a, 0))). We nemen aan dat een NDTM telkens wanneer er meerdere opdrachten mogelijk zijn, elk van deze mogelijkheden apart maar tegelijkertijd (parallel) behandelt. We zeggen dat een NDTM M met succes stopt bij een bepaalde invoer of ook nog dat de NDTM M een bepaalde string aanvaardt, indien 1 van de gevolgde wegen (en misschien ook meer) in een aanvaardbare eindtoestand stopt. De rekentijd van de NDTM komt overeen met het aantal stappen in de kortste van al die wegen.
 
 ![image-20220528164138790](img/image-20220528164138790.png)
 
@@ -642,7 +642,7 @@ TLDR: we korten die shit gewoon af omdat we anders teveel nutteloze stuff hebben
 
 **Stelling 4.3** Het aantal knopen met oneven graad in een graaf is altijd even.
 
----> De laatste 3 stellingen zijn allemaal eigenlijk triviaal en is gewoon een logisch van het geval dat als ge een boog toevoegt dat deze verbonden is met 2 knopen en dus de some van de graden stijgt met 2. Maar natuurlijk moeten we moeilijk doen dus hieronder het bewijs van deze schijt.
+---> De laatste 3 stellingen zijn allemaal eigenlijk triviaal en is gewoon een logisch van het geval dat als ge een boog toevoegt dat deze verbonden is met 2 knopen en dus de som van de graden stijgt met 2. Maar natuurlijk moeten we moeilijk doen dus hieronder het bewijs van deze schijt.
 
 
 
@@ -825,7 +825,7 @@ effe uitleg voor het gearceerde deel, n is het aantal knopen. Dus wat ze willen 
 
 ## 4.5 Gewogen grafen
 
-In dit gedeelte bekijken we grafen waarvoor aan elke boog e een gewicht w(e) ∈ R + 0 toegekend is. Het gewicht van een graaf, en het gewicht van een pad, defini¨eren we als de som van de gewichten van de bogen in die graaf (op dat pad). Het kortste pad tussen a en b is bij definitie het pad tussen a en b met het kleinste gewicht. classic gps dus.
+In dit gedeelte bekijken we grafen waarvoor aan elke boog e een gewicht w(e) ∈ R + 0 toegekend is. Het gewicht van een graaf, en het gewicht van een pad, definiëren we als de som van de gewichten van de bogen in die graaf (op dat pad). Het kortste pad tussen a en b is bij definitie het pad tussen a en b met het kleinste gewicht. classic gps dus.
 
 
 
@@ -1291,7 +1291,7 @@ De hoogte van een gewortelde boom is de maximale hoogte van zijn knopen: h(T) = 
 
 ### 4.10.1 Binaire bomen
 
-Behalve de wortel heeft elke knoop in een gewortelde boom precies 1 ouder, en behalve de bladeren heeft elke knoop minstens 1 kind. Een boom waarin elke knoop hoogstens twee kinderen heeft, wordt een binaire boom genoemd. Een boom waarin elke inwendige knoop precies twee kinderen heeft, wordt een volledige binaire boom genoemd. In een binaire boom maken we onderscheid tussen het linker- en rechterkind; m.a.w., een boom waarin x1 het linkerkind van x is en x2 het rechterkind, is niet hetzelfde als een boom waar dat omgekeerd is. (Formeel is een binaire boom een tupel (V, E, w, λ) met E ⊆ V × V, w ∈ V, λ : V × {l, r} → E, waarbij de graaf G(V, E) een boom is, en de parti¨ele functie λ voor elke inwendige knoop aangeeft welke boog naar het linker- en rechterkind leidt. Dit terzijde; we zullen verder deze formele structuur niet gebruiken.)
+Behalve de wortel heeft elke knoop in een gewortelde boom precies 1 ouder, en behalve de bladeren heeft elke knoop minstens 1 kind. Een boom waarin elke knoop hoogstens twee kinderen heeft, wordt een binaire boom genoemd. Een boom waarin elke inwendige knoop precies twee kinderen heeft, wordt een volledige binaire boom genoemd. In een binaire boom maken we onderscheid tussen het linker- en rechterkind; m.a.w., een boom waarin x1 het linkerkind van x is en x2 het rechterkind, is niet hetzelfde als een boom waar dat omgekeerd is. (Formeel is een binaire boom een tupel (V, E, w, λ) met E ⊆ V × V, w ∈ V, λ : V × {l, r} → E, waarbij de graaf G(V, E) een boom is, en de partiële functie λ voor elke inwendige knoop aangeeft welke boog naar het linker- en rechterkind leidt. Dit terzijde; we zullen verder deze formele structuur niet gebruiken.)
 
 **Stelling 4.29** Elke volledige binaire boom met i inwendige knopen heeft i+1 bladeren en 2i+1 knopen in totaal.
 
@@ -1811,7 +1811,7 @@ In een complete tralie L, $\le$ noemen we
 
 ### 5.2.2 Monotone en continue afbeeldingen
 
-![image-20220623101640891](img/image-20220623101640891.png)
+![image-20220821225015771](img/image-20220821225015771.png)
 
 **Definitie 5.6 (Monotone afbeelding)**
 Zij L,$\le$ een geordende verzameling. Een afbeelding T: L $\xrightarrow{}$ L noemen we monotoon als uit x $\le$ y volgt dat $T(x)\le T(y)$

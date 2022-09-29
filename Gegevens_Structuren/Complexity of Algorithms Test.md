@@ -2,41 +2,41 @@
 
 ### Selection Sort
 
-Best case: 
+Best case: $O(n^2)$
 
-Average case:
+Average case: $O(n^2)$
 
-Worst case:
+Worst case: $O(n^2)$
 
 
 
 ### Insertion Sort
 
-Best case:
+Best case: $O(n)$
 
-Average case:
+Average case: $O(n^2)$
 
-Worst case:
+Worst case: $O(n^2)$
 
 
 
 ### Merge Sort
 
-Best case:
+Best case: $O(nlog_2(n))$
 
-Average case:
+Average case: $O(nlog_2(n))$
 
-Worst case:
+Worst case: $O(nlog_2(n))$
 
 
 
 ### Quick Sort
 
-Best case:
+Best case: $O(nlog_2(n))$
 
-Average case:
+Average case: $O(nlog_2(n))$
 
-Worst case:
+Worst case: O(n^2)
 
 #### Hoare Variant
 
@@ -58,11 +58,11 @@ Worst case:
 
 ### Bucket Sort
 
-Best case:
+Best case: O(nlog_2(n/k) met k proportioneel met n
 
-Average case:
+Average case:  O(nlog_2(n/k) met k proportioneel met n
 
-Worst case:
+Worst case:  O(nlog_2(n))
 
 
 
