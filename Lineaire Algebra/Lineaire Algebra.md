@@ -1,5 +1,7 @@
 # Lineaire Algebra
 
+Watch these videos to get better grasp of the course. 
+
 ## 1 Lineaire vergelijkingen
 
 ### 1.1 Systemen van lineaire vergelijkingen
@@ -26,7 +28,7 @@ Een systeem van lineaire vergelijkingen heeft:
 
 Een systeem is consistent als er tenminste 1 of oneindig veel oplossingen bestaan. Als dit niet zo is dan is het systeem inconsistent.
 
-De essentiele informatie van een linear systeem kunnen we compact neerzetten in een rechthoekige array, een matrix.
+De essentiële informatie van een lineair systeem kunnen we compact neerzetten in een rechthoekige array, een matrix.
 
 ![image-20220901102945466](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220901102945466.png)
 
@@ -38,7 +40,7 @@ Nu bestaat er ook de **augmented matrix**. Deze bestaat uit de coefficient matri
 
 Om dit soort van systemen op te lossen zijn er veel verschillende manieren maar wij gaan focussen op de elementaire rij-operaties waarvan er 3 zijn:
 
-1. (Vervanging) Vervang een rij ddor de som van zichzelf en een veelvoud van een andere rij.
+1. (Vervanging) Vervang een rij d0or de som van zichzelf en een veelvoud van een andere rij.
 2. (Verwissel) Verwissel 2 rijen van plaats
 3. (Scaling) Vermenigvuldig een hele rij door een niet-nul constante.
 
@@ -70,7 +72,7 @@ In de komende definities spreken we over een niet-nul rij of kolom. Dit betekent
 
 
 
-Een rechthoekige matrix is in **echelon vorm** of rij echelon vorm heeft 3 properties:
+Een rechthoekige matrix is in **echelon vorm**  (of rij echelon vorm) heeft 3 properties:
 
 1. Alle niet-nul rijen zijn boven elke rij met alleen maar nullen
 2. Elke leidende entry van een rij is een kolom rechts van de leidende entry van de rij erboven
@@ -101,7 +103,7 @@ De variabelen x~1~ en x~2~ in deze matrix zijn basic variables. De andere variab
 
 ![image-20220901115715098](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220901115715098.png)
 
-De statement "x~3~ is vrij" betekent dat je vrij bent om eender welke waarde te kiezen voor x~3~. Eenmaal dat dit gedaan is kan je de waardes van x~1~ en x~2~ gaan vaststellen want deze hangen af van x~3~.
+De statement "x~3~ is vrij" betekent dat je vrij bent om eender welke waarde te kiezen voor x~3~. Eenmaal dat dit gedaan is kan je de waardes van x~1~ en x~2~ gaan vaststellen want deze hangen af van x~3~. Omdat je x~3~ mag kiezen en de andere variabelen hier van afhangen ga je eigenlijk oneindig veel oplossingen hebben voor je systeem.
 
 
 
@@ -119,11 +121,23 @@ Denk aan een rechthoekig coordinaten systeem in een vlak. Elke punt in het vlak 
 
 ![image-20220901120431079](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220901120431079.png)
 
+**Een geometrische beschrijving van de span {V}**
+
+Stel v een nonzero vector in $\R^3$ Dan is de span {v} de set van alle scalaire  veelvouden van v. Dit is de set van alle punten op de lijn in $\R^3$ door v en 0.
+
+
+
+![image-20220930161207250](img/image-20220930161207250.png)
+
+
+
+Stel u and v zijn nonzero vectors in $\R^3$ , met v geen veelvoud van u dan is de Span {u,v} het vlak in $\R^3$ waarin u,v en 0 zitten. Span {u,v} heeft 
+
 ### 1.4 The matrix vergelijking Ax = b
 
 ![image-20220901144035233](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220901144035233.png)
 
-Deze vergelijking heeft de vorm Ax = b. Dit soort vergelijkingen noemen we een matrix vergelijking. Dit is anders dan de vectov vergelijking hieronder.
+Deze vergelijking heeft de vorm Ax = b. Dit soort vergelijkingen noemen we een matrix vergelijking. Dit is anders dan de vector vergelijking hieronder.
 
 ![image-20220901144133497](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220901144133497.png)
 
@@ -132,4 +146,18 @@ Deze vergelijking heeft de vorm Ax = b. Dit soort vergelijkingen noemen we een m
 Een systeem van lineaire vergelijkingen is **homogeen/homogeneous** als het kan geschreven worden in de vorm van Ax = 0, waar A een $m \times n$ matrix is en 0 de zero vector in $\R^m$
 
 Zo een systeem Ax = 0 heeft altijd tenminste zo 1 oplossing, namelijk x = 0. Deze zero oplossing noemen we de triviale oplossing.
+
+
+
+Een systeem van lineaire vergelijkingen is niet homogeen als het niet kan geschreven worden in de vorm van Ax = 0, waar A een $m \times n$ matrix is en 0 de zero vector in $\R^m$
+
+Als zo een systeem vele oplossingen heeft dan kan de algemene oplossing geschreven worden in een parametrische vector vorm als 1 vector plus een arbitraire lineaire combinatie van vectoren die voldoen aan het overeenkomstige homogeen systeem
+
+**Verder afmaken 1.5 1.6**
+
+
+
+### 1.7 Lineaire onafhankelijkheid
+
+**Definitie** Een set van vectoren in $\R^n$ is lineaire onafhankelijk als de vector alleen de triviale oplossing heeft (Alle x gelijk aan 0 is de triviale oplossing).
 
