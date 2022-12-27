@@ -705,3 +705,5 @@ Zoals eerder gezegd:  |$\N$| = ℵ~0~
 #### 8.3.5 Rekenen met oneindige kardinaalgetallen
 
 ![image-20220804161014060](img/image-20220804161014060.png)
+
+$A^c\cup B=\left(A\setminus B\right)^c                        A\setminus B=A\cap B^c =\left(A\cap B^c\right)^c                                De Morgan =A^c\cup\left(B^c\right)^c                                \left(A^c\right)^c=A =A^c\cup B $
