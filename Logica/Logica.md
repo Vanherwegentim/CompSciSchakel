@@ -97,7 +97,7 @@ volgorde op de connectieven afgesproken: ¬ < ∧ < ∨ <⇒<⇔
 
 
 
+## **Belangrijk voor examen**
 
-
-
+**Opgepast hier! Zinnen van de vorm ∃x: . . . ⇒ . . . zijn enorm gevaarlijk en zelden juist!** 
 
