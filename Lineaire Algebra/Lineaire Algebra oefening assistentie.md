@@ -147,7 +147,12 @@ De inverse van een $2\times 2$ matrix kan berekend worden door de volgende formu
 
 $A^{-1} = \frac{1}{ad-bc} \begin{bmatrix}d &-b\\-c & a \end{bmatrix}$
 
-Als $ad-bc=0$ dan is A niet inverseerbaar aangezien we dit ook gebruiken in de berekening van de determinant kunnen we zeggen dat een **matrix alleen een inverse heeft als $det(a) \ne0$**
+Als $ad-bc=0$ dan is A niet inverseerbaar aangezien we dit ook gebruiken in de berekening van de determinant kunnen we zeggen dat een **matrix alleen een inverse heeft als **
+
+- **$det(a) \ne0$**
+- 0 is geen eigenvalue van A
+
+
 
 **Eigenschappen:**
 
@@ -233,6 +238,9 @@ De determinant van een matrix A is de schaal factor van de matrix. Afhankelijk v
 - De determinant van een matrix is gelijk aan de determinant van zijn transpose
 - $Det(A+B) \ne Det(A) + Det(B)$
 - $Det(AB) = Det(A)Det(B)$
+- Een rij-vervang operatie verandert de determinant niet
+- Een rij-verwisseling operatie verandert het teken van de determinant
+- Een rij-schaling (maal een scalar), schaalt de determinant met hetzelde getal
 
 
 
@@ -313,6 +321,8 @@ Gegeven een ($m × n$) matrix $A$ en een inverteerbare ($m × m$) matrix $P$, da
 
 **De row space** van een matrix blijft hetzelfde omdat we de rijen alleen scalen of dingen gaan bijtellen. Dus een matrix en zijn echelon vorm hebben dezelfde 
 
+
+
 #### Belangrijk voor examen:
 
 - De determinant van een matrix is gelijk aan de determinant van de transpose van die matrix
@@ -321,3 +331,187 @@ Gegeven een ($m × n$) matrix $A$ en een inverteerbare ($m × m$) matrix $P$, da
 - Vraag 8 oefenbundel bekijken
 - Vraag 19 herbekijken (d!!!)
 - Quiz me again vraag a nog is bekijken
+
+
+
+
+
+## Oefenbundel 3
+
+#### Eigenvectors and eigenvalues
+
+**Definition**
+
+An **eigenvector** of an $ n \times n$ matrix A is a nonzero vector $x$ such that $Ax = \lambda x$ for some scalar $\lambda$. A scalar $\lambda$ is called an **eigenvalue** of $A$ if there is a nontrivial solution $x$ of $Ax =\lambda x$; such that $x$ is called an eigenvector corresponding to $\lambda$.
+
+The eigenvectors to put it simply are the vectors that given a transformation matrix $A$ keep the same values, so it isn't influenced by the transformations except for being stretched or squished in space. This is where the **eigenvalues** come in. The eigenvalues of a eigenvector is the amount the eigenvector gets stretched or squished in space by the transformation.
+
+So if the **eigenvalue** is 2, the corresponding **eigenvector** has been made twice as long by the transformation.
+
+Als een matrix de eigenvalue 0 heeft dan is deze **niet** inverteerbaar.
+
+#### Karakteristieke polynomial
+
+Als a een $n \times n$ matris is, dan is $det(A-\lambda I)$ gelijk aan een polynomial van graad $n$ die we de karakteristieke polynomial van $A$ noemen.
+
+
+
+#### Similarity (Gelijkvormig)
+
+Als $A$ en $B$, $n \times n$ matrices zijn, dan is A gelijkvormig aan B als er een inverteerbare matrix P bestaat zodat $P^{-1}AP = B$ of $A=PBP^{-1}$
+
+Als $n \times n$ matrices $A$ en $B$ gelijkvormig zijn dan hebben ze dezelfde karakteristieke polynomial en dus dezelfde eigenvalues
+
+#### Diagonalizatie
+
+**De diagonalizatie theorem**
+
+Een $n \times n$ matrix is diagonaliseerbaar als en slechts als $A$, $n$ lineair onafhankelijke eigenvectors heeft. In feite, $A = PDP^{-1}$, met $D$ een diagonaal matrix. als en slechts als de kolommen van $P$, $n$ lineair onafhankelijke eigenvectors  van $A$ zijn. In dit geval zijn de diagonale entries van $D$ de eigenvalues van $A$ die overeenkomen met de eigenvectors in $P$
+
+
+
+#### Diagonale matrix representatie
+
+Handig wanneer ze vragen voor een matrixvoorsteliing van iets die diagonaal is.
+
+Stel $A = PDP^{-1}$, waar $D$ een diagonale $n \times n$ matrix is. Als $B$ de basis is voor $\R^n$ gevormed uit de kolommen van $P$, dan is $D$ de $B$-matrix voor de transformatie. p324
+
+Dus met andere woorden. Als ze je vragen voor een basis van een matrix die diagonaal is, bereken dan de $D$ in $A=PDP^{-1}$ waar $P$ de matrix is met de eigenvectors en $D$ de matrix met de **eigenvalues** op de diagonaal
+
+
+
+#### Inner product
+
+Het inner product is iets anders dan onze typische matrix multiplicatie. Bij het inner product tussen matrices gaan we eigenlijk de transpose nemen van de eerste matrix en dan doen aan matrix multiplicatie. Voorbeeld:
+
+$u.v = u^T.v =[2 -5 -1] \begin{bmatrix}3\\2 \\ -3 \end{bmatrix} = 2.3 + -5.2 + (-1).(-3) = -1$
+
+Volgende eigenschappen gelden voor het **inner product**: 
+
+- $u.v=v.u$
+- $(u+v).w=u.w+v.w$
+- $(cu).v = c(u.v)=u.(cv)$
+- $u.u \ge 0,$ and $u.u=0$ if and only if $u=0$
+
+
+
+#### Lengte van een vector
+
+De lengte of norm van $v$ is de niet negatieve scalar $||v||$ gedefineerd door
+$||v||= \sqrt{v.v} = \sqrt{v_1^2+v_2^2+...+v_n^2}$ and 
+
+
+
+#### Normaliseren
+
+Een vector met de lengte 1 noemen we de **unit vector**
+
+Als we een niet-nul vector delen door zijn lengte dan krijgen we de unit vector $u$ omdat de lengte van $u$ = $(\frac{1}{||v||}||v||)$
+
+Voorbeeld 
+
+Let $v=(1,-2,2,0)$ Find a unit vector $u$ in the same direction as $v$
+
+**Oplossing**: 
+Bereken eerst de lengte van v:
+
+$||v||=\sqrt9=3$
+
+Doe dan $v$ maal ${\frac{1}{||v||}}$ om de unit vector te krijgen
+
+$u=\begin{bmatrix}1/3\\-2/3 \\ 2/3\\0 \end{bmatrix} $
+
+
+
+#### Afstand tussen vectoren
+
+Voor $u$ en $v$ in $\R^n$, de afstand tussen de vectoren $u$ en $v$ is dan gelijk aan de lengte van de vector $u-v$ dus
+
+- dist($u,v$) = $||u-v||$
+
+#### Orthogonaliteit
+
+Twee vectoren $u$ en $v$ in $\R^n$ zijn orthogonaal(loodrecht op mekaar) als $u.v=0$ (inner product)
+
+**Het pythagoras theorem**
+
+Twee vectoren $u$ en $v$ zijn orthogonaal als en slechts als $||u+v||^2=||u||^2+||v||^2$
+
+ 
+
+##### Orthonormale basis
+
+Gegeven een basis $\{x_1,..,x_p \}$ for een niet-nul subruimte $W$ van $\R^n$, definieer dan
+
+
+
+##### Orthogonale complementen
+
+Als een vector $z$ orthogonaal staat op elke vector in subruimte $W$ van $\R^n$ dan is $z$ orthogonaal op $W$
+
+De set van alle vectoren $z$ die orthogonaal staan op $W$ noemen we het orthogonaal complement van $W$ and dit noteren we met $W^{\perp}$.
+
+De volgende eigenschappen gelden
+
+- (Row A)$^{\perp}$ = Nul A
+- (Col A)$^{\perp}$= Nul A^T^
+
+
+
+##### Orthogonale sets
+
+Een set vectoren $\{u_1,...,u_p\}$ in $\R^n$ is een orthogonale set als elk distinct paar vectoren uit de set orthogonaal is. Dus voor elk paar vector uit de geldt: $u.v=0$
+
+
+
+##### Orthogonale basis
+
+Een orthogonale basis for een subspace $W$ in $\R^n$ is een basis voor $W$ dat ook een orthogonale set is. 
+
+Stel we willen een bepaalde vector $y$ schrijven als de lineaire combinatie van de vectoren in een subspace $W$. Dan kunnen we dat aan de hand van de volgende eigenschap
+
+$y=c_1u_1+...+c_pu_p$
+
+waar
+
+$c_j=\frac{y.u_j}{u_j.u_j}$ (met j = 1,...,p)
+
+
+
+##### Orthogonale projectie
+
+Een orthogonale projectie is in essentie het pro jecteren van een vector op een andere vector zodat de projectie orthogonaal is op een subspace. Dit wordt gegeven door:
+
+$\hat{y} = $ proj$_Ly=\frac{y.u}{u.u}u$ 
+
+
+
+##### Gram-Schmidt process
+
+Gegeven een basis $\{x_1,...,x_p\}$ voor een niet-nul subspace $W$ van $\R^n$, definieer
+
+- $v_1=x_1$
+- $v_2=x_2-\frac{x_2.v_1}{v_1.v_1}v_1$
+- $v_3=x_3-\frac{x_3.v_1}{v_1.v_1}v_1-\frac{x_3.v_2}{v_2.v_2}v_2$
+- ...
+- $v_p=x_p-\frac{x_p.v_1}{v_1.v_1}v_1-\frac{x_p.v_2}{v_2.v_2}v_2-...-\frac{x_p.v_{p-1}}{v_{p-1}.v_{p-1}}v_{p-1}$
+
+Dan is $\{v_1,...,v_p\}$ een orthogonale basis voor $W$
+
+Stel we krijgen de vraag om een orthogonale basis te berekenen voor een bepaalde deelruimte $W$ van $\R^3$
+
+$W= span\{\begin{bmatrix}0\\2 \\ 2 \end{bmatrix}\,\begin{bmatrix}6\\6 \\ -4 \end{bmatrix}\}$
+
+Dan is de eerste vector van die basis simpelweg $x_1$. m.a.w. $v_1=x_1$. Nu berekenen we ook nog de tweede vector
+$v_2=x_2-\frac{x_2.v_1}{v_1.v_1}v_1=\begin{bmatrix}6\\6 \\ -4 \end{bmatrix}-\frac{4}{8}\begin{bmatrix}0\\2 \\ 2 \end{bmatrix}=\begin{bmatrix}6\\5 \\ -5 \end{bmatrix}$
+
+Dus is onze orthogonale basis voor $W$, $\{{\begin{bmatrix}0\\2 \\ 2 \end{bmatrix}\,\begin{bmatrix}6\\5 \\ -5 \end{bmatrix}\}}$
+
+#### Diagonalisatie (extended)
+
+Als $A$ een $m \times n$ matrix met lineair onafhankelijke kolommen is, dan kan $A$ gefactoriseerd worden als $A=QR$, waar $Q$ een $m \times n$ matrix is waarvan de kolommen een orthonormale basis vormen voor $Col~A$ en $R$ is een $n \times n$ upper driehoek inverteerbare matrix met positieve entries op zijn diagonaal.
+
+#### Belangrijk voor examen
+
+- Exercise 14,15,16, 17 oefenbundel 3 herbekijken
+- 
