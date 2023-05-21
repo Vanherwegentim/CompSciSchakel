@@ -4,7 +4,7 @@
 
 **replicate n m:** copy m n times, **example**: replicate 4 x = [x,x,x,x] 
 
-**replicateM**__: Same as replicate but used in **IO**
+
 
 **length**: returns the size of the list
 
@@ -38,3 +38,6 @@
 
 
 
+## import Control.Monad
+
+**replicateM**__: Same as replicate but used in **IO**

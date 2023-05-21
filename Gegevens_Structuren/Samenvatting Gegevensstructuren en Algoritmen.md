@@ -27,26 +27,13 @@
 
 #### **How does it work?**
 
-The selection sort algorithm sorts an array by repeatedly finding the minimum element from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array.
+Selection sort is one of the simpelst algorithms out there. It finds the smallest element in the unsorted array and moves it to the beginning of the array. The bounds for the unsorted array so the sorted part is excluded from the next search for the smallest element.
 
-	1.	The subarray which is already sorted
-	1.	Remaining subarray which is unsorted. 
+**Time complexity:**
 
-In every iteration of selection sort, the minimum element from the unsorted subarray is picked and moved to the sorted subarray. 
+$O(n^2)$
 
-
-
-#### **Performance**
-
-- Comparisons:
-
-  - (n-1)+(n-2)+... + 1 = n(n-1)/2  **~ n^2^/2**
-
-- Exchanges:
-
-  - 1+1+...+1 = n-1 **~ n**
-
-  
+Since the algorithm just finds the smallest element every time, the fact that an array might already be partially ordered will not make a difference.
 
 
 
@@ -54,27 +41,25 @@ In every iteration of selection sort, the minimum element from the unsorted suba
 
 #### How does it work?
 
-Insertion sort is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at the correct position in the sorted part.
+This algorithm is in place so we do not need extra space. We work from left to right and compare each element to the element to the left of it. If the element if smaller we swap them, if it is not we move on to the next element and consider that part sorted.
 
-- Good for partially sorted arrays and small arrays.
+![image-20230324133922898](img/image-20230324133922898.png)
+
+![image-20230324133940464](img/image-20230324133940464.png)
+
+![image-20230324134002929](img/image-20230324134002929.png)
+
+![image-20230324134021730](img/image-20230324134021730.png)
 
 
 
-#### Performance
+**Time Complexity**
 
-- Best case
-  - All elements to the left of i are smaller: 
-    - Comparisons :**~n**
-    - Exchanges: 0
-- Worst case
-  - All elements to the left of i are larger: 
-    - Comparisons: **~n^2^/2**
-    - Exchanges: **~n^2^/2**
-- Average case
-  - Half of the elements to the left of i are larger: 
-    - Comparisons: **~n^2^/4**
-    - Exchanges: **~n^2^/4**
-    - 
+$O(n^2)$ but it can perform better than selection sort in some cases because it has an $O(n)$ best-case time complexity when the array is already sort.
+
+
+
+
 
 ### Partially sorted arrays
 
@@ -91,21 +76,13 @@ On the basis of this mergesort was created.
 
 #### **How does it work**
 
-Quicksort is a divide and conquer algorithm. It divides the input array into two halves, calls itself for the two halves, then it merges the two sorted halves. 
+Quicksort is a divide and conquer algorithm. It works by dividing the input array in two halves, sorting each half recursively and then merging the sorted halves back together
 
+![image-20230324162851811](img/image-20230324162851811.png)
 
+**Time Complexity**
 
-#### Performance
-
-~2k data moves and ~k compares to merge 2 arrays of length k/2
-
-- Comparisons: **\~n.log~2~n**
-- Exchanges: **\~n.log~2~n**
-- But **~n** extra space required
-
-Average/worst cases are asymptotically faster than insertion sort
-
-Best case is asymptotically slower than insertion sort.
+$O(n*log_2n)$ but it does require additional memory to store subarrays during recursion
 
 
 
@@ -191,7 +168,7 @@ En dus:
 
 
 
-## Les 3&4 Quicksort
+## Les 3 & 4 Quicksort
 
 ### Quick Sort
 
@@ -426,37 +403,39 @@ Ga er vanuit dat je een uniforme random input hebt. Dit resulteer in ongeveer ev
 
 #### How does it work?
 
-Counting sort werkt in verschillende stappen simpele stappen
+Counting sort werkt in een paar simpele stappen
 
-- **Stap 1**
+1. Tel het aantal voorkomens van elke sleutel in de input-array
+2. Bereken de startpositie van elke key in de output array op basis van de cumulatieve telling van het aantal keys kleiner dan die sleutel
+3. Kopieer de elementen van de input-array naar de output-array en plaats elk element op de juiste positie op basis van zijn key en startpositie van die sleutel in de uitvoerarray.
 
-  We maken een nieuwe array die de lengte heeft van het grootste getal in de array die gesorteerd moet worden.
+**Voorbeeld:**
 
-  ![image-20220608145103852](img/image-20220608145103852.png)
+Sorteer de volgende array: [3, 1, 4, 1, 5, 9, 2, 6, 5]
 
-- **Stap 2**
+We tellen het aantal voorkomens van elke sleutel:
 
-  We gaan elk element af van de array en plaatsen op de corresponderende index het getal 1, als we een duplicaat tegenkomen doen we telkens +1 op die index.
+- 1: 2
+- 2: 1
+- 3: 1
+- 4: 1
+- 5: 2
+- 6: 1
+- 9: 1
 
-  ![image-20220608145135952](img/image-20220608145135952.png)
+Bereken de startpositie van elke sleutel in de uitvoerarray:
 
-- **Stap 3**
+- 1: 0
+- 2: 2
+- 3: 3
+- 4: 4
+- 5: 5
+- 6: 7
+- 9: 8
 
-  We gaan over de nieuw gemaakt array en tellen bij elke index de value van de vorige index bij.
+Kopieer de elementen van de inputarray naar de outputarray
 
-  ![image-20220608144959292](img/image-20220608144959292.png)
-
-​															$\downarrow$
-
-​			![image-20220608145043981](img/image-20220608145043981.png)
-
-- **Stap 4**
-
-  We maken een nieuwe array met de lengte van de originele array en gaan dan over elk element van de originele array. We nemen een element en kijken dan in de value-array welke waarde daar staat. Deze waarde komt overeen met de index van waar het element moet staat in de 3de array. Als we het element op de correcte plaats hebben gezet gaan we de waarde in de value-array decrementeren zolang die niet op 0 staat. Als die value niet 0 is gaat er dus nog een duplicaat zijn die op een 1-lagere index gaat gezet worden.
-
-- **Stap 5**
-
-  Als alles gedaan is hebben we nu een mooie gesorteerde array.
+1. - [1, 1, 2, 3, 4, 5, 5, 6, 9]
 
 #### Performance
 
@@ -633,7 +612,7 @@ Zoals je hier kan zien kunnen de operaties enorm verschillen. Dit lossen we op m
 
 Een binaire boom is leeg of is een node met links en rechts een binaire boom.
 
-Als deze perfect gebalanceert is behalve het laatste level
+Als deze perfect gebalanceerd is behalve het laatste level
 
 -> Complete tree
 

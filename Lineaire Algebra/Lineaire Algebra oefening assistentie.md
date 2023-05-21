@@ -69,7 +69,7 @@ Zoals je kan zien hier zijn de kolommen van de matrix AB lineaire combinaties va
 
 $(b_1,b_2) + (b_3,b_4) = (b_1+b_3, b_2+b_4)$
 
-want hetzelfde is als hieronder (buiten de scalar). Wat we hieronder hebben is recht uit de matrix AB hierboven gehaald.
+wat hetzelfde is als hieronder (buiten de scalar). Wat we hieronder hebben is recht uit de matrix AB hierboven gehaald.
 
 $(a_1.b_1+a_2.b_3 , a_1.b_2+a_2.b_4)$
 
@@ -112,7 +112,21 @@ We kunnen de oplossingsverzameling van $Ax=b$ schrijven in parametrische vector 
 
 Als de vergelijking $Ax=b$ consistent is voor een gegeven $b$ en $p$ is gelijk aan de oplossing. Dan is de oplossingsverzameling voor $Ax=b$ de verzameling van alle vectoren van de vorm $w=p+v_h$, waar $v_h$ gelijk is aan een oplossing van de homogene vergelijking $Ax=0$
 
+**Voorbeeld**
 
+Gegeven $A=\begin{bmatrix}3 &5 &-4\\-3 & -2&4 \\ 6 &1&-8 \end{bmatrix}$ en $b=\begin{bmatrix}7\\-1\\-4 \end{bmatrix}$
+
+$[A~b]=\begin{bmatrix}3 &5 &-4&7\\-3 & -2&4&-1 \\ 6 &1&-8&-4 \end{bmatrix} \textasciitilde{} \begin{bmatrix}1 &0 &-\frac{4}{3}&-1\\0 & 1&0&2 \\ 0 &0&0&0 \end{bmatrix}$.
+
+Dit betekent dat $x_3$ vrij is. $x_2=2$ en $x_1=-1+\frac{4}{3}x_3$.
+
+Als we $[A ~b]$ uitrekenen komen we iets consistent uit dus is $b$ een oplossing dus is dit onze $p$ voor de parametrische vector vorm.
+
+$x_3$ is vrij dus gaan we deze vector gebruiken voor onze $v$
+
+Dus is onze parametrische vector vorm: $x=p+tv= \begin{bmatrix}-1\\2\\0 \end{bmatrix}+x_3\begin{bmatrix}\frac{4}{3}\\0\\1 \end{bmatrix}$  
+
+De vergelijking noemen we ook een lijn door v, parallel met p
 
 #### Factorisaties
 
@@ -188,7 +202,7 @@ Gegeven een $m\times n$ matrix A, dan is the transpose de $n \times m$ matrix, g
 
 **Eigenschappen:**
 
-- $(A^T)^T$ = A
+- $(A^T)^T$ = $A$
 - $(A+B)^T=A^T+B^T$
 - Voor elke scalar $r,(rA)^T=rA^T$
 - $(AB)^T=B^TA^T$
@@ -241,17 +255,34 @@ De determinant van een matrix A is de schaal factor van de matrix. Afhankelijk v
 - Een rij-vervang operatie verandert de determinant niet
 - Een rij-verwisseling operatie verandert het teken van de determinant
 - Een rij-schaling (maal een scalar), schaalt de determinant met hetzelde getal
+- De determinant van een multiplicatie van een scalair $r$ en een matrix $A$ is gelijk aan $det(rA)=r^n*det(A)$ met $n$ de hoeveelheid rijen.
+
+![image-20230128184325090](img/image-20230128184325090.png)
+
+
+
+#### Column space
+
+De kolom ruimte van een $m \times n$ matrix A, geschreven als $Col~A$, is de set van alle lineaire combinaties van de kolommen van A. De kolom ruimte is een subspace van $\R^m$ 
+
+
+
+#### Null space
+
+De nul ruimte (kernel) van een $m \times n$ matrix $A$, geschreven als $Nul ~A$, is de set van alle oplossingen van de homogene vergelijking $Ax=0$. De nul ruimte van een matrix A is een subspace van $\R^n$. 
+
+De kernel (null space) van een lineaire transformatie T, is de set van alle $u$ in $V$ zodat $T(u)=0$
 
 
 
 #### Row Space
 
-Als A een $m \times x$ matrix is, dan heeft elke rij van A n entries en dus kan deze geïdentificeerd worden met een vector in $\R ^n$
+Als A een $m \times n$ matrix is, dan heeft elke rij van A n entries en dus kan deze geïdentificeerd worden met een vector in $\R ^n$
 
 De set van alle lineaire combinaties van de rij vectors noemen we de **row space** van A en noteren we met **Row A**
 
 - Elke rij heeft $n$ entries dus is Row A een subspace van $\R^n$
-- Aangezien de rijen van A geïdentificeerd worden met de kolommen van A^T^, we kunnen ook schrijven **Col A^T** in plaats van **Row A**
+- Aangezien de rijen van A geïdentificeerd worden met de kolommen van A^T^, we kunnen ook schrijven **Col A^T^** in plaats van **Row A**
 
 Als 2 matrices A en B rij-equivalent zijn dan zijn hun row spaces hetzelfde. Als B in echelon vorm dan vormen de niet-nul rijen van B een basis voor de row space van A en van B
 
@@ -299,7 +330,14 @@ $$[x]_b = 	 \left(\begin{bmatrix}8 \\ -9 \\ 6\end{bmatrix}\right)$$
 
 #### Change of basis (Verandering van basis)
 
+Als $B={b_1,...,b_n}$ en $C={c_1,...,c_2}$ voor een vector ruimte $V$. Dan is er een unieke matrix die $C\leftarrow B$ zodat 
+	$[x]_c=C\leftarrow B[x]_B$
 
+De matrix $C\leftarrow B$ noemen we de change of coordinates matrix van B naar C
+
+Zouden we nu het de matrix willen die matrix C omzet naar $B$-coordinanten. Dan kunnen we gewoon de inverse nemen van $(C \leftarrow B)^{-1}=$ $B \leftarrow C$
+
+![image-20230129132853317](img/image-20230129132853317.png)
 
 #### Rang
 
@@ -319,7 +357,7 @@ Gegeven een ($m × n$) matrix $A$ en een inverteerbare ($m × m$) matrix $P$, da
 
 
 
-**De row space** van een matrix blijft hetzelfde omdat we de rijen alleen scalen of dingen gaan bijtellen. Dus een matrix en zijn echelon vorm hebben dezelfde 
+**De row space** van een matrix blijft hetzelfde omdat we de rijen alleen scalen of dingen gaan bijtellen. Dus een matrix en zijn echelon vorm hebben dezelfde. Rij operaties veranderen de lineaire afhankelijkheid relatie tussen de kolommen van de matrix niet maar wel van de rijen.
 
 
 
@@ -350,6 +388,8 @@ So if the **eigenvalue** is 2, the corresponding **eigenvector** has been made t
 
 Als een matrix de eigenvalue 0 heeft dan is deze **niet** inverteerbaar.
 
+De eigenvalues van een driehoeks matrix zijn de entries op zijn diagonaal.
+
 #### Karakteristieke polynomial
 
 Als a een $n \times n$ matris is, dan is $det(A-\lambda I)$ gelijk aan een polynomial van graad $n$ die we de karakteristieke polynomial van $A$ noemen.
@@ -374,7 +414,7 @@ Een $n \times n$ matrix is diagonaliseerbaar als en slechts als $A$, $n$ lineair
 
 Handig wanneer ze vragen voor een matrixvoorsteliing van iets die diagonaal is.
 
-Stel $A = PDP^{-1}$, waar $D$ een diagonale $n \times n$ matrix is. Als $B$ de basis is voor $\R^n$ gevormed uit de kolommen van $P$, dan is $D$ de $B$-matrix voor de transformatie. p324
+Stel $A = PDP^{-1}$, waar $D$ een diagonale $n \times n$ matrix is. Als $B$ de basis is voor $\R^n$ gevormd uit de kolommen van $P$, dan is $D$ de $B$-matrix voor de transformatie. p324
 
 Dus met andere woorden. Als ze je vragen voor een basis van een matrix die diagonaal is, bereken dan de $D$ in $A=PDP^{-1}$ waar $P$ de matrix is met de eigenvectors en $D$ de matrix met de **eigenvalues** op de diagonaal
 
@@ -507,11 +547,100 @@ $v_2=x_2-\frac{x_2.v_1}{v_1.v_1}v_1=\begin{bmatrix}6\\6 \\ -4 \end{bmatrix}-\fra
 
 Dus is onze orthogonale basis voor $W$, $\{{\begin{bmatrix}0\\2 \\ 2 \end{bmatrix}\,\begin{bmatrix}6\\5 \\ -5 \end{bmatrix}\}}$
 
-#### Diagonalisatie (extended)
+#### QR factorisatie
 
 Als $A$ een $m \times n$ matrix met lineair onafhankelijke kolommen is, dan kan $A$ gefactoriseerd worden als $A=QR$, waar $Q$ een $m \times n$ matrix is waarvan de kolommen een orthonormale basis vormen voor $Col~A$ en $R$ is een $n \times n$ upper driehoek inverteerbare matrix met positieve entries op zijn diagonaal.
+
+
+
+#### Symmetrische matrices
+
+Symmetrische matrices zijn matrices waarvoor geldt:
+
+$A = A^T$
+
+Bijvoorbeeld: 
+
+$\begin{bmatrix}1 & 0\\0 & -3\\\end{bmatrix}$ is symmetrisch
+
+Symmetrische matrices hebben een leuke eigenschap namelijk dat als we de **eigenvectoren** van de matrix gaan berekenen dan zijn deze **orthogonaal**. Dit betekent ook dat A enkel orthogonaal diagonalizeerbaar is als deze een symmetrische matrix is.
+
+Formeel:
+
+Als $A$ symmetrisch is, dan zijn elke 2 eigenvectoren van verschillende eigenruimtes **orthogonaal**
+
+Als we een symmetrisch matrix diagonalizeren dan gaan de eigenvectoren in $P$ orthogonaal zijn en aangezien dat $P$ een vierkants matrix is $P^{-1}=P^T$.
+
+#### Least-square solution (Kleinste kwadraten oplossing)
+
+Stel we hebben een inconsistent systeem (bv $0x_1=2$). Wat als we hier toch een oplossing voor nodig hebben? Dan gaan we een $x$ zoeken in $Ax=b$, zodat $Ax$ zo dicht mogelijk bij b. $Ax$ is dan een approximatie van b. Het kleinste kwadraten probleem is om een $x$ te vinden zodat $||b-Ax||$ zo klein mogelijk is.
+
+Gegeven een inconsistent systeem $Ax=b$. Vind de kleinste kwadraten oplossing.
+
+We vinden deze oplossing door de volgende stappen te nemen:
+
+1. Bereken eerst $A^TA$
+2. Bereken $A^Tb$
+3. De vergelijking is dan $A^TA\hat{x}=A^Tb$. Dit vormen we om naar $x=(A^TA)^{-1}A^Tb$ zodat we $\hat{x}$ kunnen berekenen
+4. We berekenen $(A^TA)^{-1}$
+5. Pas de formule van stap 3 toe en dan heb je de oplossing.
+
+
+
+De volgende statements zijn logisch waar (dus of ze zijn allemaal true of allemaal false)
+
+Als $A$ een $m \times n$ matrix is dan
+
+- heeft de vergelijking $Ax=b$  een unieke kleinste kwadraten oplossing voor elke $b$ in $\R^m$
+- De kolommen van $A$ zijn lineaire onafhankelijk
+- De matrix $A^TA$ is inverteerbaar
+
+Als deze statements true zijn dan wordt de kleinste kwadratenoplossing $\hat{x}$ gegeven door
+
+$\hat{x}=(A^TA)^{-1}A^Tb$
+
+
+
+##### Kleinste kwadraten fout
+
+Als we nu nog de kleinste kwadraten fout willen berekenen, doen we dit als volgt:
+$||b-A\hat{x}||$
+
+Je neemt dus de afstand tussen $b$ en $A\hat{x}$. Dat is de fout.
+
+
+
+##### Afstand vector en matrix
+
+Als je het deel hierboven goed snapt zie je dat de uitkomst van de kleinste kwadraten oplossing een vector is die het dichts mogelijk bij $b$ (voor $A\hat{x}=b$). We kunnen deze berekening dus ook gebruiken om kortste afstand tussen een matrix en vector te berekenen en welke vector in die span van de matrix het dichtste ligt bij $b$. Waarbij $A$ de matrix is en $b$ de vector. Je moet de vectoren in de matrix wel nog eerst orthogonaal maken
+
+
+
+#### Spectral Theorem
+
+De set van eigenvalues van eem matrix $A$ noemen we ook wel het spectrum van $A$. De volgende eigenschappen noemen we **de spectraal theorem voor symmetrische matrices**. Een symmetrische  $n \times n$ matrix $A$ heeft de volgende eigenschappen.
+
+- $A$ heeft n real eigenvalues, multipliciteit meegeteld.
+- De eigenspaces zijn orthogonaal, De eigenvectors die overeenkomen met verschillende eigenvalues zijn orthogonaal.
+- $A$ is orthogonaal diagonaliseerbaar.
 
 #### Belangrijk voor examen
 
 - Exercise 14,15,16, 17 oefenbundel 3 herbekijken
 - 
+
+
+
+$U^TU=I$
+
+$det(U^TU)=det(I)$
+
+$det(U^T)det(U)=1$
+
+$det(U)det(U)=1$
+
+$det(U)^2=1$
+
+$det(U)=\sqrt{1}$
+
+$det(U)= 1 \or -1$
