@@ -421,7 +421,7 @@ We noteren deze situatie door $f$ is $Θ(g)$ (en dus ook $g$ is $Θ(f)$).
 
 
 
-**Definitie 3.9** We schrijven f(n) ~ g(n), of f~g als geldt dat
+**Definitie 3.9 (Ook asymptotische equivalentie)** We schrijven f(n) ~ g(n), of f~g als geldt dat
 
 ​							$∀ ∈ \R^+_0 , ∃N ∈ \N, ∀n ≥ N : |f(n)/g(n) − 1| < \epsilon$
 
@@ -449,7 +449,13 @@ In bepaalde gevallen is het nuttig om een grovere opdeling van complexiteit te h
 
 **Definitie 3.20 (Polynomiale tijd)** We noemen een algoritme van polynomiale tijd als en slechts als zijn tijdscomplexiteit $O(n^k)$ is voor een $k\in\N$
 
-**Definitie 3.21 (Exponentiële tijd)** We noemen een algoritme van exponentiële tijd indien zijn complexiteitsfunctie $O$(exp($n^k$)) is, voor een natuurlijk getal k.
+**Definitie 3.21 (Exponentiële tijd)** We noemen een algoritme van exponentiële tijd indien zijn complexiteitsfunctie $O$(exp($n^k$)) is, voor een $k\in\N$
+
+**Voorbeeld**
+
+- Twee algoritmen $tijd_A(n) = n^5$ en $tijd_B(n)=2^n$
+  - $tijd_A(60) < 1.5$min
+  - $tijd_B(60) > 3500$jaar
 
 
 
@@ -514,6 +520,8 @@ We hebben eerder gesteld dat er een essentieel verschil is tussen **polynomiale*
 
 **Definitie 3.23 (De klasse P)** Men duidt met $P$ de klasse aan van alle talen waarvoor geldt dat er een TM bestaat die die taal in polynomiale tijd beslist.
 
+Elke reguliere taal is polynomiaal beslisbaar, $R \sub P$
+
 
 
 **Niet-deterministische Turingmachines en de klasse NP**
@@ -570,7 +578,7 @@ We noteren deze situatie door $L1 ∝ L2$
 
 
 
-
+**NP:** Class of computational decision problems for which any given *yes*-solution can be verified as a solution in polynomial time by a deterministic Turing machine (or *solvable* by a *non-deterministic* Turing machine in polynomial time).
 
 
 
@@ -605,8 +613,6 @@ De vorige stelling toont dus aan dat indien er 1 **NPC**-probleem is dat behoort
 
 
 # Hoofdstuk 4 Grafentheorie
-
-Dit is echt een cools momentje, altijd plezierig. (tim hier, 4 maanden later. Het is niet meer plezierig :smile: :gun:)
 
 ## 4.1 Inleiding
 
@@ -661,7 +667,7 @@ kan als volgt getekend worden:
 
 **Stelling 4.3** Het aantal knopen met oneven graad in een graaf is altijd even.
 
----> De laatste 3 stellingen zijn allemaal eigenlijk triviaal en is gewoon een logisch van het geval dat als ge een boog toevoegt dat deze verbonden is met 2 knopen en dus de som van de graden stijgt met 2. Maar natuurlijk moeten we moeilijk doen dus hieronder het bewi
+---> De laatste 3 stellingen zijn allemaal eigenlijk triviaal en is gewoon een logisch van het geval dat als ge een boog toevoegt dat deze verbonden is met 2 knopen en dus de som van de graden stijgt met 2. 
 
 
 
@@ -683,9 +689,7 @@ We noteren een pad (v~0~,v~1~),(v~1~,v~2~),...,(v~n-1~,v~n~) soms ook als (v~0~,
 
  **Definitie 4.12 (Euleriaans pad, Euleriaanse kring)** Zij gegeven een graaf G. Een Euleriaans pad van G is een pad waarin elke knoop van G minstens 1 keer, en elke boog van G precies 1 keer voorkomt. Een Euleriaanse kring van G is een Euleriaans pad dat ook een kring is.
 
-  **Stelling 4.4** Een graaf G heeft een Euleriaanse kring als en slechts als de graaf samenhangend is en elke knoop een even graad heeft.
-
-.
+ **Stelling 4.4** Een graaf G heeft een Euleriaanse kring als en slechts als de graaf samenhangend is en elke knoop een even graad heeft.
 
 **Stelling 4.5** Een graaf G heeft een Euleriaans pad als en slechts als de graaf samenhangend is en hoogstens 2 knopen een oneven graad hebben.
 
@@ -694,6 +698,8 @@ We noteren een pad (v~0~,v~1~),(v~1~,v~2~),...,(v~n-1~,v~n~) soms ook als (v~0~,
 ### 4.2.3 Deelgrafen en componenten
 
 **Definitie 4.13 (Deelgraaf)** Een graaf G'(V' , E' ) is een deelgraaf van een graaf G(V, E), genoteerd G'' ⊆ G, als en slechts als V' ⊆ V en E' ⊆ E.
+
+Soms willen we, gegeven een graaf $𝐺(𝑉, 𝐸)$ en een deelverzameling knopen 𝑉 ′ ⊆ 𝑉, de deelgraaf die de knopen in 𝑉′ bevat en alle bogen in 𝐺 tussen de knopen van 𝑉′. Die deelgraaf noemen we de deelgraaf geïnduceerd door 𝑉′.
 
 **Definitie 4.14** **(Geinduceerde deelgraaf)** Gegeven een graaf G(V, E) en een deelverzameling V' ⊆ V noemen we G' (V' , E' ) de deelgraaf van G geinduceerd door V' als en slechts E' = {(v, w) ∈ E|v, w ∈ V'}.
 
@@ -723,7 +729,7 @@ Bij een gewone graaf geven de bogen een symmetrische relatie aan: als v verbonde
 
 We hebben grafen tot nog toe gewoonlijk als tekeningen voorgesteld, of als koppels (V, E) met V een verzameling knopen en E een verzameling bogen. Er zijn nog andere voorstellingen mogelijk. In deze sectie bekijken we matrixvoorstellingen van grafen. Een voordeel van deze voorstellingswijze is dat allerlei nuttige berekeningen met grafen dan met behulp van matrixoperaties kunnen gebeuren.
 
-### 4.3.1 Buurmatrix
+### 4.3.1 Buurmatrix (adjacency matrix)
 
 **Definitie 4.18 (Buurmatrix)** Gegeven een enkelvoudige graaf G(V,E), met V = {v~1~, v~2~, . . . , v~n~}, is de buurmatrix van G een n × n-matrix A met A~ij~ = 1 <=> (v~i~,v~j~) ∈ E, en A~ij~ = 0 ⇔ (v~i~ , v~j~ ) /∈ (geen element van) E.
 
@@ -779,38 +785,15 @@ De functie h stelt een “hernoeming” van de knopen voor; ze beeldt elementen 
 
 **Bewijs**: Het bewijs wordt als oefening gelaten.
 
-### 4.4.1 Graaf-isomorfisme testen
-
-
-
-Gegeven twee grafen G~1~(V~1~) en G~2~(V~2~, E~2~) , hoe kunnen we testen of ze isomorf zijn? Het is duidelijk dat als |V~1~| $\neq$ |V~2~|, er geen bijectie tussen de knopen bestaat, en de grafen dus zeker niet isomorf zijn. In het volgende gaan we ervan uit dat |V~1~| = |V~2~| = n. Een eenvoudig algoritme is het volgende: beschouw alle mogelijke bijecties f van V~1~ naar V~2~, en test voor elke f of E~2~ = {(f(v), f(w))|(v, w) ∈ E~1~}. Van zodra een f gevonden wordt waarvoor dit het geval is, eindigt het algoritme met “ja” als antwoord. Er zijn eindig veel bijecties; als ze allemaal geprobeerd zijn zonder een bijectie met de vermelde eigenschap te vinden, eindigt het algoritme met “nee”. Als de grafen n knopen hebben, zijn er n! bijecties uit te testen. Dit algoritme heeft dus een exponentiele complexiteit. Het nagaan of een bijectie voldoet aan de vermelde eigenschap is relatief eenvoudig, dit kan in polynomiale tijd. Dat betekent dat het probleem in NP zit. Voor dit probleem is momenteel niet bekend of het in P zit, en er is ook niet aangetoond dat NP-compleet is. In principe is het dus mogelijk dat het representatief is voor een complexiteitsklasse die “tussen” P en NPC in zit. 
-
-**P = Polynomial time**
-
-**NP = Non-deterministic polynomial time**
-
-
-
-Een verwant probleem is het beslissen van subgraaf-isomorfisme: 
-
-Gegeven twee grafen G1 en G2, bestaat er een subgraaf G ⊆ G2 zo dat G1 isomorf is met G? 
-
-Van subgraaf-isomorfisme is bekend dat het **NP**-compleet is. Hoewel graaf-isomorfisme moeilijk is, bestaan er algoritmen die gemiddeld vrij snel beslissen of twee grafen isomorf zijn. Het is vrij eenvoudig om voorwaarden te definieren waaraan twee isomorfe grafen altijd voldoen, en die snel na te gaan zijn: 
-
-- Het aantal knopen moet gelijk zijn. 
-- Het aantal bogen moet gelijk zijn. 
-- Het aantal knopen met graad i moet gelijk zijn, voor elke i ∈ N. 
-- . . . 
-
-Een algoritme kan bv. gemakkelijk een tabel opstellen met voor elke i het aantal knopen met graad i in G1, en hetzelfde voor G2, en dan nagaan of die tabellen gelijk zijn; dit kan in polynomiale tijd. Wanneer twee grafen aan alle voorwaarden voldoen, dan pas is het nodig om een algoritme met hogere complexiteit te gebruiken. Dan nog kan het aantal bijecties dat bekeken moet worden, sterk gereduceerd worden: het is bv. niet zinvol om bijecties te bekijken die een knoop met graad g afbeelden op een knoop met graad g' > g. ==Het totaal aantal bijecties wordt dan gereduceerd van n! naar n~1~!n~2~! · · · n~k~!, met n~i~ het aantal knopen met graad i. Dat is een veel kleiner getal.==
-
-effe uitleg voor het gearceerde deel, n is het aantal knopen. Dus wat ze willen zeggen is dat de faculteit van n kleiner is dan het product van de faculteiten van het aantal knopen met een bepaalde graad.
-
 
 
 ## 4.5 Gewogen grafen
 
-In dit gedeelte bekijken we grafen waarvoor aan elke boog e een gewicht w(e) ∈ R + 0 toegekend is. Het gewicht van een graaf, en het gewicht van een pad, definiëren we als de som van de gewichten van de bogen in die graaf (op dat pad). Het kortste pad tussen a en b is bij definitie het pad tussen a en b met het kleinste gewicht. classic gps dus.
+In dit gedeelte bekijken we grafen waarvoor aan elke boog $e$ een gewicht $w(e) ∈ R^+_0$ toegekend is.
+
+- Het gewicht van een graaf definiëren we als de som van de gewichten van alle bogen in die graaf. 
+- Het gewicht van een pad definiëren we als de som van de gewichten van de bogen in dat pad. 
+- Het kortste pad tussen $a$ en $b$ is per definitie het pad tussen $a$ en $b$ met het kleinste gewicht
 
 
 
@@ -827,61 +810,6 @@ Het volgende algoritme berekent het gewicht van het kortste pad van een gegeven 
 Dit algoritme heeft de volgende eigenschap: na afloop is L(z) gelijk aan het gewicht van het kortste pad van a naar z. Dat is niet zo heel gemakkelijk in te zien, en daarom zullen we het bewijzen. Alvorens we dat doen, introduceren we eerst het concept invariante eigenschap, ook wel invariante relatie of kortweg invariant genoemd. Wie reeds vertrouwd is met dit begrip, kan de volgende sectie overslaan, of enkel de cursieve paragrafen lezen.
 
 
-
-**Interludium: Invarianten**
-
-Een invariant van een algoritme is een bewering die we met een bepaald punt in het algoritme associëren, en waarvan we kunnen aantonen dat die altijd waar is wanneer tijdens de uitvoering van het algoritme dat punt bereikt wordt. 
-
-Bijvoorbeeld, wanneer ergens in een algoritme y = x*x; staat, weten we zeker dat vlak na de uitvoering van die instructie geldt dat y = x 2 , en ook y ≥ 0. In het volgende stukje code:
-
-**^(1)^ if (x % 2 == 1) { ^(2)^ x++;} ^(3)^**
-
-weten we op plaats ^(1)^ niets over x. Op plaats ^(2)^ weten we dat x oneven is (anders zou de uitvoering dat punt niet bereikt hebben). Op plaats ^(3)^ weten we zeker dat x even is: ofwel was x bij ^(1)^ oneven en dan is x met 1 opgehoogd (dus even geworden), ofwel was het even en is er niets veranderd. Het vinden van een geschikte invariant is heel vaak de sleutel tot het bewijzen van de correctheid van een algoritme. Een goede invariant moet twee eigenschappen hebben:
-
-1. we moeten gemakkelijk kunnen bewijzen dat de invariant waar is, op bepaalde plaatsen in het programma;
-2. uitgaande van de invariant moeten we gemakkelijk kunnen bewijzen dat het algoritme correct is.
-
-![image-20220327104521858](img/image-20220327104521858.png)
-
-**rip voor de mensen die dit moeten kennen, ik voel uw pijn.**
-
-We beweren het volgende: Als r een rij getallen is die geordend is van klein naar groot, dan geeft zoek(r,x) als resultaat true terug als en slechts als x in r voorkomt. Hoe kunnen we dit bewijzen? De sleutel is om de juiste invariant te vinden. Meestal vinden we die door onze eigen intu¨ıtie over waarom het programma goed werkt, te analyseren. In dit geval is de redenering: het stuk van rij r waarin we x zoeken (het stuk tussen a en b), wordt steeds kleiner gemaakt, op zo’n manier dat we zeker zijn dat als x in r voorkomt, het in dat stuk moet voorkomen. De invariante eigenschap is dus: x komt voor in r ⇔ x komt voor tussen a en b; of, formeler: (∃i : r[i] = x) ⇔ (∃i, a ≤ i ≤ b : r[i] = x). Laten we deze invariant I noemen. Het bewijs van correctheid van dit algoritme gaat dan als volgt, per inductie op het aantal keer dat de lus uitgevoerd wordt (m.a.w. we bewijzen dat I geldt bij het begin van de eerste uitvoering van de lus, en dat, als I geldt bij het begin van de n-de uitvoering, dan ook bij het begin van de n + 1-de uitvoering). 
-
-**<u>Initialisatie:</u>** In het begin is a = 0 en b = r.length. I is dan triviaal waar (er zijn geen andere elementen in r dan die tussen a en b). De eerste keer dat de while-lus uitgevoerd wordt, geldt I dus op punt (1) . 
-
-**<u>Onveranderlijkheid:</u>** Stel dat I geldt op punt (1). Dan geldt I nog steeds op punt (2) en punt (3); op punt (3) geldt daarenboven a ≤ m < b (waarom?). Op punt (4) geldt I niet meer automatisch, want we hebben b nu een andere waarde gegeven. We weten wel dat x ≤ r[m] en m = b, waaruit x ≤ r[b] volgt. Omdat r geordend is, geldt ∀i > b : r[i] > x, dus als er een i is waarvoor r[i] = x, dan is i ≤ b. Hieruit volgt dat I op dit punt opnieuw geldt. Analoog kunnen we tonen dat I geldt bij punt (5). Punt (6) wordt bereikt via (4) of (5); aangezien I zowel bij (4) als (5) geldt, geldt het ook bij (6) . Bijgevolg geldt I op het einde van de lus, en dus bij het begin van de volgende uitvoering (1). Hiermee is de onveranderlijkheid van I bewezen. Wanneer de lus eindigt, gaan we van punt (1) direct naar (7); daar geldt I en a = b (anders was de lus niet gestopt). Samen levert dit op: (∃i : r[i] = x) ⇔ (r[a] = x). M.a.w., de methode geeft true terug als en slechts als x in r zit. Hiermee is bewezen dat, als het algoritme eindigt, het zeker een correct resultaat geeft. We moeten nog bewijzen dat het altijd eindigt. Op punt (3) geldt a ≤ m < b; na gelijkstellen van b aan m of a aan m + 1 geldt nog steeds a ≤ b en is b − a met minstens 1 verminderd. Omdat bij elke uitvoering van de lus b − a verkleint zonder dat b − a < 0 kan worden, moet na een eindig aantal stappen b − a = 0 gelden, dus a = b, en eindigt het algoritme.
-
-
-
-**Correctheidsbewijs voor Dijkstra's algoritme**
-
-We zullen twee invarianten invoeren voor Dijkstra’s algoritme. Alvorens we dat doen, introduceren we wat bijkomende terminologie, die helpt om de redenering intuïtief te kunnen volgen. De elementen van R zullen we rode knopen noemen (naar analogie met de illustratie van het algoritme op het bord). Een knoop aan R toevoegen is hetzelfde als een knoop rood kleuren. Een rood pad is een pad waarvan alle knopen, behalve eventueel de laatste, rood zijn. (Merk op dat een leeg pad volgens deze definitie ook 97 als rood beschouwd wordt.) We schrijven het gewicht van een pad P als w(P), en het gewicht van het kortste pad van a naar v noteren we λ(v). We moeten dus bewijzen dat na afloop van het algoritme, L(z) = λ(z). De twee invarianten die we zullen gebruiken, zijn:
-
- **Invariant I~1~**: voor elke v ∈ V geldt: L(v) is het gewicht van het kortste rode pad van a naar v, of oneindig als er nog geen rood pad naar v bestaat. 
-
-**Invariant I~2~**: voor elke v ∈ R geldt: L(v) = λ(v). We bewijzen eerst dat beide invarianten gelden op de plaats aangeduid met (*) in het algoritme (d.w.z., op het moment dat het programma de test van de while-lus uitvoert om te controleren of het de lus nog een keer moet uitvoeren). Daarna tonen we hoe de correctheid van het programma hieruit volgt.
-
-**Lemma 4.11 De invarianten I~1~ en I~2~ gelden altijd op punt (*) in het algoritme.**
-
- **Bewijs:** We bewijzen dit door inductie op het aantal keer dat de lus uitgevoerd wordt; m.a.w., we bewijzen dat de invarianten gelden bij de eerste uitvoering van de lus (“initialisatie”), en dat, als ze bij de n-de uitvoering gelden, dan ook bij de n+ 1-de uitvoering. 
-
-**<u>Initialisatie:</u>** Bij het begin van de uitvoering van het algoritme geldt dat L(a) = 0 en L(v) = ∞ voor alle v 6= a. Er zijn nog geen rode knopen (R is leeg), dus I~2~ is zeker waar. Omdat er nog geen rode knopen zijn, zijn er ook nog geen rode paden, behalve het lege pad van a naar a. Volgens I~1~ moet dan L(a) = 0 en voor elke v 6= a, L(v) = ∞, en dat komt overeen met de initialisatie, dus I~1~ geldt ook. 
-
-**<u>Onveranderlijkheid:</u>** We moeten nu tonen dat als I~1~ en I~2~ gelden aan het begin van een uitvoering van de lus, ze ook gelden aan het begin van de volgende uitvoering van die lus. De lus begint met het controleren of z /∈ R. Deze test verandert niets aan de geldigheid van de invariant, dus I~1~ en I~2~ gelden nog steeds. We kiezen nu de knoop v ∈ V \ R met de kleinste L van alle knopen in V \ R, m.a.w. voor elke andere knoop v' ∈ V \ R geldt: L(v' ) ≥ L(v). 
-
-Op dit moment geldt dat L(v) = λ(v). We kunnen dit als volgt bewijzen. L(v) is het gewicht van het kortste rode pad van a naar v (dat volgt direct uit I~1~), dus we moeten enkel nog aantonen dat ook elk niet-rood pad van a naar v minstens gewicht L(v) heeft. Beschouw een willekeurig niet-rood pad P van a naar v. Neem de eerste niet-rode knoop op dat pad; noem deze u. Omdat u de eerste niet-rode knoop op het pad is, is het deelpad van P dat van a naar u gaat (we noteren dit deelpad P~a→u~) een rood pad. We hebben dan: w(P) ≥ w(P~a→u~) ≥ L(u) ≥ L(v). De eerste ongelijkheid volgt uit het feit dat een deelpad van een pad geen groter gewicht kan hebben dan het pad zelf (aangezien bogen enkel positieve gewichten hebben), de tweede uit I~1~ en het feit dat P~a→u~ een rood pad is, de derde uit het feit dat v van alle niet-rode knopen de laagste L heeft. We concluderen dat elk niet-rood pad P een gewicht van minstens L(v) heeft. Samen met het feit dat het kortste rode pad gewicht L(v) heeft, volgt dan L(v) = λ(v). 
-
- Met dit resultaat bewijzen we nu achtereenvolgens I~2~ en I~1~. I~2~: Vlak voor R := R ∪ {v} uitgevoerd wordt, geldt ∀v' ∈ R : L(v' ) = λ(v' ) (vanwege I~2~) en L(v) = λ(v) (net bewezen), dus na R := R ∪ {v} geldt nog steeds ∀v' ∈ R : L(v' ) = λ(v' ). Verder wordt aan R niets veranderd, dus op het einde van de lus (= vlak voor de lus opnieuw uitgevoerd wordt) geldt I~2~. I~1~: Nadat we v gekozen hebben, en rood gekleurd, bekijkt het algoritme alle knopen v' die verbonden zijn met v. Voor al die knopen gold bij het begin van de lus dat het kortste rode pad lengte L(v' ) had. 
-
-Nu v rood gekleurd is, zijn er nieuwe rode paden naar v' bijgekomen, namelijk de paden die v als voorlaatste knoop hebben. (Voorheen waren die niet rood, omdat v zelf niet rood was.) De lengte van het kortste pad van a naar v' dat als voorlaatste knoop v heeft en dan boog (v, v') volgt, is L(v) + w(v, v'). Ofwel is het nieuwe rode pad korter dan eender welk vroeger gevonden rood pad naar v' , dan is het gewicht van het kortste pad vanaf nu gelijk aan het gewicht van het nieuwe pad, L(v) +w(v, v'); ofwel is het nieuwe pad niet korter, en dan is het gewicht van het kortste rode pad naar v' nog altijd gelijk aan L(v'). De lengte van het kortste rode pad van a naar v' op dit moment is dus min{L(v) + w(v, v'), L(v')}, en dat is ook waaraan we L(v') nu gelijkstellen. 
-
-Omdat we dat doen voor alle v' die verbonden zijn met v, geldt hierna dus opnieuw dat voor alle v' ∈ V \ R, L(v') het gewicht van het kortste rode pad naar v' is, m.a.w., I~1~ geldt op het einde van de lus, en dus bij het begin van de volgende uitvoering van de lus. Hiermee is het bewijs van de invarianten ten einde. 
-
-We hebben bewezen voor zowel I~1~ als I~2~ dat: 
-
-(a) beide gelden voor de eerste uitvoering van de lus; 
-
-(b) als ze gelden aan het begin van een lus, gelden ze ook bij het begin van de volgende uitvoering van de lus. 
 
 
 
@@ -903,7 +831,12 @@ Als het kortste pad van a naar z gelijk is aan P = (v~0~ = a, v~1~, v~2~, . . . 
 
 ### 4.5.4 Complexiteit van Dijkstra's algoritme
 
-Het algoritme bevat geneste lussen. De buitenste lus wordt hoogstens zo vaak uitgevoerd als er knopen in V zijn, want in elke uitvoering wordt er een nieuwe knoop van V gekozen (een gekozen knoop verdwijnt uit V \ R en kan dus niet opnieuw gekozen worden). De keuze van v kan door het overlopen van alle elementen van V \ R, dat zijn er hoogstens n, met n het aantal knopen in V . De lus over alle bogen (v, v0 ) wordt zo vaak uitgevoerd als er bogen invallen op v; voor een enkelvoudige graaf kunnen dat er niet meer dan n−1 zijn. Dus de complexiteit is O(n^2^). We kunnen dit nog verfijnen. Merk op dat elke boog maximaal 1 keer gebruikt wordt in de hele uitvoering van het algoritme. Dat betekent dat het aantal wijzigingen van een L-waarde niet groter kan zijn dan het totaal aantal bogen in de graaf. Als je de v ∈ V \ R met minimale L(v) in minder dan lineaire tijd kan vinden (bv. doordat V \ R geordend is volgens L), kan de complexiteit beter dan O(n^2^ ) zijn. Meer bepaald is het mogelijk om Dijkstra’s algoritme in tijd O(|V|log|V| + |E|) uit te voeren. Of dit veel beter is dan O(|V|^2^), hangt af van |E|.
+- $O(n^2)$
+- mits verfijning: $O(|V|log|V| + |E|)$
+
+
+
+
 
 ### 4.5.5 Enkele doordenkertjes
 
@@ -929,7 +862,7 @@ Figuur 4.8 toont een aantal tweeledige grafen, waaronder enkele die volledig ver
 
 ![image-20220327124621004](img/image-20220327124621004.png)
 
-
+$K_4$ is vlak zelfs al lijkt het niet zo <img src="img/image-20230529122013066.png" alt="image-20230529122013066" style="zoom:33%;" />
 
 ## 4.7 Vlakke grafen
 
@@ -955,21 +888,7 @@ Vlakke grafen hebben de eigenschap dat, eender hoe je de graaf tekent (maar zond
 
 **Lemma 4.13** In een kringvrije graaf met minstens 1 boog bestaat er steeds een knoop met graad 1.
 
-**Bewijs:** Neem een willekeurige knoop v~0~ waarop een boog invalt. Construeer vanuit v~0~ een zo lang mogelijk pad (v~0~, v~1~, v~2~, . . .). Omdat er geen kringen zijn is v~i~ /= v~j~ voor alle i /= j. Omdat elke verlenging van het pad een nieuwe knoop vergt, kan het pad niet oneindig doorgaan (want het aantal knopen is eindig), dus ergens stopt het in een knoop v~k~. Die knoop heeft graad 1 (want als we niet meer verder kunnen, is dat omdat er geen bogen op v~k~ invallen behalve de boog uit v~k−1~).
-
 **Stelling 4.14 (Formule van Euler)** Zij G een samenhangende vlakke graaf met v ≥ 1 knopen, e bogen en f zijvlakken. Dan geldt: v - e + f = 2
-
-
-
-**Bewijs:** We bewijzen dit door inductie op het aantal bogen. **<u>Basis:</u>** e = 0. Een graaf zonder bogen kan alleen samenhangend zijn als de graaf maar 1 knoop bevat, dus v = 1. Zonder bogen kan er ook maar 1 zijvlak zijn, dus f = 1. We hebben dan v − e + f = 1 − 0 + 1 = 2. 
-
-**<u>Inductiestap:</u>** We bewijzen dat voor elke e ≥ 1 geldt: als de formule geldt voor elke samenhangende vlakke graaf met e − 1 bogen, dan ook voor elke vlakke samenhangende graaf met e bogen. Neem een willekeurige graaf G met e bogen. Ofwel bevat G minstens 1 kring, ofwel niet. We beschouwen beide mogelijkheden apart. 
-
-1. G heeft geen kringen: dan bestaat er een knoop met graad 1 (Lemma 4.13). Verwijder die knoop en de boog ernaartoe. De resulterende graaf G0 heeft 1 boog en 1 knoop minder dan G, evenveel zijvlakken als G, en is samenhangend en vlak. Uit de inductieveronderstelling volgt dan dat G0 voldoet aan v' − e' + f' = 2, en met v' = v − 1, e' = e − 1 en f' = f bekomen we v − e + f = 2. 
-2. G heeft kringen: verwijder een willekeurige boog uit een kring; de graaf blijft samenhangend, heeft 1 boog minder, evenveel knopen, en een zijvlak minder (want het zijvlak binnen de kring en dat aan de andere kant van de verwijderde boog zijn nu samengesmolten);
-    we hebben v' − e' + f' = 2 met v' = v, e' = e − 1 en f' = f − 1, waaruit v − e + f = 2 volgt.
-
-*^2^Opgelet, vanaf hier wordt het symbool v soms gebruikt voor het aantal knopen en soms om een knoop aan te duiden. De juiste betekenis blijkt steeds uit de context.*
 
 ![image-20220327143200794](img/image-20220327143200794.png)
 
@@ -991,11 +910,11 @@ We hebben vlakke grafen enkel informeel gedefinieerd. We zullen nu aantonen dat 
 
 
 
-**Eigenschap 4.3** Voor elke vlakke graaf geldt: B ≤ 2e
+**Eigenschap 4.3** Voor elke vlakke graaf geldt: $B ≤ 2e$
 
-**Eigenschap 4.4** Voor elke enkelvoudige vlakke graaf met f ≥ 2 geldt: B ≥ 3f.
+**Eigenschap 4.4** Voor elke enkelvoudige vlakke graaf met $f ≥ 2$ geldt: $B ≥ 3f$.
 
-**Eigenschap 4.5** Voor elke enkelvoudige vlakke graaf met f ≥ 2 geldt: 2e ≥ 3f, of nog, f ≤ (2/3)e.
+**Eigenschap 4.5** Voor elke enkelvoudige vlakke graaf met $f ≥ 2$ geldt: $2e ≥ 3f$, of nog, $f ≤ (2/3)e$.
 
 
 
@@ -1078,11 +997,6 @@ Het probleem werd voor het eerst gesteld door Francis Guthrie rond 1850. Men was
 
 **Stelling 4.17** Voor elke enkelvoudige vlakke graaf met e ≥ 2 geldt: e ≤ 3v − 6.
 
-**Bewijs:** We bewijzen dit eerst voor samenhangende grafen. We onderscheiden grafen met en zonder kringen. 
-
-1. G is kringvrij: per inductie op het aantal bogen: (basis) een enkelvoudige vlakke graaf met minstens twee bogen heeft minstens 3 knopen; (inductiestap) neem een samenhangende kringloze graaf; er is een knoop met graad 1 (Lemma 4.13); verwijder die knoop en zijn boog; het resultaat G0 heeft e' = e − 1 en v' = v − 1 en voldoet per inductieveronderstelling aan e' ≤ 3v' − 6, dus e − 1 ≤ 3(v − 1) − 6 waaruit e ≤ 3v − 8 ≤ 3v − 6. 
-2. G bevat kringen: dan geldt f ≤ (2/3) e (Eig. 4.5), en v − e + f = 2 (Euler), dus e = f + v − 2 ⇒ e ≤ (2/3) e + v − 2 ⇒ (1/3) e ≤ v − 2 ⇒ e ≤ 3v − 6. Als de graaf niet samenhangend is, zijn de componenten ervan wel samenhangend, vlak en enkelvoudig. Je kan die componenten naast elkaar tekenen zonder snijdende bogen, en vervolgens een boog tussen G~i~ en G~i+1~ tekenen voor alle i; dit kan steeds zonder snijdende bogen. De resulterende graaf G' is samenhangend, vlak, enkelvoudig, en heeft e' > e ≥ 2. Er geldt dus (vanwege het eerste punt in dit bewijs) dat e' ≤ 3v' −6. Daaruit volgt e < e' ≤ 3v' − 6 = 3v − 6. 
-
 **Stelling 4.18** In elke vlakke, enkelvoudige graaf bestaat er minstens een knoop, zeg w, zodanig dat δ(w) ≤ 5.
 
 **Bewijs:** Dit is duidelijk waar voor een graaf met hoogstens 1 boog. Als de graaf minstens 2 bogen heeft, moet gelden: e ≤ 3v − 6. Stel nu dat de stelling niet voldaan is voor zo’n graaf, d.w.z. alle knopen hebben graad 6 of meer, dan is de som van de graden van alle knopen (= 2e) minstens 6v, en bijgevolg e ≥ 3v, in tegenspraak met e ≤ 3v−6. 
@@ -1093,7 +1007,7 @@ De volgende stelling laat zien dat het kleuren van een vlakke graaf altijd kan m
 
 **Bewijs:** check boek op 116, dees is te kankerlang. Echte tering. KRANK
 
-
+$K_n$ heeft $n$ kleuren nodig
 
 ## 4.9 Bomen
 
@@ -1108,13 +1022,11 @@ Bomen zijn een speciaal soort grafen. Er zijn verschillende definities van bomen
 
 **Stelling 4.20** Tussen twee verschillende knopen v en w die deel uitmaken van dezelfde kring, bestaan steeds minstens 2 verschillende paden.
 
-**Bewijs: **Beschouw een enkelvoudige kring met n knopen: (v~1~, v~2~, . . . , v~n~, v~1~), met n ≥ 2. Tussen elke v~i~ en v~j~ met i < j zijn er dan minstens twee paden, namelijk (v~i~ , v~i+1~, . . . , v~j~ ) en (v~i~ , v~i−1~, . . . , v~1~, v~n~, v~n−1~, . . . , v~j~ ). 
-
 Intuïtief is dit duidelijk: in een kring kan je linksom of rechtsom naar een andere knoop gaan.
 
 **Stelling 4.21** Als tussen twee verschillende knopen in een graaf G twee verschillende paden P~1~ en P~2~ bestaan, bevat G een kring.
 
-**Bewijs:** Stel dat er tussen knopen v en w twee verschillende paden P~1~ = (v = a~0~, a~1~, a~2~, . . . , w = a~n~) en P~2~ = (v = b~0~, b~1~, b~2~, . . . , w = b~m~) bestaan. Aangezien de paden in dezelfde knoop beginnen en niet gelijk zijn, moet er ergens een eerste knoop zijn vanaf waar ze uiteen lopen (d.w.z. a~i~ = b~i~ maar a~i+1~ /= b~i+1~). Omdat ze allebei in dezelfde knoop eindigen, moeten ze ergens weer samenkomen; zij a~j~ = b~j'~  de eerste knoop waar ze weer samenkomen (dus a~j~ = b~j'~ maar a~j−1~ /= b~j' −1~). (a~i~ , a~i+1~, . . . , a~j−1~, a~j~ = b~j'~ , b~j'−1~, . . . , b~i~ = a~i~) vormt dan een kring.
+
 
 **Stelling 4.22** Zij T een graaf met n knopen. Elk van de volgende condities impliceert alle andere: 
 
@@ -1125,15 +1037,7 @@ Intuïtief is dit duidelijk: in een kring kan je linksom of rechtsom naar een an
 
 Vergelijk dit even met de alternatieve definities van boom in het begin van deze sectie! 
 
-**Bewijs:** We bewijzen de volgende vier implicaties: (1) ⇒ (2), (2) ⇒ (3), (3) ⇒ (4), (4) ⇒ (1). Uit de transitiviteit van ⇒ volgt dan direct dat elke conditie uit elke andere conditie volgt, en dus dat ze allemaal equivalent zijn. 
 
-(1) ⇒ (2): Als T enkelvoudig is en tussen elke twee knopen van T precies 1 pad bestaat, is T samenhangend en kringvrij. Bewijs: T is samenhangend omdat er tussen elke twee knopen een pad bestaat. T is kringvrij omdat er geen lussen zijn (enkelvoudig) en ook geen kringen met minstens 2 knopen (wegens Stelling 4.20 zouden er dan immers knopen bestaan met meer dan 1 pad ertussen). 
-
-(2) ⇒ (3): Als T samenhangend en kringvrij is, heeft T n − 1 bogen. Bewijs: Als T samenhangend en kringvrij, is T ook een vlakke graaf met 1 zijvlak (Eig. 4.2) en dus geldt (Euler) v − e + f = 2. Met v = n en f = 1 geeft dit e = n − 1. 
-
-(3) ⇒ (4): Als T samenhangend en n−1 bogen heeft, is T kringvrij. Bewijs: Stel dat T niet kringvrij zou zijn. Dan kunnen we uit een willekeurige kring een boog weglaten zonder de samenhangendheid te schaden. Als we dit blijven doen tot er geen kringen meer zijn, bekomen we een samenhangende kringvrije graaf, waarvoor geldt dat het aantal bogen n − 1 is (zie vorig punt); de oorspronkelijke graaf moet dus strikt meer bogen gehad hebben. 
-
-(4) ⇒ (1): Als T kringvrij is en n − 1 bogen heeft, is T enkelvoudig en bestaat er precies 1 pad tussen elke twee knopen. Bewijs: Kringvrije grafen zijn altijd enkelvoudig (want lussen of parallelle bogen maken automatisch kringen) en hebben hoogstens 1 pad tussen elke twee knopen (Stelling 4.21). We moeten enkel nog aantonen dat er tussen elke twee knopen minstens 1 pad bestaat, m.a.w. dat T samenhangend is. Welnu, stel dat T k componenten Gi heeft, elk met ni knopen en ei bogen. Deze zijn allemaal kringvrij en samenhangend, dus ei = ni −1, dus e = Pei = P(ni −1) = n−k. Aangezien e = n−1 (gegeven), volgt k = 1: de graaf heeft maar 1 component en is dus samenhangend. De bovenstaande stelling toont een interessant verband tussen drie eigenschappen: kringvrij, samenhangend, en n−1 bogen: een graaf die aan twee van de drie eigenschappen voldoet, voldoet automatisch aan de derde. Figuur 4.16 vat dit samen.
 
 ![image-20220405172223756](img/image-20220405172223756.png)
 

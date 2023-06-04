@@ -27,7 +27,7 @@
 
 #### **How does it work?**
 
-Selection sort is one of the simpelst algorithms out there. It finds the smallest element in the unsorted array and moves it to the beginning of the array. The bounds for the unsorted array so the sorted part is excluded from the next search for the smallest element.
+Selection sort is one of the simpelst algorithms out there. It finds the smallest element in the unsorted array and moves it to the beginning of the array. The bounds for the unsorted array move so the sorted part is excluded from the next search for the smallest element.
 
 **Time complexity:**
 
@@ -41,7 +41,7 @@ Since the algorithm just finds the smallest element every time, the fact that an
 
 #### How does it work?
 
-This algorithm is in place so we do not need extra space. We work from left to right and compare each element to the element to the left of it. If the element if smaller we swap them, if it is not we move on to the next element and consider that part sorted.
+This algorithm is in place so we do not need extra space. We work from left to right and compare each element to the element to the left of it. If the element is smaller we swap them, if it is not we move on to the next element and consider that part sorted.
 
 ![image-20230324133922898](img/image-20230324133922898.png)
 
@@ -82,9 +82,12 @@ Quicksort is a divide and conquer algorithm. It works by dividing the input arra
 
 **Time Complexity**
 
-$O(n*log_2n)$ but it does require additional memory to store subarrays during recursion
+$O(n^*log_2n)$ but it does require additional memory to store subarrays during recursion
 
+**Merge Sort improvements**
 
+- Switch to insertion sort for small arrays because mergesort has too much overhead for small arrays
+- Use same aux array each time
 
 ### How fast can sorting algorithms go
 
@@ -210,13 +213,13 @@ We shuffle the starting array and then take the first element as the pivot. This
 
 We go through the array with 2 indexes one starting from the left and the other starting from the right. The left index will start going through the array until it finds an element bigger than the pivot. After that our right index will start to move to the left until it finds an element smaller than the pivot. When both have found an element we switch the 2 elements. We keep this going until both pivots meet. We stop here because the array is now sorted for this pivot, we switch the last element of the smaller elements with the pivot to get the pivot in the correct position. We then restart the algorithm on everything that was smaller than the pivot and everything that was greater than the pivot, continuing until the array is sorted.
 
+<img src="img/image-20230528133031475.png" alt="image-20230528133031475" style="zoom: 67%;" />
 
-
-#### Lomunto Variant
+#### Lomuto Variant
 
 We shuffle the starting array and this time pick the last element. This variant is also inplace.
 
-Again we will have two indexes but this time our first index will be the index of the last element smaller than our pivot while our second index is the index going through the array from left to right.
+Again we will have two indeces but this time our first index will be the index of the last element smaller than our pivot while our second index is the index going through the array from left to right.
 
 ![image-20220615160830467](img/image-20220615160830467.png)
 
@@ -358,7 +361,7 @@ Hieronder een voorbeeld met letters:
 
 **Worst Case:**
 
-alles in 1 bucket -> waardeloos
+alles in 1 bucket -> useless
 
 
 
@@ -524,6 +527,11 @@ Voor Counting sort eenmaal toe te passen hebben we een complexiteit van $O(n+b)$
 
 Afhangend van bepaalde inputs kan LSD of radix sort het dus beter doen dan quick sort of merge sort.
 
+De compares zijn meestal niet wat het vertraagt maar de array accesses. Dus we gaan dit gebruiken om de complexiteit uit te drukken
+**~7WN + 3WR array accesses**
+
+
+
 ### MSD (Most significant digit) (radix) Sort
 
 Dit is hetzelfde als LSD maar werkt van rechts naar links, dus deze begint met het grootste getal.
@@ -573,7 +581,7 @@ Vervang counting sort met quicksort, die doet de afhankelijkheid op R, dus de gr
 
 ### Key lessons from sorting
 
-**Je kan sorteer probleem om heel veel verschillende manieren aanpakken**
+**Je kan sorteer probleem op heel veel verschillende manieren aanpakken**
 
 - De beste optie hangt af van je data
 - Belangrijk om de average and worse case te analyzeren
@@ -929,7 +937,7 @@ Elke pad van de root naar de null-link heeft dezelfde lengte
 
 -> **Worst case: $log_2N$ [all 2-nodes]**
 
--> **Best case:** $log_3N \approx 0.631log_2N $ **[all 3-nodes**
+-> **Best case:** $log_3N \approx 0.631log_2N $ **[all 3-nodes]**
 
 Gegarandeerde logaritmische performance for search and insert
 
@@ -1381,7 +1389,7 @@ Simply deleting array entry: does not work
 
 ## Les 9: Greedy Algoritmen
 
-### Greedy Algorithm
+Greedy Algorithm
 
 **General strategy:** Make the choice that seems best now!
 

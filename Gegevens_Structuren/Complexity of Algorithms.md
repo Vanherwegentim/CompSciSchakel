@@ -28,7 +28,15 @@ Average case: $O(n*log_2(n))$
 
 Worst case: $O(n*log_2(n))$
 
+De hoeveelheid vergelijkingen dat mergesort maximaal nodig heeft om n elementen te sorteren kunnen we berekenen met de volgende formule:
 
+$n^*log_2(n)-n+1$
+
+Dus voor 6 element:
+
+$6^*2.585-6+1 = 10.51$
+
+Wat ongeveer 11 vergelijkingen is.
 
 
 
