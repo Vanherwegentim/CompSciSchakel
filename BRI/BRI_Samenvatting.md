@@ -201,9 +201,13 @@ $P ⇒ 𝑄$
 
 ![image-20220803112751434](img/image-20220803112751434.png)
 
-**Modus ponens:** Als $P$ waar is, en $P ⇒ Q$ is waar, dan is $Q$ waar
+**Modus ponens:** Als $P$ waar is, en $P ⇒ Q$ is waar, dan is $Q$ waar  
+		$(P \and(P\implies Q)) \implies Q$
 
-**Modus tollens:** Als $Q$ onwaar is, en $P ⇒ Q$ is waar, dan is $P$ onwaar.
+**Modus tollens:** Als $Q$ onwaar is, en $P ⇒ Q$ is waar, dan is $P$ onwaar. 
+		$(¬Q \and (P\implies Q)) \implies ¬P$
+
+
 
 
 
@@ -379,7 +383,7 @@ Een bewijs uit het ongerijmde wordt ook wel een bewijs door contradictie genoemd
 
 ### 4.8 Bewijs door inductie
 
-![image-20220803155639858](img/image-20220803155639858.png)
+![s](img/image-20220803155639858.png)
 
 
 
@@ -467,6 +471,14 @@ Dan is hun samengestelde relatie
 n f(x) wordt x het argument van de functie genoemd. Binaire relaties geven aanleiding tot functies met één argument. We kunnen ook functies met meerdere argumenten definiëren, op basis van ternaire of, algemener, n-aire relaties.
 
 
+
+### 6.4 Operatoren op functies
+
+**Definitie 6.11** Zij $f:A \rightarrow B$ een functie waarvoor geldt dat $\forall x,x' \in A: f(x)=f(x')=>x=x'.$ De inverse functie van $f$ is de functie $f^{-1}:B\rightarrow A$, waarvoor geldt dat $f(x)=y \iff f^{-1}(y)=x$
+
+
+
+**Definitie 6.12** De identiteitsfunctie over een verzameling A, genoteerd $i_A$ is $ i_A:A \rightarrow A: x \rightarrow x$
 
 
 
@@ -561,17 +573,17 @@ Met elke partitie van een verzameling A komt een equivalentierelatie overeen, en
 
 #### 7.3.2 Boven-en Ondergrenzen
 
-**Definitie 7.12** We noemen a $\in$ A een **bovengrens** voor X als en slechts als $∀𝑥 ∈ 𝑋 ∶ 𝑥 ⪯ a$, en een **ondergrens** voor X als en slechts als $∀𝑥 ∈ 𝑋 ∶ 𝑎 ⪯ 𝑥$.
+**Definitie 7.12** We noemen $a \in A$ een **bovengrens** voor $X$ als en slechts als $∀𝑥 ∈ 𝑋 ∶ 𝑥 ⪯ a$, en een **ondergrens** voor $X$ als en slechts als $∀𝑥 ∈ 𝑋 ∶ 𝑎 ⪯ 𝑥$.
 
 
 
-**Definitie 7.13** Zij X een deelverzameling van een geordende verzameling 𝐴, ⪯. Als er een bovengrens b van X bestaat zodat 𝑏 ⪯ 𝑏 ′ voor alle bovengrenzen b' van X, dan zeggen we dat b het supremum van x is.
+**Definitie 7.13** Zij $X$ een deelverzameling van een geordende verzameling $𝐴, ⪯$. Als er een bovengrens $b$ van $X$ bestaat zodat $𝑏 ⪯ 𝑏'$ voor alle bovengrenzen $b'$ van $X$, dan zeggen we dat $b$ het supremum van $x$ is.
 
-Met andere woorden: het **supremum** van x is de **kleinste bovengrens** voor X, als die bestaat. Het supremum is steeds uniek.
+Met andere woorden: het **supremum** van $x$ is de **kleinste bovengrens** voor $X$, als die bestaat. Het supremum is steeds uniek.
 
 
 
-**Definitie 7.14** Zij X een deelverzameling van een geordende verzameling 𝐴, ⪯. Als er een ondergrens o van X bestaat zodat 𝑜 ′ ⪯ o voor alle ondergrenzen o' van X, dan zeggen we dat o het **infimum** van X is.
+**Definitie 7.14** Zij $X$ een deelverzameling van een geordende verzameling $𝐴, ⪯$. Als er een ondergrens $o$ van $X$ bestaat zodat $𝑜' ⪯ o$ voor alle ondergrenzen $o'$ van $X$, dan zeggen we dat $o$ het **infimum** van $X$ is.
 
 Met andere woorden: het **infimum** van X is de **grootste ondergrens** voor X, als die bestaat. Het infimum is steeds uniek.
 
@@ -707,3 +719,7 @@ Zoals eerder gezegd:  |$\N$| = ℵ~0~
 ![image-20220804161014060](img/image-20220804161014060.png)
 
 $A^c\cup B=\left(A\setminus B\right)^c                        A\setminus B=A\cap B^c =\left(A\cap B^c\right)^c                                De Morgan =A^c\cup\left(B^c\right)^c                                \left(A^c\right)^c=A =A^c\cup B $
+
+### TODO
+
+Bewijzen checken van hoofdstukken 4,5,6 op toledo

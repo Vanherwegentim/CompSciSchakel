@@ -8,7 +8,7 @@
 | --------- | ------------------------- | ------------- | -------------------------------------------- | ------------------------- |
 | Tilde     | leading term              | ~ 10N^2^      | 10N^2^<br />10N^2^+22NlogN                   | provide approximate model |
 | Big Theta | Asymptotic growth rate    | $\theta(N^2)$ | (1/2)N^2^<br />10N^2^<br />5N^2^ +22NlogN+3N | classify algorithms       |
-| Big Oh    | $\Theta(N^2)$ and smaller | O(N^2^)       | 10N^2^<br />100N                             | develop upper bounds      |
+| Big Oh    | $\Theta(N^2)$ and smaller | $O(N^2)$      | 10N^2^<br />100N                             | develop upper bounds      |
 | Big Omega | $\Theta(N^2)$ and larger  | $\Omega(N^2)$ | (1/2)N^2^<br />N^5^<br />N^3^+22NlogN + 3N   | develop lower bounds      |
 
 ![image-20220607161326933](C:\Users\timva\AppData\Roaming\Typora\typora-user-images\image-20220607161326933.png)
@@ -35,13 +35,17 @@ $O(n^2)$
 
 Since the algorithm just finds the smallest element every time, the fact that an array might already be partially ordered will not make a difference.
 
+ **Average case:** $\textasciitilde{}n^2/2$
+
+
+
 
 
 ### Insertion sort
 
 #### How does it work?
 
-This algorithm is in place so we do not need extra space. We work from left to right and compare each element to the element to the left of it. If the element is smaller we swap them, if it is not we move on to the next element and consider that part sorted.
+This algorithm is in place so we do not need extra space. We work from left to right and compare each element to the element to the left of it. If the element is smaller we swap them, if it is not, we move on to the next element and consider that part sorted.
 
 ![image-20230324133922898](img/image-20230324133922898.png)
 
@@ -57,7 +61,23 @@ This algorithm is in place so we do not need extra space. We work from left to r
 
 $O(n^2)$ but it can perform better than selection sort in some cases because it has an $O(n)$ best-case time complexity when the array is already sort.
 
+**Best case:**
 
+Array is already sorted so we will compare each element to the element next to it one time
+
+Comparisons: $1+1+1+...+1 = \textasciitilde{} n$
+
+**Worst case:**
+
+All elements to the left of an element are larger
+
+Comparisons: $1+2+...+(n-1)$ = $\textasciitilde{}n^2/2$
+
+**Average case:**
+
+Half of the elements to the left of an element are larger
+
+Comparisons: $\textasciitilde{}n^2/4$
 
 
 
@@ -88,6 +108,14 @@ $O(n^*log_2n)$ but it does require additional memory to store subarrays during r
 
 - Switch to insertion sort for small arrays because mergesort has too much overhead for small arrays
 - Use same aux array each time
+
+**Exact amounts of comparisons:**
+
+Worst case: $nlog_2n -n+1$
+
+Best case: $\frac{nlog_2n}{2}$ for power of 2 elements (meaning that we have 8,4 or 2 elements to sort)
+
+ 
 
 ### How fast can sorting algorithms go
 
@@ -223,7 +251,7 @@ Again we will have two indeces but this time our first index will be the index o
 
 ![image-20220615160830467](img/image-20220615160830467.png)
 
-When an element is bigger than the pivot we will just leave it, if it is smaller than the pivot we switch it with the first index + 1 so a[i+1]. We continue this until our j index hits the end of the array. Where out pivot is then switched with first element of the subarray with the bigger elements.
+When an element is bigger than the pivot we will just leave it, if it is smaller than the pivot we switch it with the first index + 1 so a[i+1]. We continue this until our j index hits the end of the array. Where out pivot is then switched with first element of the subarray with the larger elements.
 
 #### **Performance**
 
@@ -305,38 +333,6 @@ After bad split, nlog~2~n behavior is resumed
 
 
 
-![image-20220608105941221](img/image-20220608105941221.png)
-
-$C(n)=(n+1)+\frac{1}n(C(0)+C(n-1))+\frac{1}n(C(1)+C(n-2))+...+\frac{1}n(C(n-1)+C(0))$
-
-​		   $=(n+1)+\frac{2}n(C(0)+C(1)+C(2)...+C(n-1))$
-
-En dus:
-
-$nC(n)=n(n+1)+2(C(0)+C(1)+C(2)...+C(n-1))$
-
-Vermits dit geldt voor alle waarden van n, geldt het ook voor n-1:
-
-$(n-1)C(n-1)=(n-1)n+2(C(0)+C(1)+C(2)...+C(n-2))$
-
-Om lange som weg te werken, trekken we beide vorige vergelijkingen van elkaar af:
-
-$nC(n)-(n-1)C(n-1)=n(n+1)-(n-1)n+2C(n-1)$
-
-Herschrijven geeft:
-
-$\frac{C(n)}{n+1}=\frac{2}{n+1}+\frac{C(n-1)}{n}$
-
-Dit is een recursieve uitdrukking, die we gemakkelijk kunnen expanderen. We weten ook dat C(1)=0 en C(2)=1, wat een stopconditie geeft voor de expansie.
-
-$\frac{C(n)}{n+1}=\frac{2}{n+1}+\frac{2}n+\frac{2}{n-1}+\frac{2}{n-1}+...+\frac{2}3$
-
-Benaderen de som door een integraal:
-
-TODO rest van bewijs
-
-
-
 ## Les 5: Sorteren in lineaire tijd
 
 ### Can we sort in linear time?
@@ -373,7 +369,7 @@ n/k elementen in elke bucket. Omwille van het vorige krijgen we dus **k** sortin
 
 **Average Case:**
 
-Ga er vanuit dat je een uniforme random input hebt. Dit resulteer in ongeveer even grote buckets.
+Ga er vanuit dat je een uniforme random input hebt. Dit resulteert in ongeveer even grote buckets.
 
 ![image-20220608114838276](img/image-20220608114838276.png)
 
@@ -381,10 +377,10 @@ Ga er vanuit dat je een uniforme random input hebt. Dit resulteer in ongeveer ev
 
 **How many buckets?**
 
-- Assume \~c.n.log~2~(n) sorting algorithm in each bucket
-- Average/best case:\~k.c.(n/k).log~2~(n/k)=\~c.n.log~2~(n/k)
-  - if k is a constant (e.g 5) -> \~c.n.log~2~(n)
-  - if k is proportional to n, then log~2~(n/k)is constant ~c'.n
+- Assume $\textasciitilde{}c.n.log_2(n)$ sorting algorithm in each bucket
+- Average/best case:$\textasciitilde{}k.c.(n/k).log_2(n/k)=>\textasciitilde{}c.n.log_2(n/k)$
+  - if $k$ is a constant (e.g 5) => $\textasciitilde{}c.n.log_2(n)$
+  - if $k$ is proportional to $n$, then $log_2(n/k)$ is constant => $\textasciitilde{}c'.n$
 
 **How should you sort each bucket?**
 
@@ -404,7 +400,13 @@ Ga er vanuit dat je een uniforme random input hebt. Dit resulteer in ongeveer ev
 
 ### Counting Sort
 
+[Tutorial]: https://algs4.cs.princeton.edu/lectures/demo/51DemoKeyIndexedCounting.pdf
+
+
+
 #### How does it work?
+
+Couting sort werkt het best wanneer de range van de getallen die mogelijk zijn, heel klein is.
 
 Counting sort werkt in een paar simpele stappen
 
@@ -438,11 +440,11 @@ Bereken de startpositie van elke sleutel in de uitvoerarray:
 
 Kopieer de elementen van de inputarray naar de outputarray
 
-1. - [1, 1, 2, 3, 4, 5, 5, 6, 9]
+1. [1, 1, 2, 3, 4, 5, 5, 6, 9]
 
 #### Performance
 
-Uses **8N+3R+1 array accesses** to sort **N** records whose keys are integers between **0 and R-1**
+Uses **8N+3R+1 array accesses** to sort **N** elements whose keys are integers between **0 and R-1**
 
 Key-indexed counting uses extra space proportional to N+R
 
@@ -529,6 +531,10 @@ Afhangend van bepaalde inputs kan LSD of radix sort het dus beter doen dan quick
 
 De compares zijn meestal niet wat het vertraagt maar de array accesses. Dus we gaan dit gebruiken om de complexiteit uit te drukken
 **~7WN + 3WR array accesses**
+
+R = largest number of array
+
+W = width of largest number
 
 
 
@@ -1580,7 +1586,9 @@ A subsequence of a string is **a sequence that can be derived from the given str
 
 
 
+### When to use dynamic programming?
 
+De optimale oplossing heeft de optimale oplossing van de subproblemen. Oplossingen van subproblemen moeten onafhankelijk zijn. De optimale oplossing voor een subprobleem is niet afhankelijk van de optimale oplossing voor een ander probleem.
 
 ## Les 11: String Matching
 

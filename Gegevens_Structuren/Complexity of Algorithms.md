@@ -36,7 +36,7 @@ Dus voor 6 element:
 
 $6^*2.585-6+1 = 10.51$
 
-Wat ongeveer 11 vergelijkingen is.
+Wat ongeveer 11 vergelijkingen zijn.
 
 
 

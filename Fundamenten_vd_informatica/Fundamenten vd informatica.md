@@ -171,7 +171,11 @@ de taal bepaald door de eindige automaat A. Voor een gegeven taal L ⊆ Σ^*^ ze
 
 
 
-**Stelling 3.3 (Pompstelling)** Voor elke reguliere taal L bestaat er een $n \in \N$, zodat voor elke string $s  ∈ L$ met $|s| ≥ n$, het volgende geldt: er bestaan strings $x,y,z$ zodat $s = xyz$ met $|y| > 0, |xy|≤ n,$ en $∀k ∈ N : xy^kz ∈ L$.
+**Stelling 3.3 (Pompstelling)** Voor elke reguliere taal $L$ bestaat er een $n \in \N$, zodat voor elke string $s  ∈ L$ met $|s| ≥ n$, het volgende geldt: er bestaan strings $x,y,z$ zodat $s = xyz$ met
+
+- $|y| > 0$
+- $|xy|≤ n,$
+- $∀k ∈ \N : xy^kz ∈ L$.
 
 
 
@@ -1567,13 +1571,13 @@ Bewijs zie boek
 
 In kort:
 
-**Maximale matching**
+**Maximale matching:**
 
-Een matching $P$, van graaf $G$, is maximaal als er geen edges meer kunnen worden toegevoegd aan $P$ omdat elke node gematched is aan een andere node.
+een matching $M$ is maximaal a.s.a. er bestaat geen matching met meer bogen dan $M$ .
 
-**Maximum matching**
+**Volledige matching**
 
-Een matching is een maximum matching als het de grootste hoeveelheid mogelijk edges bezit. Simpel gezegd, een maximum matching is een maximale matching met de maximum hoeveelheid edges. Elke maximum matching is maximaal, maar niet elke maximale matching is een maximum matching.
+Een matching is volledig als alle vertices in de matching aanwezig zijn.
 
 ### 4.11.4 Petrinetten
 
@@ -1671,7 +1675,7 @@ Zij S een verzameling met een partiele orde $\le$.
 1. $a ∈ S$ is een bovengrens (of majorant) voor een deel $X ⊆ S ⇔ ∀x ∈ X : x ≤ a.$
 2. $b ∈ S$ is een ondergrens (of minorant) voor een deel $X ⊆ S ⇔ ∀x ∈ X : b ≤ x$
 
-**Opmerking** Met de notatie S, ≤ duiden we in het vervolg aan dat S een verzameling is, voorzien van een partiële orderelatie “≤” (bv. N, ≤ en N, |). Indien S, ≤ een partieel geordende verzameling is en x, y ∈ S dan noteren we ook x ≥ y wanneer we y ≤ x bedoelen
+**Opmerking** Met de notatie S, ≤ duiden we in het vervolg aan dat S een verzameling is, voorzien van een partiële orderelatie “≤” (bv. N, ≤ en N, |). Indien S, ≤ een partieel geordende verzameling is en x, y ∈ S dan noteren we ook x ≥ y wanneer we y ≤ x bedoelen (| - > is een deler van)
 
 ![image-20220515190702914](img/image-20220515190702914.png)
 
@@ -1688,7 +1692,7 @@ Zij $S,\le$ een geordende verzameling en $X\subseteq S $.
 
 
 **Definitie 5.4 (Complete tralie)**
-Een partieel geordende verzameling L, $\le$ is een complete tralie als sup($X$) en inf($X$) bestaan voor elke niet lege deelverzameling $X \subseteq L$.
+Een partieel geordende verzameling $L$, $\le$ is een complete tralie a.s.a. elke niet-lege $X \subseteq L$ heeft een supremum en infimum in $L$
 
 ![image-20220515213900310](img/image-20220515213900310.png)
 
